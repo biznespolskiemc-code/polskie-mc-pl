@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Serwer Minecraft — POLSKIE-MC.PL</title>
+  <meta name="description" content="Dołącz do POLSKIE-MC.PL — przyjazna społeczność, tryby: survival, creative, minigry. IP: POLSKIE-MC.PL">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220;
+      --accent:#7ED957; /* 'grass' green */
+      --muted:#9aa6b2;
+      --card:#0f1720;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(126,217,87,0.06), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(126,217,87,0.03), transparent),
+                  linear-gradient(180deg,#06121a 0%, #071423 40%, #021018 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:24px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      gap:24px;\    }
+    .container{max-width:1100px;width:100%;}
+
+    /* top bar */
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,#90ee90,#5bb43c);box-shadow:0 6px 20px rgba(0,0,0,0.6);
+      font-family:'Press Start 2P',monospace;color:#07240a;font-size:13px
+    }
+    nav a{color:var(--muted);text-decoration:none;margin-left:16px;font-weight:500}
+    nav a:hover{color:var(--accent)}
+
+    /* main grid */
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+
+    /* hero card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:20px;box-shadow:0 8px 30px rgba(2,6,12,0.6);border:1px solid rgba(255,255,255,0.03)}
+
+    .hero-head{display:flex;align-items:center;gap:16px}
+    .server-title{font-family:'Press Start 2P',monospace;font-size:22px;letter-spacing:1px}
+    .subtitle{color:var(--muted);margin-top:6px;font-size:13px}
+
+    .big-ip{display:flex;align-items:center;gap:12px;margin-top:16px}
+    .ip{background:var(--glass);padding:10px 14px;border-radius:8px;font-weight:700;font-family:'Roboto';letter-spacing:0.6px}
+    .btn{background:linear-gradient(180deg, #78d158, #5fb33a);color:#022004;padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer;font-family:'Press Start 2P',monospace}
+    .btn:active{transform:translateY(1px)}
+
+    .features{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .feature{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;min-width:140px}
+    .muted{color:var(--muted)}
+
+    /* right column */
+    .sidebar .stat{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;margin-bottom:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+    .status-online{color:var(--accent);font-weight:800}
+    .status-offline{color:#ff7b7b;font-weight:800}
+
+    /* rules */
+    .rules{margin-top:10px}
+    .rules li{margin-bottom:8px}
+
+    /* server features list */
+    .list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+
+    footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* responsive */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr}
+      .logo{width:54px;height:54px}
+    }
+
+    /* small pixel accents */
+    .pixel{width:12px;height:12px;background:linear-gradient(180deg,#cfeccf,#7ed957);display:inline-block;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.2)}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div>
+          <div class="server-title">POLSKIE-MC.PL</div>
+          <div class="subtitle">Survival • Minigry • Economy</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#features">Funkcje</a>
+        <a href="#rules">Regulamin</a>
+        <a href="#join">Dołącz</a>
+      </nav>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <div class="hero-head">
+          <div style="width:120px; height:120px; border-radius:12px; background:linear-gradient(180deg,#e6f7da,#b6e78a); display:grid; place-items:center; font-family:'Press Start 2P'; color:#06320a">GRASS</div>
+          <div style="flex:1">
+            <div class="server-title">POLSKIE-MC.PL</div>
+            <div class="subtitle">Przyjazna społeczność, wydarzenia co weekend, pomocny staff.</div>
+
+            <div class="big-ip">
+              <div class="ip" id="server-ip">POLSKIE-MC.PL</div>
+              <button class="btn" id="copy-ip">Kopiuj IP</button>
+              <button class="btn" id="join-btn">Dołącz teraz</button>
+            </div>
+
+            <div class="features" aria-hidden="false">
+              <div class="feature"><strong>Tryby:</strong><div class="muted">Survival, Creative, Skyblock</div></div>
+              <div class="feature"><strong>Wersja:</strong><div class="muted">1.20.x / 1.21 kompatybilna</div></div>
+              <div class="feature"><strong>Whitelist:</strong><div class="muted">Nie — wszyscy zapraszani</div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0">
+
+        <h3 id="features" style="font-family:'Press Start 2P';font-size:12px;letter-spacing:1px">CO OFERUJEMY</h3>
+        <div class="list">
+          <div class="card" style="padding:12px">
+            <h4 style="margin:0 0 8px 0">Stabilny serwer</h4>
+            <p class="muted" style="margin:0;font-size:13px">Wysokiej klasy hosting, niskie opóźnienia i codzienne kopie zapasowe.</p>
+          </div>
+          <div class="card" style="padding:12px">
+            <h4 style="margin:0 0 8px 0">Ekonomia</h4>
+            <p class="muted" style="margin:0;font-size:13px">Rozbudowany system ekonomii z NPC, sklepami i rankingami.</p>
+          </div>
+          <div class="card" style="padding:12px">
+            <h4 style="margin:0 0 8px 0">Wydarzenia</h4>
+            <p class="muted" style="margin:0;font-size:13px">Turnieje, eventy PvP i budowlane z nagrodami.</p>
+          </div>
+          <div class="card" style="padding:12px">
+            <h4 style="margin:0 0 8px 0">Support</h4>
+            <p class="muted" style="margin:0;font-size:13px">Aktywny zespół administracyjny dostępny na Discordzie.</p>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0">
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0">
+
+        <h3 id="rules" style="font-family:'Press Start 2P';font-size:12px;letter-spacing:1px">REGULAMIN</h3>
+        <ol class="rules" style="padding-left:18px;margin-top:8px;color:var(--muted)">
+<li>§ 1.0 Zakaz spamu/floodu</li>
+<li>§ 1.1 Zakaz obrażania, przemocy, przeklinania</li>
+<li>§ 1.2 Zakaz reklamowania się</li>
+<li>§ 1.3 Zakaz używania wspomagaczy</li>
+<li>§ 1.4 Zakaz spamowania na helpop</li>
+<li>§ 1.5 Zakaz omijania bana</li>
+<li>§ 1.6 Oszustwa są surowo karane</li>
+<li>§ 1.7 Zakaz multikont</li>
+<li>§ 1.8 Zakaz proszenia o premium</li>
+<li>§ 1.9 Podszywanie pod administrację = ban</li>
+<li>§ 2.0 Wulgarny skin = perm ban</li>
+<li>§ 2.1 Usługi nie podlegają zwrotom</li>
+<li>§ 2.2 Brak usługi = zgłoś administracji</li>
+<li>§ 2.3 Nie kupuj nic od administracji — tylko sklep</li>
+<li>§ 2.4 Backup tylko z nagraniem</li>
+<li>§ 2.5 Zakaz capslocka</li>
+<li>§ 2.6 Wyjście w trakcie sprawdzania = ban</li>
+<li>§ 2.7 Brak współpracy = ban</li>
+<li>§ 2.8 Regulamin może ulec zmianie bez powiadomienia</li>
+</ol>
+<h4>Trapy</h4>
+<ul class="rules" style="padding-left:18px;margin-top:8px;color:var(--muted)">
+<li>Maksymalnie 5 wagonów</li>
+<li>Maksymalnie 10 obrazów/itemframe</li>
+<li>0 mobów/zwierząt</li>
+<li>Maksymalnie 5 banerów</li>
+<li>Brak mechanizmów typu zrzutnia dripstone</li>
+<li>0 łódek</li>
+<li>Nie może opierać się o niezniszczalną ścianę</li>
+</ul>
+
+      </section>
+
+      <aside class="sidebar">
+        <div class="card" style="padding:14px;margin-bottom:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <div class="muted">Status serwera</div>
+              <div id="status" class="status-online" style="font-weight:800">Ładowanie...</div>
+            </div>
+            <div style="text-align:right">
+              <div class="muted">Gracze</div>
+              <div id="players" style="font-weight:800">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:14px;margin-bottom:12px">
+          <h4 style="margin:0 0 10px 0">Szybkie linki</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="#" style="text-decoration:none;color:var(--muted)">Discord</a>
+            <a href="https://www.youtube.com/@p0lak-official1" style="text-decoration:none;color:var(--muted)">YouTube</a>
+            <a href="https://www.tiktok.com/@p0lak_yt" style="text-decoration:none;color:var(--muted)">TikTok</a>
+            <a href="#" style="text-decoration:none;color:var(--muted)">Forum</a>
+            <a href="#" style="text-decoration:none;color:var(--muted)"><a href="https://polskie-mc.pl" style="text-decoration:none;color:var(--muted)">Sklep</a>
+          </div>
+        </div>
+
+        <div class="card" style="padding:14px">
+          <h4 style="margin:0 0 10px 0">Kontakt</h4>
+          <p class="muted" style="margin:0 0 8px 0">Masz pytanie? Napisz: <a href="mailto:biznes.polskiemc@gmail.com" style="color:var(--accent);text-decoration:none">biznes.polskiemc@gmail.com</a></p>
+
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" id="copy-discord">Kopiuj Discord</button>
+            <button class="btn" onclick="window.location.href='mailto:biznes.polskiemc@gmail.com'">Napisz</button>
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+
+    <footer>
+      <div>© POLSKIE-MC.PL — Wersja strony 1.0</div>
+    </footer>
+  </div>
+
+  <script>
+    // ---- dane podstawowe - zmień tutaj na swoje
+    const SERVER_IP = 'POLSKIE-MC.PL';
+    const DISCORD_INVITE = 'https://discord.gg/polskiemc';
+
+    // Wstaw IP
+    document.getElementById('server-ip').textContent = SERVER_IP;
+
+    // kopiowanie IP
+    document.getElementById('copy-ip').addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(SERVER_IP);
+        alert('IP skopiowane: ' + SERVER_IP);
+      }catch(e){
+        prompt('Skopiuj ręcznie:', SERVER_IP);
+      }
+    });
+
+    // kopiowanie discord
+    document.getElementById('copy-discord').addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText(DISCORD_INVITE); alert('Zaproszenie Discord skopiowane'); }
+      catch(e){ prompt('Zaproszenie:', DISCORD_INVITE); }
+    });
+
+    // Dołącz: próbujemy otworzyć protokół minecraft (działa w niektórych przeglądarkach)
+    document.getElementById('join-btn').addEventListener('click', ()=>{
+      // standardowa akcja: kopiuj i pokaż instrukcję
+      navigator.clipboard.writeText(SERVER_IP).catch(()=>{});
+      const tryUri = `minecraft://${SERVER_IP}`;
+      // otwórz w nowej zakładce - przeglądarki mogą zablokować automatyczne otwarcie
+      window.open(tryUri, '_blank');
+      alert('Spróbuj wkleić IP w Minecraft: ' + SERVER_IP + '\n(Lub kliknij OK aby skopiować adres)');
+    });
+
+    // Prosty symulator statusu (Zastąp tę sekcję używając prawdziwego API serwera)
+    function updateFakeStatus(){
+      // losujemy czy serwer online
+      const online = Math.random() > 0.1; // 90% szans online
+      const statusEl = document.getElementById('status');
+      const playersEl = document.getElementById('players');
+      if(online){
+        const players = Math.floor(Math.random()*120);
+        statusEl.textContent = 'ONLINE';
+        statusEl.className = 'status-online';
+        playersEl.textContent = players + ' / 200';
+      }else{
+        statusEl.textContent = 'OFFLINE';
+        statusEl.className = 'status-offline';
+        playersEl.textContent = '0 / 200';
+      }
+    }
+    updateFakeStatus();
+    setInterval(updateFakeStatus, 15000);
+
+    // Jeśli chcesz: podmieniaj updateFakeStatus() na fetch do API (np. https://api.mcsrvstat.us/ lub własnego endpointu)
+  </script>
+</body>
+</html>
