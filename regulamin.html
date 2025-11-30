@@ -8,9 +8,6 @@
 <link rel="icon" type="image/png" href="pmc18.png">
 
 <style>
-/* ——————————————————————— */
-/* KOPIA STYLI Z INDEX.HTML */
-/* ——————————————————————— */
 :root{
   --bg:#0b1220;
   --accent:#FF4C4C;
@@ -52,7 +49,15 @@ nav a:hover{color:var(--accent)}
   border-radius:14px;
   padding:20px;
   box-shadow:0 8px 30px rgba(2,6,12,0.6);
-  border:1px solid rgba(255,255,255,0.03)
+  border:1px solid rgba(255,255,255,0.03);
+  margin-bottom:24px;
+}
+
+.title {
+  font-family:'Press Start 2P';
+  font-size:20px;
+  margin-top:0;
+  margin-bottom:20px;
 }
 
 .btn{
@@ -86,19 +91,18 @@ nav a:hover{color:var(--accent)}
 
   <nav>
     <a href="index.html">Strona główna</a>
-    <a href onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">
-      Sklep
-    </a>
+    <a href="https://vishop.pl/shop/8747" target="_blank" rel="noopener">Sklep</a>
     <a href="regulamin.html">Regulamin</a>
     <a href="zgloszenia.html">Zgłoszenia</a>
     <a href="rekru.html">Rekrutacja</a>
   </nav>
 </header>
 
+<main class="card" style="text-align:center">
+  <h1 class="title">REKRUTACJA</h1>
+</main>
+
 <main class="card">
-  <h1 style="font-family:'Press Start 2P';font-size:20px;margin-top:0;margin-bottom:20px">
-    REKRUTACJA
-  </h1>
   <h3>Minecraft:</h3>
   <ol style="color:var(--muted);line-height:1.6;padding-left:20px">
     <li>Zakaz spamu/floodu</li>
@@ -121,38 +125,37 @@ nav a:hover{color:var(--accent)}
     <li>Brak współpracy = ban</li>
     <li>Regulamin może ulec zmianie bez powiadomienia</li>
   </ol>
+
   <h3>Trapy:</h3>
   <ol style="color:var(--muted);line-height:1.6;padding-left:20px">
     <li>Maksymalnie 5 wagonów</li>
     <li>Maksymalnie 10 obrazów/itemframe</li>
     <li>Maksymalnie 0 mobów/zwierząt etc.</li>
     <li>Maksymalnie 5 banerów</li>
-    <li>Nie może zawierać mechanizmó typu zrzucarka dripstone</li>
+    <li>Nie może zawierać mechanizmów typu zrzucarka dripstone</li>
     <li>Maksymalnie 0 łódek</li>
-    <li>Nie może być oparty o ściane której nie da sie zniszczyć</li>
+    <li>Nie może być oparty o ścianę której nie da się zniszczyć</li>
   </ol>
+
   <h3>Sklep:</h3>
   <ol style="color:var(--muted);line-height:1.6;padding-left:20px">
     <li>Usługa jest automatycznie nadawana po udanej płatności, więc zwrot pieniędzy jest niemożliwy</li>
-    <li>Jakiekolwiek skargi/pytania proszę składać na naszym discordzie</li>
+    <li>Jakiekolwiek skargi/pytania proszę składać na naszym Discordzie</li>
     <li>Przedmioty nadawane są w grze MINECRAFT na serwerze POLSKIE-MC.PL</li>
     <li>Usługi są realizowane natychmiast po dokonaniu wpłaty</li>
-    <li>Jeżeli Użytkownik zakupił usługę, a nie otrzymał jej to ma on prawo złożyć reklamację kontaktując się z administratorem serwisu poprzez adres e-mail: biznes.polskiemc@gmail.com</li>
+    <li>Jeżeli Użytkownik zakupił usługę, a nie otrzymał jej, ma prawo złożyć reklamację kontaktując się z administratorem serwisu poprzez adres e-mail: biznes.polskiemc@gmail.com</li>
     <li>Czas rozpatrywania reklamacji wynosi do 7 dni roboczych</li>
-    <li>Zakup przedmiotów na serwerze od innych osób za realne pięniądze grozi blokadą pernamentną na obu użytkowników</li>
+    <li>Zakup przedmiotów na serwerze od innych osób za realne pieniądze grozi blokadą permanentną na obu użytkowników</li>
     <li>Próba oszustwa podczas zakupu usługi jest karalna</li>
     <li>Użytkownik podczas zakupu usługi akceptuje ten regulamin i ma obowiązek się z nim zapoznać</li>
   </ol>
 </main>
 
-<footer>
+<footer style="margin-top:24px;text-align:center;color:var(--muted);">
   <div>© 2025 POLSKIE-MC.PL — Wszelkie prawa zastrzeżone</div>
-  <div>Serwer POLSKIE-MC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
+  <div>Serwer POLSKIE-MC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.</div>
 </footer>
 
 </div>
 </body>
 </html>
-
-
-
