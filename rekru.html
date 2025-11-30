@@ -14,17 +14,15 @@
   --muted:#9aa6b2;
   --card:#0f1720;
 }
-
-/* GLOBAL */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
   font-family:'Roboto';
-  color:#e6eef6;
   background: radial-gradient(1200px 600px at 10% 10%, rgba(255,76,76,0.06), transparent) no-repeat,
               radial-gradient(900px 400px at 90% 90%, rgba(255,76,76,0.03), transparent) no-repeat,
               linear-gradient(180deg,#06121a 0%, #071423 40%, #021018 100%);
+  color:#e6eef6;
   padding:24px;
 }
 
@@ -34,20 +32,7 @@ body{
   margin:0 auto;
 }
 
-/* IDENTYCZNE STYLE Z INDEX.HTML */
-.server-title{
-  font-family:'Press Start 2P', monospace;
-  font-size:22px;
-  letter-spacing:1px;
-}
-
-.subtitle{
-  color:var(--muted);
-  margin-top:6px;
-  font-size:13px;
-}
-
-/* HEADER */
+/* --- Nagłówek --- */
 header{
   display:flex;
   align-items:center;
@@ -84,56 +69,64 @@ nav a{
   text-decoration:none;
   font-weight:500;
 }
-nav a:hover{ color:var(--accent); }
+nav a:hover{
+  color:var(--accent);
+}
 
-/* CARD */
+/* --- Karta / Treść --- */
 .card{
   background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   border-radius:14px;
   padding:20px;
   box-shadow:0 8px 30px rgba(2,6,12,0.6);
   border:1px solid rgba(255,255,255,0.03);
+  text-align:left;
 }
 
 .card h1{
   font-family:'Press Start 2P';
   font-size:20px;
+  margin-top:0;
+  margin-bottom:20px;
   text-align:center;
-  margin:0 0 20px 0;
+}
+
+.card p{
+  color:var(--muted);
+  margin-bottom:12px;
 }
 
 .card ul{
-  margin:6px 0 16px 20px;
+  margin:8px 0 16px 20px;
+  padding:0;
   color:var(--muted);
 }
 
-.card b{
-  font-size:16px;
-  margin-top:10px;
-  display:block;
-}
-
-/* BUTTON */
+/* --- Przycisk --- */
 .btn{
   background:linear-gradient(180deg, #FF6666, #CC0000);
-  color:#fff;
-  padding:12px 24px;
-  border-radius:12px;
-  font-family:'Press Start 2P';
-  display:block;
-  width:fit-content;
-  margin:20px auto;
-  text-decoration:none;
-  box-shadow:0 4px 10px rgba(0,0,0,0.4);
-  transition:0.3s;
-}
-.btn:hover{
-  background:linear-gradient(145deg, #FF4C4C, #990000);
-  transform:translateY(-2px);
-  box-shadow:0 6px 14px rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Press Start 2P';
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
 }
 
-/* FOOTER */
+.btn:hover{
+  background: linear-gradient(145deg, #FF4C4C, #990000);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+}
+
+/* --- Stopka --- */
 footer{
   margin-top:24px;
   text-align:center;
@@ -154,9 +147,16 @@ footer{
     margin-right:16px;
   }
 }
+
+/* ----------------------------------------------- */
+/* 🔧 JEDYNA POPRAWKA – zapobiega łamaniu linii w <b> */
+/* ----------------------------------------------- */
+.card b {
+  display: inline;
+}
+
 </style>
 </head>
-
 <body>
 <div class="container">
 
@@ -171,7 +171,7 @@ footer{
 
   <nav>
     <a href="index.html">Strona główna</a>
-    <a href="https://vishop.pl/shop/8747" target="_blank">Sklep</a>
+    <a href="#" onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">Sklep</a>
     <a href="regulamin.html">Regulamin</a>
     <a href="zgloszenia.html">Zgłoszenia</a>
     <a href="rekru.html">Rekrutacja</a>
@@ -182,7 +182,9 @@ footer{
   <h1>REKRUTACJA</h1>
 
   <b>TestHelper</b>
-  <ul><li>/mute</li></ul>
+  <ul>
+    <li>/mute</li>
+  </ul>
 
   <b>Helper</b>
   <ul>
@@ -241,18 +243,22 @@ footer{
   <ul>
     <li>Spędzone <b>5 godzin</b> na serwerze</li>
     <li>Zapoznanie się z regulaminem</li>
-    <li>Zapoznanie się z przywilejami rang</li>
+    <li>Zapoznanie się z przywilejami rang administracyjnych</li>
     <li>Ukończone <b>13 lat</b></li>
     <li>Doświadczenie w sprawdzaniu cheatów</li>
     <li>Dobry mikrofon</li>
   </ul>
 
-  <a href="https://forms.gle/sTPFUE6D3aZcsZg57" target="_blank" class="btn">Złóż podanie</a>
+  <p>Chcesz dołączyć do naszego zespołu? Wypełnij formularz rekrutacyjny poniżej.</p>
+
+  <a href="https://forms.gle/sTPFUE6D3aZcsZg57" target="_blank" class="btn">
+    Złóż podanie
+  </a>
 </main>
 
 <footer>
   <div>© 2025 POLSKIE-MC.PL — Wszelkie prawa zastrzeżone</div>
-  <div>Serwer POLSKIE-MC.PL nie jest powiązany z Mojang/Microsoft.</div>
+  <div>Serwer POLSKIE-MC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.</div>
 </footer>
 
 </div>
