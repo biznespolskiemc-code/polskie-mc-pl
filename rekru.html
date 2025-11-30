@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>POLSKIE-MC.PL | Rekrutacja</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="pmc18.png">
+
+<style>
+/* —————— KOPIA STYLI —————— */
+:root{
+  --bg:#0b1220;
+  --accent:#FF4C4C;
+  --muted:#9aa6b2;
+  --card:#0f1720;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Roboto';
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,76,76,0.06), transparent) no-repeat,
+              radial-gradient(900px 400px at 90% 90%, rgba(255,76,76,0.03), transparent) no-repeat,
+              linear-gradient(180deg,#06121a 0%, #071423 40%, #021018 100%);
+  color:#e6eef6;
+  padding:24px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+}
+.container{max-width:1100px;width:100%}
+
+header{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:#0b1220;}
+.logo img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
+
+nav a{color:var(--muted);margin-left:16px;text-decoration:none;font-weight:500}
+nav a:hover{color:var(--accent)}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 8px 30px rgba(2,6,12,0.6);
+  border:1px solid rgba(255,255,255,0.03)
+}
+
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  margin-bottom:14px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.15);
+  background:#0b1220;
+  color:#fff;
+}
+
+.btn{
+  background:linear-gradient(180deg, #FF6666, #CC0000);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  font-family:'Press Start 2P'
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo"><img src="pmc18.png" alt="Logo"></div>
+    <div>
+      <div class="server-title" style="font-family:'Press Start 2P';font-size:22px">POLSKIE-MC.PL</div>
+      <div class="subtitle" style="color:var(--muted)">Serwer twoich marzeń!</div>
+    </div>
+  </div>
+
+  <nav>
+    <a href="index.html">Strona główna</a>
+    <a href onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">
+      Sklep
+    </a>
+    <a href="regulamin.html">Regulamin</a>
+    <a href="zgloszenia.html">Zgłoszenia</a>
+    <a href="rekru.html">Rekrutacja</a>
+  </nav>
+</header>
+
+<main class="card">
+  <h1 style="font-family:'Press Start 2P';font-size:16px;margin-top:0;margin-bottom:20px">ZGŁOSZENIA</h1>
+
+  <p style="color:var(--muted);margin-bottom:16px">
+    Wypełnij formularz, aby zgłosić problem lub naruszenie regulaminu.
+  </p>
+
+  <form action="mailto:biznes.polskiemc@gmail.com" method="post" enctype="text/plain">
+    
+    <label>Nick:</label>
+    <input type="text" name="Nick" required>
+
+    <label>Temat zgłoszenia:</label>
+    <input type="text" name="Temat" required>
+
+    <label>Opis zgłoszenia:</label>
+    <textarea name="Opis" rows="6" required></textarea>
+
+    <button type="submit" class="btn">Wyślij zgłoszenie</button>
+  </form>
+</main>
+
+<footer>
+  <div>© 2025 POLSKIE-MC.PL — Wszelkie prawa zastrzeżone</div>
+  <div>Serwer POLSKIE-MC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
+</footer>
+
+</div>
+</body>
+</html>
+
