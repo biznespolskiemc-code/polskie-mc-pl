@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>POLSKIE-MC.PL | Strona główna</title>
+<meta name="description" content="Dołącz do POLSKIE-MC.PL">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="pmc18.png">
+<style>
+:root{
+  --bg:#0b1220;
+  --accent:#FF4C4C;
+  --muted:#9aa6b2;
+  --card:#0f1720;
+  --glass: rgba(255,255,255,0.04);
+}
+
+/* --- ANIMACJE WEJŚCIA --- */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+/* GLOBAL */
+*{box-sizing:border-box}
+html, body { height: 100%; }
+body {
+  margin:0;
+  font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,76,76,0.06), transparent) no-repeat,
+              radial-gradient(900px 400px at 90% 90%, rgba(255,76,76,0.03), transparent) no-repeat,
+              linear-gradient(180deg,#06121a 0%, #071423 40%, #021018 100%);
+  background-attachment: fixed;
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:24px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:24px;
+  overflow-anchor: none; /* zapobiega przesuwaniu strony */
+}
+
+.container {
+  max-width:1100px;
+  width:100%;
+  animation: fadeUp .7s ease forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+header, nav a {
+  animation: fadeUp .8s ease forwards;
+  opacity: 0;
+}
+
+.grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+.card {
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 8px 30px rgba(2,6,12,0.6);
+  border:1px solid rgba(255,255,255,0.03);
+  opacity:0;
+  animation: fadeUp .8s ease forwards;
+  will-change: transform, opacity;
+}
+
+/* Stopniowe opóźnienia kart */
+.card:nth-child(1){ animation-delay:.2s; }
+.card:nth-child(2){ animation-delay:.3s; }
+.card:nth-child(3){ animation-delay:.4s; }
+.card:nth-child(4){ animation-delay:.5s; }
+.sidebar .card { animation-delay:.6s; }
+.list .card { animation-duration:.8s; animation-delay:.4s; }
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,76,76,0.06), transparent) no-repeat,
+              radial-gradient(900px 400px at 90% 90%, rgba(255,76,76,0.03), transparent) no-repeat,
+              linear-gradient(180deg,#06121a 0%, #071423 40%, #021018 100%);
+  background-attachment: fixed;
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:24px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:24px;
+}
+.container{max-width:1100px;width:100%;}
+
+header{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:#0b1220;}
+.logo img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
+nav a{color:var(--muted);text-decoration:none;margin-left:16px;font-weight:500}
+nav a:hover{color:var(--accent)}
+
+.grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:20px;box-shadow:0 8px 30px rgba(2,6,12,0.6);border:1px solid rgba(255,255,255,0.03)}
+.hero-head{display:flex;align-items:center;gap:16px}
+.server-title{font-family:'Press Start 2P',monospace;font-size:22px;letter-spacing:1px}
+.subtitle{color:var(--muted);margin-top:6px;font-size:13px}
+
+.big-ip{display:flex;align-items:center;gap:12px;margin-top:16px}
+.btn{background:linear-gradient(180deg, #FF6666, #CC0000);color:#fff;padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer;font-family:'Press Start 2P',monospace}
+.btn:hover { background-color: #CC0000; }
+.btn:active { transform: translateY(1px); }
+
+.features{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+.feature{background:rgba(255,76,76,0.05);padding:10px;border-radius:10px;min-width:140px}
+.muted{color:var(--muted)}
+
+.sidebar .stat{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;margin-bottom:12px;background:linear-gradient(180deg,rgba(255,76,76,0.01),transparent)}
+.status-online{color:#4CAF50;font-weight:800;}
+.status-offline{color:#FF4C4C;font-weight:800;}
+
+.rules{margin-top:10px}
+.rules li{margin-bottom:8px}
+.list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
+
+@media (max-width:880px){
+  .grid{grid-template-columns:1fr}
+  .logo{width:54px;height:54px}
+}
+
+.pixel{width:12px;height:12px;background:linear-gradient(180deg,#FF6666,#CC0000);display:inline-block;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.2)}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <div class="brand">
+    <div class="logo"><img src="pmc18.png" alt="Logo Serwera"></div>
+    <div>
+      <div class="server-title">POLSKIE-MC.PL</div>
+      <div class="subtitle">Serwer twoich marzeń!</div>
+    </div>
+  </div>
+  <nav>
+    <a href="index.html">Strona główna</a>
+    <a href onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">
+      Sklep
+    </a>
+    <a href="regulamin.html">Regulamin</a>
+    <a href="zgloszenia.html">Zgłoszenia</a>
+  </nav>
+</header>
+
+<main class="grid">
+<section class="card">
+  <div class="hero-head">
+    <div style="flex:1">
+      <div class="server-title">POLSKIE-MC.PL</div>
+      <div class="subtitle">Profesjonalność to nasza podstawa!</div>
+      <div class="big-ip">
+        <button class="btn" id="copy-ip">SKOPIUJ IP</button>
+        <button class="btn" style="copy-ip" onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">
+          SKLEP
+        </button>
+            
+      </div>      
+      <div class="features" aria-hidden="false">
+        <div class="feature"><strong>Tryb</strong><div class="muted">Camp Simulator</div></div>
+        <div class="feature"><strong>Wersja</strong><div class="muted">1.21+</div></div>
+        <div class="feature"><strong>Aktualny sezon</strong><div class="muted">Serwer ma aktualnie swój 4 sezon</div></div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0">
+
+  <h3 id="features" style="font-family:'Press Start 2P';font-size:12px;letter-spacing:1px">CO OFERUJEMY</h3>
+  <div class="list">
+    <div class="card" style="padding:12px">
+      <h4 style="margin:0 0 8px 0">Stabilny serwer</h4>
+      <p class="muted" style="margin:0;font-size:13px">Wysokiej klasy hosting, niskie opóźnienia i codzienne kopie zapasowe.</p>
+    </div>
+    <div class="card" style="padding:12px">
+      <h4 style="margin:0 0 8px 0">Autorskie rozwiązania</h4>
+      <p class="muted" style="margin:0;font-size:13px">Nasi programiści wkładają całe swoje serce w swoje prace.</p>
+    </div>
+    <div class="card" style="padding:12px">
+      <h4 style="margin:0 0 8px 0">Support</h4>
+      <p class="muted" style="margin:0;font-size:13px">Aktywny zespół administracyjny dostępny na Discordzie.</p>
+    </div>
+    <div class="card" style="padding:12px">
+      <h4 style="margin:0 0 8px 0">Nowe tryby</h4>
+      <p class="muted" style="margin:0;font-size:13px">4 Sezon to sezon, w którym rozpoczynamy długą drogę z dodawaniem nowych trybów, których nigdzie indziej nie znajdziesz.</p>
+    </div>
+    <div class="card" style="padding:12px">
+      <h4 style="margin:0 0 8px 0">Wydarzenia</h4>
+      <p class="muted" style="margin:0;font-size:13px">Na każde święta, wielkanoc oraz halloween napewno zobaczysz u nas specjalne wydarzenia podczas, których łatwo da się wzbogacić.</p>
+    </div>
+    <div class="card" style="padding:12px">
+      <h4 style="margin:0 0 8px 0">Nieśmiertelność</h4>
+      <p class="muted" style="margin:0;font-size:13px">Serwer co jakiś czas mocno upada, ale zawsze udaję nam się wrócić z nowymi rzeczami, trybami i oczywiście zaangażowanymi graczami.</p>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0">
+</section>
+
+<aside class="sidebar">
+<div class="card" style="padding:14px;margin-bottom:12px">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <div>
+      <div class="muted">Status serwera</div>
+      <div id="status" class="status-online" style="font-weight:800">Ładowanie...</div>
+    </div>
+    <div style="text-align:right">
+      <div class="muted">Gracze</div>
+      <div id="players" style="font-weight:800">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="padding:14px;margin-bottom:12px">
+  <h4 style="margin:0 0 10px 0">Social Media</h4>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--muted)">Discord</a>
+    <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--muted)">YouTube</a>
+    <a href="https://www.tiktok.com/@p0lak_yt" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--muted)">TikTok</a>    
+  </div>
+</div>
+
+<div class="card" style="padding:14px">
+  <h4 style="margin:0 0 10px 0">Kontakt</h4>
+  <p class="muted" style="margin:0 0 8px 0">
+    Masz pytanie? Napisz: 
+    <a href="mailto:biznes.polskiemc@gmail.com" style="color:var(--accent);text-decoration:none">biznes.polskiemc@gmail.com</a>
+  </p>
+</div>
+</aside>
+</main>
+
+<footer>
+  <div>© 2025 POLSKIE-MC.PL — Wszelkie prawa zastrzeżone</div>
+</footer>
+</div>
+
+<script>
+const SERVER_IP = 'POLSKIE-MC.PL';
+
+document.getElementById('copy-ip').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(SERVER_IP);
+    alert('IP skopiowane: ' + SERVER_IP);
+  } catch(e) {
+    prompt('Skopiuj ręcznie:', SERVER_IP);
+  }
+});
+
+async function updateRealStatus(){
+  try {
+    const response = await fetch(`https://api.mcsrvstat.us/3/${SERVER_IP}`);
+    const data = await response.json();
+    const statusEl = document.getElementById('status');
+    const playersEl = document.getElementById('players');
+
+    if (data.online){
+      statusEl.textContent = 'ONLINE';
+      statusEl.className = 'status-online';
+      playersEl.textContent = `${data.players.online} / ${data.players.max}`;
+    } else {
+      statusEl.textContent = 'OFFLINE';
+      statusEl.className = 'status-offline';
+      playersEl.textContent = `0 / ${data.players.max || '—'}`;
+    }
+  } catch(e){
+    console.error(e);
+    const statusEl = document.getElementById('status');
+    statusEl.textContent = 'BŁĄD';
+    statusEl.className = 'status-offline';
+  }
+}
+
+updateRealStatus();
+setInterval(updateRealStatus, 60000);
+</script>  
+</body>
+</html>
