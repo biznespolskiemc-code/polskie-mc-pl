@@ -68,9 +68,13 @@ input, textarea{
   border:none;
   font-weight:700;
   cursor:pointer;
-  font-family:'Press Start 2P'
+  font-family:'Press Start 2P';
+  text-decoration:none;
 }
 
+.btn:hover{
+  background:linear-gradient(180deg, #FF4C4C, #990000);
+}
 </style>
 </head>
 <body>
@@ -87,32 +91,32 @@ input, textarea{
 
   <nav>
     <a href="index.html">Strona główna</a>
-    <a href onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">
-      Sklep
-    </a>
+    <a href onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">Sklep</a>
     <a href="regulamin.html">Regulamin</a>
     <a href="zgloszenia.html">Zgłoszenia</a>
     <a href="rekru.html">Rekrutacja</a>
   </nav>
 </header>
 
-<main class="card">
-  <h1 style="font-family:'Press Start 2P';font-size:16px;margin-top:0;margin-bottom:20px">ZGŁOSZENIA</h1>
+<main class="card" style="text-align:center">
+  <h1 style="font-family:'Press Start 2P';font-size:20px;margin-top:0;margin-bottom:20px">
+    REKRUTACJA
+  </h1>
 
-  <p style="color:var(--muted);margin-bottom:16px">
-    Wypełnij formularz, aby zgłosić problem lub naruszenie regulaminu.
+  <p style="color:var(--muted);margin-bottom:20px">
+    Chcesz dołączyć do naszego zespołu? Wypełnij formularz rekrutacyjny poniżej.
   </p>
 
-  <form action="https://forms.gle/sTPFUE6D3aZcsZg57" method="POST" target="_self">
-  </form>
+  <a href="https://forms.gle/sTPFUE6D3aZcsZg57" target="_blank" class="btn" style="display:inline-block;margin-top:10px;">
+    Złóż podanie
+  </a>
 </main>
 
-<footer>
+<footer style="margin-top:24px;text-align:center;color:var(--muted);font-size:12px">
   <div>© 2025 POLSKIE-MC.PL — Wszelkie prawa zastrzeżone</div>
-  <div>Serwer POLSKIE-MC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
+  <div>Serwer POLSKIE-MC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.</div>
 </footer>
 
 </div>
 </body>
 </html>
-
