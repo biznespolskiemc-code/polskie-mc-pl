@@ -8,7 +8,6 @@
 <link rel="icon" type="image/png" href="pmc18.png">
 
 <style>
-/* —————— KOPIA STYLI —————— */
 :root{
   --bg:#0b1220;
   --accent:#FF4C4C;
@@ -25,30 +24,79 @@ body{
               linear-gradient(180deg,#06121a 0%, #071423 40%, #021018 100%);
   color:#e6eef6;
   padding:24px;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
 }
-.container{max-width:1100px;width:100%}
 
+.container{
+  max-width:1100px;
+  width:100%;
+  margin:0 auto;
+}
+
+/* --- Nagłówek --- */
 header{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
 }
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:#0b1220;}
-.logo img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
 
-nav a{color:var(--muted);margin-left:16px;text-decoration:none;font-weight:500}
-nav a:hover{color:var(--accent)}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
+.logo{
+  width:64px;
+  height:64px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:#0b1220;
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+nav a{
+  color:var(--muted);
+  margin-left:16px;
+  text-decoration:none;
+  font-weight:500;
+}
+nav a:hover{
+  color:var(--accent);
+}
+
+/* --- Karta / Treść --- */
 .card{
   background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   border-radius:14px;
   padding:20px;
   box-shadow:0 8px 30px rgba(2,6,12,0.6);
-  border:1px solid rgba(255,255,255,0.03)
+  border:1px solid rgba(255,255,255,0.03);
+  text-align:left; /* tekst od lewej do prawej */
 }
 
+.card h1{
+  font-family:'Press Start 2P';
+  font-size:20px;
+  margin-top:0;
+  margin-bottom:20px;
+  text-align:center; /* tylko tytuł wyśrodkowany */
+}
+
+.card p{
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+/* --- Formularz / przyciski --- */
 input, textarea{
   width:100%;
   padding:10px;
@@ -70,10 +118,34 @@ input, textarea{
   cursor:pointer;
   font-family:'Press Start 2P';
   text-decoration:none;
+  display:inline-block;
+  margin-top:10px;
 }
 
 .btn:hover{
   background:linear-gradient(180deg, #FF4C4C, #990000);
+}
+
+/* --- Stopka --- */
+footer{
+  margin-top:24px;
+  text-align:left; /* tekst od lewej */
+  color:var(--muted);
+  font-size:12px;
+}
+
+@media (max-width:768px){
+  header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  nav{
+    margin-top:10px;
+  }
+  nav a{
+    margin-left:0;
+    margin-right:16px;
+  }
 }
 </style>
 </head>
@@ -84,38 +156,36 @@ input, textarea{
   <div class="brand">
     <div class="logo"><img src="pmc18.png" alt="Logo"></div>
     <div>
-      <div class="server-title" style="font-family:'Press Start 2P';font-size:22px">POLSKIE-MC.PL</div>
-      <div class="subtitle" style="color:var(--muted)">Serwer twoich marzeń!</div>
+      <div class="server-title" style="font-family:'Press Start 2P';font-size:22px;text-align:center">POLSKIE-MC.PL</div>
+      <div class="subtitle" style="color:var(--muted);text-align:center">Serwer twoich marzeń!</div>
     </div>
   </div>
 
   <nav>
     <a href="index.html">Strona główna</a>
-    <a href onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">Sklep</a>
+    <a href="#" onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">Sklep</a>
     <a href="regulamin.html">Regulamin</a>
     <a href="zgloszenia.html">Zgłoszenia</a>
     <a href="rekru.html">Rekrutacja</a>
   </nav>
 </header>
 
-<main class="card" style="text-align:center">
-  <h1 style="font-family:'Press Start 2P';font-size:20px;margin-top:0;margin-bottom:20px">
-    REKRUTACJA
-  </h1>
+<main class="card">
+  <h1>REKRUTACJA</h1>
 
-  <p style="color:var(--muted);margin-bottom:20px">Rangi Administracyjne:</p>
-  <p style="color:var(--muted);margin-bottom:20px">TestHelper</p>
-  <p style="color:var(--muted);margin-bottom:20px">- mute</p>
-  <p style="color:var(--muted);margin-bottom:20px">Helper</p>
-  <p style="color:var(--muted);margin-bottom:20px">- /mute, /warn, wiadomości z helpop'a</p>
-  <p style="color:var(--muted);margin-bottom:20px">Chcesz dołączyć do naszego zespołu? Wypełnij formularz rekrutacyjny poniżej.</p>
+  <p>Rangi Administracyjne:</p>
+  <p>TestHelper</p>
+  <p>- mute</p>
+  <p>Helper</p>
+  <p>- /mute, /warn, wiadomości z helpop'a</p>
+  <p>Chcesz dołączyć do naszego zespołu? Wypełnij formularz rekrutacyjny poniżej.</p>
 
-  <a href="https://forms.gle/sTPFUE6D3aZcsZg57" target="_blank" class="btn" style="display:inline-block;margin-top:10px;">
+  <a href="https://forms.gle/sTPFUE6D3aZcsZg57" target="_blank" class="btn">
     Złóż podanie
   </a>
 </main>
 
-<footer style="margin-top:24px;text-align:center;color:var(--muted);font-size:12px">
+<footer>
   <div>© 2025 POLSKIE-MC.PL — Wszelkie prawa zastrzeżone</div>
   <div>Serwer POLSKIE-MC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.</div>
 </footer>
