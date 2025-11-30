@@ -80,7 +80,7 @@ nav a:hover{
   padding:20px;
   box-shadow:0 8px 30px rgba(2,6,12,0.6);
   border:1px solid rgba(255,255,255,0.03);
-  text-align:left; /* tekst od lewej do prawej */
+  text-align:left;
 }
 
 .card h1{
@@ -88,7 +88,7 @@ nav a:hover{
   font-size:20px;
   margin-top:0;
   margin-bottom:20px;
-  text-align:center; /* tylko tytuł wyśrodkowany */
+  text-align:center;
 }
 
 .card p{
@@ -96,40 +96,40 @@ nav a:hover{
   margin-bottom:12px;
 }
 
-/* --- Formularz / przyciski --- */
-input, textarea{
-  width:100%;
-  padding:10px;
-  margin-top:6px;
-  margin-bottom:14px;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,0.15);
-  background:#0b1220;
-  color:#fff;
+.card ul{
+  margin:8px 0 16px 20px;
+  padding:0;
+  color:var(--muted);
 }
 
+/* --- Przycisk --- */
 .btn{
   background:linear-gradient(180deg, #FF6666, #CC0000);
-  color:#fff;
-  padding:10px 14px;
-  border-radius:10px;
-  border:none;
-  font-weight:700;
-  cursor:pointer;
-  font-family:'Press Start 2P';
-  text-decoration:none;
-  display:inline-block;
-  margin-top:10px;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Press Start 2P';
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
 }
 
 .btn:hover{
-  background:linear-gradient(180deg, #FF4C4C, #990000);
+  background: linear-gradient(145deg, #FF4C4C, #990000);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.5);
 }
 
 /* --- Stopka --- */
 footer{
   margin-top:24px;
-  text-align:left; /* tekst od lewej */
+  text-align:center;
   color:var(--muted);
   font-size:12px;
 }
@@ -173,11 +173,75 @@ footer{
 <main class="card">
   <h1>REKRUTACJA</h1>
 
-  <h3>Rangi Administracyjne:</h3>
-  <h5>TestHelper</h5>
-  <p>- mute</p>
-  <p>Helper</p>
-  <p>- /mute, /warn, wiadomości z helpop'a</p>
+  <b>TestHelper</b>
+  <ul>
+    <li>/mute</li>
+  </ul>
+
+  <b>Helper</b>
+  <ul>
+    <li>/mute</li>
+    <li>/warn</li>
+    <li>wiadomości z helpop'a</li>
+  </ul>
+
+  <b>Admin</b>
+  <ul>
+    <li>/mute</li>
+    <li>/warn</li>
+    <li>wiadomości z helpop'a</li>
+    <li>/fly</li>
+    <li>/vanish</li>
+    <li>/gamemode</li>
+    <li>/tp</li>
+    <li>/psprawdz</li>
+  </ul>
+
+  <b>Moderator</b>
+  <ul>
+    <li>/mute</li>
+    <li>/warn</li>
+    <li>wiadomości z helpop'a</li>
+    <li>/fly</li>
+    <li>/vanish</li>
+    <li>/gamemode</li>
+    <li>/tp</li>
+    <li>/psprawdz</li>
+    <li>budowanie map</li>
+  </ul>
+
+  <b>Technik</b>
+  <ul>
+    <li>/mute</li>
+    <li>/warn</li>
+    <li>wiadomości z helpop'a</li>
+    <li>/fly</li>
+    <li>/vanish</li>
+    <li>/gamemode</li>
+    <li>/tp</li>
+    <li>/psprawdz</li>
+    <li>budowanie map</li>
+    <li>dostęp do konsoli</li>
+    <li>pisanie pluginów</li>
+  </ul>
+
+  <b>Head Admin</b>
+  <ul>
+    <li>Pilnuje porządku w administracji</li>
+    <li>W wolnym czasie wykonuje obowiązki innych rang</li>
+  </ul>
+
+
+  <b>Wymagania</b>
+  <ul>
+    <li>Spędzone <b>5 godzin</b> na serwerze</li>
+    <li>Zapoznanie się z regulaminem</li>
+    <li>Zapoznanie się z przywilejami rang administracyjnych</li>
+    <li>Ukończone <b>13 lat</b></li>
+    <li>Doświadczenie w sprawdzaniu cheatów</li>
+    <li>Dobry mikrofon</li>
+  </ul>
+
   <p>Chcesz dołączyć do naszego zespołu? Wypełnij formularz rekrutacyjny poniżej.</p>
 
   <a href="https://forms.gle/sTPFUE6D3aZcsZg57" target="_blank" class="btn">
