@@ -58,6 +58,7 @@ nav a:hover{color:var(--accent)}
   font-size:20px;
   margin-top:0;
   margin-bottom:20px;
+  text-align:center; /* tylko nagłówek jest wyśrodkowany */
 }
 
 .btn{
@@ -98,11 +99,12 @@ nav a:hover{color:var(--accent)}
   </nav>
 </header>
 
-<main class="card" style="text-align:center">
-  <h1 class="title">REKRUTACJA</h1>
-</main>
-
+<!-- Jeden main dla całego regulaminu -->
 <main class="card">
+  <!-- Wyśrodkowany nagłówek -->
+  <h1 class="title">REGULAMIN</h1>
+
+  <!-- Minecraft -->
   <h3>Minecraft:</h3>
   <ol style="color:var(--muted);line-height:1.6;padding-left:20px">
     <li>Zakaz spamu/floodu</li>
@@ -126,6 +128,7 @@ nav a:hover{color:var(--accent)}
     <li>Regulamin może ulec zmianie bez powiadomienia</li>
   </ol>
 
+  <!-- Trapy -->
   <h3>Trapy:</h3>
   <ol style="color:var(--muted);line-height:1.6;padding-left:20px">
     <li>Maksymalnie 5 wagonów</li>
@@ -137,6 +140,7 @@ nav a:hover{color:var(--accent)}
     <li>Nie może być oparty o ścianę której nie da się zniszczyć</li>
   </ol>
 
+  <!-- Sklep -->
   <h3>Sklep:</h3>
   <ol style="color:var(--muted);line-height:1.6;padding-left:20px">
     <li>Usługa jest automatycznie nadawana po udanej płatności, więc zwrot pieniędzy jest niemożliwy</li>
