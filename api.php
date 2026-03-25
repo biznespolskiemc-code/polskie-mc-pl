@@ -8,10 +8,15 @@ $file = "data.json";
 $api = file_get_contents("https://api.mcsrvstat.us/3/$server_ip");
 $data = json_decode($api, true);
 
-$online = 0;
+if(!$data || !isset($data["online"])){
+    echo json_encode(["error" => "API_FAIL"]);
+    exit;
+}
 
-if($data && isset($data["online"]) && $data["online"]){
+if($data["online"]){
     $online = $data["players"]["online"];
+} else {
+    $online = 0;
 }
 
 /* Wczytaj historię */
