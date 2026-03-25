@@ -67,10 +67,16 @@ const chart = new Chart(ctx,{
       x:{
         ticks:{
           color:"#aaa",
-          maxTicksLimit:6,
-          callback: (val, i, ticks) => {
-            const label = chart.data.labels[val];
-            return label ? label.slice(0,5) : "";
+          maxTicksLimit:24,
+          callback: function(value,index,ticks){
+            // pokaż etykietę tylko jeśli godzina == 0 minut
+            const label = this.getLabelForValue(value);
+            if(label){
+              const date = new Date(label);
+              if(date.getMinutes() === 0) return label.slice(0,5); // HH:MM
+              return "";
+            }
+            return "";
           }
         },
         grid:{color:"rgba(255,255,255,0.05)"}
@@ -79,7 +85,7 @@ const chart = new Chart(ctx,{
         beginAtZero:true,
         ticks:{
           color:"#aaa",
-          precision:0 // 🔥 usuwa 0.1, 1.0 itd.
+          precision:0
         },
         grid:{color:"rgba(255,255,255,0.05)"}
       }
@@ -87,7 +93,7 @@ const chart = new Chart(ctx,{
   }
 });
 
-/* SKALA */
+/* skala Y */
 function niceScale(max){
   if(max <= 10) return {max:10, step:1};
   if(max <= 20) return {max:20, step:2};
@@ -104,11 +110,9 @@ async function load(){
   document.getElementById("peakAll").textContent = data.peakAll;
   document.getElementById("peak24").textContent = data.peak24;
 
+  /* co 30s zapisane, ale labels będą co godzinę */
   const labels = data.history.map(p =>
-    new Date(p.time * 1000).toLocaleTimeString("pl-PL", {
-      hour: "2-digit",
-      minute: "2-digit"
-    })
+    new Date(p.time*1000).toISOString() // przechowujemy datę w formacie ISO
   );
 
   const values = data.history.map(p => p.value);
@@ -116,7 +120,7 @@ async function load(){
   chart.data.labels = labels;
   chart.data.datasets[0].data = values;
 
-  const max = Math.max(...values, 1);
+  const max = Math.max(...values.filter(v => v !== null), 1);
   const scale = niceScale(max);
 
   chart.options.scales.y.max = scale.max;
