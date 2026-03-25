@@ -6,9 +6,24 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-body{background:#06121a;color:#fff;font-family:Arial;padding:20px}
-.box{background:#111827;padding:15px;border-radius:10px;margin-bottom:10px}
+body{
+  background:#06121a;
+  color:#fff;
+  font-family:Arial;
+  padding:20px;
+}
+.box{
+  background:#111827;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
 .online{color:#4CAF50}
+canvas{
+  background:#0f1720;
+  border-radius:12px;
+  padding:10px;
+}
 </style>
 </head>
 
@@ -23,21 +38,74 @@ body{background:#06121a;color:#fff;font-family:Arial;padding:20px}
 <canvas id="chart"></canvas>
 
 <script>
-const ctx = document.getElementById("chart");
+const ctx = document.getElementById("chart").getContext("2d");
+
+/* Gradient (ładny efekt) */
+const gradient = ctx.createLinearGradient(0,0,0,400);
+gradient.addColorStop(0,"rgba(255,76,76,0.4)");
+gradient.addColorStop(1,"rgba(255,76,76,0)");
 
 const chart = new Chart(ctx,{
   type:"line",
   data:{
     labels:[],
     datasets:[{
-      label:"Gracze",
+      label:"Gracze online",
       data:[],
-      borderWidth:2,
-      tension:0.3
+      borderWidth:3,
+      tension:0.35,
+      fill:true,
+      backgroundColor:gradient,
+      pointRadius:2
     }]
   },
-  options:{animation:false}
+  options:{
+    animation:false,
+    plugins:{
+      legend:{
+        labels:{color:"#fff"}
+      }
+    },
+    scales:{
+      x:{
+        ticks:{
+          color:"#aaa",
+          maxTicksLimit:8, // mniej godzin = czytelniej
+          callback: function(value, index, ticks){
+            const label = this.getLabelForValue(value);
+            return label.slice(0,5); // tylko HH:MM
+          }
+        },
+        grid:{color:"rgba(255,255,255,0.05)"}
+      },
+      y:{
+        beginAtZero:true,
+        ticks:{
+          color:"#aaa"
+        },
+        grid:{color:"rgba(255,255,255,0.05)"}
+      }
+    }
+  }
 });
+
+/* 🔥 inteligentna skala */
+function getNiceMax(max){
+  if(max <= 10) return 10;
+  if(max <= 20) return 20;
+  if(max <= 50) return 50;
+  if(max <= 100) return 100;
+  return Math.ceil(max / 50) * 50;
+}
+
+/* 🔢 krok osi */
+function getStep(max){
+  if(max <= 10) return 1;
+  if(max <= 20) return 2;
+  if(max <= 50) return 5;
+  if(max <= 100) return 10;
+  return 20;
+}
 
 async function load(){
   const res = await fetch("api.php");
@@ -47,11 +115,21 @@ async function load(){
   document.getElementById("peakAll").textContent = data.peakAll;
   document.getElementById("peak24").textContent = data.peak24;
 
-  chart.data.labels = data.history.map(p =>
+  const labels = data.history.map(p =>
     new Date(p.time*1000).toLocaleTimeString()
   );
 
-  chart.data.datasets[0].data = data.history.map(p => p.value);
+  const values = data.history.map(p => p.value);
+
+  chart.data.labels = labels;
+  chart.data.datasets[0].data = values;
+
+  /* 🔥 dynamiczna oś Y */
+  const max = Math.max(...values, 1);
+  const niceMax = getNiceMax(max);
+
+  chart.options.scales.y.max = niceMax;
+  chart.options.scales.y.ticks.stepSize = getStep(niceMax);
 
   chart.update();
 }
