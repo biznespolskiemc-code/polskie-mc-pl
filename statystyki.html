@@ -110,10 +110,13 @@ async function load(){
   document.getElementById("peakAll").textContent = data.peakAll;
   document.getElementById("peak24").textContent = data.peak24;
 
-  /* co 30s zapisane, ale labels będą co godzinę */
-  const labels = data.history.map(p =>
-    new Date(p.time*1000).toISOString() // przechowujemy datę w formacie ISO
-  );
+  // Labels co godzinę, linia co 30s
+  const labels = data.history.map(p => {
+    const d = new Date(p.time * 1000);
+    const hour = d.getHours();
+    const min = d.getMinutes();
+    return min === 0 ? `${hour < 10 ? "0"+hour : hour}:00` : "";
+  });
 
   const values = data.history.map(p => p.value);
 
