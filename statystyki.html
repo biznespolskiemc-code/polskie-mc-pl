@@ -18,7 +18,6 @@ body{
   border-radius:10px;
   margin-bottom:10px;
 }
-.online{color:#4CAF50}
 canvas{
   background:#0f1720;
   border-radius:12px;
@@ -29,20 +28,20 @@ canvas{
 
 <body>
 
-<h2>Statystyki serwera</h2>
+<h2>📊 Statystyki serwera</h2>
 
-<div class="box">Online: <span id="online">0</span></div>
-<div class="box">🔥 Peak ALL: <span id="peakAll">0</span></div>
-<div class="box">⏱ Peak 24h: <span id="peak24">0</span></div>
+<div class="box">Online: <b id="online">0</b></div>
+<div class="box">🔥 Peak ALL: <b id="peakAll">0</b></div>
+<div class="box">⏱ Peak 24h: <b id="peak24">0</b></div>
 
 <canvas id="chart"></canvas>
 
 <script>
 const ctx = document.getElementById("chart").getContext("2d");
 
-/* Gradient (ładny efekt) */
+/* gradient */
 const gradient = ctx.createLinearGradient(0,0,0,400);
-gradient.addColorStop(0,"rgba(255,76,76,0.4)");
+gradient.addColorStop(0,"rgba(255,76,76,0.5)");
 gradient.addColorStop(1,"rgba(255,76,76,0)");
 
 const chart = new Chart(ctx,{
@@ -50,30 +49,28 @@ const chart = new Chart(ctx,{
   data:{
     labels:[],
     datasets:[{
-      label:"Gracze online",
+      label:"Gracze",
       data:[],
       borderWidth:3,
-      tension:0.35,
+      tension:0.4,
       fill:true,
       backgroundColor:gradient,
-      pointRadius:2
+      pointRadius:3
     }]
   },
   options:{
     animation:false,
     plugins:{
-      legend:{
-        labels:{color:"#fff"}
-      }
+      legend:{labels:{color:"#fff"}}
     },
     scales:{
       x:{
         ticks:{
           color:"#aaa",
-          maxTicksLimit:8, // mniej godzin = czytelniej
-          callback: function(value, index, ticks){
-            const label = this.getLabelForValue(value);
-            return label.slice(0,5); // tylko HH:MM
+          maxTicksLimit:6,
+          callback: (val, i, ticks) => {
+            const label = chart.data.labels[val];
+            return label ? label.slice(0,5) : "";
           }
         },
         grid:{color:"rgba(255,255,255,0.05)"}
@@ -81,7 +78,8 @@ const chart = new Chart(ctx,{
       y:{
         beginAtZero:true,
         ticks:{
-          color:"#aaa"
+          color:"#aaa",
+          precision:0 // 🔥 usuwa 0.1, 1.0 itd.
         },
         grid:{color:"rgba(255,255,255,0.05)"}
       }
@@ -89,22 +87,13 @@ const chart = new Chart(ctx,{
   }
 });
 
-/* 🔥 inteligentna skala */
-function getNiceMax(max){
-  if(max <= 10) return 10;
-  if(max <= 20) return 20;
-  if(max <= 50) return 50;
-  if(max <= 100) return 100;
-  return Math.ceil(max / 50) * 50;
-}
-
-/* 🔢 krok osi */
-function getStep(max){
-  if(max <= 10) return 1;
-  if(max <= 20) return 2;
-  if(max <= 50) return 5;
-  if(max <= 100) return 10;
-  return 20;
+/* SKALA */
+function niceScale(max){
+  if(max <= 10) return {max:10, step:1};
+  if(max <= 20) return {max:20, step:2};
+  if(max <= 50) return {max:50, step:5};
+  if(max <= 100) return {max:100, step:10};
+  return {max:Math.ceil(max/50)*50, step:20};
 }
 
 async function load(){
@@ -116,7 +105,10 @@ async function load(){
   document.getElementById("peak24").textContent = data.peak24;
 
   const labels = data.history.map(p =>
-    new Date(p.time*1000).toLocaleTimeString()
+    new Date(p.time * 1000).toLocaleTimeString("pl-PL", {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
   );
 
   const values = data.history.map(p => p.value);
@@ -124,12 +116,11 @@ async function load(){
   chart.data.labels = labels;
   chart.data.datasets[0].data = values;
 
-  /* 🔥 dynamiczna oś Y */
   const max = Math.max(...values, 1);
-  const niceMax = getNiceMax(max);
+  const scale = niceScale(max);
 
-  chart.options.scales.y.max = niceMax;
-  chart.options.scales.y.ticks.stepSize = getStep(niceMax);
+  chart.options.scales.y.max = scale.max;
+  chart.options.scales.y.ticks.stepSize = scale.step;
 
   chart.update();
 }
