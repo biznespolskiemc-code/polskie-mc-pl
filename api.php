@@ -13,41 +13,7 @@ if(!$data || !isset($data["online"])){
     exit;
 }
 
-async function load(){
-  const res = await fetch("api.php");
-  const data = await res.json();
-
-  document.getElementById("online").textContent = data.online;
-  document.getElementById("peakAll").textContent = data.peakAll;
-  document.getElementById("peak24").textContent = data.peak24;
-
-  const labels = data.history.map(p => {
-    const d = new Date(p.time * 1000);
-    const hour = d.getHours();
-    const min = d.getMinutes();
-    // pokaż tylko pełną godzinę
-    return min === 0 ? `${hour < 10 ? "0" + hour : hour}:00` : "";
-  });
-
-  const values = data.history.map(p => p.value);
-
-  chart.data.labels = labels;
-  chart.data.datasets[0].data = values;
-
-  const max = Math.max(...values.filter(v => v !== null), 1);
-  const scale = niceScale(max);
-
-  chart.options.scales.y.max = scale.max;
-  chart.options.scales.y.ticks.stepSize = scale.step;
-
-  chart.update();
-}
-
-if($data["online"]){
-    $online = $data["players"]["online"];
-} else {
-    $online = 0;
-}
+$online = $data["online"] ? $data["players"]["online"] : 0;
 
 /* Wczytaj historię */
 if(!file_exists($file)){
@@ -81,7 +47,7 @@ foreach($history as $p){
     }
 }
 
-/* Odpowiedź */
+/* Odpowiedź JSON */
 echo json_encode([
     "online" => $online,
     "history" => $history,
