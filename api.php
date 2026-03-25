@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$server_ip = "POLSKIE-MC.PL";
+$server_ip = "POLSKIEMC.HYPIXELS.PL";
 $file = "data.json";
 
 /* Pobierz dane z API */
