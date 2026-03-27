@@ -214,6 +214,25 @@ footer{
     Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
   </div>
 </footer>
+<script>
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+document.addEventListener("keydown", function(e) {
+
+  if (e.key === "F12") {
+    e.preventDefault();
+  }
+
+  if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) {
+    e.preventDefault();
+  }
+
+  if (e.ctrlKey && e.key === "U") {
+    e.preventDefault();
+  }
+
+});
+</script>
 
 </div>
 </body>
