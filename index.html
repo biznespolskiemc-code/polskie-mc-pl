@@ -399,8 +399,10 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-right-bottom);
   letter-spacing: 0.2px;
+  
+  /* ZMIENIONO CIEŃ NA CZERWONY (z zachowaniem rzutu 4px 4px) */
+  box-shadow: 4px 4px 0 rgba(255, 76, 76, 0.35);
 }
 
 /* Panel Social Media */
@@ -603,10 +605,7 @@ async function updateRealStatus(){
   }
 }
 
-// Wywołaj od razu przy ładowaniu strony
 updateRealStatus();
-
-// Zmieniono interwał z 60000 (60s) na 20000 (20s)
 setInterval(updateRealStatus, 20000);
 </script>
 
