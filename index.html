@@ -11,18 +11,20 @@
 :root {
   --panel-bg: rgba(20, 20, 25, 0.88);
   --card-bg: #141419;
-  --accent-green: #10b981; /* Dokładniejszy odcień zieleni online z UI */
+  --accent-green: #10b981;
   --accent-green-hover: #059669;
   --accent-red: #ff4c4c;
   --muted: #9aa6b2;
   --border-color: rgba(255, 255, 255, 0.05);
-  --shadow-right-bottom: 10px 10px 0 rgba(0, 0, 0, 0.35);
   
-  /* Kolory z obrazka panelu bocznego */
+  /* ZMNIEJSZONY CIEŃ W CAŁYM PROJEKCIE (z 10px na 4px) */
+  --shadow-right-bottom: 4px 4px 0 rgba(0, 0, 0, 0.35);
+  
+  /* Kolory panelu bocznego */
   --sb-panel-bg: #11141a;
   --sb-text-muted: #8e9297;
   --sb-discord-blue: #5865F2;
-  --sb-goal-bg: #441616; /* Ciemnoczerwone tło paska celu */
+  --sb-goal-bg: #441616;
 }
 
 /* --- ANIMACJE WEJŚCIA --- */
@@ -88,12 +90,6 @@ header {
   margin: 0;
   font-weight: 500;
   letter-spacing: 0.5px;
-}
-
-.brand h1 span {
-  color: var(--muted);
-  font-weight: 300;
-  margin-left: 5px;
 }
 
 /* NAVBAR */
@@ -242,7 +238,7 @@ nav a:hover {
   font-size: 13px;
 }
 
-/* PRAWA STRONA (SIDEBAR) - KOMPLETNA REKONSTRUKCJA POD ZRZUT EKRANU */
+/* PRAWA STRONA (SIDEBAR) - ZMNIEJSZONE NAPISY */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -252,7 +248,7 @@ nav a:hover {
 .sidebar-panel {
   background: var(--sb-panel-bg);
   border-radius: 6px;
-  padding: 22px 24px;
+  padding: 18px 20px; /* Lekko zmniejszony padding dla lepszych proporcji */
   border: 1px solid rgba(255, 255, 255, 0.015);
   box-shadow: var(--shadow-right-bottom);
 }
@@ -262,12 +258,12 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 105px;
+  min-height: 90px;
 }
 
 .status-widget .mini-logo, .discord-widget .mini-logo {
-  width: 58px;
-  height: 58px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
 }
 
@@ -279,32 +275,32 @@ nav a:hover {
 }
 
 .server-domain {
-  font-size: 20px;
+  font-size: 16px; /* Zmniejszono z 20px */
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 4px 0;
+  margin: 0 0 3px 0;
 }
 
 .player-count {
-  font-size: 19px;
+  font-size: 15px; /* Zmniejszono z 19px */
   font-weight: 400;
   color: #ffffff;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .status-dot-green {
-  width: 14px;
-  height: 14px;
+  width: 11px; /* Proporcjonalnie zmniejszona kropka */
+  height: 11px;
   background-color: #10b981;
   border-radius: 50%;
   display: inline-block;
 }
 
 .status-dot-red {
-  width: 14px;
-  height: 14px;
+  width: 11px;
+  height: 11px;
   background-color: #ef4444;
   border-radius: 50%;
   display: inline-block;
@@ -315,14 +311,14 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  min-height: 105px;
+  gap: 12px;
+  min-height: 90px;
 }
 
 .discord-left-side {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .discord-info-block {
@@ -332,32 +328,31 @@ nav a:hover {
 }
 
 .discord-title-text {
-  font-size: 15px;
+  font-size: 14px; /* Zmniejszono z 15px */
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 4px 0;
-  letter-spacing: 0.3px;
+  margin: 0 0 3px 0;
+  letter-spacing: 0.2px;
 }
 
 .discord-stats-row {
-  font-size: 13px;
+  font-size: 11px; /* Zmniejszono z 13px */
   color: var(--sb-text-muted);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .discord-stat-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
-/* Zielona oraz Szara kropka przed statystykami Discorda */
 .discord-stat-item.online::before {
   content: '';
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background-color: #10b981;
   border-radius: 50%;
   display: inline-block;
@@ -365,8 +360,8 @@ nav a:hover {
 
 .discord-stat-item.members::before {
   content: '';
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background-color: #747f8d;
   border-radius: 50%;
   display: inline-block;
@@ -376,9 +371,9 @@ nav a:hover {
   background-color: var(--sb-discord-blue);
   color: #ffffff;
   border: none;
-  padding: 11px 20px;
+  padding: 9px 16px; /* Zmniejszono padding przycisku */
   border-radius: 4px;
-  font-size: 15px;
+  font-size: 13px; /* Zmniejszono z 15px */
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
@@ -395,12 +390,12 @@ nav a:hover {
   background: var(--sb-goal-bg);
   border: 1px solid rgba(255, 0, 0, 0.05);
   text-align: center;
-  font-size: 16px;
+  font-size: 14px; /* Zmniejszono z 16px */
   font-weight: 600;
   color: #ffffff;
-  padding: 16px;
+  padding: 14px;
   border-radius: 4px;
-  min-height: 56px;
+  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -618,7 +613,6 @@ setInterval(updateRealStatus, 60000);
 </script>
 
 <script>
-// Zabezpieczenia kodu źródłowego
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 document.addEventListener("keydown", function(e) {
