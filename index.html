@@ -555,25 +555,37 @@ async function updateRealStatus(){
   const dotEl = document.getElementById('status_dot');
   const playersEl = document.getElementById('players_val');
   
+  if (!dotEl || !playersEl) {
+    console.error("Błąd: Nie znaleziono elementów status_dot lub players_val w kodzie HTML!");
+    return;
+  }
+  
   try {
-    const response = await fetch(`https://api.mcsrvstat.us/3/${SERVER_IP}`);
+    // Dodajemy losowy parametr (timestamp), aby przeglądarka nie pobierała starego wyniku z pamięci cache
+    const response = await fetch(`https://api.mcsrvstat.us/3/${SERVER_IP}?t=${Date.now()}`);
     const data = await response.json();
+
+    console.log("Odpowiedź z API Minecraft:", data); // Zobaczysz to w konsoli F12
 
     if (data.online && data.players){
       dotEl.className = 'status-dot-green';
       playersEl.textContent = `${data.players.online}/${data.players.max}`;
+      console.log(`Ustawiono graczy na: ${data.players.online}/${data.players.max}`);
     } else {
       dotEl.className = 'status-dot-red';
       playersEl.textContent = `0/500`;
+      console.warn("API twierdzi, że serwer jest OFFLINE. Ustawiono domyślne 0/500.");
     }
   } catch(e){
-    console.error(e);
+    console.error("Błąd sieciowy podczas połączenia z api.mcsrvstat.us:", e);
     dotEl.className = 'status-dot-red';
     playersEl.textContent = 'OFFLINE';
   }
 }
 
+// Wywołanie natychmiastowe
 updateRealStatus();
+// Odświeżanie co 20 sekund
 setInterval(updateRealStatus, 20000);
 </script>
 
