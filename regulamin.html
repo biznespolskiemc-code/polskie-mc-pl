@@ -4,50 +4,186 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>POLSKIEMC.PL | Regulamin</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<meta name="description" content="Serwer pełen alternatyw i estetyki">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="pmc18.png">
-
 <style>
-:root{
-  --bg:#0b1220;
-  --accent:#FF4C4C;
-  --muted:#9aa6b2;
-  --card:#0f1720;
-  --glass: rgba(255,255,255,0.04);
+:root {
+  --panel-bg: rgba(20, 20, 25, 0.88);
+  --card-bg: #141419;
+  --accent-green: #10b981;
+  --accent-green-hover: #059669;
+  --accent-red: #ff4c4c;
+  --muted: #9aa6b2;
+  --border-color: rgba(255, 255, 255, 0.05);
+  
+  /* ZMNIEJSZONY CIEŃ W CAŁYM PROJEKCIE (z 10px na 4px) */
+  --shadow-right-bottom: 4px 4px 0 rgba(0, 0, 0, 0.35);
+  
+  /* Kolory panelu bocznego */
+  --sb-panel-bg: #11141a;
+  --sb-text-muted: #8e9297;
+  --sb-discord-blue: #5865F2;
+  --sb-goal-bg: #441616;
 }
 
-/* GLOBAL */
-*{ box-sizing:border-box; }
-html,body{
-  height:100%;
-  margin:0;
-  font-family:'Roboto',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-  color:#e6eef6;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+/* --- ANIMACJE WEJŚCIA --- */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-body{
-  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,76,76,0.06), transparent) no-repeat,
-              radial-gradient(900px 400px at 90% 90%, rgba(255,76,76,0.03), transparent) no-repeat,
-              linear-gradient(180deg,#06121a 0%, #071423 40%, #021018 100%);
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: #e6eef6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
+              url('yKkP47H_d.webp') no-repeat center center;
+  background-size: cover;
   background-attachment: fixed;
-  padding:24px;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-/* HEADER */
-.container{ max-width:1100px; width:100%; }
+.container {
+  max-width: 1200px;
+  width: 100%;
+  animation: fadeUp .7s ease forwards;
+}
 
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:18px;
+/* HEADER & BRAND */
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand .logo {
+  width: 108px;
+  height: 108px;
+  display: grid;
+  place-items: center;
+}
+
+.brand .logo img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
+
+.brand h1 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* NAVBAR */
+nav {
+  background: #0d0d11;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-right-bottom);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.2s, background 0.2s;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+nav a:hover {
+  color: var(--muted);
+  background: rgba(255,255,255,0.03);
+}
+
+.voucher-btn {
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 26px;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+}
+
+/* REGULAMIN CONTENT CARD */
+.info-card {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 35px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-right-bottom);
+}
+
+.server-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin: 0;
+  text-align: center;
+}
+
+.info-card h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.info-card ol {
+  color: var(--muted);
+  line-height: 1.8;
+  padding-left: 25px;
+  font-size: 15px;
+}
+
+.info-card ol li {
+  margin-bottom: 8px;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
 }
 
 footer .footer-note {
@@ -57,174 +193,104 @@ footer .footer-note {
   margin-top: 6px;
 }
 
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo{
-  width:64px;
-  height:64px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:#0b1220;
-}
-
-.logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:12px;
-}
-
-/* IDENTYCZNE JAK NA INDEX.HTML */
-.server-title{
-  font-family:'Press Start 2P', monospace;
-  font-size:22px;
-  letter-spacing:1px;
-}
-
-.subtitle{
-  color:var(--muted);
-  margin-top:6px;
-  font-size:13px;
-}
-
-/* NAV */
-nav a{
-  color:var(--muted);
-  text-decoration:none;
-  margin-left:16px;
-  font-weight:500;
-}
-nav a:hover{ color:var(--accent); }
-
-/* CARD */
-.card{
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:14px;
-  padding:20px;
-  box-shadow:0 8px 30px rgba(2,6,12,0.6);
-  border:1px solid rgba(255,255,255,0.03);
-  margin-bottom:24px;
-}
-
-.title{
-  font-family:'Press Start 2P';
-  font-size:20px;
-  text-align:center;
-  margin-top:0;
-  margin-bottom:20px;
-}
-
-footer{
-  margin-top:20px;
-  color:var(--muted);
-  font-size:13px;
-  text-align:center;
-}
-
-@media (max-width:880px){
-  .logo{ width:54px; height:54px; }
+/* RESPONSYWNOŚĆ */
+@media (max-width: 900px) {
+  nav { flex-direction: column; align-items: stretch; gap: 8px; }
+  .nav-links { flex-direction: column; text-align: center; }
+  nav a, .voucher-btn { text-align: center; }
+  .voucher-btn { border-top: 1px solid var(--border-color); }
+  .info-card { padding: 20px; }
 }
 </style>
 </head>
-
 <body>
-<div class="container">
 
-<header>
-  <div class="brand">
-    <div class="logo"><img src="pmc18.png" alt="Logo"></div>
-    <div>
-      <div class="server-title">POLSKIEMC.PL</div>
-      <div class="subtitle">Serwer twoich marzeń!</div>
+<div class="container">
+  
+  <header>
+    <div class="brand">
+      <div class="logo"><img src="pmc18.png" alt="Logo Serwera"></div>
+      <div>
+        <h1 style="font-size: 35px; font-weight: 400;">
+          POLSKIEMC.PL | Regulamin
+        </h1>
+      </div>
     </div>
-  </div>
+  </header>
 
   <nav>
-    <a href="index.html">Strona główna</a>
-    <a href="https://vishop.pl/shop/8747" target="_blank" rel="noopener">Sklep</a>
-    <a href onclick="window.open('https://hosting-minecraft.eu/client/aff.php?aff=297', '_blank', 'noopener')">Hosting</a>
-    <a href="regulamin.html">Regulamin</a>
-    <a href="zgloszenia.html">Zgłoszenia</a>
-    <a href="rekru.html">Rekrutacja</a>
+    <div class="nav-links">
+      <a href="index.html">Strona główna</a>
+      <a onclick="window.location.href='https://vishop.pl/shop/8747'" style="color: #00ff8c;">Sklep</a>
+      <a href="regulamin.html">Regulamin</a>
+      <a href="rekru.html">Rekrutacja</a>
+      <a onclick="window.location.href='https://hosting-minecraft.eu/client/aff.php?aff=297'">Hosting</a>
+    </div>
+    <a onclick="window.location.href='https://vishop.pl/shop/8747'" class="voucher-btn">VOUCHER</a>
   </nav>
-</header>
 
-<main class="card">
+  <main>
+    <section class="info-card">
+      <h1 class="server-title">REGULAMIN</h1>
+      
+      <h3>Minecraft:</h3>
+      <ol>
+        <li>Zakaz spamu/floodu</li>
+        <li>Zakaz obrażania, przemocy, przeklinania</li>
+        <li>Zakaz reklamowania się</li>
+        <li>Zakaz używania wspomagaczy</li>
+        <li>Zakaz spamowania na helpop</li>
+        <li>Zakaz omijania bana</li>
+        <li>Oszustwa są surowo karane</li>
+        <li>Zakaz multikont</li>
+        <li>Zakaz proszenia o premium</li>
+        <li>Podszywanie pod administrację = ban</li>
+        <li>Wulgarny skin = perm ban</li>
+        <li>Usługi nie podlegają zwrotom</li>
+        <li>Brak usługi = zgłoś administracji</li>
+        <li>Nie kupuj nic od administracji — tylko sklep</li>
+        <li>Backup tylko z nagraniem</li>
+        <li>Zakaz capslocka</li>
+        <li>Wyjście w trakcie sprawdzania = ban</li>
+        <li>Brak współpracy = ban</li>
+        <li>Regulamin może ulec zmianie bez powiadomienia</li>
+      </ol>
 
-  <h1 class="title">REGULAMIN</h1>
+      <h3>Trapy (nieaktualny):</h3>
+      <ol>
+        <li>Maksymalnie 5 wagonów</li>
+        <li>Maksymalnie 10 obrazów/itemframe</li>
+        <li>Maksymalnie 0 mobów/zwierząt etc.</li>
+        <li>Maksymalnie 5 banerów</li>
+        <li>Nie może zawierać mechanizmów typu zrzucarka dripstone</li>
+        <li>Maksymalnie 0 łódek</li>
+        <li>Nie może być oparty o ścianę której nie da się zniszczyć</li>
+      </ol>
+    </section>
+  </main>
 
-  <h3>Minecraft:</h3>
-  <ol style="color:var(--muted);line-height:1.6;padding-left:20px">
-    <li>Zakaz spamu/floodu</li>
-    <li>Zakaz obrażania, przemocy, przeklinania</li>
-    <li>Zakaz reklamowania się</li>
-    <li>Zakaz używania wspomagaczy</li>
-    <li>Zakaz spamowania na helpop</li>
-    <li>Zakaz omijania bana</li>
-    <li>Oszustwa są surowo karane</li>
-    <li>Zakaz multikont</li>
-    <li>Zakaz proszenia o premium</li>
-    <li>Podszywanie pod administrację = ban</li>
-    <li>Wulgarny skin = perm ban</li>
-    <li>Usługi nie podlegają zwrotom</li>
-    <li>Brak usługi = zgłoś administracji</li>
-    <li>Nie kupuj nic od administracji — tylko sklep</li>
-    <li>Backup tylko z nagraniem</li>
-    <li>Zakaz capslocka</li>
-    <li>Wyjście w trakcie sprawdzania = ban</li>
-    <li>Brak współpracy = ban</li>
-    <li>Regulamin może ulec zmianie bez powiadomienia</li>
-  </ol>
+  <footer>
+    <div>© 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</div>
+    <div class="footer-note">
+      Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
+    </div>
+  </footer>
+</div>
 
-  <h3>Trapy (nieaktualny):</h3>
-  <ol style="color:var(--muted);line-height:1.6;padding-left:20px">
-    <li>Maksymalnie 5 wagonów</li>
-    <li>Maksymalnie 10 obrazów/itemframe</li>
-    <li>Maksymalnie 0 mobów/zwierząt etc.</li>
-    <li>Maksymalnie 5 banerów</li>
-    <li>Nie może zawierać mechanizmów typu zrzucarka dripstone</li>
-    <li>Maksymalnie 0 łódek</li>
-    <li>Nie może być oparty o ścianę której nie da się zniszczyć</li>
-  </ol>
-
-</main>
-
-<footer>
-  <div>© 2025 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</div>
-  <div class="footer-note">
-    Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
-  </div>
-</footer>
 <script>
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 document.addEventListener("keydown", function(e) {
-
   if (e.key === "F12") {
     e.preventDefault();
   }
-
   if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) {
     e.preventDefault();
   }
-
   if (e.ctrlKey && e.key === "U") {
     e.preventDefault();
   }
-
 });
 </script>
-
-</div>
 </body>
 </html>
-
-
-
-
