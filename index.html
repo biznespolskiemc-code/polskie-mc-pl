@@ -178,39 +178,6 @@ nav a:hover {
   font-size: 13px;
 }
 
-.big-ip {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.ip-text {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 14px;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-}
-
-.btn {
-  background: linear-gradient(180deg, #FF6666, #CC0000);
-  color: #fff;
-  padding: 11px 16px;
-  border-radius: 10px;
-  border: none;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 11px;
-  box-shadow: 0 4px 0 #880000;
-  transition: transform 0.1s, box-shadow 0.1s;
-}
-.btn:hover { background: linear-gradient(180deg, #ff7777, #dd0000); }
-.btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #880000; }
-
 .features {
   display: flex;
   gap: 12px;
@@ -492,11 +459,6 @@ footer .footer-note {
         <div class="server-title">POLSKIEMC.PL</div>
         <div class="subtitle">Profesjonalność to nasza podstawa!</div>
 
-        <div class="big-ip">
-          <span class="ip-text">POLSKIEMC.PL</span>
-          <button class="btn" id="copy-ip">KOPIUJ IP</button>
-        </div>
-
         <div class="features">
           <div class="feature"><strong>Tryby</strong><div class="muted">Earth SMP, Mace PvP</div></div>
           <div class="feature"><strong>Wersja</strong><div class="muted">1.21+</div></div>
@@ -542,7 +504,7 @@ footer .footer-note {
         <div class="status-info">
           <p class="server-domain">polskiemc.pl</p>
           <div class="player-count">
-            <span id="players_val">ŁADOWANIE...</span> 
+            <span id="players_val">Ładowanie...</span> 
             <span id="status_dot" class="status-dot-green"></span>
           </div>
         </div>
@@ -589,17 +551,6 @@ footer .footer-note {
 <script>
 const SERVER_IP = 'polskiemc.pl';
 
-// Obsługa kliknięcia przycisku kopiowania IP
-document.getElementById('copy-ip').addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(SERVER_IP);
-    alert('IP skopiowane: ' + SERVER_IP);
-  } catch(e) {
-    prompt('Skopiuj ręcznie:', SERVER_IP);
-  }
-});
-
-// Funkcja pobierająca faktyczny stan serwera w czasie rzeczywistym
 async function updateRealStatus(){
   const dotEl = document.getElementById('status_dot');
   const playersEl = document.getElementById('players_val');
@@ -616,20 +567,17 @@ async function updateRealStatus(){
       playersEl.textContent = `0/500`;
     }
   } catch(e){
-    console.error("Błąd podczas pobierania statusu: ", e);
+    console.error(e);
     dotEl.className = 'status-dot-red';
     playersEl.textContent = 'OFFLINE';
   }
 }
 
-// Wywołaj od razu przy ładowaniu strony
 updateRealStatus();
-// Odświeżaj co 20 sekund
 setInterval(updateRealStatus, 20000);
 </script>
 
 <script>
-// Blokowanie prawego przycisku myszy i narzędzi deweloperskich
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 document.addEventListener("keydown", function(e) {
