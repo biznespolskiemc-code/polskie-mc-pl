@@ -230,17 +230,19 @@ nav a:hover {
   display: inline;
 }
 
-/* PRZYCISK */
+/* PRZYCISK (Zmieniony na zielony i normalny tekst) */
 .btn {
-  background: linear-gradient(180deg, #FF6666, #CC0000);
+  background: linear-gradient(180deg, #14d495, #059669); /* Odcienie zieleni */
   color: #fff;
-  padding: 16px 32px;
+  padding: 14px 40px; /* Nieco zmieniony padding dla lepszego wyglądu normalnego tekstu */
   border-radius: 10px;
   border: none;
   font-weight: 700;
   cursor: pointer;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
+  font-family: 'Roboto', sans-serif; /* Zmiana na normalną czcionkę */
+  font-size: 15px; /* Optymalny rozmiar dla normalnego tekstu */
+  text-transform: uppercase; /* Sprawia, że tekst jest z wielkich liter, wygląda estetycznie */
+  letter-spacing: 0.5px;
   text-decoration: none;
   display: block;
   width: fit-content;
@@ -251,7 +253,7 @@ nav a:hover {
 }
 
 .btn:hover { 
-  background: linear-gradient(145deg, #FF4C4C, #990000);
+  background: linear-gradient(145deg, #10b981, #047857); /* Ciemniejsza zieleń po najechaniu */
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0,0,0,0.5);
 }
