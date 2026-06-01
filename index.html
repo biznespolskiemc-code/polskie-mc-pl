@@ -9,13 +9,14 @@
 <link rel="icon" type="image/png" href="pmc18.png">
 <style>
 :root {
-  --panel-bg: rgba(13, 13, 15, 0.85);
+  --panel-bg: rgba(13, 13, 15, 0.88);
   --card-bg: #141419;
   --accent-green: #2ecc71;
   --accent-green-hover: #27ae60;
   --accent-red: #ff4c4c;
   --muted: #9aa6b2;
   --border-color: rgba(255, 255, 255, 0.05);
+  --shadow-right-bottom: 10px 10px 0 rgba(0, 0, 0, 0.35);
 }
 
 /* --- ANIMACJE WEJŚCIA --- */
@@ -25,10 +26,16 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; min-height: 100%; font-family: 'Roboto', sans-serif; color: #e6eef6; -webkit-font-smoothing: antialiased; }
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: #e6eef6;
+  -webkit-font-smoothing: antialiased;
+}
 
 body {
-  /* Dodanie Twojego obrazu jako stałego tła całej strony */
   background: url('yKkP47H_d.webp') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
@@ -58,10 +65,10 @@ header {
 }
 
 .brand .logo {
-    width: 108px;
-    height: 108px;
-    display: grid;
-    place-items: center;
+  width: 108px;
+  height: 108px;
+  display: grid;
+  place-items: center;
 }
 
 .brand .logo img {
@@ -86,49 +93,54 @@ header {
 /* NAVBAR */
 nav {
   background: #0d0d11;
-  border-radius: 6px;
-  padding: 4px;
+  border-radius: 8px;
+  padding: 10px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 25px;
   border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-right-bottom);
 }
 
 .nav-links {
   display: flex;
+  flex-wrap: wrap;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
-  padding: 12px 20px;
-  font-size: 13px;
+  padding: 16px 24px;
+  font-size: 15px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: color 0.2s;
+  transition: color 0.2s, background 0.2s;
   cursor: pointer;
+  border-radius: 6px;
 }
 
 nav a:hover {
   color: var(--muted);
+  background: rgba(255,255,255,0.03);
 }
 
 .voucher-btn {
   color: #fff;
   text-decoration: none;
-  padding: 12px 24px;
-  font-size: 13px;
+  padding: 16px 26px;
+  font-size: 15px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  border-radius: 6px;
 }
 
 /* MAIN CONTENT GRID */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 320px;
   gap: 20px;
   align-items: start;
 }
@@ -150,6 +162,7 @@ nav a:hover {
   gap: 16px;
   border: 1px solid var(--border-color);
   backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-right-bottom);
 }
 
 .mode-card {
@@ -197,6 +210,7 @@ nav a:hover {
   padding: 25px;
   border: 1px solid var(--border-color);
   backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-right-bottom);
 }
 
 .server-title {
@@ -277,27 +291,29 @@ nav a:hover {
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 
 .sidebar-panel {
   background: var(--panel-bg);
-  border-radius: 12px;
-  padding: 15px;
+  border-radius: 8px;
+  padding: 20px;
   border: 1px solid var(--border-color);
   backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-right-bottom);
 }
 
 /* Status Serwera Widget */
 .status-widget {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  min-height: 98px;
 }
 
 .status-widget .mini-logo {
-  width: 36px;
-  height: 36px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
 }
 
@@ -306,40 +322,55 @@ nav a:hover {
 }
 
 .server-domain {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   margin: 0;
 }
 
 .player-count {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
-  margin-top: 2px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.status-online { color: #4CAF50; font-weight: 800; display: inline-block; }
-.status-offline { color: #FF4C4C; font-weight: 800; display: inline-block; }
+.status-online {
+  color: #4CAF50;
+  font-weight: 800;
+  display: inline-block;
+}
+
+.status-offline {
+  color: #FF4C4C;
+  font-weight: 800;
+  display: inline-block;
+}
 
 /* Discord Widget */
 .discord-widget {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  min-height: 98px;
 }
 
 .discord-text h4 {
-  font-size: 13px;
+  font-size: 15px;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .discord-stats {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
-  margin-top: 3px;
+  margin-top: 5px;
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .discord-stats span::before {
@@ -351,12 +382,13 @@ nav a:hover {
   background: #5865F2;
   color: #fff;
   border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
-  font-size: 12px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 /* Cel Miesięczny */
@@ -364,25 +396,34 @@ nav a:hover {
   background: rgba(139, 0, 0, 1.0);
   border: 1px solid rgba(255, 0, 0, 0.15);
   text-align: center;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 10px;
-  border-radius: 0px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 18px 16px;
+  border-radius: 8px;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-right-bottom);
 }
 
 /* Social Media */
 .social-links {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
+
 .social-links a {
   text-decoration: none;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   transition: color 0.2s;
 }
-.social-links a:hover { color: #fff; }
+
+.social-links a:hover {
+  color: #fff;
+}
 
 /* FOOTER */
 footer {
@@ -403,9 +444,10 @@ footer .footer-note {
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr; }
   .modes-container { grid-template-columns: 1fr; }
-  nav { flex-direction: column; align-items: stretch; }
+  nav { flex-direction: column; align-items: stretch; gap: 8px; }
   .nav-links { flex-direction: column; text-align: center; }
-  .voucher-btn { text-align: center; border-top: 1px solid var(--border-color); }
+  nav a, .voucher-btn { text-align: center; }
+  .voucher-btn { border-top: 1px solid var(--border-color); }
 }
 </style>
 </head>
@@ -418,8 +460,8 @@ footer .footer-note {
       <div class="logo"><img src="pmc18.png" alt="Logo Serwera"></div>
       <div>
         <h1 style="font-size: 35px; font-weight: 400;">
-    POLSKIEMC.PL | Strona główna
-</h1>
+          POLSKIEMC.PL | Strona główna
+        </h1>
       </div>
     </div>
   </header>
@@ -432,7 +474,7 @@ footer .footer-note {
       <a href="regulamin.html">Regulamin</a>
       <a href="rekru.html">Rekrutacja</a>
     </div>
-    <a onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">VOUCHER</a>
+    <a onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')" class="voucher-btn">VOUCHER</a>
   </nav>
 
   <main class="grid">
@@ -495,7 +537,7 @@ footer .footer-note {
           <p class="server-domain">polskiemc.pl</p>
           <div class="player-count">
             <span id="players">—</span> 
-            <div id="status" class="status-online" style="margin-left: 5px;">Ładowanie...</div>
+            <div id="status" class="status-online">Ładowanie...</div>
           </div>
         </div>
       </div>
@@ -516,7 +558,7 @@ footer .footer-note {
       </div>
 
       <div class="sidebar-panel">
-        <h4 style="margin:0 0 10px 0; font-size:14px;">Social Media</h4>
+        <h4 style="margin:0 0 10px 0; font-size:15px;">Social Media</h4>
         <div class="social-links">
           <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener noreferrer">Discord</a>
           <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer">YouTube</a>
