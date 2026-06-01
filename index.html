@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>POLSKIEMC.PL | Strona główna</title>
 <meta name="description" content="Serwer pełen alternatyw i estetyki">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="pmc18.png">
 <style>
-:root{
-  --bg:#0b1220;
-  --accent:#FF4C4C;
-  --muted:#9aa6b2;
-  --card:#0f1720;
-  --glass: rgba(255,255,255,0.04);
+:root {
+  --panel-bg: rgba(13, 13, 15, 0.85);
+  --card-bg: #141419;
+  --accent-green: #2ecc71;
+  --accent-green-hover: #27ae60;
+  --accent-red: #ff4c4c;
+  --muted: #9aa6b2;
+  --border-color: rgba(255, 255, 255, 0.05);
 }
 
 /* --- ANIMACJE WEJŚCIA --- */
@@ -21,34 +23,373 @@
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-@keyframes fade {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
 
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; min-height: 100%; font-family: 'Roboto', sans-serif; color: #e6eef6; -webkit-font-smoothing: antialiased; }
 
-/* GLOBAL */
-* { box-sizing:border-box; }
-html, body { height: 100%; margin:0; font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 body {
-  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,76,76,0.06), transparent) no-repeat,
-              radial-gradient(900px 400px at 90% 90%, rgba(255,76,76,0.03), transparent) no-repeat,
-              linear-gradient(180deg,#06121a 0%, #071423 40%, #021018 100%);
+  /* Tło z klimatycznego zrzutu ekranu */
+  background: url('yKkP47H_d.webp') no-repeat center center;
+  background-size: cover;
   background-attachment: fixed;
-  padding:24px;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  gap:24px;
-  overflow-anchor: none;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
-  max-width:1100px;
-  width:100%;
+  max-width: 1200px;
+  width: 100%;
   animation: fadeUp .7s ease forwards;
-  opacity:0;
-  will-change: transform, opacity;
+}
+
+/* HEADER & BRAND */
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand .logo {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+}
+
+.brand .logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand h1 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.brand h1 span {
+  color: var(--muted);
+  font-weight: 300;
+  margin-left: 5px;
+}
+
+/* NAVBAR */
+nav {
+  background: #0d0d11;
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  border: 1px solid var(--border-color);
+}
+
+.nav-links {
+  display: flex;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+nav a:hover {
+  color: var(--muted);
+}
+
+.voucher-btn {
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* MAIN CONTENT GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* LEWA SEKCJA (GŁÓWNA) */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Karty wyboru trybów z układu graficznego */
+.modes-container {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(4px);
+}
+
+.mode-card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.mode-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-select {
+  background: var(--accent-green);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+}
+
+.btn-select:hover {
+  background: var(--accent-green-hover);
+}
+
+/* Twoja oryginalna sekcja informacyjna opakowana w nowy styl */
+.info-card {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(4px);
+}
+
+.server-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.big-ip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn {
+  background: linear-gradient(180deg, #FF6666, #CC0000);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+}
+.btn:hover { background-color: #CC0000; }
+.btn:active { transform: translateY(1px); }
+
+.features {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.feature {
+  background: rgba(255, 76, 76, 0.05);
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 140px;
+}
+
+.muted { color: var(--muted); }
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.sub-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+.sub-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+}
+
+.sub-card p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* PRAWA STRONA (SIDEBAR) */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar-panel {
+  background: var(--panel-bg);
+  border-radius: 12px;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(4px);
+}
+
+/* Status Serwera Widget */
+.status-widget {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-widget .mini-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.status-info {
+  flex: 1;
+}
+
+.server-domain {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.player-count {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.status-online { color: #4CAF50; font-weight: 800; display: inline-block; }
+.status-offline { color: #FF4C4C; font-weight: 800; display: inline-block; }
+
+/* Discord Widget */
+.discord-widget {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.discord-text h4 {
+  font-size: 13px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.discord-stats {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+  display: flex;
+  gap: 8px;
+}
+
+.discord-stats span::before {
+  content: '• ';
+  color: #2ecc71;
+}
+
+.btn-discord {
+  background: #5865F2;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Cel Miesięczny */
+.goal-panel {
+  background: rgba(139, 0, 0, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.15);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* Social Media z oryginalnego kodu */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.social-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13px;
+  transition: color 0.2s;
+}
+.social-links a:hover { color: #fff; }
+
+/* FOOTER */
+footer {
+  margin-top: 40px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
 }
 
 footer .footer-note {
@@ -58,268 +399,150 @@ footer .footer-note {
   margin-top: 6px;
 }
 
-header {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:18px;
-}
-
-.brand {
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo {
-  width:64px;
-  height:64px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:#0b1220;
-}
-
-.logo img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:12px;
-}
-
-nav a {
-  color:var(--muted);
-  text-decoration:none;
-  margin-left:16px;
-  font-weight:500;
-}
-nav a:hover { color:var(--accent); }
-
-.grid {
-  display:grid;
-  grid-template-columns:1fr 360px;
-  gap:20px;
-}
-
-.card {
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:14px;
-  padding:20px;
-  box-shadow:0 8px 30px rgba(2,6,12,0.6);
-  border:1px solid rgba(255,255,255,0.03);
-  opacity:0;
-  animation: fadeUp .8s ease forwards;
-  will-change: transform, opacity;
-}
-
-/* Stopniowe opóźnienia kart */
-.card:nth-child(1){ animation-delay:.2s; }
-.card:nth-child(2){ animation-delay:.3s; }
-.card:nth-child(3){ animation-delay:.4s; }
-.card:nth-child(4){ animation-delay:.5s; }
-.sidebar .card { animation-delay:.6s; }
-.list .card { animation-duration:.8s; animation-delay:.4s; }
-
-.hero-head {
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-
-.server-title {
-  font-family:'Press Start 2P',monospace;
-  font-size:22px;
-  letter-spacing:1px;
-}
-
-.subtitle {
-  color:var(--muted);
-  margin-top:6px;
-  font-size:13px;
-}
-
-.big-ip {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:16px;
-}
-
-.btn {
-  background:linear-gradient(180deg, #FF6666, #CC0000);
-  color:#fff;
-  padding:10px 14px;
-  border-radius:10px;
-  border:none;
-  font-weight:700;
-  cursor:pointer;
-  font-family:'Press Start 2P',monospace;
-}
-.btn:hover { background-color: #CC0000; }
-.btn:active { transform: translateY(1px); }
-
-.features {
-  display:flex;
-  gap:12px;
-  margin-top:18px;
-  flex-wrap:wrap;
-}
-
-.feature {
-  background:rgba(255,76,76,0.05);
-  padding:10px;
-  border-radius:10px;
-  min-width:140px;
-}
-
-.muted { color:var(--muted); }
-
-.sidebar .stat {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:12px;
-  background:linear-gradient(180deg,rgba(255,76,76,0.01),transparent);
-}
-
-.status-online { color:#4CAF50;font-weight:800; }
-.status-offline { color:#FF4C4C;font-weight:800; }
-
-.rules { margin-top:10px; }
-.rules li { margin-bottom:8px; }
-
-.list {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:12px;
-  margin-top:14px;
-}
-
-footer {
-  margin-top:20px;
-  color:var(--muted);
-  font-size:13px;
-  text-align:center;
-}
-
-@media (max-width:880px){
-  .grid{grid-template-columns:1fr;}
-  .logo{width:54px;height:54px;}
-}
-
-.pixel {
-  width:12px;
-  height:12px;
-  background:linear-gradient(180deg,#FF6666,#CC0000);
-  display:inline-block;
-  box-shadow:inset 0 -2px 0 rgba(0,0,0,0.2);
+/* RESPONSYWNOŚĆ */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .modes-container { grid-template-columns: 1fr; }
+  nav { flex-direction: column; align-items: stretch; }
+  .nav-links { flex-direction: column; text-align: center; }
+  .voucher-btn { text-align: center; border-top: 1px solid var(--border-color); }
 }
 </style>
 </head>
 <body>
+
 <div class="container">
+  
   <header>
     <div class="brand">
       <div class="logo"><img src="pmc18.png" alt="Logo Serwera"></div>
       <div>
-        <div class="server-title">POLSKIEMC.PL</div>
+        <h1 class="server-title" style="font-size: 20px;">POLSKIEMC.PL</h1>
         <div class="subtitle">Serwer twoich marzeń!</div>
       </div>
     </div>
-    <nav>
-      <a href="index.html">Strona główna</a>
-      <a href onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">Sklep</a>
-      <a href onclick="window.open('https://hosting-minecraft.eu/client/aff.php?aff=297', '_blank', 'noopener')">Hosting</a>
-      <a href="regulamin.html">Regulamin</a>
-      <a href="zgloszenia.html">Zgłoszenia</a>
-      <a href="rekru.html">Rekrutacja</a>
-    </nav>
   </header>
 
-  <main class="grid">
-    <section class="card">
-      <div class="hero-head">
-        <div style="flex:1">
-          <div class="server-title">POLSKIEMC.PL</div>
-          <div class="subtitle">Profesjonalność to nasza podstawa!</div>
-          <div class="big-ip">
-            <button class="btn" id="copy-ip">SKOPIUJ IP</button>
-            <button class="btn" onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">SKLEP</button>
-          </div>
-          <div class="features" aria-hidden="false">
-            <div class="feature"><strong>Tryby</strong><div class="muted">Earth SMP, Mace PvP</div></div>
-            <div class="feature"><strong>Wersja</strong><div class="muted">1.21+</div></div>
-            <div class="feature"><strong>Aktualny sezon</strong><div class="muted">Serwer ma aktualnie swój 4 sezon</div></div>
-          </div>
-        </div>
-      </div>
+  <nav>
+    <div class="nav-links">
+      <a onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">Sklep</a>
+      <a href="index.html">Strona główna</a>
+      <a onclick="window.open('https://hosting-minecraft.eu/client/aff.php?aff=297', '_blank', 'noopener')">Hosting</a>
+      <a href="regulamin.html">Regulamin</a>
+      <a href="rekru.html">Rekrutacja</a>
+    </div>
+    <a href="#" class="voucher-btn">Voucher</a>
+  </nav>
 
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0">
-      <h3 id="features" style="font-family:'Press Start 2P';font-size:12px;letter-spacing:1px">CO OFERUJEMY</h3>
-      <div class="list">
-        <div class="card" style="padding:12px">
-          <h4 style="margin:0 0 8px 0">Stabilny serwer</h4>
-          <p class="muted" style="margin:0;font-size:13px">Wysokiej klasy hosting, niskie opóźnienia i codzienne kopie zapasowe.</p>
+  <main class="grid">
+    
+    <div class="main-content">
+      
+      <section class="modes-container">
+        <div class="mode-card">
+          <div class="mode-title">Mace PvP</div>
+          <button class="btn-select">Wybierz</button>
         </div>
-        <div class="card" style="padding:12px">
-          <h4 style="margin:0 0 8px 0">Autorskie rozwiązania</h4>
-          <p class="muted" style="margin:0;font-size:13px">Nasi programiści wkładają całe swoje serce w swoje prace.</p>
+        <div class="mode-card">
+          <div class="mode-title">Earth SMP</div>
+          <button class="btn-select">Wybierz</button>
         </div>
-        <div class="card" style="padding:12px">
-          <h4 style="margin:0 0 8px 0">Support</h4>
-          <p class="muted" style="margin:0;font-size:13px">Aktywny zespół administracyjny dostępny na Discordzie.</p>
+        <div class="mode-card">
+          <div class="mode-title">???</div>
+          <button class="btn-select">Wybierz</button>
         </div>
-        <div class="card" style="padding:12px">
-          <h4 style="margin:0 0 8px 0">Nowe tryby</h4>
-          <p class="muted" style="margin:0;font-size:13px">4 Sezon to sezon, w którym rozpoczynamy długą drogę z dodawaniem nowych trybów, których nigdzie indziej nie znajdziesz.</p>
+      </section>
+
+      <section class="info-card">
+        <div class="server-title">POLSKIEMC.PL</div>
+        <div class="subtitle">Profesjonalność to nasza podstawa!</div>
+        
+        <div class="big-ip">
+          <button class="btn" id="copy-ip">SKOPIUJ IP</button>
+          <button class="btn" onclick="window.open('https://vishop.pl/shop/8747', '_blank', 'noopener')">SKLEP</button>
         </div>
-        <div class="card" style="padding:12px">
-          <h4 style="margin:0 0 8px 0">Wydarzenia</h4>
-          <p class="muted" style="margin:0;font-size:13px">Na każde święta, wielkanoc oraz halloween napewno zobaczysz u nas specjalne wydarzenia podczas, których łatwo da się wzbogacić.</p>
+
+        <div class="features">
+          <div class="feature"><strong>Tryby</strong><div class="muted">Earth SMP, Mace PvP</div></div>
+          <div class="feature"><strong>Wersja</strong><div class="muted">1.21+</div></div>
+          <div class="feature"><strong>Aktualny sezon</strong><div class="muted">Serwer ma aktualnie swój 4 sezon</div></div>
         </div>
-        <div class="card" style="padding:12px">
-          <h4 style="margin:0 0 8px 0">Nieśmiertelność</h4>
-          <p class="muted" style="margin:0;font-size:13px">Serwer co jakiś czas mocno upada, ale zawsze udaje nam się wrócić z nowymi rzeczami, trybami i oczywiście zaangażowanymi graczami.</p>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.05);margin:24px 0">
+        
+        <h3 style="font-family:'Press Start 2P';font-size:12px;letter-spacing:1px;margin-bottom:15px">CO OFERUJEMY</h3>
+        <div class="list">
+          <div class="sub-card">
+            <h4>Stabilny serwer</h4>
+            <p class="muted">Wysokiej klasy hosting, niskie opóźnienia i codzienne kopie zapasowe.</p>
+          </div>
+          <div class="sub-card">
+            <h4>Autorskie rozwiązania</h4>
+            <p class="muted">Nasi programiści wkładają całe swoje serce w swoje prace.</p>
+          </div>
+          <div class="sub-card">
+            <h4>Support</h4>
+            <p class="muted">Aktywny zespół administracyjny dostępny na Discordzie.</p>
+          </div>
+          <div class="sub-card">
+            <h4>Nowe tryby</h4>
+            <p class="muted">4 Sezon to sezon, w którym rozpoczynamy długą drogę z dodawaniem nowych trybów, których nigdzie indziej nie znajdziesz.</p>
+          </div>
+          <div class="sub-card">
+            <h4>Wydarzenia</h4>
+            <p class="muted">Na każde święta, wielkanoc oraz halloween napewno zobaczysz u nas specjalne wydarzenia podczas, których łatwo da się wzbogacić.</p>
+          </div>
+          <div class="sub-card">
+            <h4>Nieśmiertelność</h4>
+            <p class="muted">Serwer co jakiś czas mocno upada, ale zawsze udaje nam się wrócić z nowymi rzeczami, trybami i oczywiście zaangażowanymi graczami.</p>
+          </div>
         </div>
-      </div>
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0">
-    </section>
+      </section>
+
+    </div>
 
     <aside class="sidebar">
-      <div class="card" style="padding:14px;margin-bottom:12px">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <div>
-            <div class="muted">Status serwera</div>
-            <div id="status" class="status-online" style="font-weight:800">Ładowanie...</div>
-          </div>
-          <div style="text-align:right">
-            <div class="muted">Gracze</div>
-            <div id="players" style="font-weight:800">—</div>
+      
+      <div class="sidebar-panel status-widget">
+        <img class="mini-logo" src="pmc18.png" alt="Mini-logo">
+        <div class="status-info">
+          <p class="server-domain">polskiemc.pl</p>
+          <div class="player-count">
+            <span id="players">—</span> 
+            <div id="status" class="status-online" style="margin-left: 5px;">Ładowanie...</div>
           </div>
         </div>
       </div>
-      <div class="card" style="padding:14px;margin-bottom:12px">
-        <h4 style="margin:0 0 10px 0">Social Media</h4>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--muted)">Discord</a>
-          <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--muted)">YouTube</a>
-          <a href="https://www.tiktok.com/@p0lak_yt" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:var(--muted)">TikTok</a>
+
+      <div class="sidebar-panel discord-widget">
+        <div class="discord-text">
+          <h4>POLSKIEMC.PL x S4</h4>
+          <div class="discord-stats">
+            <span>83 online</span>
+            <span>429 członków</span>
+          </div>
+        </div>
+        <a href="https://dc.gg/polskiemc" target="_blank" class="btn-discord">Discord</a>
+      </div>
+
+      <div class="sidebar-panel goal-panel">
+        Cel miesięczny: 0%
+      </div>
+
+      <div class="sidebar-panel">
+        <h4 style="margin:0 0 10px 0; font-size:14px;">Social Media</h4>
+        <div class="social-links">
+          <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://www.tiktok.com/@p0lak_yt" target="_blank" rel="noopener noreferrer">TikTok</a>
         </div>
       </div>
-      <div class="card" style="padding:14px">
-        <h4 style="margin:0 0 10px 0">Kontakt</h4>
-        <p class="muted" style="margin:0 0 8px 0">
-          Masz pytanie? Napisz: <a href="mailto:biznes.polskiemc@gmail.com" style="color:var(--accent);text-decoration:none">biznes.polskiemc@gmail.com</a>
-        </p>
-      </div>
+
     </aside>
   </main>
 
   <footer>
-    <div>© 2025 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</div>
+    <div>© 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</div>
     <div class="footer-note">
       Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
     </div>
@@ -346,7 +569,7 @@ async function updateRealStatus(){
     const playersEl = document.getElementById('players');
 
     if (data.online){
-      statusEl.textContent = 'ONLINE';
+      statusEl.textContent = '●';
       statusEl.className = 'status-online';
       playersEl.textContent = `${data.players.online} / ${data.players.max}`;
     } else {
@@ -365,23 +588,20 @@ async function updateRealStatus(){
 updateRealStatus();
 setInterval(updateRealStatus, 60000);
 </script>
+
 <script>
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 document.addEventListener("keydown", function(e) {
-
   if (e.key === "F12") {
     e.preventDefault();
   }
-
   if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) {
     e.preventDefault();
   }
-
   if (e.ctrlKey && e.key === "U") {
     e.preventDefault();
   }
-
 });
 </script>
 </body>
