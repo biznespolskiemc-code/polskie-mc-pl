@@ -21,12 +21,6 @@
   --shadow-right-bottom: 4px 4px 0 rgba(0, 0, 0, 0.35);
 }
 
-/* --- ANIMACJE WEJŚCIA --- */
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
 * { box-sizing: border-box; }
 html, body {
   margin: 0;
@@ -50,7 +44,6 @@ body {
 .container {
   max-width: 1200px;
   width: 100%;
-  animation: fadeUp .7s ease forwards;
 }
 
 /* HEADER & BRAND */
@@ -98,6 +91,11 @@ nav {
   margin-bottom: 25px;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-right-bottom);
+}
+
+nav a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 
 .nav-links {
@@ -302,7 +300,7 @@ footer .footer-note {
       <a href="index.html">Strona główna</a>
       <a onclick="window.location.href='https://vishop.pl/shop/8747'" style="color: #00ff8c;">Sklep</a>
       <a href="regulamin.html">Regulamin gry</a>
-      <a href="rekru.html">Rekrutacja</a>
+      <a href="rekru.html" class="active">Rekrutacja</a>
       <a onclick="window.location.href='https://hosting-minecraft.eu/client/aff.php?aff=297'">Hosting</a>
     </div>
     <a onclick="window.location.href='https://vishop.pl/shop/8747'" class="voucher-btn">VOUCHER</a>
