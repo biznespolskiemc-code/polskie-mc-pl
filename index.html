@@ -578,7 +578,7 @@ async function updateRealStatus(){
       console.log(`Ustawiono graczy na: ${data.players.online}/${data.players.max}`);
     } else {
       dotEl.className = 'status-dot-red';
-      playersEl.textContent = `0/500`;
+      playersEl.textContent = 'OFFLINE';
       console.warn("API twierdzi, że serwer jest OFFLINE. Ustawiono domyślne 0/500.");
     }
   } catch(e){
