@@ -106,6 +106,11 @@ nav {
   box-shadow: var(--shadow-right-bottom);
 }
 
+nav a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
 .nav-links {
   display: flex;
   flex-wrap: wrap;
@@ -222,7 +227,7 @@ footer .footer-note {
     <div class="nav-links">
       <a href="index.html">Strona główna</a>
       <a onclick="window.location.href='https://vishop.pl/shop/8747'" style="color: #00ff8c;">Sklep</a>
-      <a href="regulamin.html">Regulamin gry</a>
+      <a href="regulamin.html" class="active">Regulamin gry</a>
       <a href="rekru.html">Rekrutacja</a>
       <a onclick="window.location.href='https://hosting-minecraft.eu/client/aff.php?aff=297'">Hosting</a>
     </div>
