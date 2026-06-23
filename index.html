@@ -263,6 +263,12 @@ nav a:hover {
   font-weight: 600;
   color: #ffffff;
   margin: 0 0 3px 0;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.server-domain:hover {
+  opacity: 0.8;
 }
 
 .player-count {
@@ -506,7 +512,9 @@ footer .footer-note {
       <div class="sidebar-panel status-widget">
         <img class="mini-logo" src="pmc18.png" alt="Logo">
         <div class="status-info">
-          <p class="server-domain">polskiemc.pl</p>
+          <a href="http://193.111.249.72:8080" class="server-domain" target="_blank">
+    polskiemc.pl
+</a>
           <div class="player-count">
             <span id="players_val">Ładowanie...</span> 
             <span id="status_dot" class="status-dot-green"></span>
