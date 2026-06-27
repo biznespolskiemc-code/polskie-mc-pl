@@ -87,7 +87,8 @@ animation: none !important;
 
 .info-card,
 .sub-card,
-.sidebar-panel {
+.sidebar-panel,
+.contact-buttons .contact-box {
 opacity: 0;
 animation: slideBottom .6s ease forwards;
 }
@@ -141,7 +142,8 @@ animation-delay: .45s;
 animation-delay: .6s;
 }
 
-.sidebar-panel:nth-child(4) {
+/* Przyciski social media (pojawiają się na samym końcu) */
+.contact-buttons .contact-box {
 animation-delay: .75s;
 }
 
@@ -422,154 +424,43 @@ border-radius: 50%;
 display: inline-block;
 }
 
-/* ===== SOCIAL BUTTONS ===== */
+/* SOCIAL MEDIA JAK STUDIO BIELICKI */
 
 .contact-buttons {
-
 display:flex;
-gap:10px;
+gap:12px;
+margin-top:0;
 justify-content:center;
-
-opacity:0;
-
-animation: slideBottom .6s ease forwards;
-
-animation-delay:.9s;
-
 }
 
 
 .contact-box {
-
-
-/* MNIEJSZE */
-
-width:48px;
-height:48px;
-
-
-border-radius:14px;
-
-
+width:44px;         /* Zmniejszono z 65px */
+height:44px;        /* Zmniejszono z 65px */
+border-radius:10px; /* Dopasowano promień do mniejszego rozmiaru */
 overflow:hidden;
-
-
 background:var(--card-bg);
-
-
 display:flex;
 align-items:center;
 justify-content:center;
-
-
-border:1px solid rgba(255,255,255,.05);
-
-
-transition:.35s ease;
-
-
-/* animacja wejścia */
-
-opacity:0;
-
-animation: socialEnter .6s ease forwards;
-
+border:1px solid rgba(255,255,255,0.05);
+transition:.4s ease;
 }
-
-
-.contact-box:nth-child(1){
-animation-delay:1s;
-}
-
-
-.contact-box:nth-child(2){
-animation-delay:1.15s;
-}
-
-
-.contact-box:nth-child(3){
-animation-delay:1.3s;
-}
-
-
-
-@keyframes socialEnter {
-
-
-0% {
-
-opacity:0;
-
-transform:
-translateY(30px)
-scale(.8);
-
-}
-
-
-100% {
-
-opacity:1;
-
-transform:
-translateY(0)
-scale(1);
-
-}
-
-
-}
-
 
 
 .contact-box img {
-
-
 width:100%;
 height:100%;
-
-
 object-fit:cover;
-
-
 filter:brightness(0) invert(1);
-
-
-transition:.35s ease;
-
 }
-
-
-
-/* hover */
 
 
 .contact-box:hover {
-
-
-transform:
-translateY(-6px)
-scale(1.1);
-
-
-
 border-color:#5865F2;
-
-
-
-box-shadow:
-0 0 18px rgba(88,101,242,.65);
-
-
+box-shadow:0 0 20px rgba(88,101,242,0.55);
 }
 
-
-
-.contact-box:hover img {
-
-transform:scale(1.12);
-
-}
 .discord-stat-item.members::before {
 content: '';
 width: 6px;
@@ -753,37 +644,24 @@ Cel miesięczny: ERROR
 </div>
 <div class="contact-buttons">
 
-<a href="https://dc.gg/polskiemc"
-target="_blank"
-class="contact-box">
-
+<a href="https://dc.gg/polskiemc" target="_blank" class="contact-box">
     <img src="discord.png" alt="Discord">
-
     <img src="dc.png" alt="Discord">
 </a>
 
 
-<a href="https://www.youtube.com/@p0lak-official1"
-target="_blank"
-class="contact-box">
-
+<a href="https://www.youtube.com/@p0lak-official1" target="_blank" class="contact-box">
     <img src="youtube.png" alt="YouTube">
-
     <img src="yt.png" alt="YouTube">
 </a>
 
 
-<a href="https://www.tiktok.com/@p0lak_yt"
-target="_blank"
-class="contact-box">
-
+<a href="https://www.tiktok.com/@p0lak_yt" target="_blank" class="contact-box">
     <img src="tiktok.png" alt="TikTok">
-
     <img src="tt.png" alt="TikTok">
 </a>
 
 </div>
-      </div>
 
 </aside>
 
@@ -795,14 +673,6 @@ class="contact-box">
     </div>
   </footer>
 </div>
-
-
-<footer>
-  <div>© 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</div>
-  <div class="footer-note">
-    Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
-  </div>
-</footer>
 
 <script>
 // Obsługa statusu serwera Minecraft
