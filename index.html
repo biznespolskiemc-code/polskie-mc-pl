@@ -421,6 +421,56 @@ nav a:hover {
   border-radius: 50%;
   display: inline-block;
 }
+
+/* SOCIAL MEDIA JAK STUDIO BIELICKI */
+
+.contact-buttons {
+    display:flex;
+    gap:12px;
+    margin-top:0;
+    justify-content:center;
+}
+
+
+.contact-box {
+
+    width:65px;
+    height:65px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:var(--card-bg);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    transition:.4s ease;
+}
+
+
+.contact-box img {
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    filter:brightness(0) invert(1);
+}
+
+
+.contact-box:hover {
+
+    border-color:#5865F2;
+
+    box-shadow:0 0 20px rgba(88,101,242,0.55);
+
+}
 .discord-stat-item.members::before {
   content: '';
   width: 6px;
