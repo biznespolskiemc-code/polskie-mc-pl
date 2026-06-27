@@ -27,13 +27,13 @@
   --sb-goal-bg: #441616;
 }
 
-/* --- ANIMACJE WYSUWANIA OD DOŁU --- */
+/* --- DELIKATNE WYSUWANIE --- */
 
 @keyframes slideBottom {
 
   0% {
     opacity: 0;
-    transform: translateY(80px);
+    transform: translateY(25px);
   }
 
   100% {
@@ -44,29 +44,23 @@
 }
 
 
-/* góra bez animacji */
-
 header,
 nav {
     animation: none !important;
 }
 
 
-/* główna karta */
-
 .info-card {
     opacity: 0;
-    animation: slideBottom .8s ease forwards;
-    animation-delay: .25s;
+    animation: slideBottom .6s ease forwards;
+    animation-delay: .15s;
 }
 
 
-/* footer po karcie */
-
 footer {
     opacity: 0;
-    animation: slideBottom .8s ease forwards;
-    animation-delay: 1s;
+    animation: slideBottom .6s ease forwards;
+    animation-delay: .45s;
 }
 * { box-sizing: border-box; }
 html, body {
