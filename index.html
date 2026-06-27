@@ -220,27 +220,150 @@ nav a.active {
 nav a {
   color: #fff;
   text-decoration: none;
-  padding: 16px 24px;
-  font-size: 15px;
-  font-weight: 500;
+
+  /* MNIEJSZE PRZYCISKI */
+  padding: 11px 16px;
+  font-size: 13px;
+
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: color 0.2s, background 0.2s;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    color .25s ease,
+    box-shadow .25s ease;
+
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 8px;
+
+  position: relative;
+  overflow: hidden;
 }
+
+
+/* animacja wejścia */
+nav a {
+  animation: navShow .5s ease forwards;
+}
+
+
+@keyframes navShow {
+
+  from {
+    opacity:0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+
+/* hover */
 nav a:hover {
-  background: rgba(255,255,255,0.03);
+
+  background: rgba(16,185,129,.18);
+
+  color:#00ff9c;
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  box-shadow:
+    0 8px 20px rgba(16,185,129,.25);
+
 }
+
+
+/* klik */
+nav a:active {
+
+  transform:
+    scale(.94);
+
+}
+
+
+/* świecenie aktywnego */
+nav a.active {
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(16,185,129,.35),
+    rgba(16,185,129,.1)
+  );
+
+  color:#00ff9c;
+
+  box-shadow:
+  0 0 15px rgba(16,185,129,.25);
+
 .voucher-btn {
-  color: #fff;
-  text-decoration: none;
-  padding: 16px 26px;
-  font-size: 15px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-radius: 6px;
+
+  color:#fff;
+
+  text-decoration:none;
+
+  padding:11px 18px;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  letter-spacing:.6px;
+
+  border-radius:8px;
+
+  transition:.25s ease;
+
+  animation:
+  voucherPulse 2s infinite;
+
+}
+
+
+.voucher-btn:hover {
+
+  background:#10b981;
+
+  color:#000;
+
+  transform:
+  translateY(-3px)
+  scale(1.05);
+
+
+  box-shadow:
+  0 0 25px rgba(16,185,129,.55);
+
+}
+
+
+@keyframes voucherPulse {
+
+0%,100% {
+
+box-shadow:
+0 0 0 rgba(16,185,129,0);
+
+}
+
+50% {
+
+box-shadow:
+0 0 15px rgba(16,185,129,.35);
+
+}
+
 }
 /* MAIN CONTENT GRID */
 .grid {
@@ -263,6 +386,25 @@ nav a:hover {
   border: 1px solid var(--border-color);
   backdrop-filter: blur(4px);
   box-shadow: var(--shadow-right-bottom);
+}
+.shop-wrapper a {
+
+animation:
+shopFloat 2s infinite;
+
+}
+
+
+@keyframes shopFloat {
+
+0%,100% {
+transform:translateY(0);
+}
+
+50% {
+transform:translateY(-3px);
+}
+
 }
 .server-title {
   font-family: 'Press Start 2P', monospace;
