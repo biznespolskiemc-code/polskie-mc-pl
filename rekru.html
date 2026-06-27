@@ -21,6 +21,97 @@
   --shadow-right-bottom: 4px 4px 0 rgba(0, 0, 0, 0.35);
 }
 
+/* --- DELIKATNE ANIMACJE WEJŚCIA --- */
+
+@keyframes slideBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* góra bez animacji */
+
+header,
+nav {
+    animation: none !important;
+}
+
+
+/* główna karta */
+
+.recruitment-card {
+    opacity: 0;
+    animation: slideBottom .6s ease forwards;
+    animation-delay: .15s;
+}
+
+
+/* kafelki rang */
+
+.role-box {
+    opacity: 0;
+    animation: slideBottom .6s ease forwards;
+}
+
+
+.role-box:nth-child(1) {
+    animation-delay: .25s;
+}
+
+.role-box:nth-child(2) {
+    animation-delay: .35s;
+}
+
+.role-box:nth-child(3) {
+    animation-delay: .45s;
+}
+
+.role-box:nth-child(4) {
+    animation-delay: .55s;
+}
+
+.role-box:nth-child(5) {
+    animation-delay: .65s;
+}
+
+.role-box:nth-child(6) {
+    animation-delay: .75s;
+}
+
+
+/* wymagania */
+
+.requirements-section {
+    opacity: 0;
+    animation: slideBottom .6s ease forwards;
+    animation-delay: .85s;
+}
+
+
+/* przycisk */
+
+.btn {
+    opacity: 0;
+    animation: slideBottom .6s ease forwards;
+    animation-delay: 1s;
+}
+
+
+/* stopka */
+
+footer {
+    opacity: 0;
+    animation: slideBottom .6s ease forwards;
+    animation-delay: 1.1s;
+}
+
 * { box-sizing: border-box; }
 html, body {
   margin: 0;
