@@ -27,12 +27,47 @@
   --sb-goal-bg: #441616;
 }
 
-/* --- ANIMACJE WEJŚCIA --- */
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* --- ANIMACJE WYSUWANIA OD DOŁU --- */
+
+@keyframes slideBottom {
+
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 }
 
+
+/* góra bez animacji */
+
+header,
+nav {
+    animation: none !important;
+}
+
+
+/* główna karta */
+
+.info-card {
+    opacity: 0;
+    animation: slideBottom .8s ease forwards;
+    animation-delay: .25s;
+}
+
+
+/* footer po karcie */
+
+footer {
+    opacity: 0;
+    animation: slideBottom .8s ease forwards;
+    animation-delay: 1s;
+}
 * { box-sizing: border-box; }
 html, body {
   margin: 0;
@@ -151,6 +186,10 @@ nav a:hover {
   border: 1px solid var(--border-color);
   backdrop-filter: blur(4px);
   box-shadow: var(--shadow-right-bottom);
+
+  opacity:0;
+  animation: slideBottom .8s ease forwards;
+  animation-delay:.25s;
 }
 
 .server-title {
