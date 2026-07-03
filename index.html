@@ -8,37 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="pmc18.png">
 <style>
-/* ===== PROMOCJA PRZY PRZYCISKU SKLEP ===== */
-.shop-wrapper {
-position: relative;
-display: inline-flex;
-align-items: center;
-}
-.promo-badge {
-background: #e60000;
-color: #fff;
-font-weight: 900;
-font-size: 11px;
-padding: 3px 8px;
-border-radius: 6px;
-margin-left: -12px; /* Lekkie nasunięcie na przycisk dla lepszego wyglądu */
-margin-right: 10px;
-z-index: 10;
-box-shadow: 0 2px 10px rgba(230, 0, 0, 0.45);
-user-select: none;
-white-space: nowrap;
-/* Zamiast trzęsienia - płynne, delikatne pulsowanie */
-animation: promoPulse 2s ease-in-out infinite; 
-}
-
-@keyframes promoPulse {
-0%, 100% {
-transform: scale(1);
-}
-50% {
-transform: scale(1.08);
-}
-}
 
 :root {
 --panel-bg: rgba(20, 20, 25, 0.88);
@@ -603,7 +572,6 @@ margin-top: 6px;
 nav { flex-direction: column; align-items: stretch; gap: 8px; }
 .nav-links { flex-direction: column; text-align: center; }
 .shop-wrapper { flex-direction: column; width: 100%; }
-.promo-badge { margin: 5px 0 10px 0; }
 nav a, .voucher-btn { text-align: center; width: 100%; }
 .voucher-btn { border-top: 1px solid var(--border-color); }
 }
@@ -630,7 +598,6 @@ nav a, .voucher-btn { text-align: center; width: 100%; }
 <a href="index.html" class="active">Strona główna</a>
 <div class="shop-wrapper">
 <a onclick="window.location.href='https://vishop.pl/shop/8747'" style="color: #00ff8c;">Sklep</a>
-<!--- <div class="promo-badge">-30%</div> --->
 </div>
 <a href="regulamin.html">Regulamin gry</a>
 <a href="rekru.html">Rekrutacja</a>
