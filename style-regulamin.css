@@ -1,0 +1,2308 @@
+/* =====================================================
+   ZMIENNE
+===================================================== */
+
+:root {
+
+    --red: #b9173a;
+    --red-light: #d61841;
+    --red-dark: #83182f;
+    --red-soft: #ef527c;
+
+    --black: #050505;
+    --bg: #090909;
+    --bg-2: #0d0d0d;
+    --card: #131313;
+
+    --white: #ffffff;
+    --text: #d6d6d6;
+    --muted: #929292;
+
+    --border: rgba(255, 255, 255, 0.08);
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+    scroll-padding-top: 90px;
+
+    overflow-y: scroll;
+
+}
+
+
+body {
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--white);
+
+    overflow-x: hidden;
+
+}
+
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+button {
+
+    font-family: inherit;
+
+}
+
+
+/* =====================================================
+   GLOBAL CONTAINER
+===================================================== */
+
+.container {
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 80px;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        rgba(5, 5, 5, 0.95);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.35);
+
+}
+
+
+.nav-container {
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    color:
+        #ffffff;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.logo img {
+
+    width: 40px;
+    height: 40px;
+
+    object-fit: contain;
+
+}
+
+
+.logo:hover {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+
+}
+
+
+.menu a {
+
+    position: relative;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color:
+        #ffffff;
+
+    transition:
+        color 0.3s ease;
+
+}
+
+
+.menu a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -9px;
+
+    width: 0;
+
+    height: 2px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        var(--red);
+
+    border-radius:
+        10px;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+/* =====================================================
+   AKTYWNA PODSTRONA
+===================================================== */
+
+.menu a.active {
+
+    color:
+        var(--red);
+
+}
+
+
+.menu a.active::after {
+
+    width:
+        100%;
+
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.menu a:hover {
+
+    color:
+        var(--red);
+
+}
+
+
+.menu a:hover::after {
+
+    width:
+        100%;
+
+}
+
+
+/* =====================================================
+   HAMBURGER
+===================================================== */
+
+.hamburger {
+
+    display: none;
+
+    width: 32px;
+
+    cursor: pointer;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    z-index: 10001;
+
+}
+
+
+.hamburger span {
+
+    display: block;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        #ffffff;
+
+    border-radius:
+        20px;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.hamburger.active span:nth-child(1) {
+
+    transform:
+        translateY(9px)
+        rotate(45deg);
+
+}
+
+
+.hamburger.active span:nth-child(2) {
+
+    opacity:
+        0;
+
+}
+
+
+.hamburger.active span:nth-child(3) {
+
+    transform:
+        translateY(-9px)
+        rotate(-45deg);
+
+}
+
+
+/* =====================================================
+   HERO REGULAMINU
+===================================================== */
+
+.regulamin-hero {
+
+    position: relative;
+
+    min-height: 55vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    padding:
+        140px 20px 100px;
+
+    background:
+        #050505;
+
+}
+
+
+.regulamin-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    left: 50%;
+    top: 45%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(185, 23, 58, 0.06);
+
+    filter:
+        blur(90px);
+
+    pointer-events:
+        none;
+
+}
+
+
+.regulamin-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    pointer-events:
+        none;
+
+}
+
+
+.regulamin-hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width:
+        850px;
+
+    margin:
+        0 auto;
+
+}
+
+
+/* =====================================================
+   MAŁA ETYKIETA HERO
+===================================================== */
+
+.hero-small-label {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom:
+        22px;
+
+    padding:
+        8px 15px;
+
+    border:
+        1px solid
+        rgba(239, 82, 124, 0.2);
+
+    border-radius:
+        30px;
+
+    background:
+        rgba(239, 82, 124, 0.06);
+
+    color:
+        #ef9ab0;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+/* =====================================================
+   HERO TYTUŁ
+===================================================== */
+
+.regulamin-hero h1 {
+
+    font-size:
+        clamp(45px, 6vw, 72px);
+
+    line-height:
+        1.05;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -2px;
+
+}
+
+
+.regulamin-hero h1 span {
+
+    color:
+        var(--red);
+
+}
+
+
+.regulamin-hero p {
+
+    max-width:
+        650px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        #929292;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =====================================================
+   REGULAMIN — GŁÓWNA SEKCJA
+===================================================== */
+
+.regulamin-section {
+
+    position:
+        relative;
+
+    padding:
+        80px 0 120px;
+
+    background:
+        var(--bg);
+
+}
+
+
+.regulamin-wrapper {
+
+    max-width:
+        1000px;
+
+    margin:
+        0 auto;
+
+}
+
+
+/* =====================================================
+   KARTA REGULAMINU
+===================================================== */
+
+.rules-card {
+
+    --accent:
+        #b9173a;
+
+    --accent-light:
+        #ef527c;
+
+    --accent-dark:
+        #83182f;
+
+    position:
+        relative;
+
+    margin-bottom:
+        25px;
+
+    padding:
+        38px 40px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    border-radius:
+        25px;
+
+    background:
+        var(--card);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0, 0, 0, 0.25);
+
+    overflow:
+        hidden;
+
+    transition:
+        0.4s ease;
+
+}
+
+
+/* =====================================================
+   KOLORY POSZCZEGÓLNYCH SEKCJI
+===================================================== */
+
+/* POSTANOWIENIA OGÓLNE */
+
+.rules-card:nth-child(1) {
+
+    --accent:
+        #b9173a;
+
+    --accent-light:
+        #ef527c;
+
+    --accent-dark:
+        #83182f;
+
+}
+
+
+/* DISCORD */
+
+.rules-card:nth-child(2) {
+
+    --accent:
+        #5865f2;
+
+    --accent-light:
+        #7289da;
+
+    --accent-dark:
+        #404eed;
+
+}
+
+
+/* MINECRAFT */
+
+.rules-card:nth-child(3) {
+
+    --accent:
+        #10b981;
+
+    --accent-light:
+        #34d399;
+
+    --accent-dark:
+        #059669;
+
+}
+
+
+/* TRAPY EARTH SMP */
+
+.rules-card:nth-child(4) {
+
+    --accent:
+        #f59e0b;
+
+    --accent-light:
+        #fbbf24;
+
+    --accent-dark:
+        #d97706;
+
+}
+
+
+/* =====================================================
+   POŚWIATA KARTY
+===================================================== */
+
+.rules-card::before {
+
+    content: "";
+
+    position:
+        absolute;
+
+    top:
+        -100px;
+
+    right:
+        -100px;
+
+    width:
+        250px;
+
+    height:
+        250px;
+
+    border-radius:
+        50%;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 9%,
+            transparent
+        );
+
+    filter:
+        blur(55px);
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =====================================================
+   GÓRNA LINIA KARTY
+===================================================== */
+
+.rules-card::after {
+
+    content: "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-light),
+            transparent
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.rules-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(--accent) 40%,
+            rgba(255, 255, 255, 0.08)
+        );
+
+    box-shadow:
+        0 30px 70px
+        rgba(0, 0, 0, 0.4),
+        0 0 30px
+        color-mix(
+            in srgb,
+            var(--accent) 8%,
+            transparent
+        );
+
+}
+
+
+/* =====================================================
+   NAGŁÓWEK KARTY
+===================================================== */
+
+.rules-heading {
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        17px;
+
+    margin-bottom:
+        28px;
+
+}
+
+
+.rules-heading-icon {
+
+    width:
+        52px;
+
+    height:
+        52px;
+
+    flex-shrink:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        15px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 10%,
+            transparent
+        );
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--accent) 25%,
+            transparent
+        );
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        22px;
+
+    font-weight:
+        800;
+
+    box-shadow:
+        0 0 20px
+        color-mix(
+            in srgb,
+            var(--accent) 5%,
+            transparent
+        );
+
+}
+
+
+.rules-heading-text h2 {
+
+    font-size:
+        25px;
+
+    line-height:
+        1.2;
+
+    font-weight:
+        800;
+
+}
+
+
+.rules-heading-text p {
+
+    margin-top:
+        5px;
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.7px;
+
+}
+
+
+/* =====================================================
+   LINIA
+===================================================== */
+
+.rules-line {
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    margin-bottom:
+        25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(
+                in srgb,
+                var(--accent) 35%,
+                transparent
+            ),
+            rgba(255, 255, 255, 0.07),
+            transparent
+        );
+
+}
+
+
+/* =====================================================
+   LISTA REGULAMINU
+===================================================== */
+
+.rules-list {
+
+    list-style:
+        none;
+
+    counter-reset:
+        rules;
+
+}
+
+
+.rules-list li {
+
+    position:
+        relative;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        42px 1fr;
+
+    gap:
+        15px;
+
+    counter-increment:
+        rules;
+
+    padding:
+        14px 0;
+
+    color:
+        #b8b8b8;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.75;
+
+    font-weight:
+        500;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.045);
+
+}
+
+
+.rules-list li:last-child {
+
+    border-bottom:
+        none;
+
+    padding-bottom:
+        0;
+
+}
+
+
+.rules-list li::before {
+
+    content:
+        counter(rules);
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-top:
+        1px;
+
+    border-radius:
+        10px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 11%,
+            transparent
+        );
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--accent) 25%,
+            transparent
+        );
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+}
+
+
+.rules-list li strong {
+
+    color:
+        #ffffff;
+
+    font-weight:
+        700;
+
+}
+
+
+/* =====================================================
+   WAŻNE OSTRZEŻENIE
+===================================================== */
+
+.rules-warning {
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        18px;
+
+    margin-top:
+        30px;
+
+    padding:
+        23px 25px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--accent) 28%,
+            transparent
+        );
+
+    border-radius:
+        18px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 7%,
+            transparent
+        );
+
+}
+
+
+.rules-warning-icon {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    flex-shrink:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        12px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 12%,
+            transparent
+        );
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--accent) 20%,
+            transparent
+        );
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        18px;
+
+    font-weight:
+        800;
+
+}
+
+
+.rules-warning h3 {
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        14px;
+
+    font-weight:
+        800;
+
+}
+
+
+.rules-warning p {
+
+    color:
+        #858585;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.7;
+
+    font-weight:
+        500;
+
+}
+
+
+/* =====================================================
+   WAŻNE OSTRZEŻENIE
+===================================================== */
+
+.rules-warning {
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        18px;
+
+    margin-top:
+        30px;
+
+    padding:
+        23px 25px;
+
+    border:
+        1px solid
+        rgba(239, 82, 124, 0.18);
+
+    border-radius:
+        18px;
+
+    background:
+        rgba(185, 23, 58, 0.055);
+
+}
+
+
+.rules-warning-icon {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    flex-shrink:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(185, 23, 58, 0.12);
+
+    color:
+        var(--red);
+
+    font-size:
+        18px;
+
+    font-weight:
+        800;
+
+}
+
+
+.rules-warning h3 {
+
+    margin-bottom:
+        5px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        14px;
+
+}
+
+
+.rules-warning p {
+
+    color:
+        #858585;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =====================================================
+   POWRÓT
+===================================================== */
+
+.rules-back {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    margin-top:
+        45px;
+
+}
+
+
+.rules-back a {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    padding:
+        13px 22px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(255, 255, 255, 0.03);
+
+    color:
+        #c8c8c8;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.rules-back a:hover {
+
+    transform:
+        translateY(-3px);
+
+    color:
+        #ffffff;
+
+    border-color:
+        rgba(185, 23, 58, 0.35);
+
+    background:
+        rgba(185, 23, 58, 0.07);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    padding:
+        70px 20px;
+
+    text-align:
+        center;
+
+    background:
+        #040404;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.05);
+
+}
+
+
+.footer-container {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items:
+        center;
+
+    gap:
+        50px;
+
+}
+
+
+.footer-buttons {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+
+}
+
+
+.footer-left {
+
+    align-items:
+        flex-start;
+
+}
+
+
+.footer-right {
+
+    align-items:
+        flex-end;
+
+}
+
+
+.footer-button {
+
+    width:
+        170px;
+
+    height:
+        44px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    color:
+        #bdbdbd;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.5px;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.footer-button span {
+
+    font-size:
+        15px;
+
+    line-height:
+        1;
+
+}
+
+
+.footer-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    color:
+        #ffffff;
+
+}
+
+
+/* =====================================================
+   FOOTER — YOUTUBE
+===================================================== */
+
+.youtube-button:hover {
+
+    background:
+        rgba(255, 0, 0, 0.12);
+
+    border-color:
+        rgba(255, 0, 0, 0.35);
+
+    box-shadow:
+        0 8px 25px
+        rgba(255, 0, 0, 0.12);
+
+}
+
+
+/* =====================================================
+   FOOTER — DISCORD
+===================================================== */
+
+.discord-footer-button:hover {
+
+    background:
+        rgba(88, 101, 242, 0.12);
+
+    border-color:
+        rgba(88, 101, 242, 0.35);
+
+    box-shadow:
+        0 8px 25px
+        rgba(88, 101, 242, 0.12);
+
+}
+
+
+/* =====================================================
+   FOOTER — TIKTOK
+===================================================== */
+
+.tiktok-button:hover {
+
+    background:
+        rgba(255, 0, 174, 0.08);
+
+    border-color:
+        rgba(255, 0, 212, 0.22);
+
+    box-shadow:
+        0 8px 25px
+        rgba(236, 0, 165, 0.08);
+
+}
+
+
+/* =====================================================
+   FOOTER — MAPA
+===================================================== */
+
+.map-footer-button:hover {
+
+    background:
+        rgba(23, 185, 28, 0.12);
+
+    border-color:
+        rgba(23, 185, 63, 0.35);
+
+    box-shadow:
+        0 8px 25px
+        rgba(23, 185, 66, 0.12);
+
+}
+
+
+/* =====================================================
+   FOOTER CENTER
+===================================================== */
+
+.footer-center {
+
+    text-align:
+        center;
+
+    min-width:
+        330px;
+
+}
+
+
+.footer-logo {
+
+    margin-bottom:
+        12px;
+
+    font-size:
+        30px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        3px;
+
+}
+
+
+.footer-logo span {
+
+    color:
+        var(--red);
+
+}
+
+
+.footer-center p {
+
+    margin-bottom:
+        12px;
+
+    color:
+        #666666;
+
+    font-size:
+        13px;
+
+}
+
+
+.footer-note {
+
+    max-width:
+        700px;
+
+    margin:
+        0 auto;
+
+    color:
+        #4f4f4f;
+
+    font-size:
+        10px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+#topBtn {
+
+    position:
+        fixed;
+
+    right:
+        25px;
+
+    bottom:
+        25px;
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--red);
+
+    color:
+        #ffffff;
+
+    font-size:
+        20px;
+
+    cursor:
+        pointer;
+
+    z-index:
+        5000;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.4);
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+
+}
+
+
+#topBtn.show {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+}
+
+
+#topBtn:hover {
+
+    background:
+        var(--red-light);
+
+    transform:
+        scale(1.1);
+
+}
+
+
+/* =====================================================
+   ANIMACJE
+===================================================== */
+
+.scroll-animation {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity 0.8s cubic-bezier(.25, 1, .5, 1),
+        transform 0.8s cubic-bezier(.25, 1, .5, 1);
+
+}
+
+
+.scroll-animation.visible {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .navbar {
+
+        height:
+            75px;
+
+    }
+
+
+    .hamburger {
+
+        display:
+            flex;
+
+    }
+
+
+    .menu {
+
+        position:
+            fixed;
+
+        top:
+            75px;
+
+        right:
+            -100%;
+
+        width:
+            100%;
+
+        height:
+            calc(100vh - 75px);
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+
+        justify-content:
+            flex-start;
+
+        padding-top:
+            45px;
+
+        gap:
+            30px;
+
+        background:
+            rgba(7, 7, 7, 0.98);
+
+        transition:
+            right 0.35s ease;
+
+    }
+
+
+    .menu.active {
+
+        right:
+            0;
+
+    }
+
+
+    .menu a {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .menu a::after {
+
+        bottom:
+            -7px;
+
+    }
+
+
+    .regulamin-hero {
+
+        min-height:
+            50vh;
+
+        padding:
+            125px 20px 80px;
+
+    }
+
+
+    .regulamin-hero h1 {
+
+        font-size:
+            43px;
+
+    }
+
+
+    .regulamin-hero p {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .regulamin-section {
+
+        padding:
+            65px 0 90px;
+
+    }
+
+
+    .rules-card {
+
+        padding:
+            30px 24px;
+
+        border-radius:
+            21px;
+
+    }
+
+
+    .rules-heading {
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .rules-heading-icon {
+
+        width:
+            47px;
+
+        height:
+            47px;
+
+        font-size:
+            19px;
+
+    }
+
+
+    .rules-heading-text h2 {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .rules-list li {
+
+        grid-template-columns:
+            35px 1fr;
+
+        gap:
+            11px;
+
+        font-size:
+            13px;
+
+        line-height:
+            1.7;
+
+    }
+
+
+    .rules-list li::before {
+
+        width:
+            29px;
+
+        height:
+            29px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    .rules-warning {
+
+        gap:
+            13px;
+
+        padding:
+            20px;
+
+    }
+
+
+    .footer-container {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            30px;
+
+    }
+
+
+    .footer-center {
+
+        order:
+            1;
+
+        min-width:
+            0;
+
+        width:
+            100%;
+
+    }
+
+
+    .footer-left {
+
+        order:
+            2;
+
+        align-items:
+            center;
+
+    }
+
+
+    .footer-right {
+
+        order:
+            3;
+
+        align-items:
+            center;
+
+    }
+
+
+    .footer-buttons {
+
+        width:
+            100%;
+
+    }
+
+
+    .footer-button {
+
+        width:
+            100%;
+
+        max-width:
+            300px;
+
+        margin:
+            0 auto;
+
+    }
+
+}
+
+
+/* =====================================================
+   MAŁE TELEFONY
+===================================================== */
+
+@media (max-width: 550px) {
+
+    .container,
+    .nav-container {
+
+        width:
+            92%;
+
+    }
+
+
+    .logo {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .logo img {
+
+        width:
+            35px;
+
+        height:
+            35px;
+
+    }
+
+
+    .regulamin-hero h1 {
+
+        font-size:
+            37px;
+
+        letter-spacing:
+            -1px;
+
+    }
+
+
+    .hero-small-label {
+
+        font-size:
+            9px;
+
+        letter-spacing:
+            1.3px;
+
+    }
+
+
+    .rules-card {
+
+        padding:
+            25px 19px;
+
+    }
+
+
+    .rules-heading {
+
+        gap:
+            12px;
+
+    }
+
+
+    .rules-heading-icon {
+
+        width:
+            43px;
+
+        height:
+            43px;
+
+        border-radius:
+            13px;
+
+    }
+
+
+    .rules-heading-text h2 {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .rules-heading-text p {
+
+        font-size:
+            10px;
+
+    }
+
+
+    .rules-list li {
+
+        grid-template-columns:
+            31px 1fr;
+
+        gap:
+            9px;
+
+        padding:
+            12px 0;
+
+        font-size:
+            12.5px;
+
+    }
+
+
+    .rules-list li::before {
+
+        width:
+            27px;
+
+        height:
+            27px;
+
+        border-radius:
+            8px;
+
+    }
+
+
+    .rules-warning {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .rules-warning-icon {
+
+        width:
+            40px;
+
+        height:
+            40px;
+
+    }
+
+
+    #topBtn {
+
+        width:
+            45px;
+
+        height:
+            45px;
+
+        right:
+            18px;
+
+        bottom:
+            18px;
+
+    }
+
+}
+
+
+/* =====================================================
+   BARDZO MAŁE TELEFONY
+===================================================== */
+
+@media (max-width: 370px) {
+
+    .regulamin-hero h1 {
+
+        font-size:
+            33px;
+
+    }
+
+
+    .rules-heading-text h2 {
+
+        font-size:
+            17px;
+
+    }
+
+
+    .rules-list li {
+
+        font-size:
+            12px;
+
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior:
+            auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+    }
+
+}

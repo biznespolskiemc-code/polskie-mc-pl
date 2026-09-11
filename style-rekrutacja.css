@@ -1,0 +1,1864 @@
+/* =====================================================
+   ZMIENNE
+===================================================== */
+
+:root {
+
+    --red: #b9173a;
+    --red-light: #d61841;
+    --red-dark: #83182f;
+    --red-soft: #ef527c;
+
+    --black: #050505;
+    --bg: #090909;
+    --bg-2: #0d0d0d;
+    --card: #131313;
+
+    --white: #ffffff;
+    --text: #d6d6d6;
+    --muted: #929292;
+
+    --border: rgba(255, 255, 255, .08);
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.rekrutacja-hero {
+
+    min-height: 55vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 140px 20px 80px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(185, 23, 58, .15),
+            transparent 55%
+        ),
+        var(--bg);
+
+}
+
+
+.rekrutacja-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    background: rgba(185, 23, 58, .12);
+
+    filter: blur(120px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+}
+
+
+.rekrutacja-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 65%,
+            var(--bg) 100%
+        );
+
+    pointer-events: none;
+
+}
+
+
+.rekrutacja-hero-content {
+
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 850px;
+
+}
+
+
+.hero-small-label {
+
+    color: var(--red-soft);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.rekrutacja-hero h1 {
+
+    font-size: clamp(45px, 6vw, 72px);
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 24px;
+
+}
+
+
+.rekrutacja-hero h1 span {
+    color: var(--red-light);
+}
+
+
+.rekrutacja-hero p {
+
+    color: var(--muted);
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 1.8;
+
+    max-width: 700px;
+
+    margin: auto;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.rekrutacja-section {
+
+    padding: 60px 0 100px;
+
+}
+
+
+.rekrutacja-wrapper {
+
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+
+}
+
+
+/* =====================================================
+   COMMON CARD
+===================================================== */
+
+.recruitment-card,
+.requirements-card {
+
+    position: relative;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 35px 40px;
+
+    overflow: hidden;
+
+    transition:
+        border-color .3s ease,
+        transform .3s ease;
+
+}
+
+
+.recruitment-card::before,
+.requirements-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--red-dark),
+            var(--red-light)
+        );
+
+}
+
+
+.recruitment-card:hover,
+.requirements-card:hover {
+
+    border-color: rgba(214, 24, 65, .25);
+
+}
+
+
+/* =====================================================
+   SECTION HEADING
+===================================================== */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.section-heading-icon {
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(185, 23, 58, .12);
+
+    color: var(--red-soft);
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    flex-shrink: 0;
+
+}
+
+
+.section-heading-text h2 {
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    margin-bottom: 4px;
+
+}
+
+
+.section-heading-text p {
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    color: var(--red-soft);
+
+    letter-spacing: 2px;
+
+}
+
+
+.section-line {
+
+    width: 100%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, .07);
+
+    margin: 25px 0;
+
+}
+
+
+/* =====================================================
+   ROLE GRID
+===================================================== */
+
+.roles-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+
+/* =====================================================
+   ROLE CARD
+===================================================== */
+
+.role-box {
+
+    position: relative;
+
+    background: #101010;
+
+    border: 1px solid rgba(255, 255, 255, .07);
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease;
+
+}
+
+
+.role-box:hover {
+
+    transform: translateY(-4px);
+
+    border-color: rgba(255, 255, 255, .15);
+
+    background: #141414;
+
+}
+
+
+.role-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.role-dot {
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+
+}
+
+
+.role-header h3 {
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+}
+
+
+.role-description {
+
+    color: #8d8d8d;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    line-height: 1.6;
+
+    margin-bottom: 17px;
+
+}
+
+
+.role-box ul {
+
+    list-style: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.role-box li {
+
+    position: relative;
+
+    padding-left: 20px;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+
+}
+
+
+.role-box li::before {
+
+    content: "›";
+
+    position: absolute;
+
+    left: 0;
+
+    top: -1px;
+
+    color: var(--red-soft);
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+}
+
+
+.role-box strong {
+
+    color: #fff;
+
+    font-weight: 800;
+
+}
+
+
+/* =====================================================
+   RANGI — KOLORY
+===================================================== */
+
+.role-testhelper .role-dot {
+
+    background: #8f8f8f;
+
+    box-shadow:
+        0 0 10px rgba(143, 143, 143, .4);
+
+}
+
+
+.role-testhelper h3 {
+    color: #a5a5a5;
+}
+
+
+.role-helper .role-dot {
+
+    background: #00eaff;
+
+    box-shadow:
+        0 0 10px rgba(0, 234, 255, .35);
+
+}
+
+
+.role-helper h3 {
+    color: #00eaff;
+}
+
+
+.role-admin .role-dot {
+
+    background: #ff3030;
+
+    box-shadow:
+        0 0 10px rgba(255, 48, 48, .35);
+
+}
+
+
+.role-admin h3 {
+    color: #ff3030;
+}
+
+
+.role-moderator .role-dot {
+
+    background: #00bf0d;
+
+    box-shadow:
+        0 0 10px rgba(0, 191, 13, .35);
+
+}
+
+
+.role-moderator h3 {
+    color: #00bf0d;
+}
+
+
+.role-technik .role-dot {
+
+    background: #008ad4;
+
+    box-shadow:
+        0 0 10px rgba(0, 138, 212, .35);
+
+}
+
+
+.role-technik h3 {
+    color: #008ad4;
+}
+
+
+.role-headadmin .role-dot {
+
+    background: #a00000;
+
+    box-shadow:
+        0 0 10px rgba(160, 0, 0, .35);
+
+}
+
+
+.role-headadmin h3 {
+    color: #b00000;
+}
+
+
+/* =====================================================
+   REQUIREMENTS
+===================================================== */
+
+.requirements-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(185, 23, 58, .035),
+            rgba(19, 19, 19, 1) 45%
+        );
+
+}
+
+
+.requirements-list {
+
+    list-style: none;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 13px 35px;
+
+}
+
+
+.requirements-list li {
+
+    position: relative;
+
+    padding-left: 30px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.6;
+
+}
+
+
+.requirements-list li::before {
+
+    content: "✓";
+
+    position: absolute;
+
+    left: 0;
+    top: 1px;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 6px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(185, 23, 58, .13);
+
+    color: var(--red-soft);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+.requirements-list strong {
+
+    color: #fff;
+
+    font-weight: 800;
+
+}
+
+
+.requirements-date {
+
+    margin-top: 25px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(255, 255, 255, .07);
+
+    color: #777;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.recruitment-cta {
+
+    text-align: center;
+
+    padding: 30px 20px 15px;
+
+}
+
+
+.cta-title {
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    letter-spacing: -.3px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.recruitment-cta p {
+
+    max-width: 650px;
+
+    margin: 0 auto 25px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.7;
+
+}
+
+
+.recruitment-button {
+
+    display: inline-block;
+
+    padding: 14px 28px;
+
+    border-radius: 12px;
+
+    background: var(--red-light);
+
+    border: 1px solid rgba(255, 255, 255, .05);
+
+    color: #fff;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.recruitment-button:hover {
+
+    background: #e51c48;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(214, 24, 65, .18);
+
+}
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+.rekrutacja-back {
+
+    text-align: center;
+
+    padding-top: 5px;
+
+}
+
+
+.rekrutacja-back a {
+
+    display: inline-block;
+
+    padding: 14px 25px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #aaa;
+
+    transition:
+        color .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+
+}
+
+
+.rekrutacja-back a:hover {
+
+    color: #fff;
+
+    border-color: rgba(214, 24, 65, .4);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =====================================================
+   ANIMACJE
+===================================================== */
+
+.scroll-animation {
+
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition: .7s ease;
+
+}
+
+
+.scroll-animation.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .rekrutacja-hero {
+
+        min-height: 60vh;
+
+        padding: 120px 20px 60px;
+
+    }
+
+
+    .rekrutacja-hero h1 {
+
+        letter-spacing: -1px;
+
+    }
+
+
+    .rekrutacja-hero p {
+
+        font-size: 14px;
+
+    }
+
+
+    .rekrutacja-section {
+
+        padding: 40px 0 70px;
+
+    }
+
+
+    .rekrutacja-wrapper {
+
+        width: 92%;
+
+    }
+
+
+    .recruitment-card,
+    .requirements-card {
+
+        padding: 25px 20px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .roles-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+    }
+
+
+    .requirements-list {
+
+        grid-template-columns: 1fr;
+
+        gap: 11px;
+
+    }
+
+
+    .section-heading-text h2 {
+
+        font-size: 18px;
+
+    }
+
+
+    .role-header h3 {
+
+        font-size: 16px;
+
+    }
+
+
+    .role-box li {
+
+        font-size: 13px;
+
+    }
+
+
+    #topBtn {
+
+        right: 18px;
+
+        bottom: 18px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MAŁE TELEFONY
+===================================================== */
+
+@media (max-width: 550px) {
+
+    .section-heading {
+
+        align-items: flex-start;
+
+    }
+
+
+    .section-heading-icon {
+
+        width: 45px;
+        height: 45px;
+
+    }
+
+
+    .section-heading-text h2 {
+
+        font-size: 16px;
+
+    }
+
+
+    .role-box {
+
+        padding: 22px 20px;
+
+    }
+
+
+    .role-box li {
+
+        padding-left: 18px;
+
+    }
+
+}
+
+
+/* =====================================================
+   BARDZO MAŁE TELEFONY
+===================================================== */
+
+@media (max-width: 370px) {
+
+    .section-heading-icon {
+
+        display: none;
+
+    }
+
+
+    .section-heading-text h2 {
+
+        font-size: 15px;
+
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+
+        scroll-behavior: auto !important;
+
+        animation-duration: .01ms !important;
+
+        transition-duration: .01ms !important;
+
+    }
+
+}
+
+
+/* =====================================================
+   FORMULARZ REKRUTACYJNY
+===================================================== */
+
+.recruitment-form-card {
+
+    position: relative;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 35px 40px;
+
+    overflow: hidden;
+
+}
+
+
+.recruitment-form-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a87900,
+            #f5c542
+        );
+
+}
+
+
+.recruitment-form {
+
+    width: 100%;
+
+}
+
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group label {
+
+    color: #fff;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+}
+
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+
+    width: 100%;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 12px;
+
+    background: #101010;
+
+    color: #fff;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    outline: none;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.form-group input,
+.form-group select {
+
+    height: 50px;
+
+    padding: 0 15px;
+
+}
+
+
+.form-group textarea {
+
+    min-height: 160px;
+
+    padding: 15px;
+
+    resize: vertical;
+
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+
+    color: #666;
+
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+
+    border-color: rgba(245, 197, 66, .65);
+
+    background: #121212;
+
+    box-shadow:
+        0 0 0 3px rgba(245, 197, 66, .08);
+
+}
+
+
+.phone-row {
+
+    display: grid;
+
+    grid-template-columns: 120px minmax(0, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.phone-row select {
+
+    cursor: pointer;
+
+}
+
+
+.phone-row select option {
+
+    background: #101010;
+
+    color: #fff;
+
+}
+
+
+.captcha-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.captcha-box span {
+
+    min-width: 100px;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(245, 197, 66, .10);
+
+    border: 1px solid rgba(245, 197, 66, .25);
+
+    color: #f5c542;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+}
+
+
+.captcha-box input {
+
+    max-width: 180px;
+
+}
+
+
+.form-consents {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+    margin-top: 5px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.checkbox-row {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    cursor: pointer;
+
+    color: #929292;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    line-height: 1.6;
+
+}
+
+
+.checkbox-row input {
+
+    width: 17px;
+
+    height: 17px;
+
+    margin-top: 1px;
+
+    flex-shrink: 0;
+
+    accent-color: #f5c542;
+
+    cursor: pointer;
+
+}
+
+
+.recruitment-submit {
+
+    width: 100%;
+
+    min-height: 52px;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    background: #f5c542;
+
+    color: #090909;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .6px;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.recruitment-submit:hover {
+
+    background: #ffd75a;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(245, 197, 66, .18);
+
+}
+
+
+.recruitment-submit:active {
+
+    transform: translateY(0);
+
+}
+
+
+.form-status {
+
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    background: rgba(245, 197, 66, .08);
+
+    border: 1px solid rgba(245, 197, 66, .2);
+
+    color: #f5c542;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   FORMULARZ — MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .recruitment-form-card {
+
+        padding: 25px 20px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+
+    .form-group input,
+    .form-group select {
+
+        height: 48px;
+
+    }
+
+
+    .form-group textarea {
+
+        min-height: 140px;
+
+    }
+
+
+    .phone-row {
+
+        grid-template-columns: 105px minmax(0, 1fr);
+
+    }
+
+
+    .captcha-box {
+
+        align-items: stretch;
+
+    }
+
+
+    .captcha-box span {
+
+        min-width: 90px;
+
+    }
+
+
+    .captcha-box input {
+
+        max-width: none;
+
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .captcha-box {
+
+        flex-direction: column;
+
+    }
+
+
+    .captcha-box span {
+
+        width: 100%;
+
+    }
+
+
+    .captcha-box input {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* =====================================================
+   WYMAGANIA — NIEBIESKI AKCENT
+===================================================== */
+
+.requirements-card::before {
+
+    background:
+        linear-gradient(
+            90deg,
+            #186e83,
+            #18b0d6
+        );
+
+}
+
+
+.requirements-card .section-heading-icon {
+
+    background: rgba(24, 176, 214, .12);
+
+    color: #18b0d6;
+
+}
+
+
+.requirements-card .section-heading-text p {
+
+    color: #18b0d6;
+
+}
+
+
+.requirements-list li::before {
+
+    background: rgba(24, 176, 214, .13);
+
+    color: #18b0d6;
+
+}
+
+
+.requirements-card:hover {
+
+    border-color: rgba(24, 176, 214, .25);
+
+}
+
+
+/* =====================================================
+   PODANIE REKRUTACYJNE — PEŁNY ŻÓŁTY AKCENT
+===================================================== */
+
+.recruitment-form-card::before {
+
+    background:
+        linear-gradient(
+            90deg,
+            #a87900,
+            #f5c542
+        );
+
+}
+
+
+.recruitment-form-card .section-heading-icon {
+
+    background: rgba(245, 197, 66, .12);
+
+    color: #f5c542;
+
+}
+
+
+.recruitment-form-card .section-heading-text p {
+
+    color: #f5c542;
+
+}
+
+
+.recruitment-form-card {
+
+    border-color: var(--border);
+
+}
+
+
+.recruitment-form-card:hover {
+
+    border-color: rgba(245, 197, 66, .25);
+
+}
+
+
+.recruitment-form .form-group input:focus,
+.recruitment-form .form-group textarea:focus,
+.recruitment-form .form-group select:focus {
+
+    border-color: rgba(245, 197, 66, .65);
+
+    box-shadow:
+        0 0 0 3px rgba(245, 197, 66, .08);
+
+}
+
+
+.recruitment-form .captcha-box span {
+
+    background: rgba(245, 197, 66, .10);
+
+    border-color: rgba(245, 197, 66, .25);
+
+    color: #f5c542;
+
+}
+
+
+.recruitment-form .checkbox-row input {
+
+    accent-color: #f5c542;
+
+}
+
+
+.recruitment-form .recruitment-submit {
+
+    background: #f5c542;
+
+    color: #090909;
+
+}
+
+
+.recruitment-form .recruitment-submit:hover {
+
+    background: #ffd75a;
+
+    box-shadow:
+        0 8px 25px rgba(245, 197, 66, .18);
+
+}
+
+
+.recruitment-form .form-status {
+
+    background: rgba(245, 197, 66, .08);
+
+    border-color: rgba(245, 197, 66, .20);
+
+    color: #f5c542;
+
+}
+
+
+/* =====================================================
+   FORMULARZ — RADIO BUTTONY
+===================================================== */
+
+/*
+   Proste, normalne radio buttony.
+   Bez własnych "jajek", bez dużych kółek
+   i bez zmiany wyglądu całego pola.
+*/
+
+.radio-options {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.radio-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid rgba(255, 255, 255, .07);
+
+    border-radius: 10px;
+
+    background: #101010;
+
+    color: #d6d6d6;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease;
+
+}
+
+
+.radio-row:hover {
+
+    border-color: rgba(245, 197, 66, .25);
+
+    background: #111111;
+
+}
+
+
+/*
+   NORMALNE MAŁE RADIO
+*/
+
+.radio-row input[type="radio"] {
+
+    appearance: auto;
+
+    -webkit-appearance: radio;
+
+    width: 16px;
+
+    height: 16px;
+
+    margin: 0;
+
+    padding: 0;
+
+    flex: 0 0 16px;
+
+    accent-color: #f5c542;
+
+    cursor: pointer;
+
+}
+
+
+/*
+   Po zaznaczeniu zmieniamy tylko kolor
+   samego radio — bez wielkiej żółtej ramki.
+*/
+
+.radio-row:has(input[type="radio"]:checked) {
+
+    border-color: rgba(245, 197, 66, .25);
+
+    background: #111111;
+
+    color: #ffffff;
+
+}
+
+
+/* =====================================================
+   FORMULARZ — CHECKBOX / ZGODA
+===================================================== */
+
+.form-consents .checkbox-row {
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+}
+
+
+.checkbox-row input[type="checkbox"] {
+
+    appearance: auto;
+
+    -webkit-appearance: checkbox;
+
+    width: 16px;
+
+    height: 16px;
+
+    margin-top: 2px;
+
+    padding: 0;
+
+    flex: 0 0 16px;
+
+    accent-color: #f5c542;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   FORMULARZ — USUNIĘTE STARE ELEMENTY
+===================================================== */
+
+.phone-row {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   FORMULARZ — MOBILE RADIO
+===================================================== */
+
+@media (max-width: 550px) {
+
+    .radio-options {
+
+        gap: 8px;
+
+    }
+
+
+    .radio-row {
+
+        min-height: 42px;
+
+        padding: 0 11px;
+
+        font-size: 12px;
+
+    }
+
+
+    .radio-row input[type="radio"] {
+
+        width: 16px;
+
+        height: 16px;
+
+        flex-basis: 16px;
+
+    }
+
+
+    .checkbox-row input[type="checkbox"] {
+
+        width: 16px;
+
+        height: 16px;
+
+        flex-basis: 16px;
+
+    }
+
+}
