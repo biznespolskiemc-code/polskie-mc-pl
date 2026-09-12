@@ -897,21 +897,31 @@ a {
     }
 
 
-    .rekrutacja-wrapper {
+.rekrutacja-wrapper {
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
 
-        width: 92%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+        "requirements requirements"
+        "roles        form";
 
-    }
+    gap: 25px;
+}
 
+.requirements-card {
+    grid-area: requirements;
+}
 
-    .recruitment-card,
-    .requirements-card {
+.recruitment-card {
+    grid-area: roles;
+}
 
-        padding: 25px 20px;
-
-        border-radius: 20px;
-
-    }
+.recruitment-form-card {
+    grid-area: form;
+}
 
 
     .roles-grid {
@@ -1425,6 +1435,14 @@ a {
 
         border-radius: 20px;
 
+    }
+
+   .rekrutacja-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "requirements"
+        "roles"
+        "form";
     }
 
 
