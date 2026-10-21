@@ -766,65 +766,6 @@ animatedElements.forEach(
     }
 );
 
-
-/* =====================================================
-   BLOKADA PRAWEGO PRZYCISKU
-===================================================== */
-
-document.addEventListener(
-    "contextmenu",
-    event => {
-
-        event.preventDefault();
-
-    }
-);
-
-
-/* =====================================================
-   BLOKADA SKRÓTÓW DEVTOOLS
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "F12"
-        ) {
-
-            event.preventDefault();
-
-        }
-
-
-        if (
-            event.ctrlKey &&
-            event.shiftKey &&
-            (
-                event.key === "I" ||
-                event.key === "J" ||
-                event.key === "C"
-            )
-        ) {
-
-            event.preventDefault();
-
-        }
-
-
-        if (
-            event.ctrlKey &&
-            event.key === "U"
-        ) {
-
-            event.preventDefault();
-
-        }
-
-    }
-);
-
 </script>
 
 
