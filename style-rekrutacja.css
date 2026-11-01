@@ -1989,3 +1989,31 @@ a {
     outline-offset: 3px;
 
 }
+
+/* =====================================================
+   CHECKBOXY — WYGLĄD JAK ZGODA DANYCH
+===================================================== */
+
+.radio-row input[type="checkbox"] {
+    appearance: auto;
+    -webkit-appearance: checkbox;
+
+    width: 16px;
+    height: 16px;
+
+    margin: 0;
+    padding: 0;
+
+    flex: 0 0 16px;
+
+    accent-color: #f5c542;
+    cursor: pointer;
+}
+
+/* ZAZNACZONY WIERSZ — BEZ ZMIANY TŁA */
+
+.radio-row:has(input[type="checkbox"]:checked) {
+    border-color: rgba(255, 255, 255, .07);
+    background: #101010;
+    color: #d6d6d6;
+}
