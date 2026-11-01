@@ -443,16 +443,18 @@ body {
     background: linear-gradient(90deg, var(--creator-purple-dark), var(--mode-color), transparent);
 }
 
+/* MACE PVP — FIOLETOWY */
 .creator-perk-mace {
-    --mode-color: #c084fc;
+    --mode-color: #a855f7;
+    --mode-bg: rgba(168, 85, 247, .10);
     --mode-border: rgba(168, 85, 247, .25);
-    --mode-bg: rgba(168, 85, 247, .09);
 }
 
+/* EARTH SMP — #3D4D52 */
 .creator-perk-earth {
-    --mode-color: #e879f9;
-    --mode-border: rgba(232, 121, 249, .22);
-    --mode-bg: rgba(232, 121, 249, .075);
+    --mode-color: #3d4d52;
+    --mode-bg: rgba(61, 77, 82, .18);
+    --mode-border: rgba(61, 77, 82, .45);
 }
 
 .creator-perk-header {
