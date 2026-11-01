@@ -2054,3 +2054,95 @@ a {
         width: 100% !important;
     }
 }
+
+/* =====================================================
+   WSZYSTKIE CHECKBOXY — JEDEN WYGLĄD
+===================================================== */
+
+input[type="checkbox"] {
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    width: 17px !important;
+    height: 17px !important;
+
+    min-width: 17px !important;
+    min-height: 17px !important;
+
+    margin: 2px 0 0 0 !important;
+    padding: 0 !important;
+
+    flex: 0 0 17px !important;
+
+    border: 2px solid #777 !important;
+    border-radius: 4px !important;
+
+    background: transparent !important;
+
+    display: inline-flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease;
+
+}
+
+
+/* ZAZNACZONY */
+
+input[type="checkbox"]:checked {
+
+    background: #f5c542 !important;
+
+    border-color: #f5c542 !important;
+
+}
+
+
+/* PTASZEK */
+
+input[type="checkbox"]:checked::after {
+
+    content: "";
+
+    width: 5px;
+    height: 9px;
+
+    border-right: 2px solid #090909;
+    border-bottom: 2px solid #090909;
+
+    transform: rotate(45deg);
+
+    margin-top: -3px;
+
+}
+
+
+/* FOCUS */
+
+input[type="checkbox"]:focus-visible {
+
+    outline: 2px solid rgba(245, 197, 66, .5);
+
+    outline-offset: 3px;
+
+}
+
+
+/* WIERSZE — BEZ ZMIANY WYGLĄDU PO ZAZNACZENIU */
+
+.radio-row:has(input[type="checkbox"]:checked) {
+
+    border-color: rgba(255, 255, 255, .07);
+
+    background: #101010;
+
+    color: #d6d6d6;
+
+}
