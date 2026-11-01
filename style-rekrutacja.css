@@ -198,8 +198,8 @@ a {
 
 
 .rekrutacja-wrapper {
-    width: 90%;
-    max-width: 1400px;
+    width: 96%;
+    max-width: 1750px;
     margin: auto;
 
     display: grid;
@@ -209,7 +209,7 @@ a {
         "requirements requirements"
         "roles form";
 
-    gap: 25px;
+    gap: 30px;
 }
 
 .requirements-card {
