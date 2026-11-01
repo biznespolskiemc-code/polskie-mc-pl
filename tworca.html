@@ -1,944 +1,383 @@
-
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Ranga TWÓRCA | POLSKIEMC.PL</title>
-
-    <meta
-        name="description"
-        content="Zostań twórcą POLSKIEMC.PL! Sprawdź wymagania oraz przywileje rangi TWÓRCA na trybach MacePvP i Earth SMP."
-    >
-
-    <meta name="theme-color" content="#090909">
-
+    <meta name="description" content="Zostań twórcą POLSKIEMC.PL! Sprawdź wymagania i przywileje rangi TWÓRCA na trybach MacePvP oraz Earth SMP.">
+    <meta name="theme-color" content="#09060f">
     <link rel="icon" type="image/png" href="images/polskiemc.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style-index.css">
     <link rel="stylesheet" href="style-tworca.css">
 </head>
-
 <body>
 
-    <!-- =====================================================
-         NAWIGACJA
-    ====================================================== -->
-
+    <!-- NAWIGACJA -->
     <nav class="navbar">
-
         <div class="nav-container">
-
             <a href="index.html" class="logo">
                 <img src="images/polskiemc.png" alt="POLSKIEMC.PL">
             </a>
 
-            <div
-                class="hamburger"
-                id="hamburger"
-                aria-label="Otwórz menu"
-                aria-expanded="false"
-                role="button"
-                tabindex="0"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="hamburger" id="hamburger" aria-label="Otwórz menu" aria-expanded="false" role="button" tabindex="0">
+                <span></span><span></span><span></span>
             </div>
 
             <div class="menu" id="menu">
-
-                <a href="index.html">
-                    Strona główna
-                </a>
-
-                <a
-                    href="https://sklep.polskiemc.pl/shop/8747"
-                    rel="noopener noreferrer"
-                >
-                    Sklep
-                </a>
-
-                <a href="regulamin.html">
-                    Regulamin gry
-                </a>
-
-                <a href="rekrutacja.html">
-                    Rekrutacja
-                </a>
-
-                <a href="tworca.html" class="active">
-                    Zostań twórcą
-                </a>
-
+                <a href="index.html">Strona główna</a>
+                <a href="https://sklep.polskiemc.pl/shop/8747" rel="noopener noreferrer">Sklep</a>
+                <a href="regulamin.html">Regulamin gry</a>
+                <a href="rekrutacja.html">Rekrutacja</a>
+                <a href="tworca.html" class="active">Zostań twórcą</a>
             </div>
-
         </div>
-
     </nav>
 
-
-    <!-- =====================================================
-         GŁÓWNA ZAWARTOŚĆ
-    ====================================================== -->
-
-    <main class="creator-page">
-
-        <!-- HERO -->
-
-        <header class="creator-hero" id="start">
-
-            <div class="creator-hero-glow"></div>
-            <div class="creator-hero-grid"></div>
-
-            <div class="creator-container creator-hero-content">
-
-                <div class="creator-label">
+    <!-- HERO — UKŁAD ZBLIŻONY DO STRONY GŁÓWNEJ -->
+    <header class="hero creator-hero" id="start">
+        <div class="hero-glow creator-hero-glow"></div>
+        <div class="hero-container">
+            <div class="hero-text">
+                <div class="creator-hero-label">
                     <span class="creator-label-dot"></span>
-                    PROGRAM DLA TWÓRCÓW
-                </div>
-
-                <div class="creator-overline">
-                    POLSKIEMC.PL <span>×</span> TWÓRCA
+                    POLSKIEMC.PL × PROGRAM TWÓRCÓW
                 </div>
 
                 <h1>
                     Zostań<br>
-                    <span>TWÓRCĄ</span>
+                    <span>TWÓRCĄ!</span>
                 </h1>
 
-                <p class="creator-hero-description">
-                    Nagrywasz filmy z Minecrafta? Tworzysz materiały na YouTube
-                    lub TikToka? Dołącz do twórców POLSKIEMC.PL i zdobądź
-                    wyjątkową rangę, która otworzy przed Tobą dodatkowe możliwości!
+                <p class="hero-description">
+                    Nagrywasz materiały z Minecrafta na YouTube lub TikToka?
+                    Dołącz do programu twórców POLSKIEMC.PL i zdobądź wyjątkową
+                    rangę TWÓRCA, która oferuje więcej niż ranga POLAK!
                 </p>
 
-                <div class="creator-hero-buttons">
-
-                    <a href="#wymagania" class="creator-button creator-button-primary">
-                        <span>Sprawdź wymagania</span>
-                        <span class="button-arrow">↓</span>
+                <div class="hero-buttons">
+                    <a href="#wymagania" class="btn creator-btn">
+                        SPRAWDŹ WYMAGANIA <span>↓</span>
                     </a>
-
-                    <a
-                        href="https://dc.gg/polskiemc"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="creator-button creator-button-secondary"
-                    >
-                        <span>Otwórz Discord</span>
-                        <span class="button-arrow">↗</span>
+                    <a href="https://dc.polskiemc.pl" target="_blank" rel="noopener noreferrer" class="btn secondary-btn creator-secondary-btn">
+                        NASZ DISCORD <span>↗</span>
                     </a>
-
                 </div>
 
                 <div class="creator-hero-stats">
-
                     <div class="creator-hero-stat">
                         <strong>250<span>+</span></strong>
                         <small>OBSERWUJĄCYCH</small>
                     </div>
-
-                    <div class="creator-stat-divider"></div>
-
+                    <div class="creator-hero-stat-divider"></div>
                     <div class="creator-hero-stat">
                         <strong>1 000<span>+</span></strong>
                         <small>WYŚWIETLEŃ SHORTS / TIKTOK</small>
                     </div>
-
-                    <div class="creator-stat-divider"></div>
-
+                    <div class="creator-hero-stat-divider"></div>
                     <div class="creator-hero-stat">
                         <strong>150<span>+</span></strong>
                         <small>WYŚWIETLEŃ DŁUGICH FILMÓW</small>
                     </div>
-
                 </div>
-
             </div>
+        </div>
+    </header>
 
-            <a href="#o-randze" class="creator-scroll-indicator" aria-label="Przewiń w dół">
-                <span></span>
-            </a>
+    <main class="creator-main">
 
-        </header>
-
-
-        <!-- INFORMACJE O RANDZE -->
-
+        <!-- O RANDZE -->
         <section class="creator-section creator-intro-section" id="o-randze">
-
-            <div class="creator-container">
-
+            <div class="container">
                 <div class="creator-intro-card">
-
-                    <div class="creator-intro-icon">
-                        ★
-                    </div>
-
-                    <div class="creator-intro-content">
-
-                        <div class="creator-section-eyebrow">
-                            WYJĄTKOWA RANGA
-                        </div>
-
-                        <h2>
-                            Nie jest to zwykła ranga.
-                            <span>To TWÓRCA!</span>
-                        </h2>
-
+                    <div class="creator-intro-icon">✦</div>
+                    <div class="creator-intro-text">
+                        <div class="creator-eyebrow">WYJĄTKOWA RANGA</div>
+                        <h2>Co daje ranga <span>TWÓRCA?</span></h2>
                         <p>
-                            Ranga <strong>TWÓRCA</strong> jest wyższa od rangi
-                            <strong>POLAK</strong>, dzięki czemu oferuje jeszcze
-                            więcej przywilejów i możliwości na naszych trybach.
-                            Jest przeznaczona dla osób, które regularnie nagrywają
-                            materiały związane z POLSKIEMC.PL i pomagają rozwijać
-                            naszą społeczność.
+                            Ranga <strong>TWÓRCA</strong> jest lepsza od rangi
+                            <strong>POLAK</strong>, co czyni ją wyjątkową i bardzo
+                            wartościową. Jest przeznaczona dla osób, które nagrywają
+                            materiały z naszego serwera i pomagają rozwijać społeczność
+                            POLSKIEMC.PL.
                         </p>
-
                     </div>
-
-                    <div class="creator-intro-badge">
+                    <div class="creator-rank-badge">
                         <span>POLSKIEMC.PL</span>
                         <strong>TWÓRCA</strong>
                         <small>CONTENT CREATOR</small>
                     </div>
-
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- WYMAGANIA -->
-
+        <!-- WYMAGANIA — JEDNA RAMKA -->
         <section class="creator-section" id="wymagania">
-
-            <div class="creator-container">
-
+            <div class="container">
                 <div class="creator-section-heading">
+                    <div class="creator-eyebrow">DOŁĄCZ DO TWÓRCÓW</div>
+                    <h2>Wymagania <span>rangi</span></h2>
+                    <p>Aby zdobyć rangę TWÓRCA, musisz nagrywać z naszego serwera oraz spełniać poniższe warunki:</p>
+                </div>
 
-                    <div class="creator-section-eyebrow">
-                        JAK ZDOBYĆ RANGĘ?
+                <div class="creator-requirements-box">
+                    <div class="creator-requirements-heading">
+                        <div class="creator-requirements-heading-icon">✓</div>
+                        <div>
+                            <span>PROGRAM TWÓRCÓW</span>
+                            <h3>Co musisz spełnić?</h3>
+                        </div>
                     </div>
 
-                    <h2>
-                        Poznaj nasze
-                        <span>wymagania</span>
-                    </h2>
+                    <div class="creator-requirements-list">
+                        <div class="creator-requirement-line">
+                            <span class="creator-dash">—</span>
+                            <p><strong>Dobry montaż</strong> – nie musi być wybitny, ale materiał powinien być przyjemny do oglądania.</p>
+                        </div>
 
-                    <p>
-                        Aby otrzymać rangę TWÓRCA, musisz nagrywać materiały
-                        z naszego serwera oraz spełniać poniższe warunki.
-                    </p>
+                        <div class="creator-requirement-line">
+                            <span class="creator-dash">—</span>
+                            <p><strong>250+ subskrybentów / obserwujących</strong> – wymaganie możesz spełnić na YouTube albo TikToku.</p>
+                        </div>
 
+                        <div class="creator-requirement-line">
+                            <span class="creator-dash">—</span>
+                            <p><strong>Zasięgi na Shorts lub TikToku</strong> – minimum <strong>1 000 wyświetleń</strong>.</p>
+                        </div>
+
+                        <div class="creator-requirement-line">
+                            <span class="creator-dash">—</span>
+                            <p><strong>Zasięgi na dłuższych filmach</strong> – materiały powyżej 10 minut powinny osiągać minimum <strong>150 wyświetleń</strong>.</p>
+                        </div>
+
+                        <div class="creator-requirement-line">
+                            <span class="creator-dash">—</span>
+                            <p><strong>Regularność</strong> – publikuj materiały co jakiś czas. Brak jakiejkolwiek aktywności przez 2 tygodnie bez uzasadnienia może skutkować wygaśnięciem rangi.</p>
+                        </div>
+                    </div>
+
+                    <div class="creator-requirements-footnote">
+                        <span>ⓘ</span>
+                        Przy zgłoszeniu przygotuj link do kanału oraz przykładowe materiały.
+                    </div>
                 </div>
-
-
-                <div class="creator-requirements-grid">
-
-                    <!-- WYMAGANIE 1 -->
-
-                    <article class="creator-requirement-card">
-
-                        <div class="requirement-top">
-                            <span class="requirement-number">01</span>
-                            <span class="requirement-icon">✂</span>
-                        </div>
-
-                        <div class="requirement-value">
-                            JAKOŚĆ
-                        </div>
-
-                        <h3>Dobry montaż</h3>
-
-                        <p>
-                            Twoje materiały powinny być przyjemne w oglądaniu.
-                            Montaż nie musi być wybitny, ale zadbaj o to,
-                            żeby widz nie nudził się podczas filmu.
-                        </p>
-
-                        <div class="requirement-bottom">
-                            <span class="requirement-dot"></span>
-                            Liczy się jakość materiału
-                        </div>
-
-                    </article>
-
-
-                    <!-- WYMAGANIE 2 -->
-
-                    <article class="creator-requirement-card">
-
-                        <div class="requirement-top">
-                            <span class="requirement-number">02</span>
-                            <span class="requirement-icon">♙</span>
-                        </div>
-
-                        <div class="requirement-value">
-                            SPOŁECZNOŚĆ
-                        </div>
-
-                        <h3>250+ obserwujących</h3>
-
-                        <p>
-                            Wymagamy minimum
-                            <strong>250 subskrybentów lub obserwujących</strong>.
-                            Możesz spełnić ten warunek na YouTube albo TikToku.
-                        </p>
-
-                        <div class="requirement-bottom">
-                            <span class="requirement-dot"></span>
-                            YouTube lub TikTok
-                        </div>
-
-                    </article>
-
-
-                    <!-- WYMAGANIE 3 -->
-
-                    <article class="creator-requirement-card">
-
-                        <div class="requirement-top">
-                            <span class="requirement-number">03</span>
-                            <span class="requirement-icon">▶</span>
-                        </div>
-
-                        <div class="requirement-value">
-                            KRÓTKIE MATERIAŁY
-                        </div>
-
-                        <h3>1 000+ wyświetleń</h3>
-
-                        <p>
-                            Twoje YouTube Shorts lub TikToki powinny zdobywać
-                            minimum <strong>1 000 wyświetleń</strong>.
-                        </p>
-
-                        <div class="requirement-bottom">
-                            <span class="requirement-dot"></span>
-                            Shorts lub TikTok
-                        </div>
-
-                    </article>
-
-
-                    <!-- WYMAGANIE 4 -->
-
-                    <article class="creator-requirement-card">
-
-                        <div class="requirement-top">
-                            <span class="requirement-number">04</span>
-                            <span class="requirement-icon">▤</span>
-                        </div>
-
-                        <div class="requirement-value">
-                            DŁUGIE MATERIAŁY
-                        </div>
-
-                        <h3>150+ wyświetleń</h3>
-
-                        <p>
-                            Filmy trwające powyżej
-                            <strong>10 minut</strong> powinny osiągać minimum
-                            <strong>150 wyświetleń</strong>.
-                        </p>
-
-                        <div class="requirement-bottom">
-                            <span class="requirement-dot"></span>
-                            Filmy powyżej 10 minut
-                        </div>
-
-                    </article>
-
-
-                    <!-- WYMAGANIE 5 -->
-
-                    <article class="creator-requirement-card creator-requirement-wide">
-
-                        <div class="requirement-top">
-                            <span class="requirement-number">05</span>
-                            <span class="requirement-icon">◷</span>
-                        </div>
-
-                        <div class="requirement-value">
-                            AKTYWNOŚĆ
-                        </div>
-
-                        <h3>Regularność publikowania</h3>
-
-                        <p>
-                            Pamiętaj o regularnym publikowaniu materiałów
-                            z serwera. Nie wymagamy codziennych filmów,
-                            jednak brak jakiejkolwiek aktywności przez
-                            <strong>2 tygodnie bez uzasadnienia</strong>
-                            może skutkować wygaśnięciem rangi TWÓRCA.
-                        </p>
-
-                        <div class="requirement-bottom">
-                            <span class="requirement-dot"></span>
-                            Dbaj o regularność
-                        </div>
-
-                    </article>
-
-                </div>
-
-
-                <div class="creator-requirements-note">
-
-                    <span class="note-icon">ⓘ</span>
-
-                    <p>
-                        Przygotowując zgłoszenie, warto mieć pod ręką link
-                        do swojego kanału oraz przykładowe materiały pokazujące
-                        Twoje treści i osiągane wyświetlenia.
-                    </p>
-
-                </div>
-
             </div>
-
         </section>
-
 
         <!-- PRZYWILEJE -->
-
         <section class="creator-section creator-perks-section" id="przywileje">
-
-            <div class="creator-container">
-
+            <div class="container">
                 <div class="creator-section-heading">
-
-                    <div class="creator-section-eyebrow">
-                        CO OTRZYMASZ?
-                    </div>
-
-                    <h2>
-                        Przywileje rangi
-                        <span>TWÓRCA</span>
-                    </h2>
-
-                    <p>
-                        Jedna ranga, dwa tryby i mnóstwo dodatkowych możliwości.
-                    </p>
-
+                    <div class="creator-eyebrow">WIĘCEJ MOŻLIWOŚCI</div>
+                    <h2>Przywileje rangi <span>TWÓRCA</span></h2>
+                    <p>Sprawdź, co otrzymujesz na poszczególnych trybach.</p>
                 </div>
-
 
                 <div class="creator-perks-grid">
 
-
                     <!-- MACE PVP -->
-
                     <article class="creator-perk-card creator-perk-mace">
-
-                        <div class="perk-card-header">
-
-                            <div class="perk-mode-icon">
-                                ⚔
-                            </div>
-
+                        <div class="creator-perk-header">
+                            <div class="creator-perk-icon">⚔</div>
                             <div>
-                                <span class="perk-mode-label">
-                                    TRYB GRY
-                                </span>
-
+                                <span>TRYB GRY</span>
                                 <h3>MACE PVP</h3>
                             </div>
-
-                            <span class="perk-mode-number">
-                                01
-                            </span>
-
+                            <b>01</b>
                         </div>
 
-
-                        <p class="perk-card-description">
-                            Wszystko, czego potrzebujesz, aby tworzyć
-                            materiały i korzystać z dodatkowych możliwości
-                            na trybie MacePvP.
+                        <p class="creator-perk-description">
+                            Przywileje dostępne na trybie MacePvP:
                         </p>
 
-
-                        <div class="perk-divider"></div>
-
-
                         <ul class="creator-perk-list">
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Specjalny prefix w grze <strong>TWÓRCA</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dostęp do komendy <code>/particlesy</code>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dostęp do komendy <code>/trimy</code>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dostęp do zmian trimów
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Pełny dostęp do tworzenia własnego <strong>bota</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Nielimitowana ilość multikont
-                            </li>
-
+                            <li>Specjalny prefix w grze <strong>TWÓRCA</strong></li>
+                            <li>Dostęp do komendy <code>/particlesy</code></li>
+                            <li>Dostęp do komendy <code>/trimy</code></li>
+                            <li>Dostęp do zmian trimów</li>
+                            <li>Pełny dostęp do tworzenia własnego <strong>bota</strong></li>
+                            <li>Nielimitowana ilość multikont</li>
                         </ul>
 
-
-                        <div class="perk-card-footer">
+                        <div class="creator-perk-footer">
                             <span>POLSKIEMC.PL</span>
                             <strong>TWÓRCA</strong>
                         </div>
-
                     </article>
 
-
                     <!-- EARTH SMP -->
-
                     <article class="creator-perk-card creator-perk-earth">
-
-                        <div class="perk-card-header">
-
-                            <div class="perk-mode-icon">
-                                🌍
-                            </div>
-
+                        <div class="creator-perk-header">
+                            <div class="creator-perk-icon">🌍</div>
                             <div>
-                                <span class="perk-mode-label">
-                                    TRYB GRY
-                                </span>
-
+                                <span>TRYB GRY</span>
                                 <h3>EARTH SMP</h3>
                             </div>
-
-                            <span class="perk-mode-number">
-                                02
-                            </span>
-
+                            <b>02</b>
                         </div>
 
-
-                        <p class="perk-card-description">
-                            Rozbudowany zestaw przywilejów, który zapewni
-                            Ci jeszcze więcej możliwości podczas rozgrywki
-                            na Earth SMP.
+                        <p class="creator-perk-description">
+                            Przywileje dostępne na trybie Earth SMP:
                         </p>
 
-
-                        <div class="perk-divider"></div>
-
-
                         <ul class="creator-perk-list">
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Specjalny prefix w grze <strong>TWÓRCA</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dostęp do zestawów <strong>VIP, SVIP i POLAK</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dostęp do komendy <code>/wb</code>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dostęp do komendy <code>/ec</code>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dostęp do komendy <code>/repairall</code>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dostęp do komendy <code>/auto-sell</code>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Limit sprzedaży w sklepie: <strong>+50%</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Zarobki z prac: <strong>+50%</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Limit prac: <strong>3</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Dodatkowe sethome: <strong>2</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Limit aktywnych coinflipów: <strong>10</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Doświadczenie ze stone: <strong>x4</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Pieniądze za killa: <strong>100$</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Polepszony drop ze <strong>strefy AFK</strong>
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Podwojony drop skrzyń eventowych
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Nielimitowana ilość multikont
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Darmowy zestaw kluczy eventowych
-                            </li>
-
-                            <li>
-                                <span class="perk-check">✓</span>
-                                Możliwość dobrania kluczy na odcinek
-                            </li>
-
+                            <li>Specjalny prefix w grze <strong>TWÓRCA</strong></li>
+                            <li>Dostęp do zestawów <strong>VIP, SVIP i POLAK</strong></li>
+                            <li>Dostęp do komendy <code>/wb</code></li>
+                            <li>Dostęp do komendy <code>/ec</code></li>
+                            <li>Dostęp do komendy <code>/repairall</code></li>
+                            <li>Dostęp do komendy <code>/auto-sell</code></li>
+                            <li>Limit sprzedaży w sklepie: <strong>+50%</strong></li>
+                            <li>Zarobki z prac: <strong>+50%</strong></li>
+                            <li>Limit prac: <strong>3</strong></li>
+                            <li>Dodatkowe sethome: <strong>2</strong></li>
+                            <li>Limit aktywnych coinflipów: <strong>10</strong></li>
+                            <li>Doświadczenie ze stone: <strong>x4</strong></li>
+                            <li>Pieniądze za killa: <strong>100$</strong></li>
+                            <li>Polepszony drop ze <strong>strefy AFK</strong></li>
+                            <li>Podwojony drop skrzyń eventowych</li>
+                            <li>Nielimitowana ilość multikont</li>
+                            <li>Darmowy zestaw kluczy eventowych</li>
+                            <li>Możliwość dobrania kluczy na odcinek</li>
                         </ul>
 
-
-                        <div class="perk-card-footer">
+                        <div class="creator-perk-footer">
                             <span>POLSKIEMC.PL</span>
                             <strong>TWÓRCA</strong>
                         </div>
-
                     </article>
 
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- CTA / ZGŁOSZENIE -->
-
+        <!-- ZGŁOSZENIE -->
         <section class="creator-section creator-apply-section">
-
-            <div class="creator-container">
-
+            <div class="container">
                 <div class="creator-apply-card">
-
-                    <div class="apply-glow"></div>
-
-                    <div class="apply-content">
-
-                        <div class="creator-label apply-label">
+                    <div class="creator-apply-glow"></div>
+                    <div class="creator-apply-content">
+                        <div class="creator-hero-label creator-apply-label">
                             <span class="creator-label-dot"></span>
-                            TWOJA KOLEJ
+                            CZAS NA TWÓJ RUCH
                         </div>
 
-                        <h2>
-                            Masz to, czego
-                            <span>szukamy?</span>
-                        </h2>
-
+                        <h2>Chcesz zdobyć rangę <span>TWÓRCA?</span></h2>
                         <p>
-                            Spełniasz wymagania i chcesz zdobyć rangę TWÓRCA?
-                            Dołącz na naszego Discorda i napisz do administracji
-                            poprzez kanał tekstowy
+                            Spełniasz wymagania i jesteś zainteresowany współpracą?
+                            Napisz do nas na Discordzie poprzez kanał tekstowy
                             <strong>🎫・stwórz-ticket</strong>.
                         </p>
 
-                        <a
-                            href="https://dc.gg/polskiemc"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="creator-button creator-button-primary apply-button"
-                        >
-                            <span>Przejdź na Discord</span>
-                            <span class="button-arrow">↗</span>
+                        <a href="https://dc.polskiemc.pl" target="_blank" rel="noopener noreferrer" class="btn creator-btn creator-apply-button">
+                            NAPISZ DO NAS NA DISCORDZIE <span>↗</span>
                         </a>
 
-                        <div class="apply-note">
-                            <span>ⓘ</span>
-                            Zgłoszenie dotyczące rangi TWÓRCA składasz przez ticket.
-                        </div>
-
+                        <small>Wszystkie zgłoszenia dotyczące rangi TWÓRCA przyjmujemy przez ticket.</small>
                     </div>
-
-                    <div class="apply-watermark">
-                        TWÓRCA
-                    </div>
-
+                    <div class="creator-apply-watermark">TWÓRCA</div>
                 </div>
-
             </div>
-
         </section>
 
     </main>
 
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
+    <!-- FOOTER -->
     <footer>
-
         <div class="container footer-container">
 
-            <!-- LEWA STRONA -->
-
             <div class="footer-buttons footer-left">
-
-                <a
-                    href="https://www.youtube.com/@p0lak-official1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="footer-button youtube-button"
-                >
-                    <span>▶</span>
-                    YOUTUBE
+                <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer" class="footer-button youtube-button">
+                    <span>▶</span> YOUTUBE
                 </a>
-
-                <a
-                    href="https://dc.gg/polskiemc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="footer-button discord-footer-button"
-                >
-                    <span>◉</span>
-                    DISCORD
+                <a href="https://dc.polskiemc.pl" target="_blank" rel="noopener noreferrer" class="footer-button discord-footer-button">
+                    <span>◉</span> DISCORD
                 </a>
-
             </div>
-
-
-            <!-- ŚRODEK -->
 
             <div class="footer-center">
-
-                <div class="footer-logo">
-                    <span>POLSKIE</span>MC.PL
-                </div>
-
-                <p>
-                    © 2026 POLSKIEMC.PL
-                    — Wszelkie prawa zastrzeżone
-                </p>
-
+                <div class="footer-logo"><span>POLSKIE</span>MC.PL</div>
+                <p>© 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</p>
                 <div class="footer-note">
-                    Serwer POLSKIEMC.PL nie jest w żaden sposób
-                    powiązany z firmą Mojang Studios oraz Microsoft Studios.
+                    Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.
                 </div>
-
             </div>
 
-
-            <!-- PRAWA STRONA -->
-
             <div class="footer-buttons footer-right">
-
-                <a
-                    href="https://www.tiktok.com/@p0lak_yt"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="footer-button tiktok-button"
-                >
-                    <span>♪</span>
-                    TIKTOK
+                <a href="https://www.tiktok.com/@p0lak_yt" target="_blank" rel="noopener noreferrer" class="footer-button tiktok-button">
+                    <span>♪</span> TIKTOK
                 </a>
-
-                <a
-                    href="https://mapa.polskiemc.pl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="footer-button map-footer-button"
-                >
-                    <span>🌍</span>
-                    MAPA EARTH
+                <a href="https://mapa.polskiemc.pl" target="_blank" rel="noopener noreferrer" class="footer-button map-footer-button">
+                    <span>🌍</span> MAPA EARTH
                 </a>
-
             </div>
 
         </div>
-
     </footer>
 
-
-    <!-- =====================================================
-         PRZYCISK GÓRA
-    ====================================================== -->
-
-    <button id="topBtn" aria-label="Wróć na górę">
-        ↑
-    </button>
-
-
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
+    <button id="topBtn" aria-label="Wróć na górę">↑</button>
 
     <script>
-
-        /* =====================================================
-           HAMBURGER
-        ====================================================== */
-
+        // MENU MOBILNE
         const hamburger = document.getElementById("hamburger");
         const menu = document.getElementById("menu");
 
         function toggleMenu() {
-
-            const isActive = menu.classList.toggle("active");
-
-            hamburger.classList.toggle("active", isActive);
-            hamburger.setAttribute("aria-expanded", String(isActive));
-
+            const active = menu.classList.toggle("active");
+            hamburger.classList.toggle("active", active);
+            hamburger.setAttribute("aria-expanded", String(active));
         }
 
         hamburger.addEventListener("click", toggleMenu);
-
         hamburger.addEventListener("keydown", event => {
-
             if (event.key === "Enter" || event.key === " ") {
-
                 event.preventDefault();
                 toggleMenu();
-
             }
-
         });
 
-
-        /* =====================================================
-           ZAMYKANIE MENU PO WYBORZE
-        ====================================================== */
-
         document.querySelectorAll(".menu a").forEach(link => {
-
             link.addEventListener("click", () => {
-
                 menu.classList.remove("active");
                 hamburger.classList.remove("active");
                 hamburger.setAttribute("aria-expanded", "false");
-
             });
-
         });
 
-
-        /* =====================================================
-           PRZYCISK POWROTU NA GÓRĘ
-        ====================================================== */
-
+        // POWRÓT NA GÓRĘ
         const topBtn = document.getElementById("topBtn");
 
         window.addEventListener("scroll", () => {
-
-            if (window.scrollY > 500) {
-
-                topBtn.classList.add("show");
-
-            } else {
-
-                topBtn.classList.remove("show");
-
-            }
-
+            topBtn.classList.toggle("show", window.scrollY > 500);
         }, { passive: true });
 
-
         topBtn.addEventListener("click", () => {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-
-        /* =====================================================
-           ANIMACJE PO PRZEWIJANIU
-        ====================================================== */
-
-        const animatedElements = document.querySelectorAll(
-            ".creator-requirement-card, .creator-perk-card, .creator-intro-card, .creator-apply-card"
+        // ANIMACJE ELEMENTÓW
+        const revealElements = document.querySelectorAll(
+            ".creator-intro-card, .creator-requirements-box, .creator-perk-card, .creator-apply-card"
         );
 
         if ("IntersectionObserver" in window) {
-
-            const observer = new IntersectionObserver(entries => {
-
+            const revealObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
-
                     if (entry.isIntersecting) {
-
                         entry.target.classList.add("creator-visible");
-                        observer.unobserve(entry.target);
-
+                        revealObserver.unobserve(entry.target);
                     }
-
                 });
+            }, { threshold: 0.12 });
 
-            }, {
-                threshold: 0.12
-            });
-
-            animatedElements.forEach(element => {
-
+            revealElements.forEach(element => {
                 element.classList.add("creator-reveal");
-                observer.observe(element);
-
+                revealObserver.observe(element);
             });
-
         }
-
     </script>
 
 </body>
-
 </html>
