@@ -104,11 +104,41 @@ a {
 }
 
 .hero-small-label {
-    color: var(--red-soft);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 3px;
-    margin-bottom: 18px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom:
+        22px;
+
+    padding:
+        8px 15px;
+
+    border:
+        1px solid
+        rgba(239, 82, 124, 0.2);
+
+    border-radius:
+        30px;
+
+    background:
+        rgba(239, 82, 124, 0.06);
+
+    color:
+        #ef9ab0;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+
 }
 
 .rekrutacja-hero h1 {
