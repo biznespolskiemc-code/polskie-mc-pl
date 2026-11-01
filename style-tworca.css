@@ -918,3 +918,120 @@ body {
         transform: none;
     }
 }
+
+/* =====================================================
+   MACE PVP — FIOLETOWY
+===================================================== */
+
+.creator-perk-card.creator-perk-mace {
+    --mode-color: #a855f7;
+
+    border: 1px solid rgba(168, 85, 247, .45) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(168, 85, 247, .19),
+            rgba(88, 28, 135, .09) 45%,
+            #121212 100%
+        ) !important;
+
+    box-shadow: 0 10px 40px rgba(168, 85, 247, .06);
+}
+
+.creator-perk-mace::before {
+    background: linear-gradient(
+        90deg,
+        #a855f7,
+        #d8b4fe,
+        transparent
+    ) !important;
+}
+
+.creator-perk-mace .creator-perk-icon {
+    color: #c084fc !important;
+    background: rgba(168, 85, 247, .18) !important;
+    border: 1px solid rgba(168, 85, 247, .4) !important;
+}
+
+.creator-perk-mace .creator-perk-header h3 {
+    color: #c084fc !important;
+}
+
+.creator-perk-mace .creator-perk-header > div:nth-child(2) span {
+    color: #a78bfa !important;
+}
+
+.creator-perk-mace .creator-perk-list code {
+    color: #c084fc !important;
+    background: rgba(168, 85, 247, .12) !important;
+    border-color: rgba(168, 85, 247, .3) !important;
+}
+
+.creator-perk-mace .creator-perk-footer strong {
+    color: #c084fc !important;
+}
+
+.creator-perk-mace:hover {
+    border-color: #a855f7 !important;
+    box-shadow: 0 15px 45px rgba(168, 85, 247, .13);
+}
+
+
+/* =====================================================
+   EARTH SMP — #3D4D52
+===================================================== */
+
+.creator-perk-card.creator-perk-earth {
+    --mode-color: #3d4d52;
+
+    border: 1px solid rgba(61, 77, 82, .75) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(61, 77, 82, .35),
+            rgba(61, 77, 82, .13) 45%,
+            #121212 100%
+        ) !important;
+
+    box-shadow: 0 10px 40px rgba(61, 77, 82, .08);
+}
+
+.creator-perk-earth::before {
+    background: linear-gradient(
+        90deg,
+        #3d4d52,
+        #91aeb5,
+        transparent
+    ) !important;
+}
+
+.creator-perk-earth .creator-perk-icon {
+    color: #91aeb5 !important;
+    background: rgba(61, 77, 82, .3) !important;
+    border: 1px solid rgba(91, 120, 128, .65) !important;
+}
+
+.creator-perk-earth .creator-perk-header h3 {
+    color: #91aeb5 !important;
+}
+
+.creator-perk-earth .creator-perk-header > div:nth-child(2) span {
+    color: #78949b !important;
+}
+
+.creator-perk-earth .creator-perk-list code {
+    color: #a8c0c5 !important;
+    background: rgba(61, 77, 82, .25) !important;
+    border-color: rgba(91, 120, 128, .5) !important;
+}
+
+.creator-perk-earth .creator-perk-footer strong {
+    color: #91aeb5 !important;
+}
+
+.creator-perk-earth:hover {
+    border-color: #718d94 !important;
+    box-shadow: 0 15px 45px rgba(61, 77, 82, .16);
+}
