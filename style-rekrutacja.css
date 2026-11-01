@@ -2017,3 +2017,40 @@ a {
     background: #101010;
     color: #d6d6d6;
 }
+
+/* =====================================================
+   MAKSYMALNA SZEROKOŚĆ REKRUTACJI
+===================================================== */
+
+.rekrutacja-section > .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.rekrutacja-wrapper {
+    width: 100% !important;
+    max-width: 1900px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Większe odstępy między sekcjami */
+
+.rekrutacja-wrapper {
+    gap: 30px;
+}
+
+/* Na mniejszych ekranach */
+
+@media (max-width: 800px) {
+    .rekrutacja-section > .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .rekrutacja-wrapper {
+        width: 100% !important;
+    }
+}
