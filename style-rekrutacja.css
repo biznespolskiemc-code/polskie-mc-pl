@@ -198,8 +198,8 @@ a {
 
 
 .rekrutacja-wrapper {
-    width: 96%;
-    max-width: 1750px;
+    width: 100%;
+    max-width: 2000px;
     margin: auto;
 
     display: grid;
