@@ -2587,3 +2587,289 @@ footer {
         transition: none;
     }
 }
+
+
+/* =====================================================
+   DODATKOWY UKŁAD — RAMKI I PRZYKLEJONY SPIS TREŚCI
+===================================================== */
+
+/* Górna część strony — przywrócony, wyraźny nagłówek regulaminu */
+.regulamin-page-header {
+    position: relative;
+    padding: 145px 0 58px;
+    background:
+        radial-gradient(ellipse at 12% 15%, rgba(214,24,65,.13), transparent 42%),
+        linear-gradient(180deg, #101010 0%, #090909 100%);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.regulamin-page-header > .container {
+    position: relative;
+    padding: 32px 36px;
+    border: 1px solid rgba(255,255,255,.09);
+    border-left: 3px solid var(--red-light);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(24,24,24,.98), rgba(14,14,14,.96));
+    box-shadow: 0 18px 55px rgba(0,0,0,.28);
+}
+
+.regulamin-page-header .page-eyebrow {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 7px 11px;
+    border: 1px solid rgba(214,24,65,.25);
+    border-radius: 5px;
+    background: rgba(214,24,65,.08);
+    color: #ef7894;
+}
+
+.regulamin-page-header h1 {
+    font-size: clamp(38px, 5vw, 54px);
+    letter-spacing: -1.5px;
+}
+
+.regulamin-page-header > .container > p {
+    max-width: 720px;
+    margin-top: 13px;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.page-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding: 9px 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 6px;
+    background: rgba(255,255,255,.035);
+    color: #aaa;
+    font-size: 11px;
+}
+
+.page-meta::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: var(--red-light);
+    box-shadow: 0 0 10px rgba(214,24,65,.6);
+}
+
+/* Ramka całego obszaru regulaminu */
+.regulamin-section {
+    padding: 48px 0 100px;
+}
+
+.regulamin-layout {
+    grid-template-columns: 255px minmax(0, 1fr);
+    gap: 34px;
+    align-items: start;
+}
+
+/* Spis treści ma pozostać przy użytkowniku podczas przewijania */
+.rules-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 102px;
+    align-self: start;
+    max-height: calc(100vh - 122px);
+    overflow-y: auto;
+    padding: 20px 16px;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 10px;
+    background: linear-gradient(160deg, #151515, #0e0e0e);
+    box-shadow: 0 12px 35px rgba(0,0,0,.2);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(214,24,65,.45) transparent;
+}
+
+.rules-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.rules-sidebar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(214,24,65,.45);
+}
+
+.sidebar-title {
+    padding: 0 10px 13px;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    color: #aaa;
+}
+
+.section-link {
+    padding: 12px 11px;
+    margin: 5px 0;
+    border: 1px solid transparent;
+    border-left: 2px solid transparent;
+    border-radius: 6px;
+}
+
+.section-link.active {
+    border-color: rgba(214,24,65,.16);
+    border-left-color: var(--red-light);
+    background: rgba(214,24,65,.10);
+    color: #fff;
+}
+
+.sidebar-note {
+    margin: 15px 7px 0;
+    padding: 14px 0 0;
+}
+
+/* Każdy rozdział jako osobna ramka */
+.regulamin-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rule-section {
+    position: relative;
+    padding: 27px 29px 28px;
+    margin: 0;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 11px;
+    background: linear-gradient(145deg, #151515 0%, #101010 100%);
+    box-shadow: 0 12px 32px rgba(0,0,0,.16);
+    scroll-margin-top: 112px;
+}
+
+.rule-section:last-of-type {
+    margin-bottom: 0;
+}
+
+.rule-section h2 {
+    font-size: 23px;
+}
+
+.section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 37px;
+    height: 25px;
+    padding: 0 8px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(214,24,65,.25);
+    border-radius: 5px;
+    background: rgba(214,24,65,.09);
+    color: #ef7894;
+}
+
+.section-intro {
+    margin-bottom: 22px;
+}
+
+/* Poszczególne punkty również są czytelnie oddzielone */
+.plain-rules {
+    padding-left: 25px;
+}
+
+.plain-rules li {
+    padding: 11px 13px 11px 12px;
+    margin: 0 0 8px;
+    border: 1px solid rgba(255,255,255,.055);
+    border-radius: 6px;
+    background: rgba(255,255,255,.018);
+    line-height: 1.75;
+}
+
+.plain-rules li:last-child {
+    padding-bottom: 11px;
+    border-bottom: 1px solid rgba(255,255,255,.055);
+}
+
+.plain-rules li::marker {
+    color: var(--red-light);
+}
+
+.seller-details {
+    border: 1px solid rgba(214,24,65,.18);
+    border-left: 3px solid var(--red);
+    border-radius: 8px;
+    background: rgba(214,24,65,.045);
+}
+
+.rules-back {
+    padding: 18px 22px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: #121212;
+}
+
+/* Zachowaj przyklejony spis również na mniejszych ekranach */
+@media (max-width: 900px) {
+    .regulamin-layout {
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .rule-section {
+        padding: 23px 21px;
+    }
+}
+
+@media (max-width: 700px) {
+    .regulamin-page-header {
+        padding: 112px 0 35px;
+    }
+
+    .regulamin-page-header > .container {
+        padding: 25px 21px;
+    }
+
+    .regulamin-page-header h1 {
+        font-size: 37px;
+    }
+
+    .regulamin-section {
+        padding: 28px 0 70px;
+    }
+
+    .regulamin-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .rules-sidebar {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 88px;
+        z-index: 50;
+        width: 100%;
+        max-height: min(42vh, 310px);
+        overflow-y: auto;
+        padding: 13px 14px;
+        background: rgba(17,17,17,.97);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+    }
+
+    .section-link {
+        padding: 9px 10px;
+    }
+
+    .rule-section {
+        padding: 21px 17px;
+        scroll-margin-top: 105px;
+    }
+
+    .rule-section h2 {
+        font-size: 20px;
+    }
+
+    .plain-rules {
+        padding-left: 22px;
+    }
+
+    .plain-rules li {
+        padding: 10px 10px 10px 9px;
+        font-size: 12.5px;
+    }
+}
