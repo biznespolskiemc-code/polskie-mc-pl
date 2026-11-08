@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>POLSKIEMC.PL | Regulamin</title>
+
     <meta name="description" content="Regulamin serwera POLSKIEMC.PL — zasady serwera Minecraft, Discorda, trapów na Earth SMP oraz sklepu.">
 
     <link rel="icon" type="image/png" href="images/polskiemc.png">
@@ -15,14 +16,17 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style-regulamin.css">
+    <!-- Style głównej strony -->
     <link rel="stylesheet" href="style-glowna.css">
+
+    <!-- Style regulaminu -->
+    <link rel="stylesheet" href="style-regulamin.css">
 </head>
 
 <body>
 
 <!-- =====================================================
-     NAWIGACJA
+     NAVBAR
 ===================================================== -->
 
 <nav class="navbar">
@@ -98,7 +102,7 @@
 
 
 <!-- =====================================================
-     REGULAMIN
+     GŁÓWNA SEKCJA REGULAMINU
 ===================================================== -->
 
 <main class="regulamin-section">
@@ -212,15 +216,25 @@
                         Zakaz wchodzenia na kanał głosowy „Jestem Sprawdzany” bez wezwania administratora.
                     </li>
 
-                    <li>Omijanie bana jest karane jeszcze dłuższym banem.</li>
+                    <li>
+                        Omijanie bana jest karane jeszcze dłuższym banem.
+                    </li>
 
-                    <li>Dozwolone jest jedynie jedno konto na użytkownika.</li>
+                    <li>
+                        Dozwolone jest jedynie jedno konto na użytkownika.
+                    </li>
 
-                    <li>Administrację można pingować, ale z umiarem.</li>
+                    <li>
+                        Administrację można pingować, ale z umiarem.
+                    </li>
 
-                    <li>Wszelkiego rodzaju oszustwa są surowo karane.</li>
+                    <li>
+                        Wszelkiego rodzaju oszustwa są surowo karane.
+                    </li>
 
-                    <li>Podszywanie się pod administrację jest karalne.</li>
+                    <li>
+                        Podszywanie się pod administrację jest karalne.
+                    </li>
 
                     <li>
                         Jeżeli awatar będzie wulgarny, konto zostanie zablokowane permanentnie.
@@ -279,9 +293,13 @@
                         Aby backup został nadany, musisz mieć nagranie z sytuacji.
                     </li>
 
-                    <li>Wyjście z serwera podczas sprawdzania skutkuje banem.</li>
+                    <li>
+                        Wyjście z serwera podczas sprawdzania skutkuje banem.
+                    </li>
 
-                    <li>Brak współpracy z administracją może skutkować banem.</li>
+                    <li>
+                        Brak współpracy z administracją może skutkować banem.
+                    </li>
 
                     <li>
                         Zakazuje się trapowania championa kraju na Earth SMP.
@@ -334,7 +352,9 @@
                         Trap nie jest oparty o ścianę, której nie da się zniszczyć.
                     </li>
 
-                    <li>Trap nie może znajdować się na terenie kraju.</li>
+                    <li>
+                        Trap nie może znajdować się na terenie kraju.
+                    </li>
 
                     <li>
                         Backup nie zostanie nadany, jeżeli gracz nie posiada klipa.
@@ -431,7 +451,9 @@
                         <strong>Administratorem sklepu jest Wojciech Bielicki.</strong>
                     </p>
 
-                    <p>Siedziba: Sierakowice, ul. Słupska 2, 83-340</p>
+                    <p>
+                        Siedziba: Sierakowice, ul. Słupska 2, 83-340
+                    </p>
 
                     <p>NIP: 5891597691</p>
 
@@ -454,7 +476,7 @@
 
 
 <!-- =====================================================
-     STOPKA
+     FOOTER
 ===================================================== -->
 
 <footer>
@@ -591,7 +613,7 @@ document.querySelectorAll(".menu a").forEach(link => {
 
 // =====================================================
 // NUMERACJA PUNKTÓW
-// Format: 1.1, 1.2, 2.1, 2.2 itd.
+// Format: 1.1, 1.2, 2.1, 2.2...
 // =====================================================
 
 document.querySelectorAll(".rule-section").forEach((section, sectionIndex) => {
@@ -604,9 +626,10 @@ document.querySelectorAll(".rule-section").forEach((section, sectionIndex) => {
 
     list.querySelectorAll(":scope > li").forEach((item, itemIndex) => {
 
-        const ruleNumber = `${sectionNumber}.${itemIndex + 1}`;
-
-        item.setAttribute("data-rule-number", ruleNumber);
+        item.setAttribute(
+            "data-rule-number",
+            `${sectionNumber}.${itemIndex + 1}`
+        );
 
     });
 
@@ -628,11 +651,8 @@ window.addEventListener("scroll", () => {
 topBtn.addEventListener("click", () => {
 
     window.scrollTo({
-
         top: 0,
-
         behavior: "smooth"
-
     });
 
 });
@@ -640,7 +660,7 @@ topBtn.addEventListener("click", () => {
 
 // =====================================================
 // AKTYWNY ROZDZIAŁ W SPISIE TREŚCI
-// UWAGA: bez scrollIntoView — nie blokuje przewijania.
+// Bez automatycznego przewijania strony.
 // =====================================================
 
 const sections = document.querySelectorAll(".rule-section");
@@ -666,7 +686,7 @@ const sectionObserver = new IntersectionObserver(entries => {
 
 }, {
 
-    rootMargin: "-20% 0px -65% 0px",
+    rootMargin: "-22% 0px -62% 0px",
 
     threshold: 0
 
