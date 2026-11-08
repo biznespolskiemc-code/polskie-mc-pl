@@ -1,99 +1,64 @@
 
 /* =====================================================
    POLSKIEMC.PL — REGULAMIN
+   Nie nadpisuje stylów menu ani stopki.
 ===================================================== */
 
 
 /* =====================================================
-   ZMIENNE
+   ZMIENNE I PODSTAWY
 ===================================================== */
 
 :root {
-
     --rules-red: #d61841;
     --rules-red-dark: #b9173a;
     --rules-red-light: #ef7894;
-
     --rules-bg: #090909;
     --rules-card: #131313;
-
     --rules-text: #d6d6d6;
-    --rules-muted: #888888;
-
+    --rules-muted: #929292;
 }
-
-
-/* =====================================================
-   NAPRAWA PRZEWIJANIA STRONY
-===================================================== */
 
 html {
-
-    height: auto !important;
-    min-height: 100%;
-
-    overflow-x: clip !important;
-    overflow-y: auto !important;
-
     scroll-behavior: smooth;
     scroll-padding-top: 105px;
-
+    overflow-y: scroll;
+    overflow-x: clip !important;
 }
+
+/*
+   Ważne dla sticky:
+   hidden na osi X może powodować utworzenie
+   dodatkowego scroll-containera.
+*/
 
 body {
-
-    position: static !important;
-
-    height: auto !important;
-    min-height: 100vh !important;
-
     overflow-x: clip !important;
     overflow-y: visible !important;
-
-}
-
-/* Rodzice spisu treści nie mogą blokować sticky */
-
-.regulamin-section,
-.regulamin-section > .container,
-.regulamin-layout,
-.regulamin-content {
-
-    overflow: visible !important;
-
-    height: auto;
-
 }
 
 
 /* =====================================================
-   HERO
+   HERO REGULAMINU
 ===================================================== */
 
 .regulamin-hero {
-
     position: relative;
-
     min-height: 55vh;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
-
     overflow: hidden;
 
     padding: 140px 20px 100px;
 
     background: #050505;
-
 }
 
 .regulamin-hero::before {
-
     content: "";
 
     position: absolute;
@@ -108,16 +73,14 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(185,23,58,.07);
+    background: rgba(185, 23, 58, 0.06);
 
     filter: blur(90px);
 
     pointer-events: none;
-
 }
 
 .regulamin-hero::after {
-
     content: "";
 
     position: absolute;
@@ -131,37 +94,28 @@ body {
     background: rgba(255,255,255,.06);
 
     pointer-events: none;
-
 }
 
 .regulamin-hero-content {
-
     position: relative;
-
     z-index: 2;
 
     width: 100%;
-
     max-width: 850px;
 
     margin: 0 auto;
-
 }
 
-.regulamin-hero .hero-small-label {
-
+.hero-small-label {
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
     margin-bottom: 22px;
-
     padding: 8px 15px;
 
     border: 1px solid rgba(239,82,124,.2);
-
     border-radius: 30px;
 
     background: rgba(239,82,124,.06);
@@ -169,31 +123,23 @@ body {
     color: #ef9ab0;
 
     font-size: 10px;
-
     font-weight: 800;
-
     letter-spacing: 2px;
-
 }
 
 .regulamin-hero h1 {
-
     margin: 0;
 
     color: #ffffff;
 
     font-size: clamp(45px, 6vw, 72px);
-
     line-height: 1.05;
 
     font-weight: 800;
-
     letter-spacing: -2px;
-
 }
 
 .regulamin-hero p {
-
     max-width: 650px;
 
     margin: 25px auto 0;
@@ -201,9 +147,7 @@ body {
     color: #929292;
 
     font-size: 15px;
-
     line-height: 1.8;
-
 }
 
 
@@ -212,7 +156,6 @@ body {
 ===================================================== */
 
 .regulamin-section {
-
     position: relative;
 
     display: block;
@@ -223,10 +166,21 @@ body {
 
     background: var(--rules-bg);
 
+    overflow: visible !important;
+}
+
+/*
+   Sticky musi mieć możliwość przesuwania się
+   w obrębie całego dokumentu.
+*/
+
+.regulamin-section > .container,
+.regulamin-layout,
+.regulamin-content {
+    overflow: visible !important;
 }
 
 .regulamin-layout {
-
     display: grid !important;
 
     grid-template-columns: 255px minmax(0, 1fr);
@@ -238,19 +192,6 @@ body {
     max-width: 1200px;
 
     margin: 0 auto;
-
-}
-
-.regulamin-content {
-
-    display: flex;
-
-    flex-direction: column;
-
-    min-width: 0;
-
-    gap: 24px;
-
 }
 
 
@@ -259,9 +200,7 @@ body {
 ===================================================== */
 
 .rules-sidebar {
-
     position: -webkit-sticky !important;
-
     position: sticky !important;
 
     top: 105px !important;
@@ -275,93 +214,80 @@ body {
     max-height: calc(100vh - 125px);
 
     overflow-x: hidden;
-
     overflow-y: auto;
 
     z-index: 100;
 
     padding: 20px 16px;
 
-    background: #111111;
+    background: linear-gradient(
+        160deg,
+        #151515,
+        #0e0e0e
+    );
 
     border: 1px solid rgba(255,255,255,.09);
 
-    border-radius: 12px;
+    border-radius: 10px;
 
-    box-shadow: 0 12px 35px rgba(0,0,0,.25);
+    box-shadow: 0 12px 35px rgba(0,0,0,.2);
 
     scrollbar-width: thin;
 
-    scrollbar-color: var(--rules-red) transparent;
-
+    scrollbar-color: rgba(214,24,65,.5) transparent;
 }
 
 .rules-sidebar::-webkit-scrollbar {
-
     width: 4px;
-
 }
 
 .rules-sidebar::-webkit-scrollbar-track {
-
     background: transparent;
-
 }
 
 .rules-sidebar::-webkit-scrollbar-thumb {
-
-    background: var(--rules-red);
-
     border-radius: 10px;
-
+    background: rgba(214,24,65,.5);
 }
 
 
 /* TYTUŁ SPISU */
 
 .sidebar-title {
+    margin-bottom: 13px;
 
-    padding: 0 9px 15px;
+    padding: 0 10px 13px;
 
-    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.07);
 
-    color: #888888;
+    color: #aaa;
 
     font-size: 10px;
-
     font-weight: 800;
-
     letter-spacing: 1.7px;
-
-    border-bottom: 1px solid rgba(255,255,255,.08);
-
 }
 
 
-/* LINKI */
+/* LINKI SPISU */
 
 .section-link {
-
     display: block;
 
-    padding: 12px 10px;
+    padding: 12px 11px;
 
-    margin: 3px 0;
+    margin: 5px 0;
 
-    border: 0;
-
+    border: 1px solid transparent;
     border-left: 2px solid transparent;
 
-    border-radius: 0;
+    border-radius: 6px;
 
     background: transparent;
 
     color: #929292;
 
     font-size: 12px;
-
     font-weight: 600;
-
     line-height: 1.5;
 
     text-decoration: none;
@@ -370,44 +296,50 @@ body {
         color .2s ease,
         background .2s ease,
         border-color .2s ease;
-
 }
 
 .section-link:hover {
-
     color: #ffffff;
-
-    background: rgba(255,255,255,.025);
-
 }
 
 .section-link.active {
+    border-color: rgba(214,24,65,.16);
+    border-left-color: var(--rules-red-light);
+
+    background: rgba(214,24,65,.10);
 
     color: #ffffff;
-
-    border-left-color: var(--rules-red);
-
-    background: rgba(214,24,65,.09);
-
 }
 
 
-/* OPIS POD SPIsEM */
+/* INFORMACJA POD SPISEM */
 
 .sidebar-note {
+    margin: 15px 7px 0;
 
-    margin-top: 17px;
-
-    padding: 15px 9px 0;
+    padding: 14px 0 0;
 
     border-top: 1px solid rgba(255,255,255,.07);
 
     color: #777777;
 
-    font-size: 10px;
+    font-size: 11px;
+    line-height: 1.8;
+}
 
-    line-height: 1.7;
 
+/* =====================================================
+   TREŚĆ REGULAMINU
+===================================================== */
+
+.regulamin-content {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 22px;
+
+    min-width: 0;
 }
 
 
@@ -416,152 +348,136 @@ body {
 ===================================================== */
 
 .rule-section {
-
     position: relative;
 
     display: block;
 
     width: 100%;
-
     min-width: 0;
 
-    padding: 30px 32px;
+    padding: 29px 32px;
 
-    margin: 0;
-
-    background: linear-gradient(
-        145deg,
-        #161616 0%,
-        #111111 100%
-    );
+    margin: 0 !important;
 
     border: 1px solid rgba(255,255,255,.09);
 
-    border-radius: 14px;
+    border-radius: 12px;
 
-    box-shadow: 0 14px 38px rgba(0,0,0,.2);
+    background: linear-gradient(
+        145deg,
+        #151515 0%,
+        #101010 100%
+    );
+
+    box-shadow: 0 12px 32px rgba(0,0,0,.16);
 
     scroll-margin-top: 110px;
-
 }
 
-/* Subtelna czerwona linia na górze całej karty */
+/* Czerwona linia dekoracyjna */
 
 .rule-section::before {
-
     content: "";
 
     position: absolute;
 
     top: -1px;
-
     left: 24px;
 
     width: 65px;
-
     height: 2px;
 
     background: var(--rules-red);
 
     border-radius: 10px;
+}
 
+/* Nie dodawaj osobnej ramki na ostatnim rozdziale */
+
+.rule-section:last-child {
+    margin-bottom: 0 !important;
 }
 
 
 /* =====================================================
-   NAGŁÓWEK ROZDZIAŁU
+   NUMER ROZDZIAŁU
 ===================================================== */
 
 .section-number {
-
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
-    min-width: 38px;
+    min-width: 37px;
+    height: 25px;
 
-    height: 26px;
-
-    padding: 0 9px;
+    padding: 0 8px;
 
     margin-bottom: 12px;
 
+    border: 1px solid rgba(214,24,65,.25);
+
+    border-radius: 5px;
+
     background: rgba(214,24,65,.09);
-
-    border: 1px solid rgba(214,24,65,.24);
-
-    border-radius: 6px;
 
     color: var(--rules-red-light);
 
     font-size: 11px;
-
     font-weight: 800;
-
     letter-spacing: 1px;
-
 }
 
-.rule-section h2 {
 
+/* =====================================================
+   TYTUŁ ROZDZIAŁU
+===================================================== */
+
+.rule-section h2 {
     margin: 0;
 
     color: #ffffff;
 
-    font-size: 24px;
-
+    font-size: 23px;
     line-height: 1.35;
 
     font-weight: 800;
-
     letter-spacing: -.5px;
-
 }
 
 .section-intro {
-
     margin: 10px 0 22px;
 
     color: #858585;
 
     font-size: 13px;
-
     line-height: 1.8;
-
-    font-weight: 400;
-
 }
 
 
 /* =====================================================
-   LISTA PUNKTÓW
-   BEZ OSOBNYCH RAMEK
+   PUNKTY REGULAMINU
+   Bez osobnych ramek i kart.
 ===================================================== */
 
 .plain-rules {
-
     display: block;
 
     width: 100%;
 
     padding: 0 !important;
-
     margin: 0 !important;
 
     list-style: none !important;
-
     list-style-type: none !important;
 
-    color: var(--rules-text);
-
+    color: #bcbcbc;
 }
 
-/* Usunięcie natywnej numeracji HTML */
+/* Pojedynczy punkt */
 
 .plain-rules > li {
-
     position: relative;
 
     display: grid !important;
@@ -575,45 +491,34 @@ body {
     width: 100%;
 
     padding: 12px 0 !important;
-
     margin: 0 !important;
 
-    list-style: none !important;
-
-    list-style-type: none !important;
-
-    background: transparent !important;
-
     border: 0 !important;
-
     border-radius: 0 !important;
 
-    outline: 0 !important;
+    background: transparent !important;
 
     box-shadow: none !important;
 
     color: #bcbcbc;
 
     font-size: 13px;
-
     font-weight: 500;
 
     line-height: 1.85;
 
+    list-style: none !important;
 }
 
-/* Wyłączenie domyślnych znaczników przeglądarki */
+/* Wyłączenie domyślnego numerowania HTML */
 
 .plain-rules > li::marker {
-
     content: "" !important;
-
 }
 
-/* Numer generowany przez JavaScript */
+/* Numer generowany w JavaScript */
 
 .plain-rules > li::before {
-
     content: attr(data-rule-number) !important;
 
     display: block;
@@ -623,31 +528,20 @@ body {
     color: #e04468;
 
     font-size: 12px;
-
     font-weight: 800;
 
     letter-spacing: .3px;
 
     line-height: 1.7;
-
-}
-
-/* Brak linii po ostatnim punkcie */
-
-.plain-rules > li:last-child {
-
-    padding-bottom: 0 !important;
-
 }
 
 
 /* =====================================================
-   LINKI W REGULAMINIE
+   LINKI
 ===================================================== */
 
 .plain-rules a,
 .seller-details a {
-
     color: #ef7894;
 
     text-decoration: underline;
@@ -657,96 +551,76 @@ body {
     text-underline-offset: 3px;
 
     transition: color .2s ease;
-
 }
 
 .plain-rules a:hover,
 .seller-details a:hover {
-
     color: #ffffff;
-
 }
 
 
 /* =====================================================
    DANE ADMINISTRATORA SKLEPU
+   Pozostają wewnątrz karty sklepu.
 ===================================================== */
 
 .seller-details {
-
     margin-top: 25px;
 
-    padding: 20px 22px;
-
-    background: rgba(255,255,255,.025);
+    padding: 20px 0 0;
 
     border: 0;
 
-    border-left: 2px solid var(--rules-red);
+    border-top: 1px solid rgba(255,255,255,.08);
 
-    border-radius: 0;
-
+    background: transparent;
 }
 
 .seller-details h3 {
-
-    margin: 0 0 12px;
+    margin-bottom: 12px;
 
     color: #ffffff;
 
     font-size: 14px;
-
     font-weight: 800;
-
 }
 
 .seller-details p {
-
     margin: 5px 0;
 
     color: #999999;
 
     font-size: 12px;
-
     line-height: 1.8;
-
 }
 
 .seller-details strong {
-
     color: #dddddd;
-
 }
 
 
 /* =====================================================
-   POWRÓT NA GÓRĘ
+   PRZYCISK POWROTU NA GÓRĘ
 ===================================================== */
 
 #topBtn {
-
     position: fixed;
 
     right: 25px;
-
     bottom: 25px;
 
     width: 50px;
-
     height: 50px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     opacity: 0;
-
     visibility: hidden;
 
-    border: 0;
-
+    border: none;
     border-radius: 50%;
 
     background: var(--rules-red-dark);
@@ -766,83 +640,64 @@ body {
         visibility .3s ease,
         transform .3s ease,
         background .3s ease;
-
 }
 
 #topBtn.show {
-
     opacity: 1;
-
     visibility: visible;
-
 }
 
 #topBtn:hover {
-
     background: var(--rules-red);
 
     transform: scale(1.1);
-
 }
 
 
 /* =====================================================
-   RESPONSYWNOŚĆ — TABLETY
+   TABLETY
 ===================================================== */
 
 @media (max-width: 1000px) {
 
     .regulamin-layout {
-
         grid-template-columns: 225px minmax(0, 1fr);
 
         gap: 24px;
-
     }
 
     .rule-section {
-
-        padding: 26px 24px;
-
+        padding: 25px 23px;
     }
 
 }
 
 
 /* =====================================================
-   RESPONSYWNOŚĆ — TELEFONY
+   TELEFONY
 ===================================================== */
 
 @media (max-width: 800px) {
 
     .regulamin-hero {
-
         min-height: 50vh;
 
         padding: 125px 20px 80px;
-
     }
 
     .regulamin-hero h1 {
-
         font-size: 43px;
-
     }
 
     .regulamin-hero p {
-
         font-size: 14px;
-
     }
 
     .regulamin-section {
-
         padding: 35px 0 80px;
-
     }
 
     .regulamin-layout {
-
         display: flex !important;
 
         flex-direction: column;
@@ -850,15 +705,15 @@ body {
         align-items: stretch;
 
         gap: 22px;
-
     }
 
-    /* Przyklejony spis treści również na telefonie */
+    /*
+       Spis treści pozostaje przyklejony
+       również podczas przewijania telefonu.
+    */
 
     .rules-sidebar {
-
         position: -webkit-sticky !important;
-
         position: sticky !important;
 
         top: 88px !important;
@@ -867,10 +722,9 @@ body {
 
         width: 100%;
 
-        max-height: min(35vh, 260px);
+        max-height: min(38vh, 280px);
 
         overflow-x: hidden;
-
         overflow-y: auto;
 
         padding: 14px;
@@ -882,99 +736,73 @@ body {
         border-radius: 10px;
 
         -webkit-backdrop-filter: blur(12px);
-
         backdrop-filter: blur(12px);
-
     }
 
     .sidebar-title {
-
         padding-bottom: 11px;
 
         margin-bottom: 7px;
-
     }
 
     .section-link {
-
         padding: 10px;
 
         margin: 2px 0;
 
         font-size: 11px;
-
     }
 
     .sidebar-note {
-
         display: none;
-
     }
 
     .regulamin-content {
-
         gap: 18px;
-
     }
 
     .rule-section {
-
-        padding: 23px 20px;
+        padding: 22px 19px;
 
         scroll-margin-top: 105px;
-
     }
 
     .rule-section h2 {
-
         font-size: 21px;
-
     }
 
     .section-intro {
-
-        font-size: 12px;
-
         margin-bottom: 18px;
 
+        font-size: 12px;
     }
 
     .plain-rules > li {
-
         grid-template-columns: 42px minmax(0, 1fr);
 
         gap: 9px;
 
+        padding: 11px 0 !important;
+
         font-size: 12.5px;
 
         line-height: 1.8;
-
-        padding: 11px 0 !important;
-
     }
 
     .plain-rules > li::before {
-
         font-size: 11px;
-
     }
 
     .seller-details {
-
-        padding: 18px;
-
+        padding-top: 17px;
     }
 
     #topBtn {
-
         width: 45px;
-
         height: 45px;
 
         right: 18px;
-
         bottom: 18px;
-
     }
 
 }
@@ -987,39 +815,29 @@ body {
 @media (max-width: 400px) {
 
     .regulamin-hero h1 {
-
         font-size: 36px;
-
     }
 
     .regulamin-hero .hero-small-label {
-
         font-size: 9px;
 
         letter-spacing: 1.3px;
-
     }
 
     .rule-section {
-
         padding: 20px 16px;
-
     }
 
     .rule-section h2 {
-
         font-size: 19px;
-
     }
 
     .plain-rules > li {
-
         grid-template-columns: 39px minmax(0, 1fr);
 
         gap: 8px;
 
         font-size: 12px;
-
     }
 
 }
@@ -1032,21 +850,17 @@ body {
 @media (prefers-reduced-motion: reduce) {
 
     html {
-
         scroll-behavior: auto;
-
     }
 
     *,
     *::before,
     *::after {
-
         animation-duration: .01ms !important;
 
         animation-iteration-count: 1 !important;
 
         transition-duration: .01ms !important;
-
     }
 
 }
