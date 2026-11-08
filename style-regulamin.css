@@ -1,2881 +1,61 @@
+
+/* =====================================================
+   POLSKIEMC.PL
+   REGULAMIN — STYLE
+===================================================== */
+
+
 /* =====================================================
    ZMIENNE
 ===================================================== */
 
 :root {
 
-    --red: #b9173a;
-    --red-light: #d61841;
-    --red-dark: #83182f;
-    --red-soft: #ef527c;
+    --rules-red: #d61841;
+    --rules-red-dark: #b9173a;
+    --rules-red-light: #ef7894;
 
-    --black: #050505;
-    --bg: #090909;
-    --bg-2: #0d0d0d;
-    --card: #131313;
+    --rules-bg: #090909;
+    --rules-card: #121212;
 
-    --white: #ffffff;
-    --text: #d6d6d6;
-    --muted: #929292;
+    --rules-text: #d6d6d6;
+    --rules-muted: #888888;
 
-    --border: rgba(255, 255, 255, 0.08);
+    --rules-border: rgba(255,255,255,.08);
 
 }
 
 
 /* =====================================================
-   RESET
-====================================================== */
+   RESET I PODSTAWY
+===================================================== */
 
-* {
-
-    margin: 0;
-    padding: 0;
+.regulamin-hero *,
+.regulamin-section *,
+.rules-sidebar *,
+.regulamin-content * {
 
     box-sizing: border-box;
 
 }
 
-
 html {
 
     scroll-behavior: smooth;
 
-    scroll-padding-top: 90px;
-
-    overflow-y: scroll;
+    scroll-padding-top: 105px;
 
 }
-
 
 body {
 
-    font-family:
-        'Montserrat',
-        sans-serif;
-
-    background:
-        var(--bg);
-
-    color:
-        var(--white);
-
-    overflow-x: hidden;
-
-}
-
-
-a {
-
-    color: inherit;
-
-    text-decoration: none;
-
-}
-
-
-button {
-
-    font-family: inherit;
+    overflow-x: clip;
 
 }
 
 
 /* =====================================================
-   GLOBAL CONTAINER
-===================================================== */
-
-.container {
-
-    width: 90%;
-
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-}
-
-
-/* =====================================================
-   NAVBAR
-===================================================== */
-
-.navbar {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 80px;
-
-    z-index: 9999;
-
-    display: flex;
-
-    align-items: center;
-
-    background:
-        rgba(5, 5, 5, 0.95);
-
-    border-bottom:
-        1px solid
-        rgba(255, 255, 255, 0.07);
-
-    box-shadow:
-        0 10px 35px
-        rgba(0, 0, 0, 0.35);
-
-}
-
-
-.nav-container {
-
-    width: 90%;
-
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-}
-
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-.logo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-    font-size: 22px;
-
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    color:
-        #ffffff;
-
-    transition:
-        0.3s ease;
-
-}
-
-
-.logo img {
-
-    width: 60px;
-    height: 60px;
-
-    object-fit: contain;
-
-}
-
-
-.logo:hover {
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
-
-.menu {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 32px;
-
-}
-
-
-.menu a {
-
-    position: relative;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    color:
-        #ffffff;
-
-    transition:
-        color 0.3s ease;
-
-}
-
-
-.menu a::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-
-    bottom: -9px;
-
-    width: 0;
-
-    height: 2px;
-
-    transform:
-        translateX(-50%);
-
-    background:
-        var(--red);
-
-    border-radius:
-        10px;
-
-    transition:
-        0.3s ease;
-
-}
-
-
-/* =====================================================
-   AKTYWNA PODSTRONA
-===================================================== */
-
-.menu a.active {
-
-    color:
-        var(--red);
-
-}
-
-
-.menu a.active::after {
-
-    width:
-        100%;
-
-}
-
-
-/* =====================================================
-   HOVER
-===================================================== */
-
-.menu a:hover {
-
-    color:
-        var(--red);
-
-}
-
-
-.menu a:hover::after {
-
-    width:
-        100%;
-
-}
-
-
-/* =====================================================
-   HAMBURGER
-===================================================== */
-
-.hamburger {
-
-    display: none;
-
-    width: 32px;
-
-    cursor: pointer;
-
-    flex-direction: column;
-
-    gap: 6px;
-
-    z-index: 10001;
-
-}
-
-
-.hamburger span {
-
-    display: block;
-
-    width: 100%;
-    height: 3px;
-
-    background:
-        #ffffff;
-
-    border-radius:
-        20px;
-
-    transition:
-        0.3s ease;
-
-}
-
-
-.hamburger.active span:nth-child(1) {
-
-    transform:
-        translateY(9px)
-        rotate(45deg);
-
-}
-
-
-.hamburger.active span:nth-child(2) {
-
-    opacity:
-        0;
-
-}
-
-
-.hamburger.active span:nth-child(3) {
-
-    transform:
-        translateY(-9px)
-        rotate(-45deg);
-
-}
-
-
-/* =====================================================
-   HERO REGULAMINU
-===================================================== */
-
-.regulamin-hero {
-
-    position: relative;
-
-    min-height: 55vh;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    overflow: hidden;
-
-    padding:
-        140px 20px 100px;
-
-    background:
-        #050505;
-
-}
-
-
-.regulamin-hero::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 500px;
-    height: 500px;
-
-    left: 50%;
-    top: 45%;
-
-    transform:
-        translate(-50%, -50%);
-
-    border-radius:
-        50%;
-
-    background:
-        rgba(185, 23, 58, 0.06);
-
-    filter:
-        blur(90px);
-
-    pointer-events:
-        none;
-
-}
-
-
-.regulamin-hero::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    height: 1px;
-
-    background:
-        rgba(255, 255, 255, 0.06);
-
-    pointer-events:
-        none;
-
-}
-
-
-.regulamin-hero-content {
-
-    position: relative;
-
-    z-index: 2;
-
-    max-width:
-        850px;
-
-    margin:
-        0 auto;
-
-}
-
-
-/* =====================================================
-   MAŁA ETYKIETA HERO
-===================================================== */
-
-.hero-small-label {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin-bottom:
-        22px;
-
-    padding:
-        8px 15px;
-
-    border:
-        1px solid
-        rgba(239, 82, 124, 0.2);
-
-    border-radius:
-        30px;
-
-    background:
-        rgba(239, 82, 124, 0.06);
-
-    color:
-        #ef9ab0;
-
-    font-size:
-        10px;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        2px;
-
-}
-
-
-/* =====================================================
-   HERO TYTUŁ
-===================================================== */
-
-.regulamin-hero h1 {
-
-    font-size:
-        clamp(45px, 6vw, 72px);
-
-    line-height:
-        1.05;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        -2px;
-
-}
-
-
-.regulamin-hero h1 span {
-
-    color:
-        var(--red);
-
-}
-
-
-.regulamin-hero p {
-
-    max-width:
-        650px;
-
-    margin:
-        25px auto 0;
-
-    color:
-        #929292;
-
-    font-size:
-        15px;
-
-    line-height:
-        1.8;
-
-}
-
-
-/* =====================================================
-   REGULAMIN — GŁÓWNA SEKCJA
-===================================================== */
-
-.regulamin-section {
-
-    position:
-        relative;
-
-    padding:
-        80px 0 120px;
-
-    background:
-        var(--bg);
-
-}
-
-
-.regulamin-wrapper {
-
-    max-width:
-        1000px;
-
-    margin:
-        0 auto;
-
-}
-
-
-/* =====================================================
-   KARTA REGULAMINU
-===================================================== */
-
-.rules-card {
-
-    --accent:
-        #b9173a;
-
-    --accent-light:
-        #ef527c;
-
-    --accent-dark:
-        #83182f;
-
-    position:
-        relative;
-
-    margin-bottom:
-        25px;
-
-    padding:
-        38px 40px;
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.07);
-
-    border-radius:
-        25px;
-
-    background:
-        var(--card);
-
-    box-shadow:
-        0 25px 60px
-        rgba(0, 0, 0, 0.25);
-
-    overflow:
-        hidden;
-
-    transition:
-        0.4s ease;
-
-}
-
-
-/* =====================================================
-   KOLORY POSZCZEGÓLNYCH SEKCJI
-===================================================== */
-
-/* POSTANOWIENIA OGÓLNE */
-
-.rules-card:nth-child(1) {
-
-    --accent:
-        #b9173a;
-
-    --accent-light:
-        #ef527c;
-
-    --accent-dark:
-        #83182f;
-
-}
-
-
-/* DISCORD */
-
-.rules-card:nth-child(2) {
-
-    --accent:
-        #5865f2;
-
-    --accent-light:
-        #7289da;
-
-    --accent-dark:
-        #404eed;
-
-}
-
-
-/* MINECRAFT */
-
-.rules-card:nth-child(3) {
-
-    --accent:
-        #10b981;
-
-    --accent-light:
-        #34d399;
-
-    --accent-dark:
-        #059669;
-
-}
-
-
-/* TRAPY EARTH SMP */
-
-.rules-card:nth-child(4) {
-
-    --accent:
-        #f59e0b;
-
-    --accent-light:
-        #fbbf24;
-
-    --accent-dark:
-        #d97706;
-
-}
-
-
-/* =====================================================
-   POŚWIATA KARTY
-===================================================== */
-
-.rules-card::before {
-
-    content: "";
-
-    position:
-        absolute;
-
-    top:
-        -100px;
-
-    right:
-        -100px;
-
-    width:
-        250px;
-
-    height:
-        250px;
-
-    border-radius:
-        50%;
-
-    background:
-        color-mix(
-            in srgb,
-            var(--accent) 9%,
-            transparent
-        );
-
-    filter:
-        blur(55px);
-
-    pointer-events:
-        none;
-
-}
-
-
-/* =====================================================
-   GÓRNA LINIA KARTY
-===================================================== */
-
-.rules-card::after {
-
-    content: "";
-
-    position:
-        absolute;
-
-    top:
-        0;
-
-    left:
-        0;
-
-    width:
-        100%;
-
-    height:
-        3px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--accent),
-            var(--accent-light),
-            transparent
-        );
-
-    pointer-events:
-        none;
-
-}
-
-
-/* =====================================================
-   HOVER
-===================================================== */
-
-.rules-card:hover {
-
-    transform:
-        translateY(-4px);
-
-    border-color:
-        color-mix(
-            in srgb,
-            var(--accent) 40%,
-            rgba(255, 255, 255, 0.08)
-        );
-
-    box-shadow:
-        0 30px 70px
-        rgba(0, 0, 0, 0.4),
-        0 0 30px
-        color-mix(
-            in srgb,
-            var(--accent) 8%,
-            transparent
-        );
-
-}
-
-
-/* =====================================================
-   NAGŁÓWEK KARTY
-===================================================== */
-
-.rules-heading {
-
-    position:
-        relative;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        17px;
-
-    margin-bottom:
-        28px;
-
-}
-
-
-.rules-heading-icon {
-
-    width:
-        52px;
-
-    height:
-        52px;
-
-    flex-shrink:
-        0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        15px;
-
-    background:
-        color-mix(
-            in srgb,
-            var(--accent) 10%,
-            transparent
-        );
-
-    border:
-        1px solid
-        color-mix(
-            in srgb,
-            var(--accent) 25%,
-            transparent
-        );
-
-    color:
-        var(--accent-light);
-
-    font-size:
-        22px;
-
-    font-weight:
-        800;
-
-    box-shadow:
-        0 0 20px
-        color-mix(
-            in srgb,
-            var(--accent) 5%,
-            transparent
-        );
-
-}
-
-
-.rules-heading-text h2 {
-
-    font-size:
-        25px;
-
-    line-height:
-        1.2;
-
-    font-weight:
-        800;
-
-}
-
-
-.rules-heading-text p {
-
-    margin-top:
-        5px;
-
-    color:
-        var(--accent-light);
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-
-    letter-spacing:
-        0.7px;
-
-}
-
-
-/* =====================================================
-   LINIA
-===================================================== */
-
-.rules-line {
-
-    width:
-        100%;
-
-    height:
-        1px;
-
-    margin-bottom:
-        25px;
-
-    background:
-        linear-gradient(
-            90deg,
-            color-mix(
-                in srgb,
-                var(--accent) 35%,
-                transparent
-            ),
-            rgba(255, 255, 255, 0.07),
-            transparent
-        );
-
-}
-
-
-/* =====================================================
-   LISTA REGULAMINU
-===================================================== */
-
-.rules-list {
-
-    list-style:
-        none;
-
-    counter-reset:
-        rules;
-
-}
-
-
-.rules-list li {
-
-    position:
-        relative;
-
-    display:
-        grid;
-
-    grid-template-columns:
-        42px 1fr;
-
-    gap:
-        15px;
-
-    counter-increment:
-        rules;
-
-    padding:
-        14px 0;
-
-    color:
-        #b8b8b8;
-
-    font-size:
-        14px;
-
-    line-height:
-        1.75;
-
-    font-weight:
-        500;
-
-    border-bottom:
-        1px solid
-        rgba(255, 255, 255, 0.045);
-
-}
-
-
-.rules-list li:last-child {
-
-    border-bottom:
-        none;
-
-    padding-bottom:
-        0;
-
-}
-
-
-.rules-list li::before {
-
-    content:
-        counter(rules);
-
-    width:
-        32px;
-
-    height:
-        32px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin-top:
-        1px;
-
-    border-radius:
-        10px;
-
-    background:
-        color-mix(
-            in srgb,
-            var(--accent) 11%,
-            transparent
-        );
-
-    border:
-        1px solid
-        color-mix(
-            in srgb,
-            var(--accent) 25%,
-            transparent
-        );
-
-    color:
-        var(--accent-light);
-
-    font-size:
-        11px;
-
-    font-weight:
-        800;
-
-}
-
-
-.rules-list li strong {
-
-    color:
-        #ffffff;
-
-    font-weight:
-        700;
-
-}
-
-
-/* =====================================================
-   WAŻNE OSTRZEŻENIE
-===================================================== */
-
-.rules-warning {
-
-    position:
-        relative;
-
-    display:
-        flex;
-
-    align-items:
-        flex-start;
-
-    gap:
-        18px;
-
-    margin-top:
-        30px;
-
-    padding:
-        23px 25px;
-
-    border:
-        1px solid
-        color-mix(
-            in srgb,
-            var(--accent) 28%,
-            transparent
-        );
-
-    border-radius:
-        18px;
-
-    background:
-        color-mix(
-            in srgb,
-            var(--accent) 7%,
-            transparent
-        );
-
-}
-
-
-.rules-warning-icon {
-
-    width:
-        42px;
-
-    height:
-        42px;
-
-    flex-shrink:
-        0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        12px;
-
-    background:
-        color-mix(
-            in srgb,
-            var(--accent) 12%,
-            transparent
-        );
-
-    border:
-        1px solid
-        color-mix(
-            in srgb,
-            var(--accent) 20%,
-            transparent
-        );
-
-    color:
-        var(--accent-light);
-
-    font-size:
-        18px;
-
-    font-weight:
-        800;
-
-}
-
-
-.rules-warning h3 {
-
-    margin-bottom:
-        5px;
-
-    color:
-        var(--accent-light);
-
-    font-size:
-        14px;
-
-    font-weight:
-        800;
-
-}
-
-
-.rules-warning p {
-
-    color:
-        #858585;
-
-    font-size:
-        12px;
-
-    line-height:
-        1.7;
-
-    font-weight:
-        500;
-
-}
-
-
-/* =====================================================
-   WAŻNE OSTRZEŻENIE
-===================================================== */
-
-.rules-warning {
-
-    position:
-        relative;
-
-    display:
-        flex;
-
-    align-items:
-        flex-start;
-
-    gap:
-        18px;
-
-    margin-top:
-        30px;
-
-    padding:
-        23px 25px;
-
-    border:
-        1px solid
-        rgba(239, 82, 124, 0.18);
-
-    border-radius:
-        18px;
-
-    background:
-        rgba(185, 23, 58, 0.055);
-
-}
-
-
-.rules-warning-icon {
-
-    width:
-        42px;
-
-    height:
-        42px;
-
-    flex-shrink:
-        0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        12px;
-
-    background:
-        rgba(185, 23, 58, 0.12);
-
-    color:
-        var(--red);
-
-    font-size:
-        18px;
-
-    font-weight:
-        800;
-
-}
-
-
-.rules-warning h3 {
-
-    margin-bottom:
-        5px;
-
-    color:
-        #ffffff;
-
-    font-size:
-        14px;
-
-}
-
-
-.rules-warning p {
-
-    color:
-        #858585;
-
-    font-size:
-        12px;
-
-    line-height:
-        1.7;
-
-}
-
-
-/* =====================================================
-   POWRÓT
-===================================================== */
-
-.rules-back {
-
-    display:
-        flex;
-
-    justify-content:
-        center;
-
-    margin-top:
-        45px;
-
-}
-
-
-.rules-back a {
-
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
-
-    padding:
-        13px 22px;
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.1);
-
-    border-radius:
-        12px;
-
-    background:
-        rgba(255, 255, 255, 0.03);
-
-    color:
-        #c8c8c8;
-
-    font-size:
-        12px;
-
-    font-weight:
-        800;
-
-    transition:
-        0.3s ease;
-
-}
-
-
-.rules-back a:hover {
-
-    transform:
-        translateY(-3px);
-
-    color:
-        #ffffff;
-
-    border-color:
-        rgba(185, 23, 58, 0.35);
-
-    background:
-        rgba(185, 23, 58, 0.07);
-
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-
-    padding:
-        70px 20px;
-
-    text-align:
-        center;
-
-    background:
-        #040404;
-
-    border-top:
-        1px solid
-        rgba(255, 255, 255, 0.05);
-
-}
-
-
-.footer-container {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr auto 1fr;
-
-    align-items:
-        center;
-
-    gap:
-        50px;
-
-}
-
-
-.footer-buttons {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        12px;
-
-}
-
-
-.footer-left {
-
-    align-items:
-        flex-start;
-
-}
-
-
-.footer-right {
-
-    align-items:
-        flex-end;
-
-}
-
-
-.footer-button {
-
-    width:
-        170px;
-
-    height:
-        44px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    gap:
-        10px;
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.08);
-
-    border-radius:
-        8px;
-
-    background:
-        rgba(255, 255, 255, 0.035);
-
-    color:
-        #bdbdbd;
-
-    font-size:
-        12px;
-
-    font-weight:
-        700;
-
-    letter-spacing:
-        0.5px;
-
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-
-}
-
-
-.footer-button span {
-
-    font-size:
-        15px;
-
-    line-height:
-        1;
-
-}
-
-
-.footer-button:hover {
-
-    transform:
-        translateY(-3px);
-
-    color:
-        #ffffff;
-
-}
-
-
-/* =====================================================
-   FOOTER — YOUTUBE
-===================================================== */
-
-.youtube-button:hover {
-
-    background:
-        rgba(255, 0, 0, 0.12);
-
-    border-color:
-        rgba(255, 0, 0, 0.35);
-
-    box-shadow:
-        0 8px 25px
-        rgba(255, 0, 0, 0.12);
-
-}
-
-
-/* =====================================================
-   FOOTER — DISCORD
-===================================================== */
-
-.discord-footer-button:hover {
-
-    background:
-        rgba(88, 101, 242, 0.12);
-
-    border-color:
-        rgba(88, 101, 242, 0.35);
-
-    box-shadow:
-        0 8px 25px
-        rgba(88, 101, 242, 0.12);
-
-}
-
-
-/* =====================================================
-   FOOTER — TIKTOK
-===================================================== */
-
-.tiktok-button:hover {
-
-    background:
-        rgba(255, 0, 174, 0.08);
-
-    border-color:
-        rgba(255, 0, 212, 0.22);
-
-    box-shadow:
-        0 8px 25px
-        rgba(236, 0, 165, 0.08);
-
-}
-
-
-/* =====================================================
-   FOOTER — MAPA
-===================================================== */
-
-.map-footer-button:hover {
-
-    background:
-        rgba(23, 185, 28, 0.12);
-
-    border-color:
-        rgba(23, 185, 63, 0.35);
-
-    box-shadow:
-        0 8px 25px
-        rgba(23, 185, 66, 0.12);
-
-}
-
-
-/* =====================================================
-   FOOTER CENTER
-===================================================== */
-
-.footer-center {
-
-    text-align:
-        center;
-
-    min-width:
-        330px;
-
-}
-
-
-.footer-logo {
-
-    margin-bottom:
-        12px;
-
-    font-size:
-        30px;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        3px;
-
-}
-
-
-.footer-logo span {
-
-    color:
-        var(--red);
-
-}
-
-
-.footer-center p {
-
-    margin-bottom:
-        12px;
-
-    color:
-        #666666;
-
-    font-size:
-        13px;
-
-}
-
-
-.footer-note {
-
-    max-width:
-        700px;
-
-    margin:
-        0 auto;
-
-    color:
-        #4f4f4f;
-
-    font-size:
-        10px;
-
-    line-height:
-        1.6;
-
-}
-
-
-/* =====================================================
-   TOP BUTTON
-===================================================== */
-
-#topBtn {
-
-    position:
-        fixed;
-
-    right:
-        25px;
-
-    bottom:
-        25px;
-
-    width:
-        50px;
-
-    height:
-        50px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    opacity:
-        0;
-
-    visibility:
-        hidden;
-
-    border:
-        none;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--red);
-
-    color:
-        #ffffff;
-
-    font-size:
-        20px;
-
-    cursor:
-        pointer;
-
-    z-index:
-        5000;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0, 0, 0, 0.4);
-
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease,
-        transform 0.3s ease,
-        background 0.3s ease;
-
-}
-
-
-#topBtn.show {
-
-    opacity:
-        1;
-
-    visibility:
-        visible;
-
-}
-
-
-#topBtn:hover {
-
-    background:
-        var(--red-light);
-
-    transform:
-        scale(1.1);
-
-}
-
-
-/* =====================================================
-   ANIMACJE
-===================================================== */
-
-.scroll-animation {
-
-    opacity:
-        0;
-
-    transform:
-        translateY(35px);
-
-    transition:
-        opacity 0.8s cubic-bezier(.25, 1, .5, 1),
-        transform 0.8s cubic-bezier(.25, 1, .5, 1);
-
-}
-
-
-.scroll-animation.visible {
-
-    opacity:
-        1;
-
-    transform:
-        translateY(0);
-
-}
-
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-@media (max-width: 800px) {
-
-    .navbar {
-
-        height:
-            75px;
-
-    }
-
-
-    .hamburger {
-
-        display:
-            flex;
-
-    }
-
-
-    .menu {
-
-        position:
-            fixed;
-
-        top:
-            75px;
-
-        right:
-            -100%;
-
-        width:
-            100%;
-
-        height:
-            calc(100vh - 75px);
-
-        display:
-            flex;
-
-        flex-direction:
-            column;
-
-        align-items:
-            center;
-
-        justify-content:
-            flex-start;
-
-        padding-top:
-            45px;
-
-        gap:
-            30px;
-
-        background:
-            rgba(7, 7, 7, 0.98);
-
-        transition:
-            right 0.35s ease;
-
-    }
-
-
-    .menu.active {
-
-        right:
-            0;
-
-    }
-
-
-    .menu a {
-
-        font-size:
-            21px;
-
-    }
-
-
-    .menu a::after {
-
-        bottom:
-            -7px;
-
-    }
-
-
-    .regulamin-hero {
-
-        min-height:
-            50vh;
-
-        padding:
-            125px 20px 80px;
-
-    }
-
-
-    .regulamin-hero h1 {
-
-        font-size:
-            43px;
-
-    }
-
-
-    .regulamin-hero p {
-
-        font-size:
-            14px;
-
-    }
-
-
-    .regulamin-section {
-
-        padding:
-            65px 0 90px;
-
-    }
-
-
-    .rules-card {
-
-        padding:
-            30px 24px;
-
-        border-radius:
-            21px;
-
-    }
-
-
-    .rules-heading {
-
-        align-items:
-            flex-start;
-
-    }
-
-
-    .rules-heading-icon {
-
-        width:
-            47px;
-
-        height:
-            47px;
-
-        font-size:
-            19px;
-
-    }
-
-
-    .rules-heading-text h2 {
-
-        font-size:
-            21px;
-
-    }
-
-
-    .rules-list li {
-
-        grid-template-columns:
-            35px 1fr;
-
-        gap:
-            11px;
-
-        font-size:
-            13px;
-
-        line-height:
-            1.7;
-
-    }
-
-
-    .rules-list li::before {
-
-        width:
-            29px;
-
-        height:
-            29px;
-
-        font-size:
-            10px;
-
-    }
-
-
-    .rules-warning {
-
-        gap:
-            13px;
-
-        padding:
-            20px;
-
-    }
-
-
-    .footer-container {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            30px;
-
-    }
-
-
-    .footer-center {
-
-        order:
-            1;
-
-        min-width:
-            0;
-
-        width:
-            100%;
-
-    }
-
-
-    .footer-left {
-
-        order:
-            2;
-
-        align-items:
-            center;
-
-    }
-
-
-    .footer-right {
-
-        order:
-            3;
-
-        align-items:
-            center;
-
-    }
-
-
-    .footer-buttons {
-
-        width:
-            100%;
-
-    }
-
-
-    .footer-button {
-
-        width:
-            100%;
-
-        max-width:
-            300px;
-
-        margin:
-            0 auto;
-
-    }
-
-}
-
-
-/* =====================================================
-   MAŁE TELEFONY
-===================================================== */
-
-@media (max-width: 550px) {
-
-    .container,
-    .nav-container {
-
-        width:
-            92%;
-
-    }
-
-
-    .logo {
-
-        font-size:
-            19px;
-
-    }
-
-
-    .logo img {
-
-        width:
-            35px;
-
-        height:
-            35px;
-
-    }
-
-
-    .regulamin-hero h1 {
-
-        font-size:
-            37px;
-
-        letter-spacing:
-            -1px;
-
-    }
-
-
-    .hero-small-label {
-
-        font-size:
-            9px;
-
-        letter-spacing:
-            1.3px;
-
-    }
-
-
-    .rules-card {
-
-        padding:
-            25px 19px;
-
-    }
-
-
-    .rules-heading {
-
-        gap:
-            12px;
-
-    }
-
-
-    .rules-heading-icon {
-
-        width:
-            43px;
-
-        height:
-            43px;
-
-        border-radius:
-            13px;
-
-    }
-
-
-    .rules-heading-text h2 {
-
-        font-size:
-            19px;
-
-    }
-
-
-    .rules-heading-text p {
-
-        font-size:
-            10px;
-
-    }
-
-
-    .rules-list li {
-
-        grid-template-columns:
-            31px 1fr;
-
-        gap:
-            9px;
-
-        padding:
-            12px 0;
-
-        font-size:
-            12.5px;
-
-    }
-
-
-    .rules-list li::before {
-
-        width:
-            27px;
-
-        height:
-            27px;
-
-        border-radius:
-            8px;
-
-    }
-
-
-    .rules-warning {
-
-        flex-direction:
-            column;
-
-    }
-
-
-    .rules-warning-icon {
-
-        width:
-            40px;
-
-        height:
-            40px;
-
-    }
-
-
-    #topBtn {
-
-        width:
-            45px;
-
-        height:
-            45px;
-
-        right:
-            18px;
-
-        bottom:
-            18px;
-
-    }
-
-}
-
-
-/* =====================================================
-   BARDZO MAŁE TELEFONY
-===================================================== */
-
-@media (max-width: 370px) {
-
-    .regulamin-hero h1 {
-
-        font-size:
-            33px;
-
-    }
-
-
-    .rules-heading-text h2 {
-
-        font-size:
-            17px;
-
-    }
-
-
-    .rules-list li {
-
-        font-size:
-            12px;
-
-    }
-
-}
-
-
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-
-        scroll-behavior:
-            auto;
-
-    }
-
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration:
-            0.01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            0.01ms !important;
-
-    }
-
-}
-
-
-
-/* =====================================================
-   NOWY UKŁAD REGULAMINU — PROSTY TEKST + SPIS TREŚCI
-   Nawigacja i stopka korzystają z dotychczasowych stylów.
-===================================================== */
-
-.regulamin-page-header {
-    padding: 155px 0 55px;
-    background: #050505;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-}
-
-.regulamin-page-header .container {
-    max-width: 1200px;
-}
-
-.page-eyebrow {
-    color: var(--red-light);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 17px;
-}
-
-.regulamin-page-header h1 {
-    font-size: clamp(38px, 5vw, 58px);
-    line-height: 1.1;
-    font-weight: 800;
-    letter-spacing: -1.8px;
-}
-
-.regulamin-page-header > .container > p {
-    max-width: 680px;
-    margin-top: 18px;
-    color: #a0a0a0;
-    font-size: 14px;
-    line-height: 1.8;
-}
-
-.page-meta {
-    margin-top: 23px;
-    color: #666;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.regulamin-section {
-    padding: 65px 0 110px;
-    background: var(--bg);
-}
-
-.regulamin-layout {
-    display: grid;
-    grid-template-columns: 245px minmax(0, 1fr);
-    align-items: start;
-    gap: 65px;
-    max-width: 1200px;
-}
-
-.rules-sidebar {
-    position: sticky;
-    top: 110px;
-    padding: 5px 0 0;
-}
-
-.sidebar-title {
-    margin-bottom: 17px;
-    color: #777;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1.7px;
-}
-
-.section-link {
-    display: block;
-    padding: 12px 13px;
-    margin: 3px 0;
-    border-left: 2px solid transparent;
-    color: #929292;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.5;
-    transition: .2s ease;
-}
-
-.section-link:hover {
-    color: #fff;
-}
-
-.section-link.active {
-    color: #fff;
-    border-left-color: var(--red-light);
-    background: rgba(214,24,65,.07);
-}
-
-.sidebar-note {
-    margin-top: 25px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255,255,255,.07);
-    color: #666;
-    font-size: 11px;
-    line-height: 1.8;
-}
-
-.regulamin-content {
-    min-width: 0;
-}
-
-.rule-section {
-    padding: 0 0 48px;
-    margin: 0 0 48px;
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    scroll-margin-top: 110px;
-}
-
-.rule-section:last-of-type {
-    margin-bottom: 0;
-}
-
-.section-number {
-    margin-bottom: 12px;
-    color: var(--red-light);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-}
-
-.rule-section h2 {
-    color: #fff;
-    font-size: 25px;
-    line-height: 1.35;
-    font-weight: 800;
-    letter-spacing: -.5px;
-}
-
-.section-intro {
-    margin: 10px 0 24px;
-    color: #858585;
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-.plain-rules {
-    padding-left: 23px;
-    color: #bcbcbc;
-}
-
-.plain-rules li {
-    padding: 0 0 13px 7px;
-    margin-bottom: 13px;
-    border-bottom: 1px solid rgba(255,255,255,.045);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.85;
-}
-
-.plain-rules li:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: 0;
-}
-
-.plain-rules li::marker {
-    color: var(--red-light);
-    font-size: 11px;
-    font-weight: 800;
-}
-
-.plain-rules a,
-.seller-details a {
-    color: #ef7894;
-    text-decoration: underline;
-    text-decoration-color: rgba(239,120,148,.35);
-    text-underline-offset: 3px;
-}
-
-.plain-rules a:hover,
-.seller-details a:hover {
-    color: #fff;
-}
-
-.seller-details {
-    margin-top: 30px;
-    padding: 22px 24px;
-    border-left: 2px solid var(--red);
-    background: rgba(255,255,255,.025);
-}
-
-.seller-details h3 {
-    margin-bottom: 12px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 800;
-}
-
-.seller-details p {
-    margin: 5px 0;
-    color: #999;
-    font-size: 12px;
-    line-height: 1.8;
-}
-
-.seller-details strong {
-    color: #ddd;
-}
-
-.rules-back {
-    justify-content: flex-start;
-    margin-top: 38px;
-}
-
-@media (max-width: 900px) {
-    .regulamin-layout {
-        grid-template-columns: 205px minmax(0, 1fr);
-        gap: 35px;
-    }
-}
-
-@media (max-width: 700px) {
-    .regulamin-page-header {
-        padding: 125px 0 40px;
-    }
-
-    .regulamin-page-header h1 {
-        font-size: 39px;
-    }
-
-    .regulamin-section {
-        padding: 35px 0 75px;
-    }
-
-    .regulamin-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 35px;
-    }
-
-    .rules-sidebar {
-        position: static;
-        width: 100%;
-        padding: 17px;
-        border: 1px solid rgba(255,255,255,.07);
-        background: #101010;
-    }
-
-    .sidebar-title {
-        margin-bottom: 10px;
-    }
-
-    .section-link {
-        padding: 10px 12px;
-    }
-
-    .sidebar-note {
-        margin-top: 13px;
-        padding-top: 12px;
-    }
-
-    .rule-section {
-        padding-bottom: 35px;
-        margin-bottom: 35px;
-        scroll-margin-top: 90px;
-    }
-
-    .rule-section h2 {
-        font-size: 22px;
-    }
-
-    .plain-rules li {
-        font-size: 12.5px;
-        line-height: 1.8;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .section-link {
-        transition: none;
-    }
-}
-
-
-/* =====================================================
-   DODATKOWY UKŁAD — RAMKI I PRZYKLEJONY SPIS TREŚCI
-===================================================== */
-
-/* Górna część strony — przywrócony, wyraźny nagłówek regulaminu */
-.regulamin-page-header {
-    position: relative;
-    padding: 145px 0 58px;
-    background:
-        radial-gradient(ellipse at 12% 15%, rgba(214,24,65,.13), transparent 42%),
-        linear-gradient(180deg, #101010 0%, #090909 100%);
-    border-bottom: 1px solid rgba(255,255,255,.07);
-}
-
-.regulamin-page-header > .container {
-    position: relative;
-    padding: 32px 36px;
-    border: 1px solid rgba(255,255,255,.09);
-    border-left: 3px solid var(--red-light);
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(24,24,24,.98), rgba(14,14,14,.96));
-    box-shadow: 0 18px 55px rgba(0,0,0,.28);
-}
-
-.regulamin-page-header .page-eyebrow {
-    display: inline-block;
-    margin-bottom: 15px;
-    padding: 7px 11px;
-    border: 1px solid rgba(214,24,65,.25);
-    border-radius: 5px;
-    background: rgba(214,24,65,.08);
-    color: #ef7894;
-}
-
-.regulamin-page-header h1 {
-    font-size: clamp(38px, 5vw, 54px);
-    letter-spacing: -1.5px;
-}
-
-.regulamin-page-header > .container > p {
-    max-width: 720px;
-    margin-top: 13px;
-    color: #aaa;
-    font-size: 13px;
-}
-
-.page-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 22px;
-    padding: 9px 12px;
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 6px;
-    background: rgba(255,255,255,.035);
-    color: #aaa;
-    font-size: 11px;
-}
-
-.page-meta::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    flex: 0 0 7px;
-    border-radius: 50%;
-    background: var(--red-light);
-    box-shadow: 0 0 10px rgba(214,24,65,.6);
-}
-
-/* Ramka całego obszaru regulaminu */
-.regulamin-section {
-    padding: 48px 0 100px;
-}
-
-.regulamin-layout {
-    grid-template-columns: 255px minmax(0, 1fr);
-    gap: 34px;
-    align-items: start;
-}
-
-/* Spis treści ma pozostać przy użytkowniku podczas przewijania */
-.rules-sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 102px;
-    align-self: start;
-    max-height: calc(100vh - 122px);
-    overflow-y: auto;
-    padding: 20px 16px;
-    border: 1px solid rgba(255,255,255,.09);
-    border-radius: 10px;
-    background: linear-gradient(160deg, #151515, #0e0e0e);
-    box-shadow: 0 12px 35px rgba(0,0,0,.2);
-    scrollbar-width: thin;
-    scrollbar-color: rgba(214,24,65,.45) transparent;
-}
-
-.rules-sidebar::-webkit-scrollbar {
-    width: 4px;
-}
-
-.rules-sidebar::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: rgba(214,24,65,.45);
-}
-
-.sidebar-title {
-    padding: 0 10px 13px;
-    border-bottom: 1px solid rgba(255,255,255,.07);
-    color: #aaa;
-}
-
-.section-link {
-    padding: 12px 11px;
-    margin: 5px 0;
-    border: 1px solid transparent;
-    border-left: 2px solid transparent;
-    border-radius: 6px;
-}
-
-.section-link.active {
-    border-color: rgba(214,24,65,.16);
-    border-left-color: var(--red-light);
-    background: rgba(214,24,65,.10);
-    color: #fff;
-}
-
-.sidebar-note {
-    margin: 15px 7px 0;
-    padding: 14px 0 0;
-}
-
-/* Każdy rozdział jako osobna ramka */
-.regulamin-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.rule-section {
-    position: relative;
-    padding: 27px 29px 28px;
-    margin: 0;
-    border: 1px solid rgba(255,255,255,.09);
-    border-radius: 11px;
-    background: linear-gradient(145deg, #151515 0%, #101010 100%);
-    box-shadow: 0 12px 32px rgba(0,0,0,.16);
-    scroll-margin-top: 112px;
-}
-
-.rule-section:last-of-type {
-    margin-bottom: 0;
-}
-
-.rule-section h2 {
-    font-size: 23px;
-}
-
-.section-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 37px;
-    height: 25px;
-    padding: 0 8px;
-    margin-bottom: 12px;
-    border: 1px solid rgba(214,24,65,.25);
-    border-radius: 5px;
-    background: rgba(214,24,65,.09);
-    color: #ef7894;
-}
-
-.section-intro {
-    margin-bottom: 22px;
-}
-
-/* Poszczególne punkty również są czytelnie oddzielone */
-.plain-rules {
-    padding-left: 25px;
-}
-
-.plain-rules li {
-    padding: 11px 13px 11px 12px;
-    margin: 0 0 8px;
-    border: 1px solid rgba(255,255,255,.055);
-    border-radius: 6px;
-    background: rgba(255,255,255,.018);
-    line-height: 1.75;
-}
-
-.plain-rules li:last-child {
-    padding-bottom: 11px;
-    border-bottom: 1px solid rgba(255,255,255,.055);
-}
-
-.plain-rules li::marker {
-    color: var(--red-light);
-}
-
-.seller-details {
-    border: 1px solid rgba(214,24,65,.18);
-    border-left: 3px solid var(--red);
-    border-radius: 8px;
-    background: rgba(214,24,65,.045);
-}
-
-.rules-back {
-    padding: 18px 22px;
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 8px;
-    background: #121212;
-}
-
-/* Zachowaj przyklejony spis również na mniejszych ekranach */
-@media (max-width: 900px) {
-    .regulamin-layout {
-        grid-template-columns: 220px minmax(0, 1fr);
-        gap: 20px;
-    }
-
-    .rule-section {
-        padding: 23px 21px;
-    }
-}
-
-@media (max-width: 700px) {
-    .regulamin-page-header {
-        padding: 112px 0 35px;
-    }
-
-    .regulamin-page-header > .container {
-        padding: 25px 21px;
-    }
-
-    .regulamin-page-header h1 {
-        font-size: 37px;
-    }
-
-    .regulamin-section {
-        padding: 28px 0 70px;
-    }
-
-    .regulamin-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 22px;
-    }
-
-    .rules-sidebar {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 88px;
-        z-index: 50;
-        width: 100%;
-        max-height: min(42vh, 310px);
-        overflow-y: auto;
-        padding: 13px 14px;
-        background: rgba(17,17,17,.97);
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
-    }
-
-    .section-link {
-        padding: 9px 10px;
-    }
-
-    .rule-section {
-        padding: 21px 17px;
-        scroll-margin-top: 105px;
-    }
-
-    .rule-section h2 {
-        font-size: 20px;
-    }
-
-    .plain-rules {
-        padding-left: 22px;
-    }
-
-    .plain-rules li {
-        padding: 10px 10px 10px 9px;
-        font-size: 12.5px;
-    }
-}
-
-/* =====================================================
-   HERO REGULAMINU — STYL STRONY REKRUTACJI
+   HERO
 ===================================================== */
 
 .regulamin-hero {
@@ -2916,7 +96,7 @@ footer {
 
     border-radius: 50%;
 
-    background: rgba(185, 23, 58, 0.06);
+    background: rgba(185,23,58,.07);
 
     filter: blur(90px);
 
@@ -2936,7 +116,7 @@ footer {
     width: 100%;
     height: 1px;
 
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255,255,255,.06);
 
     pointer-events: none;
 
@@ -2947,6 +127,8 @@ footer {
     position: relative;
 
     z-index: 2;
+
+    width: 100%;
 
     max-width: 850px;
 
@@ -2966,11 +148,11 @@ footer {
 
     padding: 8px 15px;
 
-    border: 1px solid rgba(239, 82, 124, 0.2);
+    border: 1px solid rgba(239,82,124,.2);
 
     border-radius: 30px;
 
-    background: rgba(239, 82, 124, 0.06);
+    background: rgba(239,82,124,.06);
 
     color: #ef9ab0;
 
@@ -2983,6 +165,10 @@ footer {
 }
 
 .regulamin-hero h1 {
+
+    margin: 0;
+
+    color: #ffffff;
 
     font-size: clamp(45px, 6vw, 72px);
 
@@ -3010,44 +196,47 @@ footer {
 
 
 /* =====================================================
-   NAPRAWA STICKY SPISU TREŚCI
+   GŁÓWNA SEKCJA
 ===================================================== */
 
-/* Nie używamy hidden, ponieważ może blokować sticky */
+.regulamin-section {
 
-html,
-body {
+    position: relative;
 
-    overflow-x: clip;
+    padding: 65px 0 110px;
 
-}
-
-/* Rodzice spisu treści nie mogą ograniczać sticky */
-
-.regulamin-section,
-.regulamin-section > .container,
-.regulamin-layout,
-.regulamin-content {
+    background: var(--rules-bg);
 
     overflow: visible !important;
 
 }
 
-/* Układ regulaminu */
+.regulamin-section > .container {
 
-.regulamin-layout {
-
-    display: grid;
-
-    grid-template-columns: 270px minmax(0, 1fr);
-
-    align-items: stretch;
-
-    gap: 30px;
+    overflow: visible !important;
 
 }
 
-/* Przyklejony spis treści */
+.regulamin-layout {
+
+    display: grid !important;
+
+    grid-template-columns: 255px minmax(0, 1fr);
+
+    align-items: start !important;
+
+    gap: 45px;
+
+    max-width: 1200px;
+
+    overflow: visible !important;
+
+}
+
+
+/* =====================================================
+   SPIS TREŚCI
+===================================================== */
 
 .rules-sidebar {
 
@@ -3059,82 +248,806 @@ body {
 
     align-self: start !important;
 
+    width: 100%;
+
     height: fit-content;
 
     max-height: calc(100vh - 125px);
 
     overflow-y: auto;
 
-    z-index: 20;
+    overflow-x: hidden;
+
+    z-index: 100;
+
+    padding: 21px 16px;
+
+    background: #111111;
+
+    border: 1px solid rgba(255,255,255,.09);
+
+    border-radius: 10px;
+
+    box-shadow: 0 12px 35px rgba(0,0,0,.25);
 
     scrollbar-width: thin;
 
-    scrollbar-color: #b9173a transparent;
+    scrollbar-color: var(--rules-red) transparent;
 
 }
 
-/* Główna zawartość */
+.rules-sidebar::-webkit-scrollbar {
 
-.regulamin-content {
+    width: 4px;
 
-    min-width: 0;
+}
+
+.rules-sidebar::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+.rules-sidebar::-webkit-scrollbar-thumb {
+
+    background: var(--rules-red);
+
+    border-radius: 10px;
+
+}
+
+
+/* TYTUŁ SPISU */
+
+.sidebar-title {
+
+    padding: 0 9px 15px;
+
+    margin-bottom: 10px;
+
+    color: #888888;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.7px;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+
+}
+
+
+/* LINKI SPISU */
+
+.section-link {
+
+    display: block;
+
+    padding: 12px 10px;
+
+    margin: 3px 0;
+
+    border: 0;
+
+    border-left: 2px solid transparent;
+
+    border-radius: 0;
+
+    background: transparent;
+
+    color: #929292;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+
+    text-decoration: none;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+
+}
+
+.section-link:hover {
+
+    color: #ffffff;
+
+    background: rgba(255,255,255,.025);
+
+}
+
+.section-link.active {
+
+    color: #ffffff;
+
+    border-left-color: var(--rules-red);
+
+    background: rgba(214,24,65,.09);
+
+}
+
+
+/* INFORMACJA POD SPISem */
+
+.sidebar-note {
+
+    margin-top: 17px;
+
+    padding: 15px 9px 0;
+
+    border-top: 1px solid rgba(255,255,255,.07);
+
+    color: #777777;
+
+    font-size: 10px;
+
+    line-height: 1.7;
 
 }
 
 
 /* =====================================================
-   RESPONSYWNOŚĆ
+   TREŚĆ REGULAMINU
 ===================================================== */
 
-@media (max-width: 900px) {
+.regulamin-content {
+
+    display: block;
+
+    position: relative;
+
+    min-width: 0;
+
+    overflow: visible !important;
+
+}
+
+
+/* =====================================================
+   ROZDZIAŁY
+===================================================== */
+
+.rule-section {
+
+    position: relative;
+
+    display: block;
+
+    padding: 0 0 43px;
+
+    margin: 0 0 43px;
+
+    background: transparent;
+
+    border: 0;
+
+    border-bottom: 1px solid rgba(255,255,255,.09);
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    scroll-margin-top: 110px;
+
+}
+
+.rule-section:last-child {
+
+    margin-bottom: 0;
+
+    padding-bottom: 0;
+
+    border-bottom: 0;
+
+}
+
+
+/* NUMER ROZDZIAŁU */
+
+.section-number {
+
+    display: block;
+
+    width: fit-content;
+
+    padding: 0;
+
+    margin: 0 0 10px;
+
+    background: transparent;
+
+    border: 0;
+
+    color: var(--rules-red);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+/* TYTUŁ ROZDZIAŁU */
+
+.rule-section h2 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 25px;
+
+    line-height: 1.35;
+
+    font-weight: 800;
+
+    letter-spacing: -.5px;
+
+}
+
+
+/* OPIS ROZDZIAŁU */
+
+.section-intro {
+
+    margin: 10px 0 24px;
+
+    color: #858585;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    font-weight: 400;
+
+}
+
+
+/* =====================================================
+   NUMERACJA PUNKTÓW
+   FORMAT: 1.1 / 1.2 / 2.1 / 3.1...
+===================================================== */
+
+.plain-rules {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 0;
+
+    margin: 0;
+
+    list-style: none;
+
+    counter-reset: rule-number;
+
+    color: var(--rules-text);
+
+}
+
+
+/* NUMER SEKCJI */
+
+.plain-rules[data-section="1"] {
+
+    --section-number: "1";
+
+}
+
+.plain-rules[data-section="2"] {
+
+    --section-number: "2";
+
+}
+
+.plain-rules[data-section="3"] {
+
+    --section-number: "3";
+
+}
+
+.plain-rules[data-section="4"] {
+
+    --section-number: "4";
+
+}
+
+.plain-rules[data-section="5"] {
+
+    --section-number: "5";
+
+}
+
+
+/* POJEDYNCZY PUNKT */
+
+.plain-rules li {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 48px minmax(0, 1fr);
+
+    align-items: start;
+
+    gap: 12px;
+
+    counter-increment: rule-number;
+
+    width: 100%;
+
+    padding: 14px 0;
+
+    margin: 0;
+
+    color: #bcbcbc;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    line-height: 1.85;
+
+    background: transparent;
+
+    border: 0;
+
+    border-bottom: 1px solid rgba(255,255,255,.055);
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+}
+
+
+/* NUMER 1.1, 1.2, 2.1... */
+
+.plain-rules li::before {
+
+    content: var(--section-number) "." counter(rule-number);
+
+    display: block;
+
+    padding-top: 2px;
+
+    color: var(--rules-red-light);
+
+    color: #e04468;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+    line-height: 1.7;
+
+}
+
+
+/* OSTATNI PUNKT */
+
+.plain-rules li:last-child {
+
+    margin-bottom: 0;
+
+    padding-bottom: 0;
+
+    border-bottom: 0;
+
+}
+
+
+/* LINKI W REGULAMINIE */
+
+.plain-rules a,
+.seller-details a {
+
+    color: #ef7894;
+
+    text-decoration: underline;
+
+    text-decoration-color: rgba(239,120,148,.35);
+
+    text-underline-offset: 3px;
+
+    transition: color .2s ease;
+
+}
+
+.plain-rules a:hover,
+.seller-details a:hover {
+
+    color: #ffffff;
+
+}
+
+
+/* =====================================================
+   DANE ADMINISTRATORA SKLEPU
+===================================================== */
+
+.seller-details {
+
+    margin-top: 30px;
+
+    padding: 22px 24px;
+
+    background: rgba(255,255,255,.025);
+
+    border: 0;
+
+    border-left: 2px solid var(--rules-red);
+
+    border-radius: 0;
+
+}
+
+.seller-details h3 {
+
+    margin: 0 0 12px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+}
+
+.seller-details p {
+
+    margin: 5px 0;
+
+    color: #999999;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+}
+
+.seller-details strong {
+
+    color: #dddddd;
+
+}
+
+
+/* =====================================================
+   PRZYCISK POWROTU NA GÓRĘ
+===================================================== */
+
+#topBtn {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    width: 50px;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: var(--rules-red-dark);
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    z-index: 5000;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease,
+        transform .3s ease,
+        background .3s ease;
+
+}
+
+#topBtn.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+#topBtn:hover {
+
+    background: var(--rules-red);
+
+    transform: scale(1.1);
+
+}
+
+
+/* =====================================================
+   RESPONSYWNOŚĆ — TABLETY
+===================================================== */
+
+@media (max-width: 1000px) {
 
     .regulamin-layout {
 
-        display: flex;
+        grid-template-columns: 225px minmax(0, 1fr);
 
-        flex-direction: column;
-
-        gap: 25px;
-
-    }
-
-    .rules-sidebar {
-
-        position: sticky !important;
-
-        top: 88px !important;
-
-        width: 100%;
-
-        max-height: min(42vh, 310px);
-
-        overflow-y: auto;
-
-        z-index: 100;
+        gap: 28px;
 
     }
 
 }
 
-@media (max-width: 600px) {
+
+/* =====================================================
+   RESPONSYWNOŚĆ — TELEFONY
+===================================================== */
+
+@media (max-width: 800px) {
 
     .regulamin-hero {
 
-        min-height: 60vh;
+        min-height: 50vh;
 
-        padding: 130px 20px 80px;
+        padding: 125px 20px 80px;
 
     }
 
     .regulamin-hero h1 {
 
-        font-size: 45px;
+        font-size: 43px;
 
     }
 
     .regulamin-hero p {
 
-        font-size: 13px;
+        font-size: 14px;
+
+    }
+
+    .regulamin-section {
+
+        padding: 35px 0 80px;
+
+    }
+
+    .regulamin-layout {
+
+        display: flex !important;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 24px;
+
+    }
+
+
+    /* SPIS TREŚCI POZOSTAJE PRZYKLEJONY */
+
+    .rules-sidebar {
+
+        position: -webkit-sticky !important;
+
+        position: sticky !important;
+
+        top: 85px !important;
+
+        align-self: stretch !important;
+
+        width: 100%;
+
+        max-height: min(35vh, 270px);
+
+        overflow-y: auto;
+
+        padding: 14px;
+
+        background: rgba(17,17,17,.97);
+
+        border: 1px solid rgba(255,255,255,.09);
+
+        border-radius: 10px;
+
+        box-shadow: 0 10px 30px rgba(0,0,0,.3);
+
+        -webkit-backdrop-filter: blur(12px);
+
+        backdrop-filter: blur(12px);
+
+    }
+
+    .sidebar-title {
+
+        padding-bottom: 11px;
+
+        margin-bottom: 7px;
+
+    }
+
+    .section-link {
+
+        padding: 10px;
+
+        margin: 2px 0;
+
+        font-size: 11px;
+
+    }
+
+    .sidebar-note {
+
+        display: none;
+
+    }
+
+
+    /* ROZDZIAŁY */
+
+    .rule-section {
+
+        padding-bottom: 32px;
+
+        margin-bottom: 32px;
+
+        scroll-margin-top: 105px;
+
+    }
+
+    .rule-section h2 {
+
+        font-size: 21px;
+
+    }
+
+    .section-intro {
+
+        font-size: 12px;
+
+        margin-bottom: 19px;
+
+    }
+
+
+    /* PUNKTY */
+
+    .plain-rules li {
+
+        grid-template-columns: 42px minmax(0, 1fr);
+
+        gap: 9px;
+
+        font-size: 12.5px;
+
+        line-height: 1.8;
+
+        padding: 12px 0;
+
+    }
+
+    .plain-rules li::before {
+
+        font-size: 11px;
+
+    }
+
+
+    /* DANE SKLEPU */
+
+    .seller-details {
+
+        padding: 19px;
+
+    }
+
+
+    /* POWRÓT NA GÓRĘ */
+
+    #topBtn {
+
+        width: 45px;
+
+        height: 45px;
+
+        right: 18px;
+
+        bottom: 18px;
+
+    }
+
+}
+
+
+/* =====================================================
+   BARDZO MAŁE TELEFONY
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .regulamin-hero h1 {
+
+        font-size: 36px;
+
+    }
+
+    .regulamin-hero .hero-small-label {
+
+        font-size: 9px;
+
+        letter-spacing: 1.3px;
+
+    }
+
+    .rule-section h2 {
+
+        font-size: 19px;
+
+    }
+
+    .plain-rules li {
+
+        grid-template-columns: 39px minmax(0, 1fr);
+
+        gap: 8px;
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
 
     }
 
