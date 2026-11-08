@@ -2873,3 +2873,269 @@ footer {
         font-size: 12.5px;
     }
 }
+
+/* =====================================================
+   HERO REGULAMINU — STYL STRONY REKRUTACJI
+===================================================== */
+
+.regulamin-hero {
+
+    position: relative;
+
+    min-height: 55vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    padding: 140px 20px 100px;
+
+    background: #050505;
+
+}
+
+.regulamin-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    left: 50%;
+    top: 45%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(185, 23, 58, 0.06);
+
+    filter: blur(90px);
+
+    pointer-events: none;
+
+}
+
+.regulamin-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    pointer-events: none;
+
+}
+
+.regulamin-hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+
+    margin: 0 auto;
+
+}
+
+.regulamin-hero .hero-small-label {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    padding: 8px 15px;
+
+    border: 1px solid rgba(239, 82, 124, 0.2);
+
+    border-radius: 30px;
+
+    background: rgba(239, 82, 124, 0.06);
+
+    color: #ef9ab0;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+.regulamin-hero h1 {
+
+    font-size: clamp(45px, 6vw, 72px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+}
+
+.regulamin-hero p {
+
+    max-width: 650px;
+
+    margin: 25px auto 0;
+
+    color: #929292;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   NAPRAWA STICKY SPISU TREŚCI
+===================================================== */
+
+/* Nie używamy hidden, ponieważ może blokować sticky */
+
+html,
+body {
+
+    overflow-x: clip;
+
+}
+
+/* Rodzice spisu treści nie mogą ograniczać sticky */
+
+.regulamin-section,
+.regulamin-section > .container,
+.regulamin-layout,
+.regulamin-content {
+
+    overflow: visible !important;
+
+}
+
+/* Układ regulaminu */
+
+.regulamin-layout {
+
+    display: grid;
+
+    grid-template-columns: 270px minmax(0, 1fr);
+
+    align-items: stretch;
+
+    gap: 30px;
+
+}
+
+/* Przyklejony spis treści */
+
+.rules-sidebar {
+
+    position: -webkit-sticky !important;
+
+    position: sticky !important;
+
+    top: 105px !important;
+
+    align-self: start !important;
+
+    height: fit-content;
+
+    max-height: calc(100vh - 125px);
+
+    overflow-y: auto;
+
+    z-index: 20;
+
+    scrollbar-width: thin;
+
+    scrollbar-color: #b9173a transparent;
+
+}
+
+/* Główna zawartość */
+
+.regulamin-content {
+
+    min-width: 0;
+
+}
+
+
+/* =====================================================
+   RESPONSYWNOŚĆ
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .regulamin-layout {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 25px;
+
+    }
+
+    .rules-sidebar {
+
+        position: sticky !important;
+
+        top: 88px !important;
+
+        width: 100%;
+
+        max-height: min(42vh, 310px);
+
+        overflow-y: auto;
+
+        z-index: 100;
+
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .regulamin-hero {
+
+        min-height: 60vh;
+
+        padding: 130px 20px 80px;
+
+    }
+
+    .regulamin-hero h1 {
+
+        font-size: 45px;
+
+    }
+
+    .regulamin-hero p {
+
+        font-size: 13px;
+
+    }
+
+}
