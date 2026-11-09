@@ -3864,3 +3864,23 @@ footer p {
     }
 
 }
+
+.discord-card .discord-icon,
+.map-card .discord-icon {
+    width: 65px !important;
+    height: 65px !important;
+    min-width: 65px !important;
+    max-width: 65px !important;
+    flex: 0 0 65px !important;
+    overflow: hidden !important;
+}
+
+.discord-card .discord-icon img,
+.map-card .discord-icon img {
+    display: block !important;
+    width: 65px !important;
+    height: 65px !important;
+    max-width: 65px !important;
+    max-height: 65px !important;
+    object-fit: contain !important;
+}
