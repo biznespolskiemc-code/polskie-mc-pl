@@ -46,7 +46,7 @@ const elements = {
   changeServer: document.getElementById('changeServer'),
   backToServers: document.getElementById('backToServers'),
   hamburger: document.getElementById('hamburger'),
-  menu: document.getElementById('menu'),
+  menu: document.getElementById('menu')
 };
 
 let shopData = null;
@@ -63,7 +63,8 @@ let shopIsOnline = true;
 
 function showNotice(message, type = 'error') {
   elements.notice.textContent = message;
-  elements.notice.className = `notice${type === 'success' ? ' success' : ''}`;
+  elements.notice.className =
+    `notice${type === 'success' ? ' success' : ''}`;
   elements.notice.hidden = false;
 }
 
@@ -118,8 +119,12 @@ async function loadShopInfo() {
         ? shopData.categories
         : [];
     }
+
   } catch (error) {
-    console.warn('Nie udało się pobrać informacji o sklepie VIshop:', error);
+    console.warn(
+      'Nie udało się pobrać informacji o sklepie VIshop:',
+      error
+    );
   }
 }
 
@@ -141,6 +146,7 @@ function formatPrice(value) {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     }).format(amount);
+
   } catch {
     return `${amount.toFixed(2)} ${currencyCode}`;
   }
@@ -153,8 +159,13 @@ function formatPrice(value) {
 function createElement(tag, className, text) {
   const node = document.createElement(tag);
 
-  if (className) node.className = className;
-  if (text !== undefined) node.textContent = text;
+  if (className) {
+    node.className = className;
+  }
+
+  if (text !== undefined) {
+    node.textContent = text;
+  }
 
   return node;
 }
@@ -175,13 +186,18 @@ function renderServers() {
     image.src = server.image;
     image.alt = server.name;
     image.loading = 'lazy';
+
     image.onerror = () => {
       image.style.visibility = 'hidden';
     };
 
     imageWrap.append(image);
 
-    const name = createElement('h3', 'server-name', server.name);
+    const name = createElement(
+      'h3',
+      'server-name',
+      server.name
+    );
 
     const description = createElement(
       'p',
@@ -198,9 +214,18 @@ function renderServers() {
     );
 
     button.type = 'button';
-    button.addEventListener('click', () => selectServer(server));
 
-    card.append(imageWrap, name, description, button);
+    button.addEventListener('click', () => {
+      selectServer(server);
+    });
+
+    card.append(
+      imageWrap,
+      name,
+      description,
+      button
+    );
+
     elements.serverGrid.append(card);
   });
 }
@@ -257,7 +282,11 @@ async function selectServer(server, updateHistory = true) {
   setPageMode('products');
 
   elements.productsGrid.replaceChildren(
-    createElement('div', 'loading-card', 'Ładowanie produktów...')
+    createElement(
+      'div',
+      'loading-card',
+      'Ładowanie produktów...'
+    )
   );
 
   elements.categoryBar.hidden = true;
@@ -272,7 +301,9 @@ async function selectServer(server, updateHistory = true) {
     );
 
     if (!Array.isArray(data)) {
-      throw new Error('VIshop zwrócił nieprawidłową listę produktów.');
+      throw new Error(
+        'VIshop zwrócił nieprawidłową listę produktów.'
+      );
     }
 
     currentProducts = data.filter(
@@ -293,7 +324,9 @@ async function selectServer(server, updateHistory = true) {
       )
     );
 
-    showNotice(`Błąd połączenia z VIshop: ${error.message}`);
+    showNotice(
+      `Błąd połączenia z VIshop: ${error.message}`
+    );
   }
 }
 
@@ -305,7 +338,9 @@ function renderCategories() {
   elements.categoryBar.replaceChildren();
 
   const availableIds = new Set(
-    currentProducts.map((product) => String(product.category))
+    currentProducts.map(
+      (product) => String(product.category)
+    )
   );
 
   const categories = currentCategories.filter(
@@ -336,7 +371,8 @@ function renderCategories() {
   elements.categoryBar.append(allButton);
 
   categories.forEach((category) => {
-    const isActive = String(selectedCategory) === String(category.id);
+    const isActive =
+      String(selectedCategory) === String(category.id);
 
     const button = createElement(
       'button',
@@ -348,6 +384,7 @@ function renderCategories() {
 
     button.addEventListener('click', () => {
       selectedCategory = String(category.id);
+
       renderCategories();
       renderProducts();
     });
@@ -396,7 +433,9 @@ function getProductDescription(product) {
   ];
 
   const value = possibleDescriptions.find(
-    (item) => typeof item === 'string' && item.trim().length > 0
+    (item) =>
+      typeof item === 'string' &&
+      item.trim().length > 0
   );
 
   if (!value) {
@@ -420,7 +459,11 @@ function createProductCard(product) {
 
   /* ZDJĘCIE */
 
-  const imageWrap = createElement('div', 'product-image-wrap');
+  const imageWrap = createElement(
+    'div',
+    'product-image-wrap'
+  );
+
   const image = document.createElement('img');
 
   image.src = product.image || '../images/polskiemc.png';
@@ -441,7 +484,7 @@ function createProductCard(product) {
     product.name || 'Produkt'
   );
 
-  /* OPIS ZAMIAST CENY */
+  /* OPIS */
 
   const description = createElement(
     'p',
@@ -449,7 +492,7 @@ function createProductCard(product) {
     getProductDescription(product)
   );
 
-  /* CENA W PRZYCISKU */
+  /* CENA */
 
   const price = getProductPrice(product);
 
@@ -484,6 +527,7 @@ function createProductCard(product) {
         `-${price.promo}%`
       )
     );
+
   } else {
     buyButton.append(
       createElement(
@@ -494,9 +538,11 @@ function createProductCard(product) {
     );
   }
 
-  /* OBSŁUGA ZAKUPU VIshop */
+  /* ZAKUP */
 
-  buyButton.addEventListener('click', () => buyProduct(product));
+  buyButton.addEventListener('click', () => {
+    buyProduct(product);
+  });
 
   card.append(
     imageWrap,
@@ -518,7 +564,8 @@ function renderProducts() {
   const visibleProducts = selectedCategory === 'all'
     ? currentProducts
     : currentProducts.filter(
-        (product) => String(product.category) === String(selectedCategory)
+        (product) =>
+          String(product.category) === String(selectedCategory)
       );
 
   if (!visibleProducts.length) {
@@ -541,7 +588,7 @@ function renderProducts() {
 }
 
 /* =========================================================
-   ZAKUP PRODUKTU — VIshop Pay
+   ZAKUP PRODUKTU — VISHOP PAY
 ========================================================= */
 
 function buyProduct(product) {
@@ -563,6 +610,7 @@ function buyProduct(product) {
 
   if (typeof window.vishopPay === 'function') {
     window.vishopPay(CONFIG.shopId, product.id);
+
   } else {
     window.location.href =
       `https://pay.vishop.pl/${CONFIG.shopId}/${encodeURIComponent(product.id)}`;
@@ -586,97 +634,13 @@ function showServerList(updateHistory = true) {
 }
 
 /* =========================================================
-   VOUCHER — OTWIERANIE
-========================================================= */
-
-function openVoucherModal() {
-  elements.voucherMessage.textContent = '';
-  elements.voucherMessage.className = 'form-message';
-
-  elements.voucherModal.hidden = false;
-  document.body.style.overflow = 'hidden';
-
-  document.getElementById('voucherNick').focus();
-
-  elements.menu.classList.remove('open');
-  elements.hamburger.setAttribute('aria-expanded', 'false');
-}
-
-/* =========================================================
-   VOUCHER — ZAMYKANIE
-========================================================= */
-
-function closeVoucherModal() {
-  elements.voucherModal.hidden = true;
-  document.body.style.overflow = '';
-}
-
-/* =========================================================
-   REALIZACJA VOUCHERA
-========================================================= */
-
-async function redeemVoucher(event) {
-  event.preventDefault();
-
-  const formData = new FormData(elements.voucherForm);
-
-  const player = String(formData.get('player') || '').trim();
-  const code = String(formData.get('code') || '').trim();
-
-  elements.voucherMessage.textContent = 'Sprawdzanie kodu...';
-  elements.voucherMessage.className = 'form-message';
-
-  if (!/^\.?\w{3,16}$/.test(player)) {
-    elements.voucherMessage.textContent =
-      'Wpisz poprawny nick Minecraft (3–16 znaków).';
-
-    return;
-  }
-
-  if (!code) {
-    elements.voucherMessage.textContent =
-      'Wpisz kod vouchera.';
-
-    return;
-  }
-
-  try {
-    const result = await fetchJson(
-      `${CONFIG.apiBase}vouchers/use/`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          code,
-          player
-        })
-      }
-    );
-
-    elements.voucherMessage.textContent =
-      typeof result === 'string'
-        ? result
-        : 'Voucher został przekazany do realizacji.';
-
-    elements.voucherMessage.className = 'form-message success';
-
-    elements.voucherForm.reset();
-
-  } catch (error) {
-    elements.voucherMessage.textContent =
-      `Nie udało się zrealizować vouchera: ${error.message}`;
-
-    elements.voucherMessage.className = 'form-message';
-  }
-}
-
-/* =========================================================
    NAWIGACJA
 ========================================================= */
 
 function setupNavigation() {
+
+  /* MENU MOBILNE */
+
   elements.hamburger.addEventListener('click', () => {
     const isOpen = elements.menu.classList.toggle('open');
 
@@ -685,6 +649,8 @@ function setupNavigation() {
       String(isOpen)
     );
   });
+
+  /* ZAMYKANIE MENU PO WYBORZE */
 
   elements.menu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
@@ -697,15 +663,21 @@ function setupNavigation() {
     });
   });
 
+  /* ZMIANA TRYBU */
+
   elements.changeServer.addEventListener(
     'click',
     () => showServerList(true)
   );
 
+  /* POWRÓT DO LISTY TRYBÓW */
+
   elements.backToServers.addEventListener('click', (event) => {
     event.preventDefault();
     showServerList(true);
   });
+
+  /* HISTORIA PRZEGLĄDARKI */
 
   window.addEventListener('popstate', () => {
     const id = new URLSearchParams(
@@ -725,7 +697,7 @@ function setupNavigation() {
 }
 
 /* =========================================================
-   START
+   START SKLEPU
 ========================================================= */
 
 async function init() {
