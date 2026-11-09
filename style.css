@@ -1031,3 +1031,106 @@ body {
     }
 }
 
+
+/* =====================================================
+   WIĘKSZE NAZWY PRODUKTÓW
+===================================================== */
+
+.product-name {
+    min-height: 65px;
+    padding: 12px 18px;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+/* =====================================================
+   OPIS PRODUKTU — NOWE LINIE
+===================================================== */
+
+.product-description {
+    display: block !important;
+    min-height: 100px;
+    padding: 10px 22px 22px;
+    color: #a5a5a5;
+    font-size: 12px;
+    line-height: 1.85;
+    text-align: left;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: initial;
+}
+
+/* =====================================================
+   PRODUKTY EVENTOWE — CIEMNE ZŁOTO
+===================================================== */
+
+.product-card.product-card-event {
+    border-color: rgba(190,148,47,.3);
+    background: linear-gradient(
+        145deg,
+        #211b0d 0%,
+        #171306 100%
+    );
+    box-shadow: 0 15px 40px rgba(0,0,0,.3);
+}
+
+.product-card.product-card-event::before {
+    background: rgba(212,166,55,.12);
+}
+
+.product-card.product-card-event:hover {
+    border-color: rgba(218,175,65,.65);
+    box-shadow: 0 18px 45px rgba(150,112,25,.13);
+}
+
+/* =====================================================
+   ZŁOTY PRZYCISK ZAKUPU
+===================================================== */
+
+.product-card-event .product-buy-button {
+    border: 1px solid rgba(255,215,120,.25);
+    background: linear-gradient(
+        135deg,
+        #b58a2c,
+        #755416
+    );
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(171,126,29,.16);
+}
+
+.product-card-event .product-buy-button:hover {
+    background: linear-gradient(
+        135deg,
+        #d0a33b,
+        #987023
+    );
+    box-shadow: 0 12px 30px rgba(190,145,45,.3);
+}
+
+.product-card-event .buy-current-price {
+    color: #fff5d6;
+}
+
+.product-card-event .buy-old-price {
+    color: rgba(255,235,190,.55);
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+    .product-name {
+        min-height: 60px;
+        font-size: 18px;
+    }
+
+    .product-description {
+        min-height: 85px;
+        padding: 8px 18px 18px;
+    }
+}
+
+
