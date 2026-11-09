@@ -47,10 +47,6 @@ const elements = {
   backToServers: document.getElementById('backToServers'),
   hamburger: document.getElementById('hamburger'),
   menu: document.getElementById('menu'),
-  voucherModal: document.getElementById('voucherModal'),
-  closeVoucher: document.getElementById('closeVoucher'),
-  voucherForm: document.getElementById('voucherForm'),
-  voucherMessage: document.getElementById('voucherMessage')
 };
 
 let shopData = null;
