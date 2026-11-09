@@ -40,14 +40,16 @@ const elements = {
   productsView: document.getElementById('productsView'),
   productsGrid: document.getElementById('productsGrid'),
   categoryBar: document.getElementById('categoryBar'),
-  currentServerName: document.getElementById('currentServerName'),
   serverTitleAccent: document.getElementById('serverTitleAccent'),
   notice: document.getElementById('notice'),
   changeServer: document.getElementById('changeServer'),
-  backToServers: document.getElementById('backToServers'),
   hamburger: document.getElementById('hamburger'),
   menu: document.getElementById('menu')
 };
+
+/* =========================================================
+   ZMIENNE
+========================================================= */
 
 let shopData = null;
 let currencyCode = 'PLN';
@@ -63,8 +65,10 @@ let shopIsOnline = true;
 
 function showNotice(message, type = 'error') {
   elements.notice.textContent = message;
+
   elements.notice.className =
     `notice${type === 'success' ? ' success' : ''}`;
+
   elements.notice.hidden = false;
 }
 
@@ -101,11 +105,17 @@ async function fetchJson(url, options = {}) {
       ? data
       : `Błąd API (${response.status}).`;
 
-    throw new Error(message || `Błąd API (${response.status}).`);
+    throw new Error(
+      message || `Błąd API (${response.status}).`
+    );
   }
 
   return data;
 }
+
+/* =========================================================
+   INFORMACJE O SKLEPIE
+========================================================= */
 
 async function loadShopInfo() {
   try {
@@ -180,7 +190,13 @@ function renderServers() {
   CONFIG.servers.forEach((server) => {
     const card = createElement('article', 'server-card');
 
-    const imageWrap = createElement('div', 'server-image-wrap');
+    /* ZDJĘCIE */
+
+    const imageWrap = createElement(
+      'div',
+      'server-image-wrap'
+    );
+
     const image = document.createElement('img');
 
     image.src = server.image;
@@ -193,11 +209,15 @@ function renderServers() {
 
     imageWrap.append(image);
 
+    /* NAZWA */
+
     const name = createElement(
       'h3',
       'server-name',
       server.name
     );
+
+    /* OPIS */
 
     const description = createElement(
       'p',
@@ -206,6 +226,8 @@ function renderServers() {
     );
 
     description.hidden = true;
+
+    /* PRZYCISK */
 
     const button = createElement(
       'button',
@@ -276,10 +298,13 @@ async function selectServer(server, updateHistory = true) {
   currentServer = server;
   selectedCategory = 'all';
 
-  elements.currentServerName.textContent = server.name;
-  elements.serverTitleAccent.textContent = `${server.name}.`;
+  /* NAZWA TRYBU — BEZ KROPKI */
+
+  elements.serverTitleAccent.textContent = server.name;
 
   setPageMode('products');
+
+  /* ŁADOWANIE */
 
   elements.productsGrid.replaceChildren(
     createElement(
@@ -314,7 +339,10 @@ async function selectServer(server, updateHistory = true) {
     renderProducts();
 
   } catch (error) {
-    console.error('Błąd pobierania produktów:', error);
+    console.error(
+      'Błąd pobierania produktów:',
+      error
+    );
 
     elements.productsGrid.replaceChildren(
       createElement(
@@ -354,6 +382,8 @@ function renderCategories() {
 
   elements.categoryBar.hidden = false;
 
+  /* WSZYSTKIE */
+
   const allButton = createElement(
     'button',
     `category-button${selectedCategory === 'all' ? ' active' : ''}`,
@@ -364,11 +394,14 @@ function renderCategories() {
 
   allButton.addEventListener('click', () => {
     selectedCategory = 'all';
+
     renderCategories();
     renderProducts();
   });
 
   elements.categoryBar.append(allButton);
+
+  /* POZOSTAŁE KATEGORIE */
 
   categories.forEach((category) => {
     const isActive =
@@ -451,11 +484,79 @@ function getProductDescription(product) {
 }
 
 /* =========================================================
+   OPIS — ROZWIJANIE I ZWIJANIE
+========================================================= */
+
+function createProductDescription(product) {
+  const fullDescription = getProductDescription(product);
+
+  const prompt = 'Kliknij, aby zobaczyć więcej informacji';
+
+  /* KRÓTKI OPIS */
+
+  if (fullDescription.length <= 40) {
+    return createElement(
+      'p',
+      'product-description',
+      fullDescription
+    );
+  }
+
+  /* DŁUGI OPIS */
+
+  const description = createElement(
+    'button',
+    'product-description product-description-more',
+    prompt
+  );
+
+  description.type = 'button';
+  description.setAttribute('aria-expanded', 'false');
+  description.setAttribute(
+    'aria-label',
+    'Kliknij, aby zobaczyć pełny opis produktu'
+  );
+
+  /* ROZWIJANIE */
+
+  description.addEventListener('click', () => {
+    const expanded =
+      description.getAttribute('aria-expanded') !== 'true';
+
+    description.textContent = expanded
+      ? fullDescription
+      : prompt;
+
+    description.setAttribute(
+      'aria-expanded',
+      String(expanded)
+    );
+
+    description.setAttribute(
+      'aria-label',
+      expanded
+        ? 'Kliknij, aby zwinąć opis produktu'
+        : 'Kliknij, aby zobaczyć pełny opis produktu'
+    );
+
+    description.classList.toggle(
+      'expanded',
+      expanded
+    );
+  });
+
+  return description;
+}
+
+/* =========================================================
    KARTA PRODUKTU
 ========================================================= */
 
 function createProductCard(product) {
-  const card = createElement('article', 'product-card');
+  const card = createElement(
+    'article',
+    'product-card'
+  );
 
   /* ZDJĘCIE */
 
@@ -486,11 +587,7 @@ function createProductCard(product) {
 
   /* OPIS */
 
-  const description = createElement(
-    'p',
-    'product-description',
-    getProductDescription(product)
-  );
+  const description = createProductDescription(product);
 
   /* CENA */
 
@@ -509,6 +606,8 @@ function createProductCard(product) {
     `Kup ${product.name || 'produkt'} za ${formatPrice(price.finalPrice)}`
   );
 
+  /* CENA PROMOCYJNA */
+
   if (price.promo) {
     buyButton.append(
       createElement(
@@ -516,11 +615,13 @@ function createProductCard(product) {
         'buy-old-price',
         formatPrice(price.base)
       ),
+
       createElement(
         'span',
         'buy-current-price',
         formatPrice(price.finalPrice)
       ),
+
       createElement(
         'span',
         'buy-discount',
@@ -529,6 +630,9 @@ function createProductCard(product) {
     );
 
   } else {
+
+    /* ZWYKŁA CENA */
+
     buyButton.append(
       createElement(
         'span',
@@ -543,6 +647,8 @@ function createProductCard(product) {
   buyButton.addEventListener('click', () => {
     buyProduct(product);
   });
+
+  /* ZAWARTOŚĆ KARTY */
 
   card.append(
     imageWrap,
@@ -609,7 +715,10 @@ function buyProduct(product) {
   }
 
   if (typeof window.vishopPay === 'function') {
-    window.vishopPay(CONFIG.shopId, product.id);
+    window.vishopPay(
+      CONFIG.shopId,
+      product.id
+    );
 
   } else {
     window.location.href =
@@ -670,13 +779,6 @@ function setupNavigation() {
     () => showServerList(true)
   );
 
-  /* POWRÓT DO LISTY TRYBÓW */
-
-  elements.backToServers.addEventListener('click', (event) => {
-    event.preventDefault();
-    showServerList(true);
-  });
-
   /* HISTORIA PRZEGLĄDARKI */
 
   window.addEventListener('popstate', () => {
@@ -702,6 +804,7 @@ function setupNavigation() {
 
 async function init() {
   setupNavigation();
+
   renderServers();
 
   await loadShopInfo();
@@ -720,5 +823,9 @@ async function init() {
     setPageMode('servers');
   }
 }
+
+/* =========================================================
+   URUCHOMIENIE
+========================================================= */
 
 init();
