@@ -995,34 +995,8 @@ body {
    OPIS PRODUKTU — KLIKNIJ
 ===================================================== */
 
-.product-description-more {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background: transparent;
-    color: #ef7894;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.8;
-    text-align: center;
-    cursor: pointer;
-    transition: color .25s ease;
-}
-
 .product-description-more:hover {
     color: #ffffff;
-}
-
-.product-description-more.expanded {
-    display: block;
-    color: #929292;
-    font-weight: 500;
-    cursor: pointer;
-    overflow: visible;
-    -webkit-line-clamp: unset;
 }
 
 .product-description-more.expanded:hover {
