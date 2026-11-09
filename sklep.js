@@ -47,7 +47,6 @@ const elements = {
   backToServers: document.getElementById('backToServers'),
   hamburger: document.getElementById('hamburger'),
   menu: document.getElementById('menu'),
-  openVoucher: document.getElementById('openVoucher'),
   voucherModal: document.getElementById('voucherModal'),
   closeVoucher: document.getElementById('closeVoucher'),
   voucherForm: document.getElementById('voucherForm'),
