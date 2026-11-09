@@ -1,112 +1,432 @@
+
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090909">
-  <meta name="description" content="Sklep POLSKIEMC.PL — rangi, klucze i produkty na tryby Earth SMP oraz Mace PvP.">
-  <link rel="icon" type="image/png" href="../images/polskiemc.png">
-  <title>POLSKIEMC.PL | Sklep</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://vishop.pl/pay.js" defer></script>
-  <script src="sklep.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090909">
+
+    <meta
+        name="description"
+        content="Sklep POLSKIEMC.PL — rangi, klucze i produkty na tryby Earth SMP oraz Mace PvP."
+    >
+
+    <title>POLSKIEMC.PL | Sklep</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="../images/polskiemc.png"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://vishop.pl/pay.js" defer></script>
+    <script src="sklep.js" defer></script>
 </head>
+
 <body>
-  <header class="navbar">
+
+<!-- =====================================================
+     NAWIGACJA
+===================================================== -->
+
+<header class="navbar">
+
     <div class="nav-container">
-      <a class="brand" href="../index.html" aria-label="POLSKIEMC.PL — strona główna">
-        <img src="../images/polskiemc.png" alt="Logo POLSKIEMC.PL" onerror="this.style.display='none'">
-        <span><strong>POLSKIE</strong>MC.PL</span>
-      </a>
 
-      <button class="hamburger" id="hamburger" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="menu">
-        <span></span><span></span><span></span>
-      </button>
+        <a
+            class="brand"
+            href="../index.html"
+            aria-label="POLSKIEMC.PL — strona główna"
+        >
+            <img
+                src="../images/polskiemc.png"
+                alt="Logo POLSKIEMC.PL"
+                onerror="this.style.display='none'"
+            >
 
-      <nav class="menu" id="menu" aria-label="Główna nawigacja">
-        <a href="./index.html" class="active">Sklep</a>
-        <a href="https://polskiemc.pl" rel="noopener noreferrer">Powrót</a>
-        <a href="https://sklep.polskiemc.pl/shop/8747/page/8749" target="_blank" rel="noopener noreferrer">Regulamin sklepu</a>
-        <button class="nav-voucher" id="openVoucher" type="button">Voucher</button>
-      </nav>
+            <span>
+                <strong>POLSKIE</strong>MC.PL
+            </span>
+        </a>
+
+        <button
+            class="hamburger"
+            id="hamburger"
+            type="button"
+            aria-label="Otwórz menu"
+            aria-expanded="false"
+            aria-controls="menu"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav
+            class="menu"
+            id="menu"
+            aria-label="Główna nawigacja"
+        >
+
+            <a href="./index.html" class="active">
+                Sklep
+            </a>
+
+            <a
+                href="https://polskiemc.pl"
+                rel="noopener noreferrer"
+            >
+                Powrót
+            </a>
+
+            <a
+                href="https://sklep.polskiemc.pl/shop/8747/page/8749"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Regulamin sklepu
+            </a>
+
+            <button
+                class="nav-voucher"
+                id="openVoucher"
+                type="button"
+            >
+                Voucher
+            </button>
+
+        </nav>
+
     </div>
-  </header>
 
-  <main class="shop-main">
+</header>
+
+<!-- =====================================================
+     GŁÓWNA ZAWARTOŚĆ
+===================================================== -->
+
+<main class="shop-main">
+
+    <!-- NAGŁÓWEK -->
+
     <section class="shop-heading">
-      <p class="eyebrow">POLSKIEMC.PL / ITEMSHOP</p>
-      <h1>Sklep <span>POLSKIEMC.PL</span></h1>
-      <p class="shop-subtitle">Wybierz tryb, a następnie produkt, który chcesz kupić.</p>
+
+        <p class="eyebrow">
+            POLSKIEMC.PL / ITEMSHOP
+        </p>
+
+        <h1>
+            Sklep <span>POLSKIEMC.PL</span>
+        </h1>
+
+        <p class="shop-subtitle">
+            Wybierz tryb, a następnie produkt, który chcesz kupić.
+        </p>
+
     </section>
 
-    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    <!-- POWIADOMIENIA -->
 
-    <section id="serverView" class="shop-panel">
-      <div class="section-title">
-        <div>
-          <p class="eyebrow">WYBIERZ ROZGRYWKĘ</p>
-          <h2>Wybierz <span>tryb.</span></h2>
+    <div
+        id="notice"
+        class="notice"
+        role="status"
+        aria-live="polite"
+        hidden
+    ></div>
+
+    <!-- =================================================
+         WYBÓR TRYBU
+    ================================================== -->
+
+    <section
+        id="serverView"
+        class="shop-panel"
+    >
+
+        <div class="section-title">
+
+            <div>
+
+                <p class="eyebrow">
+                    WYBIERZ ROZGRYWKĘ
+                </p>
+
+                <h2>
+                    Wybierz <span>tryb.</span>
+                </h2>
+
+            </div>
+
         </div>
-      </div>
-      <div id="serverGrid" class="server-grid">
-        <div class="loading-card">Ładowanie trybów...</div>
-      </div>
-    </section>
 
-    <section id="productsView" class="shop-panel" hidden>
-      <div class="products-topline">
-        <div class="breadcrumb"><a href="./index.html" id="backToServers">Sklep</a><span>/</span><strong id="currentServerName">Tryb</strong></div>
-        <button id="changeServer" class="back-button" type="button">← Zmień tryb</button>
-      </div>
+        <div
+            id="serverGrid"
+            class="server-grid"
+        >
 
-      <div class="section-title products-title">
-        <div>
-          <p class="eyebrow">DOSTĘPNE PRODUKTY</p>
-          <h2>Oferta <span id="serverTitleAccent">serwera.</span></h2>
+            <div class="loading-card">
+                Ładowanie trybów...
+            </div>
+
         </div>
-      </div>
 
-      <div id="categoryBar" class="category-bar" aria-label="Filtrowanie kategorii" hidden></div>
-      <div id="productsGrid" class="products-grid">
-        <div class="loading-card">Ładowanie produktów...</div>
-      </div>
     </section>
-  </main>
 
-  <footer class="site-footer">
+    <!-- =================================================
+         PRODUKTY
+    ================================================== -->
+
+    <section
+        id="productsView"
+        class="shop-panel"
+        hidden
+    >
+
+        <div class="products-topline">
+
+            <div class="breadcrumb">
+
+                <a
+                    href="./index.html"
+                    id="backToServers"
+                >
+                    Sklep
+                </a>
+
+                <span>/</span>
+
+                <strong id="currentServerName">
+                    Tryb
+                </strong>
+
+            </div>
+
+            <button
+                id="changeServer"
+                class="back-button"
+                type="button"
+            >
+                ← Zmień tryb
+            </button>
+
+        </div>
+
+        <div class="section-title products-title">
+
+            <div>
+
+                <p class="eyebrow">
+                    DOSTĘPNE PRODUKTY
+                </p>
+
+                <h2>
+                    Oferta <span id="serverTitleAccent">serwera.</span>
+                </h2>
+
+            </div>
+
+        </div>
+
+        <!-- KATEGORIE -->
+
+        <div
+            id="categoryBar"
+            class="category-bar"
+            aria-label="Filtrowanie kategorii"
+            hidden
+        ></div>
+
+        <!-- LISTA PRODUKTÓW -->
+
+        <div
+            id="productsGrid"
+            class="products-grid"
+        >
+
+            <div class="loading-card">
+                Ładowanie produktów...
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- =====================================================
+     STOPKA
+===================================================== -->
+
+<footer class="site-footer">
+
     <div class="footer-content">
-      <div class="footer-logo"><strong>POLSKIE</strong>MC.PL</div>
-      <p>© 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</p>
-      <p class="footer-note">Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios ani Microsoft Studios.</p>
-      <p class="footer-links">
-        <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer">YouTube</a>
-        <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener noreferrer">Discord</a>
-        <a href="https://www.tiktok.com/@p0lak_yt" target="_blank" rel="noopener noreferrer">TikTok</a>
-        <a href="https://mapa.polskiemc.pl" target="_blank" rel="noopener noreferrer">Mapa Earth</a>
-      </p>
-      <!-- Wymagana stopka VIshop — nie usuwaj ani nie ukrywaj. -->
-      <p class="powered-by">Sklep jest zasilany przez <a href="https://vishop.pl" target="_blank" rel="noopener noreferrer">VIshop.pl</a>.</p>
-    </div>
-  </footer>
 
-  <div class="modal-backdrop" id="voucherModal" hidden>
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="voucherTitle">
-      <button class="modal-close" id="closeVoucher" type="button" aria-label="Zamknij">×</button>
-      <p class="eyebrow">POLSKIEMC.PL</p>
-      <h2 id="voucherTitle">Zrealizuj <span>voucher.</span></h2>
-      <p class="modal-description">Wpisz kod vouchera oraz nick Minecraft, na który ma zostać zrealizowany.</p>
-      <form id="voucherForm">
-        <label for="voucherNick">Nick Minecraft</label>
-        <input id="voucherNick" name="player" type="text" minlength="3" maxlength="16" autocomplete="off" placeholder="TwójNick" required>
-        <label for="voucherCode">Kod vouchera</label>
-        <input id="voucherCode" name="code" type="text" autocomplete="off" placeholder="Wpisz kod" required>
-        <button class="primary-button modal-submit" type="submit">ZREALIZUJ VOUCHER</button>
-        <p id="voucherMessage" class="form-message" role="status" aria-live="polite"></p>
-      </form>
+        <div class="footer-logo">
+            <strong>POLSKIE</strong>MC.PL
+        </div>
+
+        <p>
+            © 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone
+        </p>
+
+        <p class="footer-note">
+            Serwer POLSKIEMC.PL nie jest w żaden sposób
+            powiązany z firmą Mojang Studios ani Microsoft Studios.
+        </p>
+
+        <p class="footer-links">
+
+            <a
+                href="https://www.youtube.com/@p0lak-official1"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                YouTube
+            </a>
+
+            <a
+                href="https://dc.gg/polskiemc"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Discord
+            </a>
+
+            <a
+                href="https://www.tiktok.com/@p0lak_yt"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                TikTok
+            </a>
+
+            <a
+                href="https://mapa.polskiemc.pl"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Mapa Earth
+            </a>
+
+        </p>
+
+        <!-- WYMAGANA STOPKA VISHOP — NIE USUWAĆ -->
+
+        <p class="powered-by">
+            Sklep jest zasilany przez
+            <a
+                href="https://vishop.pl"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                VIshop.pl
+            </a>.
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- =====================================================
+     MODAL VOUCHERA
+===================================================== -->
+
+<div
+    class="modal-backdrop"
+    id="voucherModal"
+    hidden
+>
+
+    <section
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="voucherTitle"
+    >
+
+        <button
+            class="modal-close"
+            id="closeVoucher"
+            type="button"
+            aria-label="Zamknij"
+        >
+            ×
+        </button>
+
+        <p class="eyebrow">
+            POLSKIEMC.PL
+        </p>
+
+        <h2 id="voucherTitle">
+            Zrealizuj <span>voucher.</span>
+        </h2>
+
+        <p class="modal-description">
+            Wpisz kod vouchera oraz nick Minecraft,
+            na który ma zostać zrealizowany.
+        </p>
+
+        <form id="voucherForm">
+
+            <label for="voucherNick">
+                Nick Minecraft
+            </label>
+
+            <input
+                id="voucherNick"
+                name="player"
+                type="text"
+                minlength="3"
+                maxlength="16"
+                autocomplete="off"
+                placeholder="TwójNick"
+                required
+            >
+
+            <label for="voucherCode">
+                Kod vouchera
+            </label>
+
+            <input
+                id="voucherCode"
+                name="code"
+                type="text"
+                autocomplete="off"
+                placeholder="Wpisz kod"
+                required
+            >
+
+            <button
+                class="primary-button modal-submit"
+                type="submit"
+            >
+                ZREALIZUJ VOUCHER
+            </button>
+
+            <p
+                id="voucherMessage"
+                class="form-message"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+        </form>
+
     </section>
-  </div>
+
+</div>
+
 </body>
 </html>
