@@ -362,9 +362,11 @@ function renderCategories() {
     )
   );
 
-  const categories = currentCategories.filter(
-    (category) => availableIds.has(String(category.id))
-  );
+const categories = currentCategories.filter(
+  category =>
+    category &&
+    availableIds.has(String(category.id))
+);
 
   if (!categories.length) {
     elements.categoryBar.hidden = true;
@@ -519,11 +521,9 @@ function createProductDescription(product) {
   );
 }
 
-/* =========================================================
-   ROZPOZNAWANIE KATEGORII PRODUKTU
-========================================================= */
-
 function getProductCategoryName(product) {
+  if (!product || typeof product !== 'object') return '';
+
   const rawCategory = product.category;
 
   const categoryId =
@@ -532,18 +532,28 @@ function getProductCategoryName(product) {
       : rawCategory;
 
   const category = currentCategories.find(
-    (item) => String(item.id) === String(categoryId)
+    item =>
+      item &&
+      typeof item === 'object' &&
+      String(item.id) === String(categoryId)
   );
+
+  const rawName =
+    rawCategory && typeof rawCategory === 'object'
+      ? rawCategory.name
+      : '';
 
   return String(
     category?.name ||
-    (typeof rawCategory === 'object' ? rawCategory.name : '') ||
+    rawName ||
     product.category_name ||
     product.categoryName ||
-    (typeof rawCategory === 'string' && !/^\d+$/.test(rawCategory)
-      ? rawCategory
-      : '')
-  );
+    (
+      typeof rawCategory === 'string' && !/^\d+$/.test(rawCategory)
+        ? rawCategory
+        : ''
+    )
+  ).trim();
 }
 
 /* =========================================================
