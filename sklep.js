@@ -490,64 +490,14 @@ function getProductDescription(product) {
 function createProductDescription(product) {
   const fullDescription = getProductDescription(product);
 
-  const prompt = 'Kliknij, aby zobaczyć więcej informacji';
-
-  /* KRÓTKI OPIS */
-
-  if (fullDescription.length <= 40) {
-    return createElement(
-      'p',
-      'product-description',
-      fullDescription
-    );
-  }
-
-  /* DŁUGI OPIS */
-
-  const description = createElement(
-    'button',
-    'product-description product-description-more',
-    prompt
+  return createElement(
+    'p',
+    'product-description',
+    fullDescription.length > 80
+      ? 'Kliknij, aby zobaczyć więcej informacji'
+      : fullDescription
   );
-
-  description.type = 'button';
-  description.setAttribute('aria-expanded', 'false');
-  description.setAttribute(
-    'aria-label',
-    'Kliknij, aby zobaczyć pełny opis produktu'
-  );
-
-  /* ROZWIJANIE */
-
-  description.addEventListener('click', () => {
-    const expanded =
-      description.getAttribute('aria-expanded') !== 'true';
-
-    description.textContent = expanded
-      ? fullDescription
-      : prompt;
-
-    description.setAttribute(
-      'aria-expanded',
-      String(expanded)
-    );
-
-    description.setAttribute(
-      'aria-label',
-      expanded
-        ? 'Kliknij, aby zwinąć opis produktu'
-        : 'Kliknij, aby zobaczyć pełny opis produktu'
-    );
-
-    description.classList.toggle(
-      'expanded',
-      expanded
-    );
-  });
-
-  return description;
 }
-
 /* =========================================================
    KARTA PRODUKTU
 ========================================================= */
