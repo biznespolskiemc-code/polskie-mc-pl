@@ -65,10 +65,8 @@ let shopIsOnline = true;
 
 function showNotice(message, type = 'error') {
   elements.notice.textContent = message;
-
   elements.notice.className =
     `notice${type === 'success' ? ' success' : ''}`;
-
   elements.notice.hidden = false;
 }
 
@@ -190,8 +188,6 @@ function renderServers() {
   CONFIG.servers.forEach((server) => {
     const card = createElement('article', 'server-card');
 
-    /* ZDJĘCIE */
-
     const imageWrap = createElement(
       'div',
       'server-image-wrap'
@@ -209,15 +205,11 @@ function renderServers() {
 
     imageWrap.append(image);
 
-    /* NAZWA */
-
     const name = createElement(
       'h3',
       'server-name',
       server.name
     );
-
-    /* OPIS */
 
     const description = createElement(
       'p',
@@ -226,8 +218,6 @@ function renderServers() {
     );
 
     description.hidden = true;
-
-    /* PRZYCISK */
 
     const button = createElement(
       'button',
@@ -298,13 +288,10 @@ async function selectServer(server, updateHistory = true) {
   currentServer = server;
   selectedCategory = 'all';
 
-  /* NAZWA TRYBU — BEZ KROPKI */
-
+  // Nazwa trybu bez kropki.
   elements.serverTitleAccent.textContent = server.name;
 
   setPageMode('products');
-
-  /* ŁADOWANIE */
 
   elements.productsGrid.replaceChildren(
     createElement(
@@ -367,7 +354,11 @@ function renderCategories() {
 
   const availableIds = new Set(
     currentProducts.map(
-      (product) => String(product.category)
+      (product) => String(
+        typeof product.category === 'object'
+          ? product.category?.id
+          : product.category
+      )
     )
   );
 
@@ -382,7 +373,7 @@ function renderCategories() {
 
   elements.categoryBar.hidden = false;
 
-  /* WSZYSTKIE */
+  // WSZYSTKIE
 
   const allButton = createElement(
     'button',
@@ -394,14 +385,13 @@ function renderCategories() {
 
   allButton.addEventListener('click', () => {
     selectedCategory = 'all';
-
     renderCategories();
     renderProducts();
   });
 
   elements.categoryBar.append(allButton);
 
-  /* POZOSTAŁE KATEGORIE */
+  // POZOSTAŁE KATEGORIE
 
   categories.forEach((category) => {
     const isActive =
@@ -417,7 +407,6 @@ function renderCategories() {
 
     button.addEventListener('click', () => {
       selectedCategory = String(category.id);
-
       renderCategories();
       renderProducts();
     });
@@ -453,6 +442,7 @@ function getProductPrice(product) {
 
 /* =========================================================
    OPIS PRODUKTU
+   Zachowuje podział na linie.
 ========================================================= */
 
 function getProductDescription(product) {
@@ -476,39 +466,111 @@ function getProductDescription(product) {
   }
 
   return value
-    .replace(/<br\s*\/?>/gi, ' ')
-    .replace(/<[^>]*>/g, ' ')
+    // HTML-owe podziały linii.
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/(?:p|div|li)\s*>/gi, '\n')
+    .replace(/<li\b[^>]*>/gi, '» ')
+
+    // Usuwanie pozostałych tagów HTML.
+    .replace(/<[^>]*>/g, '')
+
+    // Popularne encje HTML.
     .replace(/&nbsp;/gi, ' ')
-    .replace(/\s+/g, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+
+    // Usuwanie znaczników pogrubienia Markdown.
+    .replace(/\*\*/g, '')
+
+    // Backslash na końcu linii oznacza nową linię.
+    .replace(/\\[ \t]*\r?\n/g, '\n')
+
+    // Tekstowe znaki \n.
+    .replace(/\\n/g, '\n')
+
+    // Ujednolicenie końców linii.
+    .replace(/\r\n?/g, '\n')
+
+    // Porządkowanie tekstu bez usuwania nowych linii.
+    .split('\n')
+    .map((line) => line.replace(/[ \t]+/g, ' ').trim())
+    .join('\n')
+
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
 
 /* =========================================================
-   OPIS — ROZWIJANIE I ZWIJANIE
+   OPIS — LIMIT 120 ZNAKÓW
 ========================================================= */
 
 function createProductDescription(product) {
-  const fullDescription = getProductDescription(product);
+  const description = getProductDescription(product);
 
   return createElement(
     'p',
     'product-description',
-    fullDescription.length > 120
+    description.length > 120
       ? 'Kliknij, aby zobaczyć więcej informacji'
-      : fullDescription
+      : description
   );
 }
+
+/* =========================================================
+   ROZPOZNAWANIE KATEGORII PRODUKTU
+========================================================= */
+
+function getProductCategoryName(product) {
+  const rawCategory = product.category;
+
+  const categoryId =
+    rawCategory && typeof rawCategory === 'object'
+      ? rawCategory.id
+      : rawCategory;
+
+  const category = currentCategories.find(
+    (item) => String(item.id) === String(categoryId)
+  );
+
+  return String(
+    category?.name ||
+    (typeof rawCategory === 'object' ? rawCategory.name : '') ||
+    product.category_name ||
+    product.categoryName ||
+    (typeof rawCategory === 'string' && !/^\d+$/.test(rawCategory)
+      ? rawCategory
+      : '')
+  );
+}
+
+/* =========================================================
+   CZY PRODUKT NALEŻY DO KATEGORII EVENTOWEJ?
+========================================================= */
+
+function isEventProduct(product) {
+  return getProductCategoryName(product)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .includes('event');
+}
+
 /* =========================================================
    KARTA PRODUKTU
 ========================================================= */
 
 function createProductCard(product) {
+  const isEvent = isEventProduct(product);
+
   const card = createElement(
     'article',
-    'product-card'
+    `product-card${isEvent ? ' product-card-event' : ''}`
   );
 
-  /* ZDJĘCIE */
+  // ZDJĘCIE
 
   const imageWrap = createElement(
     'div',
@@ -527,7 +589,7 @@ function createProductCard(product) {
 
   imageWrap.append(image);
 
-  /* NAZWA */
+  // NAZWA
 
   const name = createElement(
     'h3',
@@ -535,17 +597,17 @@ function createProductCard(product) {
     product.name || 'Produkt'
   );
 
-  /* OPIS */
+  // OPIS
 
   const description = createProductDescription(product);
 
-  /* CENA */
+  // CENA
 
   const price = getProductPrice(product);
 
   const buyButton = createElement(
     'button',
-    'primary-button product-buy-button'
+    `primary-button product-buy-button${isEvent ? ' product-buy-button-event' : ''}`
   );
 
   buyButton.type = 'button';
@@ -556,7 +618,7 @@ function createProductCard(product) {
     `Kup ${product.name || 'produkt'} za ${formatPrice(price.finalPrice)}`
   );
 
-  /* CENA PROMOCYJNA */
+  // CENA PROMOCYJNA
 
   if (price.promo) {
     buyButton.append(
@@ -580,8 +642,7 @@ function createProductCard(product) {
     );
 
   } else {
-
-    /* ZWYKŁA CENA */
+    // ZWYKŁA CENA
 
     buyButton.append(
       createElement(
@@ -592,13 +653,11 @@ function createProductCard(product) {
     );
   }
 
-  /* ZAKUP */
+  // ZAKUP
 
   buyButton.addEventListener('click', () => {
     buyProduct(product);
   });
-
-  /* ZAWARTOŚĆ KARTY */
 
   card.append(
     imageWrap,
@@ -621,7 +680,11 @@ function renderProducts() {
     ? currentProducts
     : currentProducts.filter(
         (product) =>
-          String(product.category) === String(selectedCategory)
+          String(
+            typeof product.category === 'object'
+              ? product.category?.id
+              : product.category
+          ) === String(selectedCategory)
       );
 
   if (!visibleProducts.length) {
@@ -665,10 +728,7 @@ function buyProduct(product) {
   }
 
   if (typeof window.vishopPay === 'function') {
-    window.vishopPay(
-      CONFIG.shopId,
-      product.id
-    );
+    window.vishopPay(CONFIG.shopId, product.id);
 
   } else {
     window.location.href =
@@ -698,7 +758,7 @@ function showServerList(updateHistory = true) {
 
 function setupNavigation() {
 
-  /* MENU MOBILNE */
+  // MENU MOBILNE
 
   elements.hamburger.addEventListener('click', () => {
     const isOpen = elements.menu.classList.toggle('open');
@@ -709,7 +769,7 @@ function setupNavigation() {
     );
   });
 
-  /* ZAMYKANIE MENU PO WYBORZE */
+  // ZAMYKANIE MENU PO WYBORZE
 
   elements.menu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
@@ -722,14 +782,14 @@ function setupNavigation() {
     });
   });
 
-  /* ZMIANA TRYBU */
+  // ZMIANA TRYBU
 
   elements.changeServer.addEventListener(
     'click',
     () => showServerList(true)
   );
 
-  /* HISTORIA PRZEGLĄDARKI */
+  // HISTORIA PRZEGLĄDARKI
 
   window.addEventListener('popstate', () => {
     const id = new URLSearchParams(
