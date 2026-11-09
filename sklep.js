@@ -707,36 +707,6 @@ function setupNavigation() {
     showServerList(true);
   });
 
-  elements.openVoucher.addEventListener(
-    'click',
-    openVoucherModal
-  );
-
-  elements.closeVoucher.addEventListener(
-    'click',
-    closeVoucherModal
-  );
-
-  elements.voucherModal.addEventListener('click', (event) => {
-    if (event.target === elements.voucherModal) {
-      closeVoucherModal();
-    }
-  });
-
-  elements.voucherForm.addEventListener(
-    'submit',
-    redeemVoucher
-  );
-
-  document.addEventListener('keydown', (event) => {
-    if (
-      event.key === 'Escape' &&
-      !elements.voucherModal.hidden
-    ) {
-      closeVoucherModal();
-    }
-  });
-
   window.addEventListener('popstate', () => {
     const id = new URLSearchParams(
       window.location.search
