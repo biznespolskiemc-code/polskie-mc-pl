@@ -1136,7 +1136,7 @@ body {
 /* MNIEJSZY ODSTĘP NAD ZAWARTOŚCIĄ SKLEPU */
 
 .shop-section {
-    padding-top: 32px;
+    padding-top: 16px;
 }
 
 @media (max-width: 800px) {
