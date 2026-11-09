@@ -3865,7 +3865,15 @@ footer p {
 
 }
 
-.discord-card .discord-icon,
+.discord-card .discord-icon {
+    width: 65px !important;
+    height: 65px !important;
+    min-width: 65px !important;
+    max-width: 65px !important;
+    flex: 0 0 65px !important;
+    overflow: hidden !important;
+}
+
 .map-card .discord-icon {
     width: 65px !important;
     height: 65px !important;
@@ -3873,6 +3881,8 @@ footer p {
     max-width: 65px !important;
     flex: 0 0 65px !important;
     overflow: hidden !important;
+    background: rgba(16, 185, 129, 0.18) !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
 }
 
 .discord-card .discord-icon img,
