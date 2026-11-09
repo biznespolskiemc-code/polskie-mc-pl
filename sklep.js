@@ -493,7 +493,7 @@ function createProductDescription(product) {
   return createElement(
     'p',
     'product-description',
-    fullDescription.length > 120
+    fullDescription.length > 200
       ? 'Kliknij, aby zobaczyć więcej informacji'
       : fullDescription
   );
