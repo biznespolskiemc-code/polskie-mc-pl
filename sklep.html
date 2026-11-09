@@ -7,18 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#090909">
 
+    <title>POLSKIEMC.PL | Sklep</title>
+
     <meta
         name="description"
         content="Sklep POLSKIEMC.PL — rangi, klucze i produkty na tryby Earth SMP oraz Mace PvP."
     >
 
-    <title>POLSKIEMC.PL | Sklep</title>
-
-    <link
-        rel="icon"
-        type="image/png"
-        href="../images/polskiemc.png"
-    >
+    <link rel="icon" type="image/png" href="../images/polskiemc.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,8 +24,13 @@
         rel="stylesheet"
     >
 
+    <!-- Wspólny wygląd strony głównej i regulaminu -->
+    <link rel="stylesheet" href="../style-index.css">
+
+    <!-- Indywidualny wygląd sklepu -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- VIshop -->
     <script src="https://vishop.pl/pay.js" defer></script>
     <script src="sklep.js" defer></script>
 </head>
@@ -37,65 +38,52 @@
 <body>
 
 <!-- =====================================================
-     NAWIGACJA
+     NAWIGACJA — IDENTYCZNA JAK NA REGULAMINIE
 ===================================================== -->
 
-<header class="navbar">
+<nav class="navbar">
 
     <div class="nav-container">
 
-        <a
-            class="brand"
-            href="../index.html"
-            aria-label="POLSKIEMC.PL — strona główna"
-        >
-            <img
-                src="../images/polskiemc.png"
-                alt="Logo POLSKIEMC.PL"
-                onerror="this.style.display='none'"
-            >
-
-            <span>
-                <strong>POLSKIE</strong>MC.PL
-            </span>
+        <a href="../index.html" class="logo">
+            <img src="../images/polskiemc.png" alt="POLSKIEMC.PL">
         </a>
 
-        <button
+        <div
             class="hamburger"
             id="hamburger"
-            type="button"
             aria-label="Otwórz menu"
+            role="button"
+            tabindex="0"
             aria-expanded="false"
-            aria-controls="menu"
         >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
 
-        <nav
-            class="menu"
-            id="menu"
-            aria-label="Główna nawigacja"
-        >
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+        <div class="menu" id="menu">
+
+            <a href="../index.html">
+                Strona główna
+            </a>
 
             <a href="./index.html" class="active">
                 Sklep
             </a>
 
-            <a
-                href="https://polskiemc.pl"
-                rel="noopener noreferrer"
-            >
-                Powrót
+            <a href="../regulamin.html">
+                Regulamin
             </a>
 
-            <a
-                href="https://sklep.polskiemc.pl/shop/8747/page/8749"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Regulamin sklepu
+            <a href="../rekrutacja.html">
+                Rekrutacja
+            </a>
+
+            <a href="../tworca.html">
+                Zostań twórcą
             </a>
 
             <button
@@ -106,235 +94,261 @@
                 Voucher
             </button>
 
-        </nav>
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- =====================================================
+     HERO SKLEPU
+===================================================== -->
+
+<header class="shop-hero">
+
+    <div class="shop-hero-content">
+
+        <div class="shop-small-label">
+            POLSKIEMC.PL • ITEMSHOP
+        </div>
+
+        <h1>
+            SKLEP <span>POLSKIEMC.PL</span>
+        </h1>
+
+        <p>
+            Wesprzyj rozwój naszego serwera i odkryj dostępne rangi,
+            klucze oraz dodatkowe produkty.
+        </p>
 
     </div>
 
 </header>
 
 <!-- =====================================================
-     GŁÓWNA ZAWARTOŚĆ
+     GŁÓWNA ZAWARTOŚĆ SKLEPU
 ===================================================== -->
 
-<main class="shop-main">
+<main class="shop-section">
 
-    <!-- NAGŁÓWEK -->
+    <div class="container shop-layout">
 
-    <section class="shop-heading">
-
-        <p class="eyebrow">
-            POLSKIEMC.PL / ITEMSHOP
-        </p>
-
-        <h1>
-            Sklep <span>POLSKIEMC.PL</span>
-        </h1>
-
-        <p class="shop-subtitle">
-            Wybierz tryb, a następnie produkt, który chcesz kupić.
-        </p>
-
-    </section>
-
-    <!-- POWIADOMIENIA -->
-
-    <div
-        id="notice"
-        class="notice"
-        role="status"
-        aria-live="polite"
-        hidden
-    ></div>
-
-    <!-- =================================================
-         WYBÓR TRYBU
-    ================================================== -->
-
-    <section
-        id="serverView"
-        class="shop-panel"
-    >
-
-        <div class="section-title">
-
-            <div>
-
-                <p class="eyebrow">
-                    WYBIERZ ROZGRYWKĘ
-                </p>
-
-                <h2>
-                    Wybierz <span>tryb.</span>
-                </h2>
-
-            </div>
-
-        </div>
+        <!-- POWIADOMIENIA -->
 
         <div
-            id="serverGrid"
-            class="server-grid"
-        >
-
-            <div class="loading-card">
-                Ładowanie trybów...
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =================================================
-         PRODUKTY
-    ================================================== -->
-
-    <section
-        id="productsView"
-        class="shop-panel"
-        hidden
-    >
-
-        <div class="products-topline">
-
-            <div class="breadcrumb">
-
-                <a
-                    href="./index.html"
-                    id="backToServers"
-                >
-                    Sklep
-                </a>
-
-                <span>/</span>
-
-                <strong id="currentServerName">
-                    Tryb
-                </strong>
-
-            </div>
-
-            <button
-                id="changeServer"
-                class="back-button"
-                type="button"
-            >
-                ← Zmień tryb
-            </button>
-
-        </div>
-
-        <div class="section-title products-title">
-
-            <div>
-
-                <p class="eyebrow">
-                    DOSTĘPNE PRODUKTY
-                </p>
-
-                <h2>
-                    Oferta <span id="serverTitleAccent">serwera.</span>
-                </h2>
-
-            </div>
-
-        </div>
-
-        <!-- KATEGORIE -->
-
-        <div
-            id="categoryBar"
-            class="category-bar"
-            aria-label="Filtrowanie kategorii"
+            id="notice"
+            class="notice"
+            role="status"
+            aria-live="polite"
             hidden
         ></div>
 
-        <!-- LISTA PRODUKTÓW -->
+        <!-- =================================================
+             WYBÓR TRYBU
+        ================================================== -->
 
-        <div
-            id="productsGrid"
-            class="products-grid"
+        <section
+            id="serverView"
+            class="shop-panel"
         >
 
-            <div class="loading-card">
-                Ładowanie produktów...
+            <div class="section-title">
+
+                <div>
+
+                    <p class="eyebrow">
+                        WYBIERZ ROZGRYWKĘ
+                    </p>
+
+                    <h2>
+                        Wybierz <span>tryb.</span>
+                    </h2>
+
+                </div>
+
             </div>
 
-        </div>
+            <div id="serverGrid" class="server-grid">
 
-    </section>
+                <div class="loading-card">
+                    Ładowanie trybów...
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             PRODUKTY
+        ================================================== -->
+
+        <section
+            id="productsView"
+            class="shop-panel"
+            hidden
+        >
+
+            <!-- NAWIGACJA -->
+
+            <div class="products-topline">
+
+                <div class="breadcrumb">
+
+                    <a href="./index.html" id="backToServers">
+                        Sklep
+                    </a>
+
+                    <span>/</span>
+
+                    <strong id="currentServerName">
+                        Tryb
+                    </strong>
+
+                </div>
+
+                <button
+                    id="changeServer"
+                    class="back-button"
+                    type="button"
+                >
+                    ← Zmień tryb
+                </button>
+
+            </div>
+
+            <!-- NAGŁÓWEK PRODUKTÓW -->
+
+            <div class="section-title products-title">
+
+                <div>
+
+                    <p class="eyebrow">
+                        DOSTĘPNE PRODUKTY
+                    </p>
+
+                    <h2>
+                        Oferta <span id="serverTitleAccent">serwera.</span>
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <!-- KATEGORIE -->
+
+            <div
+                id="categoryBar"
+                class="category-bar"
+                aria-label="Filtrowanie kategorii"
+                hidden
+            ></div>
+
+            <!-- LISTA PRODUKTÓW -->
+
+            <div id="productsGrid" class="products-grid">
+
+                <div class="loading-card">
+                    Ładowanie produktów...
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
 
 </main>
 
 <!-- =====================================================
-     STOPKA
+     FOOTER — IDENTYCZNY JAK NA REGULAMINIE
 ===================================================== -->
 
-<footer class="site-footer">
+<footer>
 
-    <div class="footer-content">
+    <div class="container footer-container">
 
-        <div class="footer-logo">
-            <strong>POLSKIE</strong>MC.PL
-        </div>
+        <!-- LEWA STRONA -->
 
-        <p>
-            © 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone
-        </p>
-
-        <p class="footer-note">
-            Serwer POLSKIEMC.PL nie jest w żaden sposób
-            powiązany z firmą Mojang Studios ani Microsoft Studios.
-        </p>
-
-        <p class="footer-links">
+        <div class="footer-buttons footer-left">
 
             <a
                 href="https://www.youtube.com/@p0lak-official1"
                 target="_blank"
                 rel="noopener noreferrer"
+                class="footer-button youtube-button"
             >
-                YouTube
+                <span>▶</span>
+                YOUTUBE
             </a>
 
             <a
                 href="https://dc.gg/polskiemc"
                 target="_blank"
                 rel="noopener noreferrer"
+                class="footer-button discord-footer-button"
             >
-                Discord
+                <span>◉</span>
+                DISCORD
             </a>
+
+        </div>
+
+        <!-- ŚRODEK -->
+
+        <div class="footer-center">
+
+            <div class="footer-logo">
+
+                <span>POLSKIE</span>MC.PL
+
+            </div>
+
+            <p>
+                © 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone
+            </p>
+
+            <div class="footer-note">
+                Serwer POLSKIEMC.PL nie jest w żaden sposób
+                powiązany z firmą Mojang Studios oraz Microsoft Studios.
+            </div>
+
+        </div>
+
+        <!-- PRAWA STRONA -->
+
+        <div class="footer-buttons footer-right">
 
             <a
                 href="https://www.tiktok.com/@p0lak_yt"
                 target="_blank"
                 rel="noopener noreferrer"
+                class="footer-button tiktok-button"
             >
-                TikTok
+                <span>♪</span>
+                TIKTOK
             </a>
 
             <a
                 href="https://mapa.polskiemc.pl"
                 target="_blank"
                 rel="noopener noreferrer"
+                class="footer-button map-footer-button"
             >
-                Mapa Earth
+                <span>🌍</span>
+                MAPA EARTH
             </a>
 
-        </p>
+        </div>
 
-        <!-- WYMAGANA STOPKA VISHOP — NIE USUWAĆ -->
+    </div>
 
-        <p class="powered-by">
-            Sklep jest zasilany przez
-            <a
-                href="https://vishop.pl"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                VIshop.pl
-            </a>.
-        </p>
+    <!-- WYMAGANA STOPKA VISHOP -->
 
+    <div class="powered-by">
+        Sklep jest zasilany przez
+        <a href="https://vishop.pl" target="_blank" rel="noopener noreferrer">
+            VIshop.pl
+        </a>.
     </div>
 
 </footer>
@@ -343,11 +357,7 @@
      MODAL VOUCHERA
 ===================================================== -->
 
-<div
-    class="modal-backdrop"
-    id="voucherModal"
-    hidden
->
+<div class="modal-backdrop" id="voucherModal" hidden>
 
     <section
         class="modal"
@@ -427,6 +437,39 @@
     </section>
 
 </div>
+
+<!-- =====================================================
+     POWRÓT NA GÓRĘ
+===================================================== -->
+
+<button id="topBtn" aria-label="Wróć na górę">
+    ↑
+</button>
+
+<!-- =====================================================
+     JAVASCRIPT — PRZYCISK GÓRA
+===================================================== -->
+
+<script>
+
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+
+    topBtn.classList.toggle("show", window.scrollY > 500);
+
+}, { passive: true });
+
+topBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+</script>
 
 </body>
 </html>
