@@ -876,3 +876,37 @@ body {
     max-width: none;
     flex: 1 1 100%;
 }
+
+/* =====================================================
+   WYŁĄCZENIE ANIMACJI WCHODZENIA
+===================================================== */
+
+.regulamin-hero,
+.regulamin-hero *,
+.regulamin-section,
+.regulamin-section *,
+.rules-sidebar,
+.rule-section,
+.rule-section * {
+    animation: none !important;
+    animation-delay: 0s !important;
+    transition: none !important;
+    transform: none;
+}
+
+/* Wyłączenie animacji pojawiania się z JS/CSS */
+
+.regulamin-hero,
+.regulamin-section,
+.rules-sidebar,
+.regulamin-content,
+.rule-section {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Zachowanie efektu przewijania do sekcji */
+
+html {
+    scroll-behavior: smooth;
+}
