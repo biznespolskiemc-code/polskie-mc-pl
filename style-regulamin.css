@@ -864,3 +864,15 @@ body {
     }
 
 }
+
+.sklep-regulamin .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.sklep-regulamin .regulamin-content {
+    width: 100%;
+    max-width: none;
+    flex: 1 1 100%;
+}
