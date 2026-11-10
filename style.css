@@ -1156,4 +1156,134 @@ body {
     }
 }
 
+/* =====================================================
+   POLSKIEMC.PL — WSPÓLNY WYGLĄD GÓRNEGO NAGŁÓWKA
+   SKLEP / REGULAMIN / REKRUTACJA
+===================================================== */
+
+/* Wysokość i położenie nagłówka */
+
+.shop-hero,
+.regulamin-hero,
+.rekrutacja-hero {
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 105px 20px 45px;
+    text-align: center;
+}
+
+/* Zawartość */
+
+.shop-hero-content,
+.regulamin-hero-content,
+.rekrutacja-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Mała etykieta nad tytułem */
+
+.shop-small-label,
+.regulamin-hero .hero-small-label,
+.rekrutacja-hero .hero-small-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    padding: 8px 15px;
+    border: 1px solid rgba(239,82,124,.2);
+    border-radius: 30px;
+    background: rgba(239,82,124,.06);
+    color: #ef9ab0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* Główny tytuł */
+
+.shop-hero h1,
+.regulamin-hero h1,
+.rekrutacja-hero h1 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(45px,6vw,72px);
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+/* Czerwony akcent */
+
+.shop-hero h1 span,
+.regulamin-hero h1 span,
+.rekrutacja-hero h1 span {
+    color: #d61841;
+}
+
+/* Opis pod tytułem */
+
+.shop-hero p,
+.regulamin-hero p,
+.rekrutacja-hero p {
+    max-width: 650px;
+    margin: 25px auto 0;
+    color: #929292;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+/* TELEFONY */
+
+@media (max-width: 800px) {
+    .shop-hero,
+    .regulamin-hero,
+    .rekrutacja-hero {
+        min-height: 40vh;
+        padding: 100px 20px 35px;
+    }
+
+    .shop-hero h1,
+    .regulamin-hero h1,
+    .rekrutacja-hero h1 {
+        font-size: 43px;
+        letter-spacing: -1px;
+    }
+
+    .shop-hero p,
+    .regulamin-hero p,
+    .rekrutacja-hero p {
+        font-size: 14px;
+    }
+}
+
+/* MAŁE TELEFONY */
+
+@media (max-width: 600px) {
+    .shop-hero h1,
+    .regulamin-hero h1,
+    .rekrutacja-hero h1 {
+        font-size: 36px;
+    }
+
+    .shop-small-label,
+    .regulamin-hero .hero-small-label,
+    .rekrutacja-hero .hero-small-label {
+        font-size: 9px;
+        letter-spacing: 1.3px;
+    }
+
+    .shop-hero p,
+    .regulamin-hero p,
+    .rekrutacja-hero p {
+        font-size: 13px;
+    }
+}
+
 
