@@ -1145,4 +1145,15 @@ body {
     }
 }
 
+/* MAŁY ODSTĘP NAD ZAWARTOŚCIĄ SKLEPU */
+.shop-section {
+    padding-top: 10px !important;
+}
+
+@media (max-width: 800px) {
+    .shop-section {
+        padding-top: 8px !important;
+    }
+}
+
 
