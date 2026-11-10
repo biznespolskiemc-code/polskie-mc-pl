@@ -555,15 +555,29 @@ a {
    ANIMACJE
 ===================================================== */
 
-.scroll-animation {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: .7s ease;
+/* =====================================================
+   REKRUTACJA — WYŁĄCZENIE ANIMACJI POJAWIANIA SIĘ
+===================================================== */
+
+.rekrutacja-hero,
+.rekrutacja-hero *,
+.rekrutacja-section,
+.rekrutacja-section *,
+.rekrutacja-wrapper,
+.rekrutacja-wrapper * {
+    animation: none !important;
+    transition: none !important;
 }
 
-.scroll-animation.visible {
-    opacity: 1;
-    transform: translateY(0);
+.rekrutacja-hero .scroll-animation,
+.rekrutacja-section .scroll-animation,
+.rekrutacja-wrapper .scroll-animation,
+.rekrutacja-hero .scroll-animation.visible,
+.rekrutacja-section .scroll-animation.visible,
+.rekrutacja-wrapper .scroll-animation.visible {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
 }
 
 /* =====================================================
