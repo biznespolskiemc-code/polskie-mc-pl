@@ -34,6 +34,7 @@
             <a href="../regulamin">Regulamin</a>
             <a href="../rekrutacja">Rekrutacja</a>
             <a href="../tworca">Zostań twórcą</a>
+            <button class="nav-voucher" id="openVoucher" type="button">Voucher</button>
         </div>
     </div>
 </nav>
@@ -114,78 +115,86 @@
     <div class="vishop-credit">Sklep jest zasilany przez <a href="https://vishop.pl" target="_blank" rel="noopener noreferrer">VIshop.pl</a>.</div>
 </footer>
 
-<!-- CHECKOUT — własny wygląd, tworzenie płatności przez oficjalne API VIshop. -->
+<!-- CHECKOUT — własny wygląd POLSKIEMC.PL -->
 <div class="modal-backdrop checkout-backdrop" id="checkoutModal" hidden>
     <section class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-        <button class="modal-close" id="closeCheckout" type="button" aria-label="Zamknij">×</button>
-        <p class="eyebrow">POLSKIEMC.PL</p>
-        <h2 id="checkoutTitle">Dokończ <span>zakup.</span></h2>
+        <h2 id="checkoutTitle" class="checkout-title">Zakup <span id="checkoutTitleProduct">PRODUKT</span></h2>
 
         <div id="checkoutProductSummary" class="checkout-product-summary">
-            <div class="checkout-product-image-wrap"><img id="checkoutProductImage" src="../images/polskiemc.png" alt="Produkt"></div>
-            <div class="checkout-product-copy">
+            <div class="checkout-product-visual">
+                <img id="checkoutProductImage" src="../images/polskiemc.png" alt="Produkt">
                 <strong id="checkoutProductName">Ładowanie produktu...</strong>
-                <span id="checkoutProductServer"></span>
+            </div>
+            <div class="checkout-product-description">
+                <span id="checkoutProductServer" class="checkout-product-server"></span>
                 <p id="checkoutProductDescription"></p>
             </div>
         </div>
 
-        <form id="checkoutForm" novalidate>
-            <div class="checkout-field">
-                <label for="checkoutNick">Nick Minecraft</label>
-                <input id="checkoutNick" name="player" type="text" minlength="3" maxlength="16" autocomplete="off" placeholder="TwójNick" required>
-            </div>
-
-            <div id="checkoutQuantityWrap" class="checkout-field" hidden>
-                <div class="checkout-label-row">
-                    <label id="checkoutQuantityLabel" for="checkoutQuantity">Ilość</label>
-                    <span id="checkoutQuantityValue">1</span>
+        <form id="checkoutForm" class="checkout-form" novalidate>
+            <div id="checkoutQuantityWrap" class="checkout-quantity-panel" hidden>
+                <div class="checkout-quantity-top">
+                    <label id="checkoutQuantityLabel" for="checkoutQuantityNumber">Ilość</label>
+                    <input id="checkoutQuantityNumber" type="number" min="1" max="1" value="1" inputmode="numeric" aria-label="Liczba sztuk">
                 </div>
-                <input id="checkoutQuantity" name="quantity" type="range" min="1" max="1" value="1">
+                <div class="checkout-range-wrap">
+                    <output id="checkoutQuantityValue" class="checkout-range-bubble">1</output>
+                    <input id="checkoutQuantity" name="quantity" type="range" min="1" max="1" value="1" aria-label="Wybierz ilość">
+                </div>
                 <div class="checkout-range-limits"><span id="checkoutQuantityMin">1</span><span id="checkoutQuantityMax">1</span></div>
             </div>
 
-            <div class="checkout-field">
-                <div class="checkout-label-row"><label>Metoda płatności</label><span class="checkout-hint">Dostępne dla produktu</span></div>
-                <div id="checkoutMethods" class="checkout-methods">
-                    <div class="loading-card">Ładowanie metod płatności...</div>
+            <section class="checkout-payment-panel" aria-label="Dane i metoda płatności">
+                <div class="checkout-methods-wrap">
+                    <span class="checkout-visually-hidden">Metoda płatności</span>
+                    <div id="checkoutMethods" class="checkout-methods">
+                        <div class="loading-card">Ładowanie metod płatności...</div>
+                    </div>
                 </div>
-            </div>
 
-            <div id="checkoutSmsInfo" class="checkout-sms-info" hidden>
-                <strong>Płatność SMS</strong>
-                <p>Wyślij wiadomość o podanej treści na wskazany numer. Następnie wpisz kod zwrotny.</p>
-                <div class="checkout-sms-line"><span>Numer</span><strong id="checkoutSmsNumber"></strong></div>
-                <div class="checkout-sms-line"><span>Treść SMS</span><strong id="checkoutSmsContent"></strong></div>
-                <div class="checkout-sms-line"><span>Cena SMS</span><strong id="checkoutSmsPrice"></strong></div>
-                <label for="checkoutSmsCode">Kod otrzymany SMS-em</label>
-                <input id="checkoutSmsCode" type="text" autocomplete="off" placeholder="Wpisz kod zwrotny">
-            </div>
-
-            <div id="checkoutDiscountWrap" class="checkout-field checkout-discount-wrap">
-                <label for="checkoutDiscountCode">Kod rabatowy</label>
-                <div class="checkout-discount-row">
-                    <input id="checkoutDiscountCode" type="text" autocomplete="off" placeholder="Wpisz kod rabatowy">
-                    <button id="applyDiscount" class="back-button" type="button">ZASTOSUJ</button>
+                <div id="checkoutSmsInfo" class="checkout-sms-info" hidden>
+                    <strong>Płatność SMS</strong>
+                    <p>Wyślij wiadomość o podanej treści na wskazany numer. Następnie wpisz kod zwrotny.</p>
+                    <div class="checkout-sms-line"><span>Numer</span><strong id="checkoutSmsNumber"></strong></div>
+                    <div class="checkout-sms-line"><span>Treść SMS</span><strong id="checkoutSmsContent"></strong></div>
+                    <div class="checkout-sms-line"><span>Cena SMS</span><strong id="checkoutSmsPrice"></strong></div>
+                    <label for="checkoutSmsCode">Kod otrzymany SMS-em</label>
+                    <input id="checkoutSmsCode" type="text" autocomplete="off" placeholder="Wpisz kod zwrotny">
                 </div>
-                <p id="checkoutDiscountMessage" class="checkout-inline-message" role="status" aria-live="polite"></p>
-            </div>
 
-            <div id="checkoutRulesWrap" class="checkout-rules" hidden>
-                <label class="checkout-checkbox-label">
-                    <input id="checkoutRulesAccepted" type="checkbox">
-                    <span id="checkoutRulesText">Akceptuję regulamin sklepu.</span>
-                </label>
-            </div>
+                <div class="checkout-input-row">
+                    <div class="checkout-line-field">
+                        <label for="checkoutNick">Nick</label>
+                        <input id="checkoutNick" name="player" type="text" minlength="3" maxlength="16" autocomplete="off" placeholder="TwójNick" required>
+                    </div>
 
-            <div class="checkout-total">
+                    <div id="checkoutDiscountWrap" class="checkout-line-field checkout-discount-wrap">
+                        <label for="checkoutDiscountCode">Kod rabatowy (opcjonalnie)</label>
+                        <input id="checkoutDiscountCode" type="text" autocomplete="off" placeholder="Wpisz kod rabatowy">
+                        <button id="applyDiscount" type="button" hidden>Zastosuj</button>
+                        <p id="checkoutDiscountMessage" class="checkout-inline-message" role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+
+                <div id="checkoutRulesWrap" class="checkout-rules" hidden>
+                    <label class="checkout-checkbox-label">
+                        <input id="checkoutRulesAccepted" type="checkbox">
+                        <span id="checkoutRulesText">Akceptuję regulamin sklepu.</span>
+                    </label>
+                </div>
+            </section>
+
+            <div class="checkout-total" hidden>
                 <span>Do zapłaty</span>
                 <strong id="checkoutTotal">—</strong>
             </div>
+            <p id="checkoutMessage" class="form-message checkout-message" role="status" aria-live="polite"></p>
+            <p class="checkout-footnote" hidden>Płatność i realizacja zamówienia są obsługiwane przez VIshop oraz wybranego operatora.</p>
 
-            <p id="checkoutMessage" class="form-message" role="status" aria-live="polite"></p>
-            <button id="checkoutSubmit" class="primary-button modal-submit checkout-submit" type="submit" disabled>PRZEJDŹ DO PŁATNOŚCI</button>
-            <p class="checkout-footnote">Płatność i realizacja zamówienia są obsługiwane przez VIshop oraz wybranego operatora.</p>
+            <div class="checkout-actions">
+                <button id="closeCheckout" class="checkout-cancel" type="button">ANULUJ</button>
+                <button id="checkoutSubmit" class="checkout-buy" type="submit" disabled>ZAKUP</button>
+            </div>
         </form>
     </section>
 </div>
