@@ -1,474 +1,222 @@
-
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#090909">
-
     <title>POLSKIEMC.PL | Sklep</title>
-
-    <meta
-        name="description"
-        content="Oficjalny sklep POLSKIEMC.PL — rangi, klucze i produkty na tryby Earth SMP oraz Mace PvP."
-    >
-
-    <link
-        rel="icon"
-        type="image/png"
-        href="../images/polskiemc.png"
-    >
+    <meta name="description" content="Oficjalny sklep POLSKIEMC.PL — rangi, klucze i produkty na tryby Earth SMP oraz Mace PvP.">
+    <link rel="icon" type="image/png" href="../images/polskiemc.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- WSPÓLNY STYL STRONY GŁÓWNEJ -->
     <link rel="stylesheet" href="../style-index.css">
-
-    <!-- STYL SKLEPU -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- VISHOP -->
-    <script src="https://vishop.pl/pay.js" defer></script>
     <script src="sklep.js" defer></script>
 </head>
-
 <body>
 
-<!-- =====================================================
-     NAWIGACJA
-===================================================== -->
-
 <nav class="navbar">
-
     <div class="nav-container">
-
         <a href="../index.html" class="logo">
-            <img
-                src="../images/polskiemc.png"
-                alt="POLSKIEMC.PL"
-            >
+            <img src="../images/polskiemc.png" alt="POLSKIEMC.PL">
         </a>
 
-        <div
-            class="hamburger"
-            id="hamburger"
-            aria-label="Otwórz menu"
-            role="button"
-            tabindex="0"
-            aria-expanded="false"
-        >
-
-            <span></span>
-            <span></span>
-            <span></span>
-
+        <div class="hamburger" id="hamburger" aria-label="Otwórz menu" role="button" tabindex="0" aria-expanded="false">
+            <span></span><span></span><span></span>
         </div>
 
         <div class="menu" id="menu">
-
-            <a href="../index">
-                Strona główna
-            </a>
-
-            <a href="sklep" class="active">
-                Sklep
-            </a>
-
-            <a href="../regulamin">
-                Regulamin
-            </a>
-
-            <a href="../rekrutacja">
-                Rekrutacja
-            </a>
-
-            <a href="../tworca">
-                Zostań twórcą
-            </a>
-
+            <a href="../index">Strona główna</a>
+            <a href="sklep" class="active">Sklep</a>
+            <a href="../regulamin">Regulamin</a>
+            <a href="../rekrutacja">Rekrutacja</a>
+            <a href="../tworca">Zostań twórcą</a>
+            <button class="nav-voucher" id="openVoucher" type="button">Voucher</button>
         </div>
-
     </div>
-
 </nav>
 
-
-<!-- =====================================================
-     HERO SKLEPU
-===================================================== -->
-
 <header class="shop-hero">
-
     <div class="shop-hero-content">
-
-        <h1>
-            SKLEP
-        </h1>
+        <h1>SKLEP</h1>
         <p>Oficjalny itemshop serwera - rangi, pakiety, klucze i nie tylko!</p>
-
     </div>
-
 </header>
 
-
-<!-- =====================================================
-     GŁÓWNA SEKCJA SKLEPU
-===================================================== -->
-
 <main class="shop-section">
-
     <div class="container shop-layout">
+        <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
 
-        <!-- POWIADOMIENIA -->
-
-        <div
-            id="notice"
-            class="notice"
-            role="status"
-            aria-live="polite"
-            hidden
-        ></div>
-
-
-        <!-- =================================================
-             WYBÓR TRYBU
-        ================================================== -->
-
-        <section
-            id="serverView"
-            class="shop-panel"
-        >
-
-            <div class="section-title">
-
-                <div>
-
-                    <h2>
-                        WYBIERZ TRYB
-                    </h2>
-
-                </div>
-
+        <section id="serverView" class="shop-panel">
+            <div class="section-title"><div><h2>WYBIERZ TRYB</h2></div></div>
+            <div id="serverGrid" class="server-grid">
+                <div class="loading-card">Ładowanie trybów...</div>
             </div>
-
-            <div
-                id="serverGrid"
-                class="server-grid"
-            >
-
-                <div class="loading-card">
-                    Ładowanie trybów...
-                </div>
-
-            </div>
-
         </section>
 
-
-        <!-- =================================================
-             PRODUKTY
-        ================================================== -->
-
-        <section
-            id="productsView"
-            class="shop-panel"
-            hidden
-        >
-
-           
-<!-- NAWIGACJA -->
-
-<div class="products-topline">
-
-    <button
-        id="changeServer"
-        class="back-button"
-        type="button"
-    >
-        ← Zmień tryb
-    </button>
-
-</div>
-
-<!-- NAZWA TRYBU -->
-
-<div class="section-title products-title">
-
-    <h2 id="serverTitleAccent"></h2>
-
-</div>
-
-<!-- KATEGORIE -->
-
-<div
-    id="categoryBar"
-    class="category-bar"
-    aria-label="Filtrowanie kategorii"
-    hidden
-></div>
-
-
-
-            <!-- PRODUKTY -->
-
-            <div
-                id="productsGrid"
-                class="products-grid"
-            >
-
-                <div class="loading-card">
-                    Ładowanie produktów...
-                </div>
-
+        <section id="productsView" class="shop-panel" hidden>
+            <div class="products-topline">
+                <button id="changeServer" class="back-button" type="button">← Zmień tryb</button>
             </div>
 
+            <div class="section-title products-title">
+                <h2 id="serverTitleAccent"></h2>
+            </div>
+
+            <div id="categoryBar" class="category-bar" aria-label="Filtrowanie kategorii" hidden></div>
+
+            <div id="productsGrid" class="products-grid">
+                <div class="loading-card">Ładowanie produktów...</div>
+            </div>
         </section>
 
+        <section id="paymentStatusView" class="shop-panel payment-status-view" hidden>
+            <div class="section-title products-title">
+                <h2>STATUS <span>ZAMÓWIENIA</span></h2>
+            </div>
+            <div class="payment-status-content">
+                <div id="paymentStatusIcon" class="payment-status-icon">…</div>
+                <h3 id="paymentStatusTitle">Sprawdzanie płatności...</h3>
+                <p id="paymentStatusDescription" class="payment-status-description">Pobieramy aktualny status zamówienia.</p>
+                <div id="paymentStatusDetails" class="payment-status-details" hidden></div>
+                <p id="paymentStatusMessage" class="form-message" role="status" aria-live="polite"></p>
+                <div class="payment-status-actions">
+                    <button id="refreshPaymentStatus" class="primary-button" type="button">ODŚWIEŻ STATUS</button>
+                    <a class="back-button payment-back-link" href="sklep">WRÓĆ DO SKLEPU</a>
+                </div>
+            </div>
+        </section>
     </div>
-
 </main>
 
-
-<!-- =====================================================
-     FOOTER
-     IDENTYCZNY JAK NA REGULAMINIE
-===================================================== -->
-
 <footer>
-
     <div class="container footer-container">
-
-        <!-- LEWA STRONA -->
-
         <div class="footer-buttons footer-left">
-
-            <a
-                href="https://www.youtube.com/@p0lak-official1"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="footer-button youtube-button"
-            >
-
-                <span>▶</span>
-                YOUTUBE
-
-            </a>
-
-            <a
-                href="https://dc.gg/polskiemc"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="footer-button discord-footer-button"
-            >
-
-                <span>◉</span>
-                DISCORD
-
-            </a>
-
+            <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer" class="footer-button youtube-button"><span>▶</span> YOUTUBE</a>
+            <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener noreferrer" class="footer-button discord-footer-button"><span>◉</span> DISCORD</a>
         </div>
-
-
-        <!-- ŚRODEK -->
 
         <div class="footer-center">
-
-            <div class="footer-logo">
-
-                <span>POLSKIE</span>MC.PL
-
-            </div>
-
-            <p>
-                © 2026 POLSKIEMC.PL
-                — Wszelkie prawa zastrzeżone
-            </p>
-
-            <div class="footer-note">
-
-                Serwer POLSKIEMC.PL nie jest w żaden sposób
-                powiązany z firmą Mojang Studios oraz Microsoft Studios.
-
-            </div>
-
+            <div class="footer-logo"><span>POLSKIE</span>MC.PL</div>
+            <p>© 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</p>
+            <div class="footer-note">Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany z firmą Mojang Studios oraz Microsoft Studios.</div>
         </div>
-
-
-        <!-- PRAWA STRONA -->
 
         <div class="footer-buttons footer-right">
-
-            <a
-                href="https://www.tiktok.com/@p0lak_yt"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="footer-button tiktok-button"
-            >
-
-                <span>♪</span>
-                TIKTOK
-
-            </a>
-
-            <a
-                href="https://mapa.polskiemc.pl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="footer-button map-footer-button"
-            >
-
-                <span>🌍</span>
-                MAPA EARTH
-
-            </a>
-
+            <a href="https://www.tiktok.com/@p0lak_yt" target="_blank" rel="noopener noreferrer" class="footer-button tiktok-button"><span>♪</span> TIKTOK</a>
+            <a href="https://mapa.polskiemc.pl" target="_blank" rel="noopener noreferrer" class="footer-button map-footer-button"><span>🌍</span> MAPA EARTH</a>
         </div>
-
     </div>
 
+    <!-- Wymagany przez licencję VIshop widoczny link do platformy. Nie usuwać ani nie ukrywać. -->
+    <div class="vishop-credit">Sklep jest zasilany przez <a href="https://vishop.pl" target="_blank" rel="noopener noreferrer">VIshop.pl</a>.</div>
 </footer>
 
+<!-- CHECKOUT — własny wygląd, tworzenie płatności przez oficjalne API VIshop. -->
+<div class="modal-backdrop checkout-backdrop" id="checkoutModal" hidden>
+    <section class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+        <button class="modal-close" id="closeCheckout" type="button" aria-label="Zamknij">×</button>
+        <p class="eyebrow">POLSKIEMC.PL</p>
+        <h2 id="checkoutTitle">Dokończ <span>zakup.</span></h2>
 
-<!-- =====================================================
-     VOUCHER
-===================================================== -->
+        <div id="checkoutProductSummary" class="checkout-product-summary">
+            <div class="checkout-product-image-wrap"><img id="checkoutProductImage" src="../images/polskiemc.png" alt="Produkt"></div>
+            <div class="checkout-product-copy">
+                <strong id="checkoutProductName">Ładowanie produktu...</strong>
+                <span id="checkoutProductServer"></span>
+                <p id="checkoutProductDescription"></p>
+            </div>
+        </div>
 
-<div
-    class="modal-backdrop"
-    id="voucherModal"
-    hidden
->
+        <form id="checkoutForm" novalidate>
+            <div class="checkout-field">
+                <label for="checkoutNick">Nick Minecraft</label>
+                <input id="checkoutNick" name="player" type="text" minlength="3" maxlength="16" autocomplete="off" placeholder="TwójNick" required>
+            </div>
 
-    <section
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="voucherTitle"
-    >
+            <div id="checkoutQuantityWrap" class="checkout-field" hidden>
+                <div class="checkout-label-row">
+                    <label id="checkoutQuantityLabel" for="checkoutQuantity">Ilość</label>
+                    <span id="checkoutQuantityValue">1</span>
+                </div>
+                <input id="checkoutQuantity" name="quantity" type="range" min="1" max="1" value="1">
+                <div class="checkout-range-limits"><span id="checkoutQuantityMin">1</span><span id="checkoutQuantityMax">1</span></div>
+            </div>
 
-        <button
-            class="modal-close"
-            id="closeVoucher"
-            type="button"
-            aria-label="Zamknij"
-        >
-            ×
-        </button>
+            <div class="checkout-field">
+                <div class="checkout-label-row"><label>Metoda płatności</label><span class="checkout-hint">Dostępne dla produktu</span></div>
+                <div id="checkoutMethods" class="checkout-methods">
+                    <div class="loading-card">Ładowanie metod płatności...</div>
+                </div>
+            </div>
 
-        <p class="eyebrow">
-            POLSKIEMC.PL
-        </p>
+            <div id="checkoutSmsInfo" class="checkout-sms-info" hidden>
+                <strong>Płatność SMS</strong>
+                <p>Wyślij wiadomość o podanej treści na wskazany numer. Następnie wpisz kod zwrotny.</p>
+                <div class="checkout-sms-line"><span>Numer</span><strong id="checkoutSmsNumber"></strong></div>
+                <div class="checkout-sms-line"><span>Treść SMS</span><strong id="checkoutSmsContent"></strong></div>
+                <div class="checkout-sms-line"><span>Cena SMS</span><strong id="checkoutSmsPrice"></strong></div>
+                <label for="checkoutSmsCode">Kod otrzymany SMS-em</label>
+                <input id="checkoutSmsCode" type="text" autocomplete="off" placeholder="Wpisz kod zwrotny">
+            </div>
 
-        <h2 id="voucherTitle">
-            Zrealizuj <span>voucher.</span>
-        </h2>
+            <div id="checkoutDiscountWrap" class="checkout-field checkout-discount-wrap">
+                <label for="checkoutDiscountCode">Kod rabatowy</label>
+                <div class="checkout-discount-row">
+                    <input id="checkoutDiscountCode" type="text" autocomplete="off" placeholder="Wpisz kod rabatowy">
+                    <button id="applyDiscount" class="back-button" type="button">ZASTOSUJ</button>
+                </div>
+                <p id="checkoutDiscountMessage" class="checkout-inline-message" role="status" aria-live="polite"></p>
+            </div>
 
-        <p class="modal-description">
-            Wpisz kod vouchera oraz nick Minecraft,
-            na który ma zostać zrealizowany.
-        </p>
+            <div id="checkoutRulesWrap" class="checkout-rules" hidden>
+                <label class="checkout-checkbox-label">
+                    <input id="checkoutRulesAccepted" type="checkbox">
+                    <span id="checkoutRulesText">Akceptuję regulamin sklepu.</span>
+                </label>
+            </div>
 
-        <form id="voucherForm">
+            <div class="checkout-total">
+                <span>Do zapłaty</span>
+                <strong id="checkoutTotal">—</strong>
+            </div>
 
-            <label for="voucherNick">
-                Nick Minecraft
-            </label>
-
-            <input
-                id="voucherNick"
-                name="player"
-                type="text"
-                minlength="3"
-                maxlength="16"
-                autocomplete="off"
-                placeholder="TwójNick"
-                required
-            >
-
-            <label for="voucherCode">
-                Kod vouchera
-            </label>
-
-            <input
-                id="voucherCode"
-                name="code"
-                type="text"
-                autocomplete="off"
-                placeholder="Wpisz kod"
-                required
-            >
-
-            <button
-                class="primary-button modal-submit"
-                type="submit"
-            >
-                ZREALIZUJ VOUCHER
-            </button>
-
-            <p
-                id="voucherMessage"
-                class="form-message"
-                role="status"
-                aria-live="polite"
-            ></p>
-
+            <p id="checkoutMessage" class="form-message" role="status" aria-live="polite"></p>
+            <button id="checkoutSubmit" class="primary-button modal-submit checkout-submit" type="submit" disabled>PRZEJDŹ DO PŁATNOŚCI</button>
+            <p class="checkout-footnote">Płatność i realizacja zamówienia są obsługiwane przez VIshop oraz wybranego operatora.</p>
         </form>
-
     </section>
-
 </div>
 
+<!-- VOUCHER -->
+<div class="modal-backdrop" id="voucherModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="voucherTitle">
+        <button class="modal-close" id="closeVoucher" type="button" aria-label="Zamknij">×</button>
+        <p class="eyebrow">POLSKIEMC.PL</p>
+        <h2 id="voucherTitle">Zrealizuj <span>voucher.</span></h2>
+        <p class="modal-description">Wpisz kod vouchera oraz nick Minecraft, na który ma zostać zrealizowany.</p>
+        <form id="voucherForm">
+            <label for="voucherNick">Nick Minecraft</label>
+            <input id="voucherNick" name="player" type="text" minlength="3" maxlength="16" autocomplete="off" placeholder="TwójNick" required>
+            <label for="voucherCode">Kod vouchera</label>
+            <input id="voucherCode" name="code" type="text" autocomplete="off" placeholder="Wpisz kod" required>
+            <button class="primary-button modal-submit" type="submit">ZREALIZUJ VOUCHER</button>
+            <p id="voucherMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+</div>
 
-<!-- =====================================================
-     POWRÓT NA GÓRĘ
-===================================================== -->
-
-<button
-    id="topBtn"
-    aria-label="Wróć na górę"
->
-    ↑
-</button>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+<button id="topBtn" aria-label="Wróć na górę">↑</button>
 
 <script>
-
-/* =====================================================
-   POWRÓT NA GÓRĘ
-===================================================== */
-
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-
-    topBtn.classList.toggle(
-        "show",
-        window.scrollY > 500
-    );
-
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('show', window.scrollY > 500);
 }, { passive: true });
-
-topBtn.addEventListener("click", () => {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-});
-
+topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
-
 </body>
 </html>
