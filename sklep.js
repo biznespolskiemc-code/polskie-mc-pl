@@ -516,7 +516,7 @@ function createProductDescription(product) {
     'p',
     'product-description',
     description.length > 110
-      ? 'Kliknij, aby zobaczyć więcej informacji'
+      ? 'Wybierz, aby zobaczyć więcej informacji'
       : description
   );
 }
