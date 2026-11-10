@@ -761,3 +761,422 @@ body {
         transition-duration: .01ms !important;
     }
 }
+
+
+/* =====================================================
+   POLSKIEMC.PL — CHECKOUT W STYLU REFERENCYJNYM
+===================================================== */
+
+.checkout-backdrop {
+    padding: 0;
+    align-items: center;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(5px);
+}
+
+.checkout-modal {
+    width: min(795px, 100%);
+    max-height: min(840px, 100dvh);
+    padding: 20px 24px 10px;
+    overflow-y: auto;
+    border: 1px solid #39393e;
+    border-radius: 13px;
+    background: #141419;
+    box-shadow: none;
+}
+
+.checkout-modal .eyebrow {
+    display: none;
+}
+
+.checkout-modal h2 {
+    margin: 0 0 24px;
+    font-size: 23px;
+    font-weight: 500;
+    letter-spacing: -.5px;
+}
+
+.checkout-modal h2 span {
+    color: #fff;
+}
+
+/* PRODUKT */
+
+.checkout-product-summary {
+    grid-template-columns: 163px minmax(0,1fr);
+    align-items: stretch;
+    gap: 24px;
+    margin: 0 12px 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.checkout-product-image-wrap {
+    width: 163px;
+    min-height: 242px;
+    height: auto;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #35353a;
+    border-radius: 17px;
+    background: #141419;
+    box-shadow: 6px 6px 0 rgba(0,0,0,.35);
+}
+
+.checkout-product-image-wrap img {
+    width: 100%;
+    height: 155px;
+    object-fit: contain;
+}
+
+.checkout-product-copy {
+    min-height: 206px;
+    padding: 17px;
+    border: 2px solid #35353a;
+    border-radius: 17px;
+    background: #141419;
+    box-shadow: 6px 6px 0 rgba(0,0,0,.35);
+}
+
+.checkout-product-copy strong {
+    font-size: 16px;
+}
+
+.checkout-product-copy > span {
+    display: none;
+}
+
+.checkout-product-copy p {
+    margin-top: 0;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* FORMULARZ */
+
+#checkoutForm {
+    gap: 14px;
+}
+
+.checkout-field {
+    gap: 9px;
+}
+
+.checkout-field > label,
+.checkout-label-row > label {
+    color: #eee;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* ILOŚĆ */
+
+.checkout-modal #checkoutQuantityWrap {
+    min-height: 130px;
+    margin: 0 12px;
+    padding: 17px;
+    border: 2px solid #35353a;
+    border-radius: 17px;
+    background: #141419;
+    box-shadow: 6px 6px 0 rgba(0,0,0,.35);
+}
+
+.checkout-label-row {
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+#checkoutQuantityValue {
+    min-width: 62px;
+    padding: 10px;
+    border: 1px solid #49494f;
+    border-radius: 4px;
+    background: #17171c;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#checkoutQuantity {
+    margin-top: 12px;
+    accent-color: #e51b4c;
+}
+
+.checkout-range-limits {
+    display: none;
+}
+
+/* METODY PŁATNOŚCI */
+
+.checkout-modal .checkout-field:has(#checkoutMethods) {
+    margin: 0;
+    padding: 30px 25px;
+    border: 2px solid #35353a;
+    border-radius: 17px;
+    background: #141419;
+    box-shadow: 6px 6px 0 rgba(0,0,0,.35);
+}
+
+.checkout-modal .checkout-field:has(#checkoutMethods) > .checkout-label-row {
+    display: none;
+}
+
+.checkout-methods {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+}
+
+.payment-method {
+    position: relative;
+    width: 105px;
+    min-height: 62px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 12px;
+    border: 2px solid #35353a;
+    border-radius: 15px;
+    background: #19191f;
+    color: #c9c9ce;
+}
+
+.payment-method:hover {
+    border-color: #55555d;
+    background: #202027;
+}
+
+.payment-method.active {
+    border-color: #31516a;
+    background: #1b1c22;
+    box-shadow: 0 0 12px rgba(0,137,220,.16);
+    color: #fff;
+}
+
+.payment-method-name {
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.payment-method-price,
+.payment-method-note {
+    display: none;
+}
+
+/* DANE — NICK I KOD RABATOWY */
+
+.checkout-data-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 23px;
+    margin: 0 0 3px;
+}
+
+.checkout-data-row .checkout-field {
+    min-width: 0;
+}
+
+.checkout-modal input:not([type="checkbox"]):not([type="range"]) {
+    min-height: 42px;
+    padding: 9px 0;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+}
+
+.checkout-modal input:not([type="checkbox"]):not([type="range"]):focus {
+    border-bottom-color: #e51b4c;
+}
+
+.checkout-modal input::placeholder {
+    color: #999;
+}
+
+/* KOD RABATOWY */
+
+.checkout-discount-wrap {
+    margin: 0;
+}
+
+.checkout-discount-row {
+    display: block;
+}
+
+.checkout-discount-row .back-button {
+    min-height: 32px;
+    margin-top: 5px;
+    padding: 5px 10px;
+}
+
+.checkout-inline-message {
+    margin-top: 4px;
+}
+
+/* REGULAMIN */
+
+.checkout-rules {
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+}
+
+.checkout-checkbox-label {
+    align-items: center;
+    gap: 10px;
+    color: #aaa !important;
+    font-size: 14px !important;
+}
+
+.checkout-checkbox-label input {
+    width: 18px;
+    height: 18px;
+    accent-color: #10b981;
+}
+
+.checkout-checkbox-label a {
+    color: #eee;
+}
+
+/* UKRYCIE PODSUMOWANIA CENY */
+
+.checkout-total,
+.checkout-footnote {
+    display: none;
+}
+
+/* KOMUNIKATY */
+
+#checkoutMessage {
+    margin: 0;
+}
+
+/* PRZYCISKI */
+
+.checkout-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1px;
+}
+
+.checkout-cancel {
+    min-height: 38px;
+    padding: 8px 13px;
+    border: 1px solid #e51b4c;
+    border-radius: 11px;
+    background: #d61841;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 3px 4px 0 rgba(0,0,0,.3);
+}
+
+.checkout-cancel:hover {
+    background: #ef3159;
+}
+
+.checkout-submit {
+    width: auto;
+    min-height: 38px;
+    margin: 0 !important;
+    padding: 8px 13px;
+    border: 1px solid #0fbd86;
+    border-radius: 11px;
+    background: #0eaa7b;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: 3px 4px 0 rgba(0,0,0,.3);
+}
+
+.checkout-submit:hover {
+    background: #10c48e;
+    transform: translateY(-2px);
+}
+
+/* SMS */
+
+.checkout-sms-info {
+    border-radius: 12px;
+}
+
+/* TELEFONY */
+
+@media(max-width: 600px) {
+    .checkout-backdrop {
+        padding: 0;
+        align-items: center;
+    }
+
+    .checkout-modal {
+        width: 100%;
+        max-height: 100dvh;
+        padding: 20px 15px 12px;
+        border-radius: 0;
+    }
+
+    .checkout-modal h2 {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    .checkout-product-summary {
+        grid-template-columns: 105px minmax(0,1fr);
+        gap: 12px;
+        margin: 0 0 18px;
+    }
+
+    .checkout-product-image-wrap {
+        width: 105px;
+        min-height: 175px;
+        padding: 10px;
+    }
+
+    .checkout-product-image-wrap img {
+        height: 120px;
+    }
+
+    .checkout-product-copy {
+        min-height: 175px;
+        padding: 12px;
+    }
+
+    .checkout-product-copy strong {
+        font-size: 13px;
+    }
+
+    .checkout-modal #checkoutQuantityWrap {
+        margin: 0;
+        min-height: 115px;
+        padding: 14px;
+    }
+
+    .checkout-modal .checkout-field:has(#checkoutMethods) {
+        padding: 20px 14px;
+    }
+
+    .payment-method {
+        width: auto;
+        min-width: 85px;
+        flex: 1;
+    }
+
+    .checkout-data-row {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .checkout-actions {
+        margin-top: 5px;
+    }
+}
+
