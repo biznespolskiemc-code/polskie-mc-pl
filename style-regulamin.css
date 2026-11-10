@@ -910,3 +910,49 @@ body {
 html {
     scroll-behavior: smooth;
 }
+
+/* =====================================================
+   REGULAMIN — CAŁKOWITE WYŁĄCZENIE ANIMACJI WEJŚCIA
+   Zmiany dotyczą wyłącznie strony regulaminu.
+===================================================== */
+
+/* Wyłączenie animacji i przejść */
+.regulamin-hero,
+.regulamin-hero *,
+.regulamin-section,
+.regulamin-section *,
+.rules-sidebar,
+.rules-sidebar *,
+.rule-section,
+.rule-section * {
+    animation: none !important;
+    animation-delay: 0s !important;
+    transition: none !important;
+}
+
+/* Elementy nie mogą pozostać ukryte przez scroll-animation */
+.regulamin-hero .scroll-animation,
+.regulamin-hero .scroll-animation *,
+.regulamin-section .scroll-animation,
+.regulamin-section .scroll-animation *,
+.regulamin-hero .scroll-animation.visible,
+.regulamin-section .scroll-animation.visible {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+/* Wszystkie główne sekcje regulaminu są widoczne */
+.regulamin-hero,
+.regulamin-section,
+.rules-sidebar,
+.regulamin-content,
+.rule-section {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Zachowanie płynnego przewijania do rozdziałów */
+html {
+    scroll-behavior: smooth;
+}
