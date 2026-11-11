@@ -350,12 +350,11 @@ function getProductPrice(product) {
   };
 }
 
-function getProductDescription(product) {
-  const values = [product.description, product.short_description, product.desc, product.details, product.content, product.info];
-  const value = values.find(item => typeof item === 'string' && item.trim());
-  if (!value) return 'Brak opisu produktu.';
-
-  return value
+function normalizeDescriptionText(value) {
+  return String(value || '')
+    // Zachowujemy pogrubienie zapisane jako HTML lub Markdown.
+    .replace(/<(?:strong|b)\b[^>]*>/gi, '**')
+    .replace(/<\/(?:strong|b)\s*>/gi, '**')
     .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<\/(?:p|div|li)\s*>/gi, '\n')
     .replace(/<li\b[^>]*>/gi, '» ')
@@ -366,7 +365,6 @@ function getProductDescription(product) {
     .replace(/&gt;/gi, '>')
     .replace(/&quot;/gi, '"')
     .replace(/&#39;/gi, "'")
-    .replace(/\*\*/g, '')
     .replace(/\\[ \t]*\r?\n/g, '\n')
     .replace(/\\n/g, '\n')
     .replace(/\r\n?/g, '\n')
@@ -375,6 +373,39 @@ function getProductDescription(product) {
     .join('\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+}
+
+function renderFormattedDescription(element, value) {
+  const text = normalizeDescriptionText(value);
+  const pattern = /\*\*([\s\S]+?)\*\*/g;
+  let cursor = 0;
+  let match;
+
+  element.replaceChildren();
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > cursor) {
+      element.append(document.createTextNode(text.slice(cursor, match.index)));
+    }
+
+    const bold = document.createElement('strong');
+    bold.textContent = match[1];
+    element.append(bold);
+    cursor = pattern.lastIndex;
+  }
+
+  if (cursor < text.length) {
+    element.append(document.createTextNode(text.slice(cursor)));
+  }
+
+  if (!text) element.textContent = 'Brak opisu produktu.';
+}
+
+function getProductDescription(product) {
+  const values = [product.description, product.short_description, product.desc, product.details, product.content, product.info];
+  const value = values.find(item => typeof item === 'string' && item.trim());
+  if (!value) return 'Brak opisu produktu.';
+  return normalizeDescriptionText(value);
 }
 
 function getProductCategoryName(product) {
@@ -398,7 +429,13 @@ function isEventProduct(product) {
 
 function createProductDescription(product) {
   const description = getProductDescription(product);
-  return createElement('p', 'product-description', description.length > 110 ? 'Wybierz, aby zobaczyć więcej informacji' : description);
+  const element = createElement('p', 'product-description');
+  if (description.length > 110) {
+    element.textContent = 'Wybierz, aby zobaczyć więcej informacji';
+  } else {
+    renderFormattedDescription(element, description);
+  }
+  return element;
 }
 
 function createProductCard(product) {
@@ -481,7 +518,7 @@ async function buyProduct(product) {
   elements.checkoutTitleProduct.textContent = String(product.name || 'PRODUKT').toLocaleUpperCase('pl-PL');
   elements.checkoutProductName.textContent = product.name || 'Produkt';
   elements.checkoutProductServer.textContent = currentServer ? currentServer.name : '';
-  elements.checkoutProductDescription.textContent = product.short_description || getProductDescription(product);
+  renderFormattedDescription(elements.checkoutProductDescription, product.short_description || getProductDescription(product));
   elements.checkoutProductImage.src = product.image || '../images/polskiemc.png';
   elements.checkoutProductImage.onerror = () => { elements.checkoutProductImage.src = '../images/polskiemc.png'; };
   configureQuantity(product);
@@ -506,7 +543,7 @@ async function buyProduct(product) {
     elements.checkoutTitleProduct.textContent = String(details.name || product.name || 'PRODUKT').toLocaleUpperCase('pl-PL');
     elements.checkoutProductName.textContent = details.name || product.name || 'Produkt';
     elements.checkoutProductServer.textContent = currentServer ? currentServer.name : '';
-    elements.checkoutProductDescription.textContent = details.short_description || getProductDescription(details);
+    renderFormattedDescription(elements.checkoutProductDescription, details.short_description || getProductDescription(details));
     configureQuantity(details);
     renderCheckoutMethods();
     updateCheckoutTotal();
