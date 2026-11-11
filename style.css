@@ -1981,3 +1981,38 @@ body {
 @keyframes checkoutSpinner {
     to { transform: rotate(360deg); }
 }
+
+/* KOLORY METOD PŁATNOŚCI */
+
+.checkout-modal .payment-method--paypal.active {
+    border-color: #0070e0;
+    background: rgba(0, 112, 224, .13);
+    box-shadow: 0 0 0 1px #0070e0;
+}
+
+.checkout-modal .payment-method--paypal.active .payment-method-name,
+.checkout-modal .payment-method--paypal.active .payment-method-price {
+    color: #1689ff;
+}
+
+.checkout-modal .payment-method--cashbill.active {
+    border-color: #d61841;
+    background: rgba(214, 24, 65, .13);
+    box-shadow: 0 0 0 1px #d61841;
+}
+
+.checkout-modal .payment-method--cashbill.active .payment-method-name,
+.checkout-modal .payment-method--cashbill.active .payment-method-price {
+    color: #f04468;
+}
+
+.checkout-modal .payment-method--psc.active {
+    border-color: #ffcc00;
+    background: rgba(255, 204, 0, .12);
+    box-shadow: 0 0 0 1px #ffcc00;
+}
+
+.checkout-modal .payment-method--psc.active .payment-method-name,
+.checkout-modal .payment-method--psc.active .payment-method-price {
+    color: #ffcc00;
+}
