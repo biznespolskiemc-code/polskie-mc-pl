@@ -34,7 +34,6 @@
             <a href="../regulamin">Regulamin</a>
             <a href="../rekrutacja">Rekrutacja</a>
             <a href="../tworca">Zostań twórcą</a>
-            <button class="nav-voucher" id="openVoucher" type="button">Voucher</button>
         </div>
     </div>
 </nav>
@@ -195,24 +194,6 @@
                 <button id="closeCheckout" class="checkout-cancel" type="button">ANULUJ</button>
                 <button id="checkoutSubmit" class="checkout-buy" type="submit" disabled>ZAKUP</button>
             </div>
-        </form>
-    </section>
-</div>
-
-<!-- VOUCHER -->
-<div class="modal-backdrop" id="voucherModal" hidden>
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="voucherTitle">
-        <button class="modal-close" id="closeVoucher" type="button" aria-label="Zamknij">×</button>
-        <p class="eyebrow">POLSKIEMC.PL</p>
-        <h2 id="voucherTitle">Zrealizuj <span>voucher.</span></h2>
-        <p class="modal-description">Wpisz kod vouchera oraz nick Minecraft, na który ma zostać zrealizowany.</p>
-        <form id="voucherForm">
-            <label for="voucherNick">Nick Minecraft</label>
-            <input id="voucherNick" name="player" type="text" minlength="3" maxlength="16" autocomplete="off" placeholder="TwójNick" required>
-            <label for="voucherCode">Kod vouchera</label>
-            <input id="voucherCode" name="code" type="text" autocomplete="off" placeholder="Wpisz kod" required>
-            <button class="primary-button modal-submit" type="submit">ZREALIZUJ VOUCHER</button>
-            <p id="voucherMessage" class="form-message" role="status" aria-live="polite"></p>
         </form>
     </section>
 </div>
