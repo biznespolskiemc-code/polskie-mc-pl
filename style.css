@@ -2108,4 +2108,32 @@ body {
     }
 }
 
+/* =====================================================
+   KOLORY KÓŁEK METOD PŁATNOŚCI
+===================================================== */
 
+/* PAYSAFECARD — ŻÓŁTY */
+
+.checkout-modal .payment-method--psc.active::after {
+    border-color: #ffcc00;
+    background: #ffcc00;
+    box-shadow: 0 0 9px rgba(255, 204, 0, .4);
+}
+
+/* BLIK — CZERWONY */
+
+.checkout-modal .payment-method--blik.active {
+    border-color: #d61841;
+    background: rgba(214, 24, 65, .13);
+    box-shadow: 0 0 0 1px #d61841;
+}
+
+.checkout-modal .payment-method--blik.active .payment-method-name {
+    color: #f04468;
+}
+
+.checkout-modal .payment-method--blik.active::after {
+    border-color: #d61841;
+    background: #d61841;
+    box-shadow: 0 0 9px rgba(214, 24, 65, .4);
+}
