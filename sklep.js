@@ -670,7 +670,7 @@ if (providerName.includes('paypal')) {
   providerClass = ' payment-method--paypal';
 } else if (providerName.includes('cashbill')) {
   providerClass = ' payment-method--cashbill';
-} else if (providerName.includes('psc') || providerName.includes('paysafecard')) {
+} else if (providerName.includes('psc') || providerName.includes('icehost')) {
   providerClass = ' payment-method--psc';
 }
 
