@@ -1909,3 +1909,75 @@ body {
         font-size: 12px !important;
     }
 }
+
+/* =====================================================
+   CHECKBOX REGULAMINU — ZIELONY WHITE CHECK MARK
+===================================================== */
+
+.checkout-modal .checkout-checkbox-label input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    flex: 0 0 20px;
+    display: inline-grid;
+    place-content: center;
+    border: 1.5px solid #666b75;
+    border-radius: 5px;
+    background: #191a20;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.checkout-modal .checkout-checkbox-label input::before {
+    content: "";
+    width: 5px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    background: transparent;
+    transform: rotate(45deg) scale(0);
+    transition: transform .15s ease;
+}
+
+.checkout-modal .checkout-checkbox-label input:checked {
+    border-color: #10b981;
+    background: #10b981;
+    box-shadow: 0 0 10px rgba(16,185,129,.22);
+}
+
+.checkout-modal .checkout-checkbox-label input:checked::before {
+    transform: rotate(45deg) scale(1);
+}
+
+.checkout-modal .checkout-checkbox-label input:focus-visible {
+    outline: 3px solid rgba(16,185,129,.25);
+    outline-offset: 3px;
+}
+
+.checkout-modal .checkout-buy.is-loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+    opacity: .85;
+}
+
+.checkout-modal .checkout-buy.is-loading::after {
+    content: "";
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    top: 50%;
+    left: 50%;
+    margin: -9px 0 0 -9px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: checkoutSpinner .7s linear infinite;
+}
+
+@keyframes checkoutSpinner {
+    to { transform: rotate(360deg); }
+}
