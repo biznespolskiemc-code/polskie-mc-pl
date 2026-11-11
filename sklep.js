@@ -650,7 +650,22 @@ function renderCheckoutMethods() {
   }
 
   checkoutProviders.forEach(provider => {
-    const button = createElement('button', `payment-method${selectedProvider?.id === provider.id ? ' active' : ''}`);
+const providerName = String(provider.provider || '').toLowerCase();
+
+let providerClass = '';
+
+if (providerName.includes('paypal')) {
+  providerClass = ' payment-method--paypal';
+} else if (providerName.includes('cashbill')) {
+  providerClass = ' payment-method--cashbill';
+} else if (providerName.includes('psc') || providerName.includes('paysafecard')) {
+  providerClass = ' payment-method--psc';
+}
+
+const button = createElement(
+  'button',
+  `payment-method${providerClass}${selectedProvider?.id === provider.id ? ' active' : ''}`
+);
     button.type = 'button';
     button.setAttribute('aria-pressed', String(selectedProvider?.id === provider.id));
 
@@ -885,7 +900,20 @@ async function submitCheckout(event) {
 function closeCheckout() {
   elements.checkoutModal.hidden = true;
   document.body.classList.remove('checkout-open');
+
   checkoutBusy = false;
+  checkoutProduct = null;
+  checkoutProviders = [];
+  selectedProvider = null;
+  checkoutDiscount = null;
+  checkoutQuantity = 1;
+
+  resetCheckoutForm();
+
+  elements.checkoutMethods.replaceChildren();
+  elements.checkoutSubmit.classList.remove('is-loading');
+  elements.checkoutSubmit.textContent = 'ZAKUP';
+  elements.checkoutSubmit.disabled = true;
 }
 
 /* =========================================================
