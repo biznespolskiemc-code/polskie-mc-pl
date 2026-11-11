@@ -32,50 +32,6 @@ body {
 [hidden] { display: none !important; }
 
 /* =====================================================
-   MENU — PRZYCISK VOUCHERA
-===================================================== */
-
-.menu .nav-voucher {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: color .3s ease;
-}
-
-.menu .nav-voucher::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -9px;
-    width: 0;
-    height: 2px;
-    border-radius: 10px;
-    background: var(--shop-red);
-    transform: translateX(-50%);
-    transition: .3s ease;
-}
-
-.menu .nav-voucher:hover { color: var(--shop-red); }
-.menu .nav-voucher:hover::after { width: 100%; }
-
-@media (max-width: 800px) {
-    .menu.open { right: 0; }
-    .menu .nav-voucher { font-size: 21px; }
-    .menu .nav-voucher::after { bottom: -7px; }
-    .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-    .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-}
-
-/* =====================================================
    HERO SKLEPU
 ===================================================== */
 
