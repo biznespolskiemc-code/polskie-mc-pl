@@ -76,14 +76,6 @@ const elements = {
   checkoutMessage: document.getElementById('checkoutMessage'),
   checkoutSubmit: document.getElementById('checkoutSubmit'),
 
-  voucherModal: document.getElementById('voucherModal'),
-  closeVoucher: document.getElementById('closeVoucher'),
-  openVoucher: document.getElementById('openVoucher'),
-  voucherForm: document.getElementById('voucherForm'),
-  voucherNick: document.getElementById('voucherNick'),
-  voucherCode: document.getElementById('voucherCode'),
-  voucherMessage: document.getElementById('voucherMessage'),
-
   paymentStatusView: document.getElementById('paymentStatusView'),
   paymentStatusIcon: document.getElementById('paymentStatusIcon'),
   paymentStatusTitle: document.getElementById('paymentStatusTitle'),
@@ -993,54 +985,6 @@ async function loadPaymentStatus(paymentId) {
 }
 
 /* =========================================================
-   VOUCHERY
-========================================================= */
-
-function openVoucher() {
-  elements.voucherModal.hidden = false;
-  document.body.classList.add('checkout-open');
-}
-
-function closeVoucher() {
-  elements.voucherModal.hidden = true;
-  document.body.classList.remove('checkout-open');
-}
-
-async function submitVoucher(event) {
-  event.preventDefault();
-  const player = elements.voucherNick.value.trim();
-  const code = elements.voucherCode.value.trim();
-
-  if (!isValidMinecraftNick(player)) {
-    elements.voucherMessage.textContent = 'Podaj prawidłowy nick Minecraft.';
-    return;
-  }
-  if (!code) {
-    elements.voucherMessage.textContent = 'Wpisz kod vouchera.';
-    return;
-  }
-
-  const button = elements.voucherForm.querySelector('button[type="submit"]');
-  button.disabled = true;
-  elements.voucherMessage.textContent = 'Sprawdzanie vouchera...';
-  elements.voucherMessage.className = 'form-message';
-
-  try {
-    await fetchJson(`${CONFIG.apiBase}vouchers/use/`, {
-      method: 'POST',
-      body: JSON.stringify({ code, player })
-    });
-    elements.voucherMessage.textContent = 'Voucher został zrealizowany. Sprawdź swoje konto na serwerze.';
-    elements.voucherMessage.className = 'form-message success';
-  } catch (error) {
-    elements.voucherMessage.textContent = error.message || 'Nie udało się zrealizować vouchera.';
-    elements.voucherMessage.className = 'form-message';
-  } finally {
-    button.disabled = false;
-  }
-}
-
-/* =========================================================
    NAWIGACJA I ZDARZENIA
 ========================================================= */
 
@@ -1114,22 +1058,13 @@ function setupNavigation() {
       updateCheckoutTotal();
     }
   });
-
-  elements.closeVoucher.addEventListener('click', closeVoucher);
-  elements.voucherModal.addEventListener('click', event => {
-    if (event.target === elements.voucherModal) closeVoucher();
-  });
-  elements.voucherForm.addEventListener('submit', submitVoucher);
   elements.refreshPaymentStatus.addEventListener('click', () => {
     if (activePaymentId) loadPaymentStatus(activePaymentId);
   });
 
-  if (elements.openVoucher) elements.openVoucher.addEventListener('click', openVoucher);
-
   document.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return;
     if (!elements.checkoutModal.hidden) closeCheckout();
-    if (!elements.voucherModal.hidden) closeVoucher();
   });
 }
 
