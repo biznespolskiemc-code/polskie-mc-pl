@@ -599,25 +599,37 @@ function configureQuantity(product) {
 
 function configureRules() {
   const rules = shopData?.rules;
+
   elements.checkoutRulesWrap.hidden = !rules;
   elements.checkoutRulesAccepted.checked = false;
   elements.checkoutRulesText.replaceChildren();
 
   if (!rules) return;
 
-  const labelText = 'Akceptuję regulamin sklepu';
-  if (typeof rules === 'string' && /^https?:\/\//i.test(rules.trim())) {
+  elements.checkoutRulesText.append(
+    document.createTextNode('Akceptuję ')
+  );
+
+  const rulesValue = String(rules).trim();
+
+  if (/^https?:\/\//i.test(rulesValue)) {
     const link = document.createElement('a');
-    link.href = rules.trim();
+
+    link.href = rulesValue;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.textContent = 'regulamin sklepu';
-    elements.checkoutRulesText.append(document.createTextNode('Akceptuję '), link);
+    link.textContent = 'regulamin płatności';
+
+    elements.checkoutRulesText.append(link);
   } else {
-    elements.checkoutRulesText.textContent = typeof rules === 'string' && rules.trim()
-      ? `${labelText}: ${rules}`
-      : `${labelText}.`;
+    elements.checkoutRulesText.append(
+      document.createTextNode('regulamin płatności')
+    );
   }
+
+  elements.checkoutRulesText.append(
+    document.createTextNode('.')
+  );
 }
 
 function isSmsProvider(provider) {
@@ -1155,3 +1167,5 @@ init().catch(error => {
   console.error('Nie udało się uruchomić sklepu:', error);
   showNotice('Wystąpił nieoczekiwany błąd podczas uruchamiania sklepu.');
 });
+
+
