@@ -513,7 +513,7 @@ body {
 .product-card-event .buy-old-price { color: rgba(255,235,190,.55); }
 
 /* =====================================================
-   MODALE — VOUCHER I CHECKOUT
+   MODAL CHECKOUT
 ===================================================== */
 
 .modal-backdrop {
@@ -716,7 +716,7 @@ body {
 }
 
 /* =====================================================
-   CHECKOUT POLSKIEMC.PL — UKŁAD JAK NA REFERENCJI
+   CHECKOUT POLSKIEMC.PL — UKŁAD
 ===================================================== */
 
 .checkout-backdrop {
@@ -828,9 +828,7 @@ body {
     font-weight: 700;
 }
 
-.checkout-product-server:empty {
-    display: none;
-}
+.checkout-product-server:empty { display: none; }
 
 .checkout-product-description p {
     margin: 0;
@@ -884,9 +882,7 @@ body {
     font-size: 15px;
 }
 
-#checkoutQuantityNumber:focus {
-    border-color: var(--shop-red);
-}
+#checkoutQuantityNumber:focus { border-color: var(--shop-red); }
 
 .checkout-range-wrap {
     position: relative;
@@ -979,9 +975,7 @@ body {
     background: #e31748;
 }
 
-.checkout-range-limits {
-    display: none;
-}
+.checkout-range-limits { display: none; }
 
 .checkout-payment-panel {
     display: flex;
@@ -992,9 +986,7 @@ body {
     padding: 30px 24px 24px;
 }
 
-.checkout-methods-wrap {
-    min-height: 62px;
-}
+.checkout-methods-wrap { min-height: 62px; }
 
 .checkout-methods {
     display: flex;
@@ -1022,7 +1014,7 @@ body {
     color: #e6e6e9;
     text-align: left;
     cursor: pointer;
-    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
 .payment-method:hover {
@@ -1044,14 +1036,9 @@ body {
     text-transform: uppercase;
 }
 
-.payment-method.active .payment-method-name {
-    color: #fff;
-}
-
+.payment-method.active .payment-method-name { color: #fff; }
 .payment-method-price,
-.payment-method-note {
-    display: none;
-}
+.payment-method-note { display: none; }
 
 .payment-method::after {
     content: "";
@@ -1062,12 +1049,15 @@ body {
     border: 2px solid #707078;
     border-radius: 50%;
     background: transparent;
+    transform: scale(.85);
+    transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .22s cubic-bezier(.2,.8,.2,1);
 }
 
 .payment-method.active::after {
     border-color: #0089d0;
     background: #0089d0;
     box-shadow: 0 0 9px rgba(0, 137, 208, .4);
+    transform: scale(1);
 }
 
 .checkout-input-row {
@@ -1111,14 +1101,8 @@ body {
     box-shadow: none;
 }
 
-.checkout-line-field input::placeholder {
-    color: transparent;
-}
-
-.checkout-line-field input:focus {
-    border-bottom-color: #fff;
-    box-shadow: 0 1px 0 #fff;
-}
+.checkout-line-field input::placeholder { color: transparent; }
+.checkout-line-field input:focus { border-bottom-color: #fff; box-shadow: 0 1px 0 #fff; }
 
 .checkout-line-field input:-webkit-autofill,
 .checkout-line-field input:-webkit-autofill:hover,
@@ -1127,33 +1111,11 @@ body {
     transition: background-color 9999s ease-out 0s;
 }
 
-.checkout-discount-wrap {
-    min-width: 0;
-}
-
-.checkout-inline-message {
-    min-height: 0;
-    margin: 4px 0 0;
-    color: #ff8ba2;
-    font-size: 10px;
-    line-height: 1.4;
-}
-
-.checkout-inline-message:empty {
-    display: none;
-}
-
-.checkout-inline-message.success {
-    color: #55e0ae;
-}
-
-.checkout-rules {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-}
+.checkout-discount-wrap { min-width: 0; }
+.checkout-inline-message { min-height: 0; margin: 4px 0 0; color: #ff8ba2; font-size: 10px; line-height: 1.4; }
+.checkout-inline-message:empty { display: none; }
+.checkout-inline-message.success { color: #55e0ae; }
+.checkout-rules { margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
 
 .checkout-sms-info {
     display: flex;
@@ -1166,23 +1128,9 @@ body {
     background: rgba(214, 24, 65, .05);
 }
 
-.checkout-sms-info > strong {
-    color: var(--shop-red-light);
-    font-size: 12px;
-}
-
-.checkout-sms-info > p {
-    margin: 0;
-    color: #aaa;
-    font-size: 10px;
-    line-height: 1.7;
-}
-
-.checkout-sms-info > label {
-    margin: 5px 0 0;
-    color: #ddd;
-    font-size: 11px;
-}
+.checkout-sms-info > strong { color: var(--shop-red-light); font-size: 12px; }
+.checkout-sms-info > p { margin: 0; color: #aaa; font-size: 10px; line-height: 1.7; }
+.checkout-sms-info > label { margin: 5px 0 0; color: #ddd; font-size: 11px; }
 
 .checkout-sms-info input {
     box-sizing: border-box;
@@ -1196,32 +1144,15 @@ body {
     font: inherit;
 }
 
-.checkout-sms-line {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(255,255,255,.07);
-    font-size: 10px;
-}
-
+.checkout-sms-line { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.07); font-size: 10px; }
 .checkout-sms-line span { color: #888; }
 .checkout-sms-line strong { color: #eee; text-align: right; overflow-wrap: anywhere; }
 
 .checkout-total,
-.checkout-footnote {
-    display: none !important;
-}
+.checkout-footnote { display: none !important; }
 
-.checkout-message {
-    min-height: 0;
-    margin: 0;
-    font-size: 11px;
-}
-
-.checkout-message:empty {
-    display: none;
-}
+.checkout-message { min-height: 0; margin: 0; font-size: 11px; }
+.checkout-message:empty { display: none; }
 
 .checkout-actions {
     display: flex;
@@ -1251,29 +1182,11 @@ body {
     transition: transform .18s ease, filter .18s ease, opacity .18s ease;
 }
 
-.checkout-cancel {
-    border-color: #ed3159;
-    background: #d61841;
-    box-shadow: 0 3px 0 #8b102e;
-}
-
-.checkout-buy {
-    border-color: #16c58b;
-    background: #08a975;
-    box-shadow: 0 3px 0 #087d59;
-}
-
+.checkout-cancel { border-color: #ed3159; background: #d61841; box-shadow: 0 3px 0 #8b102e; }
+.checkout-buy { border-color: #16c58b; background: #08a975; box-shadow: 0 3px 0 #087d59; }
 .checkout-cancel:hover,
-.checkout-buy:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-}
-
-.checkout-buy:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-    transform: none;
-}
+.checkout-buy:hover { transform: translateY(-2px); filter: brightness(1.1); }
+.checkout-buy:disabled { opacity: .45; cursor: not-allowed; transform: none; }
 
 .checkout-visually-hidden {
     position: absolute;
@@ -1296,9 +1209,7 @@ body {
         border-radius: 0;
     }
 
-    .checkout-modal .checkout-title {
-        font-size: 21px;
-    }
+    .checkout-modal .checkout-title { font-size: 21px; }
 
     .checkout-product-summary {
         grid-template-columns: 116px minmax(0, 1fr);
@@ -1306,50 +1217,15 @@ body {
         margin: 20px 0 17px;
     }
 
-    .checkout-product-visual {
-        min-height: 190px;
-        padding: 14px 8px 8px;
-    }
-
-    .checkout-product-visual img {
-        width: 86px;
-        height: 112px;
-    }
-
-    .checkout-product-visual strong {
-        font-size: 15px;
-    }
-
-    .checkout-product-description {
-        min-height: 170px;
-        padding: 13px;
-    }
-
-    .checkout-product-description p {
-        font-size: 11px;
-    }
-
-    .checkout-quantity-panel {
-        min-height: 120px;
-        margin: 0 0 10px;
-        padding: 13px 14px 10px;
-    }
-
-    .checkout-payment-panel {
-        min-height: 265px;
-        padding: 20px 15px 17px;
-    }
-
-    .payment-method {
-        min-width: 92px;
-        min-height: 55px;
-        padding: 0 10px;
-        border-radius: 13px;
-    }
-
-    .payment-method-name {
-        font-size: 11px;
-    }
+    .checkout-product-visual { min-height: 190px; padding: 14px 8px 8px; }
+    .checkout-product-visual img { width: 86px; height: 112px; }
+    .checkout-product-visual strong { font-size: 15px; }
+    .checkout-product-description { min-height: 170px; padding: 13px; }
+    .checkout-product-description p { font-size: 11px; }
+    .checkout-quantity-panel { min-height: 120px; margin: 0 0 10px; padding: 13px 14px 10px; }
+    .checkout-payment-panel { min-height: 265px; padding: 20px 15px 17px; }
+    .payment-method { min-width: 92px; min-height: 55px; padding: 0 10px; border-radius: 13px; }
+    .payment-method-name { font-size: 11px; }
 
     .checkout-input-row {
         grid-template-columns: 1fr;
@@ -1357,55 +1233,23 @@ body {
         margin: 32px 0 25px;
     }
 
-    .checkout-line-field label {
-        font-size: 14px;
-    }
-
-    .checkout-actions {
-        padding: 13px 1px 0;
-    }
+    .checkout-line-field label { font-size: 14px; }
+    .checkout-actions { padding: 13px 1px 0; }
 }
 
 @media (max-width: 390px) {
-    .checkout-product-summary {
-        grid-template-columns: 100px minmax(0, 1fr);
-        gap: 9px;
-    }
-
-    .checkout-product-visual {
-        min-height: 172px;
-    }
-
-    .checkout-product-visual img {
-        width: 75px;
-        height: 100px;
-    }
-
-    .checkout-product-visual strong {
-        font-size: 13px;
-    }
-
-    .checkout-product-description {
-        min-height: 155px;
-        padding: 10px;
-    }
-
-    .checkout-methods {
-        gap: 6px;
-    }
-
-    .payment-method {
-        min-width: 0;
-        min-height: 51px;
-        padding: 0 8px;
-        gap: 7px;
-    }
+    .checkout-product-summary { grid-template-columns: 100px minmax(0, 1fr); gap: 9px; }
+    .checkout-product-visual { min-height: 172px; }
+    .checkout-product-visual img { width: 75px; height: 100px; }
+    .checkout-product-visual strong { font-size: 13px; }
+    .checkout-product-description { min-height: 155px; padding: 10px; }
+    .checkout-methods { gap: 6px; }
+    .payment-method { min-width: 0; min-height: 51px; padding: 0 8px; gap: 7px; }
 }
 
-/* DOPRECYZOWANIE INPUTÓW CHECKOUTU — nadpisuje bazowy styl .modal */
-#checkoutQuantityNumber {
-    min-height: 0;
-}
+/* INPUTY CHECKOUTU — DOPRECYZOWANIE */
+
+#checkoutQuantityNumber { min-height: 0; }
 
 #checkoutForm .checkout-line-field input {
     width: 100%;
@@ -1435,17 +1279,11 @@ body {
     background: #101015;
 }
 
-.checkout-product-visual strong {
-    text-transform: uppercase;
-}
-
-.checkout-product-server {
-    display: none !important;
-}
-
+.checkout-product-visual strong { text-transform: uppercase; }
+.checkout-product-server { display: none !important; }
 
 /* =====================================================
-   POLSKIEMC.PL — WSPÓLNY WYGLĄD GÓRNEGO NAGŁÓWKA
+   WSPÓLNY WYGLĄD GÓRNEGO NAGŁÓWKA
    SKLEP / REGULAMIN / REKRUTACJA
 ===================================================== */
 
@@ -1500,9 +1338,7 @@ body {
 
 .shop-hero h1 span,
 .regulamin-hero h1 span,
-.rekrutacja-hero h1 span {
-    color: #d61841;
-}
+.rekrutacja-hero h1 span { color: #d61841; }
 
 .shop-hero p,
 .regulamin-hero p,
@@ -1518,49 +1354,33 @@ body {
 @media (max-width: 800px) {
     .shop-hero,
     .regulamin-hero,
-    .rekrutacja-hero {
-        min-height: 40vh;
-        padding: 100px 20px 35px;
-    }
+    .rekrutacja-hero { min-height: 40vh; padding: 100px 20px 35px; }
 
     .shop-hero h1,
     .regulamin-hero h1,
-    .rekrutacja-hero h1 {
-        font-size: 43px;
-        letter-spacing: -1px;
-    }
+    .rekrutacja-hero h1 { font-size: 43px; letter-spacing: -1px; }
 
     .shop-hero p,
     .regulamin-hero p,
-    .rekrutacja-hero p {
-        font-size: 14px;
-    }
+    .rekrutacja-hero p { font-size: 14px; }
 }
 
 @media (max-width: 600px) {
     .shop-hero h1,
     .regulamin-hero h1,
-    .rekrutacja-hero h1 {
-        font-size: 36px;
-    }
+    .rekrutacja-hero h1 { font-size: 36px; }
 
     .shop-small-label,
     .regulamin-hero .hero-small-label,
-    .rekrutacja-hero .hero-small-label {
-        font-size: 9px;
-        letter-spacing: 1.3px;
-    }
+    .rekrutacja-hero .hero-small-label { font-size: 9px; letter-spacing: 1.3px; }
 
     .shop-hero p,
     .regulamin-hero p,
-    .rekrutacja-hero p {
-        font-size: 13px;
-    }
+    .rekrutacja-hero p { font-size: 13px; }
 }
 
 /* =====================================================
-   CHECKOUT — NIEZALEŻNA PALETA PŁATNOŚCI
-   Zmiana tych wartości nie wpływa na kolor sklepu.
+   PALETA CHECKOUTU
 ===================================================== */
 
 .checkout-modal {
@@ -1576,8 +1396,6 @@ body {
     --payment-confirm-shadow: #087d59;
 }
 
-/* Metody płatności — osobny niebieski akcent */
-
 .checkout-modal .payment-method:hover {
     border-color: rgba(var(--payment-accent-rgb), .68);
     background: rgba(var(--payment-accent-rgb), .08);
@@ -1586,8 +1404,7 @@ body {
 .checkout-modal .payment-method.active {
     border-color: var(--payment-accent);
     background: rgba(var(--payment-accent-rgb), .12);
-    box-shadow: 0 0 0 1px rgba(var(--payment-accent-rgb), .2),
-                0 0 18px rgba(var(--payment-accent-rgb), .14);
+    box-shadow: 0 0 0 1px rgba(var(--payment-accent-rgb), .2), 0 0 18px rgba(var(--payment-accent-rgb), .14);
 }
 
 .checkout-modal .payment-method.active::after {
@@ -1595,8 +1412,6 @@ body {
     background: var(--payment-accent);
     box-shadow: 0 0 9px rgba(var(--payment-accent-rgb), .42);
 }
-
-/* Pola Nick i kod rabatowy — czytelne, pełne pola */
 
 .checkout-modal .checkout-input-row {
     display: grid;
@@ -1639,15 +1454,10 @@ body {
 }
 
 #checkoutForm .checkout-line-field input::placeholder,
-#checkoutForm .checkout-sms-info input::placeholder {
-    color: #777b86;
-    opacity: 1;
-}
+#checkoutForm .checkout-sms-info input::placeholder { color: #777b86; opacity: 1; }
 
 #checkoutForm .checkout-line-field input:hover,
-#checkoutForm .checkout-sms-info input:hover {
-    border-color: #555965;
-}
+#checkoutForm .checkout-sms-info input:hover { border-color: #555965; }
 
 #checkoutForm .checkout-line-field input:focus,
 #checkoutForm .checkout-sms-info input:focus {
@@ -1665,26 +1475,9 @@ body {
     transition: background-color 9999s ease-out 0s;
 }
 
-#checkoutForm .checkout-line-field input:disabled {
-    opacity: .55;
-    cursor: not-allowed;
-}
-
-.checkout-modal .checkout-inline-message {
-    margin-top: 1px;
-    font-size: 10px;
-}
-
-/* Checkbox — kwadratowy, jak na przesłanym wzorze */
-
-.checkout-modal .checkout-rules {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-}
-
-/* Informacja o SMS też korzysta z oddzielnego koloru płatności */
+#checkoutForm .checkout-line-field input:disabled { opacity: .55; cursor: not-allowed; }
+.checkout-modal .checkout-inline-message { margin-top: 1px; font-size: 10px; }
+.checkout-modal .checkout-rules { margin: 0; padding: 0; border: 0; background: transparent; }
 
 .checkout-modal .checkout-sms-info {
     border-color: rgba(var(--payment-accent-rgb), .3);
@@ -1692,11 +1485,7 @@ body {
 }
 
 .checkout-modal .checkout-sms-info > strong,
-.checkout-modal .checkout-sms-info > label {
-    color: #8ed5fa;
-}
-
-/* Przycisk zakupu i anulowania — kolory niezależne od sklepu */
+.checkout-modal .checkout-sms-info > label { color: #8ed5fa; }
 
 .checkout-modal .checkout-cancel {
     border-color: #ed3159;
@@ -1710,11 +1499,7 @@ body {
     box-shadow: 0 3px 0 var(--payment-confirm-shadow);
 }
 
-.checkout-modal .checkout-buy:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-    transform: none;
-}
+.checkout-modal .checkout-buy:disabled { opacity: .45; cursor: not-allowed; transform: none; }
 
 @media (max-width: 700px) {
     .checkout-modal .checkout-input-row {
@@ -1724,15 +1509,258 @@ body {
     }
 
     .checkout-modal .checkout-line-field input,
-    .checkout-modal .checkout-sms-info input {
-        height: 45px;
-        min-height: 45px;
-    }
+    .checkout-modal .checkout-sms-info input { height: 45px; min-height: 45px; }
 }
 
 /* =====================================================
-   CHECKBOX REGULAMINU — ZIELONY WHITE CHECK MARK
+   ANIMACJE CHECKOUTU
 ===================================================== */
+
+/* Tło i okno — klasy JS są dodawane do elementu #checkoutModal. */
+
+#checkoutModal.is-opening {
+    animation: checkoutBackdropIn .24s ease-out both;
+}
+
+#checkoutModal.is-opening .checkout-modal {
+    animation: checkoutDialogIn .34s cubic-bezier(.2,.8,.2,1) both;
+}
+
+#checkoutModal.is-closing {
+    pointer-events: none;
+    animation: checkoutBackdropOut .20s ease-in both;
+}
+
+#checkoutModal.is-closing .checkout-modal {
+    animation: checkoutDialogOut .18s ease-in both;
+}
+
+@keyframes checkoutBackdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes checkoutDialogIn {
+    from { opacity: 0; transform: translateY(22px) scale(.965); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes checkoutBackdropOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes checkoutDialogOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(12px) scale(.975); }
+}
+
+/* Wybór metody — sprężyste, krótkie zaznaczenie. */
+
+.checkout-modal .payment-method {
+    transform-origin: center;
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease,
+        transform .2s cubic-bezier(.2,.8,.2,1);
+}
+
+.checkout-modal .payment-method:active { transform: scale(.96); }
+
+.checkout-modal .payment-method.active {
+    animation: paymentMethodSelect .24s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes paymentMethodSelect {
+    0% { transform: scale(.96); }
+    65% { transform: scale(1.025); }
+    100% { transform: scale(1); }
+}
+
+.checkout-modal .payment-method::after {
+    transform: scale(.8);
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .22s cubic-bezier(.2,.8,.2,1);
+}
+
+.checkout-modal .payment-method.active::after { transform: scale(1); }
+
+/* PAYSAFECARD / ICEHOST — żółty akcent. */
+
+.checkout-modal .payment-method--psc.active {
+    border-color: #ffcc00;
+    background: rgba(255,204,0,.12);
+    box-shadow: 0 0 0 1px rgba(255,204,0,.65), 0 0 18px rgba(255,204,0,.12);
+}
+
+.checkout-modal .payment-method--psc.active .payment-method-name,
+.checkout-modal .payment-method--psc.active .payment-method-price { color: #ffcc00; }
+
+.checkout-modal .payment-method--psc.active::after {
+    border-color: #ffcc00;
+    background: #ffcc00;
+    box-shadow: 0 0 10px rgba(255,204,0,.45);
+}
+
+/* BLIK — czerwony akcent. */
+
+.checkout-modal .payment-method--blik.active {
+    border-color: #d61841;
+    background: rgba(214,24,65,.12);
+    box-shadow: 0 0 0 1px rgba(214,24,65,.65), 0 0 18px rgba(214,24,65,.15);
+}
+
+.checkout-modal .payment-method--blik.active .payment-method-name,
+.checkout-modal .payment-method--blik.active .payment-method-price { color: #f04468; }
+
+.checkout-modal .payment-method--blik.active::after {
+    border-color: #d61841;
+    background: #d61841;
+    box-shadow: 0 0 10px rgba(214,24,65,.45);
+}
+
+/* PayPal — niebieski akcent. */
+
+.checkout-modal .payment-method--paypal.active::after {
+    border-color: #0070e0;
+    background: #0070e0;
+    box-shadow: 0 0 10px rgba(0,112,224,.45);
+}
+
+/* CashBill — czerwony akcent. */
+
+.checkout-modal .payment-method--cashbill.active::after {
+    border-color: #d61841;
+    background: #d61841;
+    box-shadow: 0 0 10px rgba(214,24,65,.4);
+}
+
+/* =====================================================
+   CHECKBOX REGULAMINU — ZIELONY, BIAŁY ZNACZNIK
+===================================================== */
+
+#checkoutForm .checkout-rules {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+#checkoutForm .checkout-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    color: #aeb0b8 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+#checkoutForm .checkout-checkbox-label input[type="checkbox"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    position: relative;
+    box-sizing: border-box;
+    width: 19px !important;
+    height: 19px !important;
+    min-width: 19px !important;
+    min-height: 19px !important;
+    flex: 0 0 19px !important;
+    display: inline-grid !important;
+    place-content: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid #777b85 !important;
+    border-radius: 3px !important;
+    background: #191a20 !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+}
+
+#checkoutForm .checkout-checkbox-label input[type="checkbox"]::before {
+    content: "";
+    width: 5px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    background: transparent;
+    transform: rotate(45deg) scale(0);
+    transform-origin: center;
+    transition: transform .12s ease;
+}
+
+#checkoutForm .checkout-checkbox-label input[type="checkbox"]:checked {
+    border-color: #10b981 !important;
+    background: #10b981 !important;
+    box-shadow: none !important;
+}
+
+#checkoutForm .checkout-checkbox-label input[type="checkbox"]:checked::before {
+    transform: rotate(45deg) scale(1);
+}
+
+#checkoutForm .checkout-checkbox-label input[type="checkbox"]:focus-visible {
+    outline: 3px solid rgba(16,185,129,.25);
+    outline-offset: 3px;
+}
+
+#checkoutForm .checkout-checkbox-label span { display: inline; color: #aeb0b8; }
+
+#checkoutForm .checkout-checkbox-label a {
+    color: #e5e5e5 !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+#checkoutForm .checkout-checkbox-label a:hover { color: #fff !important; }
+
+@media (max-width: 700px) {
+    #checkoutForm .checkout-checkbox-label {
+        align-items: center;
+        gap: 10px;
+        font-size: 12px !important;
+    }
+
+    #checkoutForm .checkout-checkbox-label input[type="checkbox"] {
+        width: 19px !important;
+        height: 19px !important;
+        min-width: 19px !important;
+        min-height: 19px !important;
+    }
+}
+
+/* Ograniczenie ruchu zgodnie z ustawieniami systemu. */
+
+@media (prefers-reduced-motion: reduce) {
+    #checkoutModal.is-opening,
+    #checkoutModal.is-opening .checkout-modal,
+    #checkoutModal.is-closing,
+    #checkoutModal.is-closing .checkout-modal,
+    .checkout-modal .payment-method.active {
+        animation: none !important;
+    }
+
+    .checkout-modal .payment-method,
+    .checkout-modal .payment-method::after {
+        transition: none !important;
+    }
+}
+
+/* Dodatkowe stany operatorów i wskaźnik ładowania przycisku. */
 
 .checkout-modal .checkout-buy.is-loading {
     position: relative;
@@ -1759,337 +1787,20 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* KOLORY METOD PŁATNOŚCI */
-
 .checkout-modal .payment-method--paypal.active {
     border-color: #0070e0;
-    background: rgba(0, 112, 224, .13);
+    background: rgba(0,112,224,.13);
     box-shadow: 0 0 0 1px #0070e0;
 }
 
 .checkout-modal .payment-method--paypal.active .payment-method-name,
-.checkout-modal .payment-method--paypal.active .payment-method-price {
-    color: #1689ff;
-}
+.checkout-modal .payment-method--paypal.active .payment-method-price { color: #1689ff; }
 
 .checkout-modal .payment-method--cashbill.active {
     border-color: #d61841;
-    background: rgba(214, 24, 65, .13);
+    background: rgba(214,24,65,.13);
     box-shadow: 0 0 0 1px #d61841;
 }
 
 .checkout-modal .payment-method--cashbill.active .payment-method-name,
-.checkout-modal .payment-method--cashbill.active .payment-method-price {
-    color: #f04468;
-}
-
-.checkout-modal .payment-method--psc.active {
-    border-color: #ffcc00;
-    background: rgba(255, 204, 0, .12);
-    box-shadow: 0 0 0 1px #ffcc00;
-}
-
-.checkout-modal .payment-method--psc.active .payment-method-name,
-.checkout-modal .payment-method--psc.active .payment-method-price {
-    color: #ffcc00;
-}
-
-/* =====================================================
-   POLSKIEMC.PL — WSPÓLNY WYGLĄD GÓRNEGO NAGŁÓWKA
-   SKLEP / REGULAMIN / REKRUTACJA
-===================================================== */
-
-/* Wysokość i położenie nagłówka */
-
-.shop-hero,
-.regulamin-hero,
-.rekrutacja-hero {
-    min-height: 45vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 105px 20px 45px;
-    text-align: center;
-}
-
-/* Zawartość */
-
-.shop-hero-content,
-.regulamin-hero-content,
-.rekrutacja-hero-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-/* Mała etykieta nad tytułem */
-
-.shop-small-label,
-.regulamin-hero .hero-small-label,
-.rekrutacja-hero .hero-small-label {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-    padding: 8px 15px;
-    border: 1px solid rgba(239,82,124,.2);
-    border-radius: 30px;
-    background: rgba(239,82,124,.06);
-    color: #ef9ab0;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-/* Główny tytuł */
-
-.shop-hero h1,
-.regulamin-hero h1,
-.rekrutacja-hero h1 {
-    margin: 0;
-    color: #fff;
-    font-size: clamp(45px,6vw,72px);
-    line-height: 1.05;
-    font-weight: 800;
-    letter-spacing: -2px;
-}
-
-/* Czerwony akcent */
-
-.shop-hero h1 span,
-.regulamin-hero h1 span,
-.rekrutacja-hero h1 span {
-    color: #d61841;
-}
-
-/* Opis pod tytułem */
-
-.shop-hero p,
-.regulamin-hero p,
-.rekrutacja-hero p {
-    max-width: 650px;
-    margin: 25px auto 0;
-    color: #929292;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.8;
-}
-
-/* TELEFONY */
-
-@media (max-width: 800px) {
-    .shop-hero,
-    .regulamin-hero,
-    .rekrutacja-hero {
-        min-height: 40vh;
-        padding: 100px 20px 35px;
-    }
-
-    .shop-hero h1,
-    .regulamin-hero h1,
-    .rekrutacja-hero h1 {
-        font-size: 43px;
-        letter-spacing: -1px;
-    }
-
-    .shop-hero p,
-    .regulamin-hero p,
-    .rekrutacja-hero p {
-        font-size: 14px;
-    }
-}
-
-/* MAŁE TELEFONY */
-
-@media (max-width: 600px) {
-    .shop-hero h1,
-    .regulamin-hero h1,
-    .rekrutacja-hero h1 {
-        font-size: 36px;
-    }
-
-    .shop-small-label,
-    .regulamin-hero .hero-small-label,
-    .rekrutacja-hero .hero-small-label {
-        font-size: 9px;
-        letter-spacing: 1.3px;
-    }
-
-    .shop-hero p,
-    .regulamin-hero p,
-    .rekrutacja-hero p {
-        font-size: 13px;
-    }
-}
-
-/* =====================================================
-   POLAKMC.PL — CHECKBOX REGULAMINU PŁATNOŚCI
-===================================================== */
-
-#checkoutForm .checkout-rules {
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-}
-
-/* Wiersz z checkboxem i tekstem */
-
-#checkoutForm .checkout-checkbox-label {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
-    color: #aeb0b8 !important;
-    font-family: 'Montserrat', sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    line-height: 1.5;
-    cursor: pointer;
-}
-
-/* Checkbox — stan domyślny */
-
-#checkoutForm .checkout-checkbox-label input[type="checkbox"] {
-    appearance: none !important;
-    -webkit-appearance: none !important;
-
-    position: relative;
-    box-sizing: border-box;
-
-    width: 19px !important;
-    height: 19px !important;
-    min-width: 19px !important;
-    min-height: 19px !important;
-
-    flex: 0 0 19px !important;
-
-    display: inline-grid !important;
-    place-content: center;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border: 1px solid #777b85 !important;
-    border-radius: 3px !important;
-
-    background: #191a20 !important;
-    box-shadow: none !important;
-
-    cursor: pointer;
-    transition: background .15s ease, border-color .15s ease;
-}
-
-/* Biały ptaszek */
-
-#checkoutForm .checkout-checkbox-label input[type="checkbox"]::before {
-    content: "";
-
-    width: 5px;
-    height: 9px;
-
-    border: solid #fff;
-    border-width: 0 2px 2px 0;
-
-    background: transparent;
-
-    transform: rotate(45deg) scale(0);
-    transform-origin: center;
-
-    transition: transform .12s ease;
-}
-
-/* ZAZNACZONY — ZIELONY */
-
-#checkoutForm .checkout-checkbox-label input[type="checkbox"]:checked {
-    border-color: #10b981 !important;
-    background: #10b981 !important;
-    box-shadow: none !important;
-}
-
-/* POKAŻ BIAŁY PTASZEK */
-
-#checkoutForm .checkout-checkbox-label input[type="checkbox"]:checked::before {
-    transform: rotate(45deg) scale(1);
-}
-
-/* Efekt klawiatury */
-
-#checkoutForm .checkout-checkbox-label input[type="checkbox"]:focus-visible {
-    outline: 3px solid rgba(16,185,129,.25);
-    outline-offset: 3px;
-}
-
-/* Tekst */
-
-#checkoutForm .checkout-checkbox-label span {
-    display: inline;
-    color: #aeb0b8;
-}
-
-/* Link do regulaminu */
-
-#checkoutForm .checkout-checkbox-label a {
-    color: #e5e5e5 !important;
-    text-decoration: underline !important;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-}
-
-#checkoutForm .checkout-checkbox-label a:hover {
-    color: #fff !important;
-}
-
-/* TELEFONY */
-
-@media (max-width: 700px) {
-    #checkoutForm .checkout-checkbox-label {
-        align-items: center;
-        gap: 10px;
-        font-size: 12px !important;
-    }
-
-    #checkoutForm .checkout-checkbox-label input[type="checkbox"] {
-        width: 19px !important;
-        height: 19px !important;
-        min-width: 19px !important;
-        min-height: 19px !important;
-    }
-}
-
-/* =====================================================
-   KOLORY KÓŁEK METOD PŁATNOŚCI
-===================================================== */
-
-/* PAYSAFECARD — ŻÓŁTY */
-
-.checkout-modal .payment-method--psc.active::after {
-    border-color: #ffcc00;
-    background: #ffcc00;
-    box-shadow: 0 0 9px rgba(255, 204, 0, .4);
-}
-
-/* BLIK — CZERWONY */
-
-.checkout-modal .payment-method--blik.active {
-    border-color: #d61841;
-    background: rgba(214, 24, 65, .13);
-    box-shadow: 0 0 0 1px #d61841;
-}
-
-.checkout-modal .payment-method--blik.active .payment-method-name {
-    color: #f04468;
-}
-
-.checkout-modal .payment-method--blik.active::after {
-    border-color: #d61841;
-    background: #d61841;
-    box-shadow: 0 0 9px rgba(214, 24, 65, .4);
-}
+.checkout-modal .payment-method--cashbill.active .payment-method-price { color: #f04468; }
