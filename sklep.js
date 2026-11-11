@@ -100,6 +100,8 @@ let checkoutDiscount = null;
 let checkoutQuantity = 1;
 let checkoutBusy = false;
 let activePaymentId = null;
+let checkoutCloseAnimationHandler = null;
+let checkoutCloseFallback = null;
 
 /* =========================================================
    POWIADOMIENIA I API
@@ -344,7 +346,6 @@ function getProductPrice(product) {
 
 function normalizeDescriptionText(value) {
   return String(value || '')
-    // Zachowujemy pogrubienie zapisane jako HTML lub Markdown.
     .replace(/<(?:strong|b)\b[^>]*>/gi, '**')
     .replace(/<\/(?:strong|b)\s*>/gi, '**')
     .replace(/<br\s*\/?>/gi, '\n')
@@ -481,6 +482,63 @@ function renderProducts() {
 }
 
 /* =========================================================
+   CHECKOUT — OTWIERANIE I ZAMYKANIE Z ANIMACJĄ
+========================================================= */
+
+function openCheckoutModal() {
+  const modal = elements.checkoutModal;
+
+  if (checkoutCloseAnimationHandler) {
+    modal.removeEventListener('animationend', checkoutCloseAnimationHandler);
+    checkoutCloseAnimationHandler = null;
+  }
+
+  if (checkoutCloseFallback !== null) {
+    clearTimeout(checkoutCloseFallback);
+    checkoutCloseFallback = null;
+  }
+
+  modal.classList.remove('is-opening', 'is-closing');
+  modal.hidden = false;
+  document.body.classList.add('checkout-open');
+
+  // Wymusza przeliczenie układu, aby animacja startowała od początku.
+  void modal.offsetWidth;
+  modal.classList.add('is-opening');
+}
+
+function finishCheckoutClose() {
+  const modal = elements.checkoutModal;
+
+  if (checkoutCloseAnimationHandler) {
+    modal.removeEventListener('animationend', checkoutCloseAnimationHandler);
+    checkoutCloseAnimationHandler = null;
+  }
+
+  if (checkoutCloseFallback !== null) {
+    clearTimeout(checkoutCloseFallback);
+    checkoutCloseFallback = null;
+  }
+
+  modal.hidden = true;
+  modal.classList.remove('is-opening', 'is-closing');
+  document.body.classList.remove('checkout-open');
+
+  checkoutBusy = false;
+  checkoutProduct = null;
+  checkoutProviders = [];
+  selectedProvider = null;
+  checkoutDiscount = null;
+  checkoutQuantity = 1;
+
+  resetCheckoutForm();
+  elements.checkoutMethods.replaceChildren();
+  elements.checkoutSubmit.classList.remove('is-loading');
+  elements.checkoutSubmit.textContent = 'ZAKUP';
+  elements.checkoutSubmit.disabled = true;
+}
+
+/* =========================================================
    WŁASNY CHECKOUT — DANE PRODUKTU I OPERATORZY
 ========================================================= */
 
@@ -503,8 +561,7 @@ async function buyProduct(product) {
   checkoutBusy = false;
 
   resetCheckoutForm();
-  elements.checkoutModal.hidden = false;
-  document.body.classList.add('checkout-open');
+  openCheckoutModal();
   elements.checkoutMethods.replaceChildren(createElement('div', 'loading-card', 'Ładowanie metod płatności...'));
   elements.checkoutSubmit.disabled = true;
   elements.checkoutTitleProduct.textContent = String(product.name || 'PRODUKT').toLocaleUpperCase('pl-PL');
@@ -598,30 +655,22 @@ function configureRules() {
 
   if (!rules) return;
 
-  elements.checkoutRulesText.append(
-    document.createTextNode('Akceptuję ')
-  );
+  elements.checkoutRulesText.append(document.createTextNode('Akceptuję '));
 
   const rulesValue = String(rules).trim();
 
   if (/^https?:\/\//i.test(rulesValue)) {
     const link = document.createElement('a');
-
     link.href = rulesValue;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     link.textContent = 'regulamin płatności';
-
     elements.checkoutRulesText.append(link);
   } else {
-    elements.checkoutRulesText.append(
-      document.createTextNode('regulamin płatności')
-    );
+    elements.checkoutRulesText.append(document.createTextNode('regulamin płatności'));
   }
 
-  elements.checkoutRulesText.append(
-    document.createTextNode('.')
-  );
+  elements.checkoutRulesText.append(document.createTextNode('.'));
 }
 
 function isSmsProvider(provider) {
@@ -643,6 +692,35 @@ function getProviderUnitPrice(provider) {
   return Number(checkoutProduct.prices?.[provider.provider]);
 }
 
+function getProviderPresentation(provider) {
+  const raw = `${provider?.provider || ''} ${provider?.name || ''}`;
+  const normalized = raw.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  // IceHost jest w tej konfiguracji identyfikatorem PAYSAFECARD.
+  if (
+    normalized.includes('paysafecard') ||
+    normalized.includes('psc') ||
+    normalized.includes('icehost')
+  ) {
+    return { className: 'payment-method--psc', label: 'PAYSAFECARD' };
+  }
+
+  // BLIK sprawdzamy przed CashBill, bo identyfikator może zawierać oba człony.
+  if (normalized.includes('blik')) {
+    return { className: 'payment-method--blik', label: 'BLIK' };
+  }
+
+  if (normalized.includes('paypal')) {
+    return { className: 'payment-method--paypal', label: provider.name || provider.provider };
+  }
+
+  if (normalized.includes('cashbill')) {
+    return { className: 'payment-method--cashbill', label: provider.name || provider.provider };
+  }
+
+  return { className: '', label: provider.name || provider.provider || 'Płatność' };
+}
+
 function renderCheckoutMethods() {
   elements.checkoutMethods.replaceChildren();
 
@@ -653,27 +731,22 @@ function renderCheckoutMethods() {
     return;
   }
 
+  if (!selectedProvider) selectedProvider = checkoutProviders[0];
+
   checkoutProviders.forEach(provider => {
-const providerName = String(provider.provider || '').toLowerCase();
+    const presentation = getProviderPresentation(provider);
+    const isSelected = selectedProvider?.id === provider.id;
+    const classes = [
+      'payment-method',
+      presentation.className,
+      isSelected ? 'active' : ''
+    ].filter(Boolean).join(' ');
 
-let providerClass = '';
-
-if (providerName.includes('paypal')) {
-  providerClass = ' payment-method--paypal';
-} else if (providerName.includes('cashbill')) {
-  providerClass = ' payment-method--cashbill';
-} else if (providerName.includes('psc') || providerName.includes('icehost')) {
-  providerClass = ' payment-method--psc';
-}
-
-const button = createElement(
-  'button',
-  `payment-method${providerClass}${selectedProvider?.id === provider.id ? ' active' : ''}`
-);
+    const button = createElement('button', classes);
     button.type = 'button';
-    button.setAttribute('aria-pressed', String(selectedProvider?.id === provider.id));
+    button.setAttribute('aria-pressed', String(isSelected));
 
-    const name = createElement('span', 'payment-method-name', provider.name || provider.provider);
+    const name = createElement('span', 'payment-method-name', presentation.label);
     const unit = getProviderUnitPrice(provider);
     const price = createElement('strong', 'payment-method-price', Number.isFinite(unit) ? formatPrice(unit) : '—');
     button.append(name, price);
@@ -683,6 +756,8 @@ const button = createElement(
     }
 
     button.addEventListener('click', () => {
+      if (selectedProvider?.id === provider.id) return;
+
       selectedProvider = provider;
       renderCheckoutMethods();
       updateCheckoutTotal();
@@ -691,11 +766,6 @@ const button = createElement(
 
     elements.checkoutMethods.append(button);
   });
-
-  if (!selectedProvider && checkoutProviders.length) {
-    selectedProvider = checkoutProviders[0];
-    renderCheckoutMethods();
-  }
 
   updateSmsInfo();
 }
@@ -729,6 +799,7 @@ function updateCheckoutTotal() {
   checkoutQuantity = getCurrentQuantity();
   elements.checkoutQuantityValue.textContent = String(checkoutQuantity);
   if (elements.checkoutQuantityNumber) elements.checkoutQuantityNumber.value = String(checkoutQuantity);
+
   if (elements.checkoutQuantity && !elements.checkoutQuantityWrap.hidden) {
     const min = Number(elements.checkoutQuantity.min) || 1;
     const max = Number(elements.checkoutQuantity.max) || min;
@@ -736,6 +807,7 @@ function updateCheckoutTotal() {
     elements.checkoutQuantity.style.setProperty('--range-progress', `${progress}%`);
     elements.checkoutQuantityValue.style.left = `${progress}%`;
   }
+
   elements.checkoutTotal.textContent = Number.isFinite(calculateCheckoutPrice())
     ? formatPrice(calculateCheckoutPrice())
     : 'Cena niedostępna';
@@ -744,12 +816,14 @@ function updateCheckoutTotal() {
   const rulesValid = elements.checkoutRulesWrap.hidden || elements.checkoutRulesAccepted.checked;
   const smsValid = !selectedProvider || !isSmsProvider(selectedProvider) || elements.checkoutSmsCode.value.trim().length > 0;
   const priceValid = Number.isFinite(calculateCheckoutPrice());
+
   elements.checkoutSubmit.disabled = checkoutBusy || !shopIsOnline || !selectedProvider || !nickValid || !rulesValid || !smsValid || !priceValid;
 }
 
 function updateSmsInfo() {
   const sms = selectedProvider && isSmsProvider(selectedProvider);
   elements.checkoutSmsInfo.hidden = !sms;
+
   if (!sms) {
     elements.checkoutSmsCode.value = '';
     updateCheckoutTotal();
@@ -795,7 +869,10 @@ async function applyDiscountCode() {
       body: JSON.stringify({ code, product: checkoutProduct.id })
     });
 
-    if (!result || !Number.isFinite(Number(result.discount))) throw new Error('VIshop nie zwrócił poprawnej wartości rabatu.');
+    if (!result || !Number.isFinite(Number(result.discount))) {
+      throw new Error('VIshop nie zwrócił poprawnej wartości rabatu.');
+    }
+
     checkoutDiscount = { code, discount: Number(result.discount) };
     setDiscountMessage(`Kod został zastosowany: -${checkoutDiscount.discount}%.`, 'success');
     updateCheckoutTotal();
@@ -825,19 +902,23 @@ async function submitCheckout(event) {
     elements.checkoutNick.focus();
     return;
   }
+
   if (!selectedProvider) {
     setCheckoutMessage('Wybierz metodę płatności.');
     return;
   }
+
   if (!elements.checkoutRulesWrap.hidden && !elements.checkoutRulesAccepted.checked) {
     setCheckoutMessage('Zaakceptuj regulamin sklepu.');
     return;
   }
+
   if (isSmsProvider(selectedProvider) && !elements.checkoutSmsCode.value.trim()) {
     setCheckoutMessage('Wpisz kod otrzymany w odpowiedzi SMS.');
     elements.checkoutSmsCode.focus();
     return;
   }
+
   if (!shopIsOnline) {
     setCheckoutMessage('Sklep jest obecnie wyłączony.');
     return;
@@ -902,22 +983,31 @@ async function submitCheckout(event) {
 }
 
 function closeCheckout() {
-  elements.checkoutModal.hidden = true;
-  document.body.classList.remove('checkout-open');
+  const modal = elements.checkoutModal;
+  if (modal.hidden || modal.classList.contains('is-closing')) return;
 
-  checkoutBusy = false;
-  checkoutProduct = null;
-  checkoutProviders = [];
-  selectedProvider = null;
-  checkoutDiscount = null;
-  checkoutQuantity = 1;
+  if (checkoutCloseAnimationHandler) {
+    modal.removeEventListener('animationend', checkoutCloseAnimationHandler);
+    checkoutCloseAnimationHandler = null;
+  }
 
-  resetCheckoutForm();
+  if (checkoutCloseFallback !== null) {
+    clearTimeout(checkoutCloseFallback);
+    checkoutCloseFallback = null;
+  }
 
-  elements.checkoutMethods.replaceChildren();
-  elements.checkoutSubmit.classList.remove('is-loading');
-  elements.checkoutSubmit.textContent = 'ZAKUP';
-  elements.checkoutSubmit.disabled = true;
+  modal.classList.remove('is-opening');
+  modal.classList.add('is-closing');
+
+  checkoutCloseAnimationHandler = event => {
+    if (event.target !== modal || event.animationName !== 'checkoutBackdropOut') return;
+    finishCheckoutClose();
+  };
+
+  modal.addEventListener('animationend', checkoutCloseAnimationHandler);
+
+  // Zabezpieczenie dla reduced-motion i przeglądarek bez zdarzenia animationend.
+  checkoutCloseFallback = window.setTimeout(finishCheckoutClose, 260);
 }
 
 /* =========================================================
@@ -1013,10 +1103,12 @@ function setupNavigation() {
   window.addEventListener('popstate', () => {
     const params = new URLSearchParams(window.location.search);
     const paymentId = params.get('payment');
+
     if (paymentId) {
       loadPaymentStatus(paymentId);
       return;
     }
+
     const id = params.get('server');
     const server = CONFIG.servers.find(item => String(item.id) === String(id));
     if (server) selectServer(server, false);
@@ -1025,11 +1117,14 @@ function setupNavigation() {
 
   elements.checkoutForm.addEventListener('submit', submitCheckout);
   elements.closeCheckout.addEventListener('click', closeCheckout);
+
   elements.checkoutModal.addEventListener('click', event => {
     if (event.target === elements.checkoutModal) closeCheckout();
   });
+
   elements.checkoutNick.addEventListener('input', updateCheckoutTotal);
   elements.checkoutQuantity.addEventListener('input', updateCheckoutTotal);
+
   elements.checkoutQuantityNumber.addEventListener('input', () => {
     const min = Number(elements.checkoutQuantity.min) || 1;
     const max = Number(elements.checkoutQuantity.max) || min;
@@ -1038,6 +1133,7 @@ function setupNavigation() {
     elements.checkoutQuantity.value = String(Math.min(max, Math.max(min, entered)));
     updateCheckoutTotal();
   });
+
   elements.checkoutQuantityNumber.addEventListener('change', () => {
     const min = Number(elements.checkoutQuantity.min) || 1;
     const max = Number(elements.checkoutQuantity.max) || min;
@@ -1046,9 +1142,11 @@ function setupNavigation() {
     elements.checkoutQuantity.value = String(safeValue);
     updateCheckoutTotal();
   });
+
   elements.checkoutSmsCode.addEventListener('input', updateCheckoutTotal);
   elements.checkoutRulesAccepted.addEventListener('change', updateCheckoutTotal);
   elements.applyDiscount.addEventListener('click', applyDiscountCode);
+
   elements.checkoutDiscountCode.addEventListener('input', () => {
     const code = elements.checkoutDiscountCode.value.trim();
     if (!code || (checkoutDiscount && checkoutDiscount.code !== code)) {
@@ -1058,6 +1156,7 @@ function setupNavigation() {
       updateCheckoutTotal();
     }
   });
+
   elements.refreshPaymentStatus.addEventListener('click', () => {
     if (activePaymentId) loadPaymentStatus(activePaymentId);
   });
@@ -1102,5 +1201,3 @@ init().catch(error => {
   console.error('Nie udało się uruchomić sklepu:', error);
   showNotice('Wystąpił nieoczekiwany błąd podczas uruchamiania sklepu.');
 });
-
-
