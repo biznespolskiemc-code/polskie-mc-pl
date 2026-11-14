@@ -575,7 +575,6 @@ body {
 
 .checkout-open { overflow: hidden; }
 .checkout-backdrop { z-index: 11000; }
-.checkout-modal { width: min(620px,100%); max-height: min(900px,calc(100dvh - 40px)); padding: 30px; }
 .checkout-product-summary { display: grid; grid-template-columns: 92px minmax(0,1fr); align-items: center; gap: 16px; margin: 20px 0 24px; padding: 14px; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; background: rgba(255,255,255,.025); }
 .checkout-product-image-wrap { width: 92px; height: 92px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(0,0,0,.28); }
 .checkout-product-image-wrap img { width: 100%; height: 100%; object-fit: contain; }
@@ -1845,5 +1844,54 @@ body {
 @media (max-width: 700px) {
     .checkout-product-description {
         max-height: 220px;
+    }
+}
+
+/* =====================================================
+   ANIMACJA WYBORU METODY PŁATNOŚCI
+   Delikatne pojawianie i zanikanie zaznaczenia.
+===================================================== */
+
+.checkout-modal .payment-method {
+    transition:
+        border-color .25s ease,
+        background-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.checkout-modal .payment-method::after {
+    opacity: .45;
+    transition:
+        opacity .25s ease,
+        background-color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.checkout-modal .payment-method.active {
+    animation: paymentFadeIn .3s ease both;
+}
+
+.checkout-modal .payment-method.active::after {
+    opacity: 1;
+    animation: paymentIndicatorIn .3s ease both;
+}
+
+@keyframes paymentFadeIn {
+    from { opacity: .65; }
+    to { opacity: 1; }
+}
+
+@keyframes paymentIndicatorIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Ograniczenie animacji */
+
+@media (prefers-reduced-motion: reduce) {
+    .checkout-modal .payment-method.active,
+    .checkout-modal .payment-method.active::after {
+        animation: none !important;
     }
 }
