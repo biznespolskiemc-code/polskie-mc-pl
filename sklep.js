@@ -443,6 +443,12 @@ function createProductCard(product) {
   image.onerror = () => { image.src = '../images/polskiemc.png'; };
   imageWrap.append(image);
 
+  if (isEvent) {
+    const santaHat = createElement('span', 'event-santa-hat');
+    santaHat.setAttribute('aria-hidden', 'true');
+    imageWrap.append(santaHat);
+  }
+
   const name = createElement('h3', 'product-name', product.name || 'Produkt');
   const description = createProductDescription(product);
   const price = getProductPrice(product);
@@ -466,7 +472,44 @@ function createProductCard(product) {
   return card;
 }
 
+function updateEventSnow(enabled) {
+  document.body.classList.toggle('event-category-active', enabled);
+
+  let layer = document.getElementById('eventSnowLayer');
+  if (!enabled) {
+    if (layer) layer.remove();
+    return;
+  }
+
+  if (layer) return;
+
+  layer = createElement('div');
+  layer.id = 'eventSnowLayer';
+  layer.setAttribute('aria-hidden', 'true');
+
+  for (let i = 0; i < 34; i++) {
+    const flake = createElement('span', '', i % 4 === 0 ? '❄' : '•');
+    flake.style.left = `${Math.random() * 100}%`;
+    flake.style.animationDuration = `${9 + Math.random() * 13}s`;
+    flake.style.animationDelay = `${-Math.random() * 20}s`;
+    flake.style.fontSize = `${7 + Math.random() * 13}px`;
+    flake.style.opacity = `${0.35 + Math.random() * 0.55}`;
+    layer.append(flake);
+  }
+
+  document.body.append(layer);
+}
+
 function renderProducts() {
+  const selectedCategoryData = currentCategories.find(category =>
+    category && String(category.id) === String(selectedCategory)
+  );
+  const selectedCategoryName = String(selectedCategoryData?.name || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+  updateEventSnow(selectedCategory !== 'all' && selectedCategoryName.includes('event'));
+
   elements.productsGrid.replaceChildren();
 
   const visible = selectedCategory === 'all'
@@ -1168,6 +1211,7 @@ function setupNavigation() {
 }
 
 function showServerList(updateHistory = true) {
+  updateEventSnow(false);
   currentServer = null;
   currentProducts = [];
   selectedCategory = 'all';

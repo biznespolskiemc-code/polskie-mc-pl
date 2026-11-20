@@ -1895,3 +1895,147 @@ body {
         animation: none !important;
     }
 }
+
+/* =====================================================
+   EVENTOWE — ŚWIĄTECZNA EDYCJA
+   Aktywna wyłącznie dla produktów/kategorii eventowych.
+===================================================== */
+
+.product-card.product-card-event {
+    isolation: isolate;
+    border: 1px solid rgba(214, 24, 65, .48);
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(16,185,129,.13), transparent 58%),
+        linear-gradient(145deg, #14231c 0%, #101713 58%, #1d1015 100%);
+    box-shadow: 0 12px 35px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.product-card.product-card-event::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 18px;
+    width: 76px;
+    height: 3px;
+    border-radius: 0 0 8px 8px;
+    background: linear-gradient(90deg, #d61841, #fff 52%, #10b981);
+    box-shadow: 0 0 16px rgba(16,185,129,.22);
+}
+
+.product-card.product-card-event::after {
+    content: "✦  ❄  ✦";
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    z-index: 2;
+    color: rgba(224,245,255,.72);
+    font-size: 10px;
+    letter-spacing: 5px;
+    pointer-events: none;
+}
+
+.product-card.product-card-event:hover {
+    transform: translateY(-6px);
+    border-color: rgba(16,185,129,.65);
+    box-shadow: 0 18px 42px rgba(0,0,0,.38), 0 0 24px rgba(16,185,129,.09);
+}
+
+.product-card-event .product-image-wrap {
+    min-height: 220px;
+    background:
+        radial-gradient(ellipse at 50% 78%, rgba(16,185,129,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.025), transparent);
+}
+
+.product-card-event .product-name {
+    color: #fff;
+    text-shadow: 0 2px 15px rgba(16,185,129,.18);
+}
+
+.product-card-event .product-description {
+    color: #b8c9c0;
+}
+
+.product-card-event .product-buy-button {
+    border: 1px solid rgba(255,255,255,.18);
+    background: linear-gradient(115deg, #b91539 0%, #d61841 48%, #087e59 100%);
+    color: #fff;
+    box-shadow: 0 7px 20px rgba(153,18,49,.22);
+}
+
+.product-card-event .product-buy-button:hover {
+    background: linear-gradient(115deg, #d61841 0%, #e52b51 48%, #0ba875 100%);
+    box-shadow: 0 10px 27px rgba(16,185,129,.18);
+}
+
+.product-card-event .buy-current-price { color: #fff; }
+.product-card-event .buy-old-price { color: rgba(255,255,255,.62); }
+
+.event-santa-hat {
+    position: absolute;
+    top: 13px;
+    right: 17px;
+    z-index: 4;
+    width: 39px;
+    height: 31px;
+    transform: rotate(17deg);
+    pointer-events: none;
+    background: radial-gradient(circle at 81% 10%, #fff 0 4px, transparent 4.8px);
+    filter: drop-shadow(0 3px 4px rgba(0,0,0,.35));
+}
+
+.event-santa-hat::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 2px;
+    width: 31px;
+    height: 25px;
+    background: linear-gradient(135deg, #f04468, #b30e32 75%);
+    clip-path: polygon(0 100%, 100% 100%, 79% 0);
+}
+
+.event-santa-hat::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 37px;
+    height: 7px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #fff, #dce8ed);
+    box-shadow: 0 2px 3px rgba(0,0,0,.2);
+}
+
+#eventSnowLayer {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    overflow: hidden;
+    pointer-events: none;
+    contain: strict;
+}
+
+#eventSnowLayer span {
+    position: absolute;
+    top: -24px;
+    color: rgba(235,247,255,.88);
+    text-shadow: 0 0 7px rgba(180,225,255,.35);
+    line-height: 1;
+    user-select: none;
+    animation: eventSnowFall linear infinite;
+    will-change: transform;
+}
+
+@keyframes eventSnowFall {
+    0% { transform: translate3d(0, -5vh, 0) rotate(0deg); }
+    50% { transform: translate3d(24px, 52vh, 0) rotate(180deg); }
+    100% { transform: translate3d(-16px, 110vh, 0) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #eventSnowLayer { display: none !important; }
+    .product-card.product-card-event,
+    .product-card.product-card-event:hover { transition: none; transform: none; }
+}
