@@ -468,8 +468,13 @@ function createProductCard(product) {
   }
 
   buyButton.addEventListener('click', () => buyProduct(product));
-  card.append(imageWrap, name, description, buyButton);
-  return card;
+card.append(imageWrap, name, description, buyButton);
+
+if (isEvent) {
+    card.append(createElement('div', 'event-santa-hat'));
+}
+
+return card;
 }
 
 function updateEventSnow(enabled) {
