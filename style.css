@@ -2056,3 +2056,10 @@ body {
 }
 .product-card-event .product-name { color: #19384b; text-shadow: 0 1px 0 rgba(236,249,255,.55); }
 .product-card-event .product-description { color: #3f6378; }
+
+/* EVENTOWE — USUNIĘCIE PASKÓW I DODATKOWYCH ZNAKÓW */
+.product-card.product-card-event::before,
+.product-card.product-card-event::after {
+    content: none !important;
+    display: none !important;
+}
