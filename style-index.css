@@ -285,9 +285,20 @@ footer p { color: #666; font-size: 13px; }
     /* stare menu i hamburger zastąpione dolnym paskiem */
     .hamburger, .menu { display: none !important; }
 
-    .hero { min-height: 100vh; }
-    .hero-container { padding: 120px 0 80px; text-align: center; }
-    .hero-text { margin: auto; }
+.hero {
+    min-height: 100svh;
+    min-height: 100vh;
+    align-items: flex-start;
+}
+
+.hero-container {
+    padding: 105px 0 60px;
+    text-align: center;
+}
+
+.hero-text {
+    margin: auto;
+}
     .hero-label { margin-left: auto; margin-right: auto; }
     .hero-description { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
@@ -419,35 +430,111 @@ footer p { color: #666; font-size: 13px; }
     .glass-label { font-size: 9px; font-weight: 700; line-height: 1; white-space: nowrap; letter-spacing: -.1px; }
 }
 
-/* =====================================================
-   MAŁE TELEFONY ≤ 550px
-===================================================== */
 @media (max-width: 550px) {
-    .container, .nav-container, .hero-container { width: 92%; }
+    .container,
+    .nav-container,
+    .hero-container {
+        width: 92%;
+    }
 
-    .logo { font-size: 19px; }
-    .logo img { width: 60px; height: 60px; }
+    .logo {
+        font-size: 19px;
+    }
 
-    .hero h1 { font-size: 39px; letter-spacing: -1.5px; }
-    .hero-label { gap: 7px; font-size: 10px; letter-spacing: 1px; padding: 8px 11px; }
-    .online-label, #playersValue { font-size: 10px; }
-    .hero-label .status-dot { width: 7px; height: 7px; }
-    .hero-description { font-size: 15px; line-height: 1.7; }
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
 
-    .hero-buttons { flex-direction: column; width: 100%; }
-    .hero-buttons .btn { width: 100%; max-width: 300px; }
+    /* SEKCJA GŁÓWNA */
+    .hero {
+        min-height: 100vh;
+        min-height: 100svh;
+        align-items: flex-start;
+    }
 
-    .section-heading h2 { font-size: 32px; }
+    .hero-container {
+        padding-top: 95px;
+        padding-bottom: 50px;
+        text-align: center;
+    }
 
-    .discord-card, .map-card { padding: 28px 22px; }
-    .discord-content, .map-content { gap: 14px; }
+    .hero h1 {
+        font-size: 39px;
+        letter-spacing: -1.5px;
+        margin-top: 0;
+    }
 
-    .cta-content h2 { font-size: 39px; letter-spacing: -1px; }
-    .cta-content p { font-size: 15px; }
+    .hero-label {
+        gap: 7px;
+        font-size: 10px;
+        letter-spacing: 1px;
+        padding: 8px 11px;
+        margin-bottom: 22px;
+    }
 
-    footer { padding: 55px 20px 140px; }
+    .online-label,
+    #playersValue {
+        font-size: 10px;
+    }
 
-    #topBtn { width: 45px; height: 45px; right: 18px; }
+    .hero-label .status-dot {
+        width: 7px;
+        height: 7px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* NAGŁÓWKI SEKCJI */
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    /* KARTY */
+    .discord-card,
+    .map-card {
+        padding: 28px 22px;
+    }
+
+    .discord-content,
+    .map-content {
+        gap: 14px;
+    }
+
+    /* SEKCJA CTA */
+    .cta-content h2 {
+        font-size: 39px;
+        letter-spacing: -1px;
+    }
+
+    .cta-content p {
+        font-size: 15px;
+    }
+
+    /* STOPKA */
+    footer {
+        padding: 55px 20px 140px;
+    }
+
+    /* PRZYCISK POWROTU NA GÓRĘ */
+    #topBtn {
+        width: 45px;
+        height: 45px;
+        right: 18px;
+    }
 }
 
 /* =====================================================
