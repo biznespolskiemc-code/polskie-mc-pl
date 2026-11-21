@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#090909">
     <title>POLSKIEMC.PL | Sklep</title>
     <meta name="description" content="Oficjalny sklep POLSKIEMC.PL — rangi, klucze i produkty na tryby Earth SMP oraz Mace PvP.">
@@ -14,19 +14,148 @@
 
     <link rel="stylesheet" href="../style-index.css">
     <link rel="stylesheet" href="style.css">
+    <style id="glass-nav-css">
+/* LIQUID GLASS NAV — style wbudowane (niezależne od cache style-index.css) */
+.mobile-glass-nav { display: none; }
+
+@media (max-width: 800px) {
+
+    .hamburger, .menu { display: none !important; }
+    body { padding-bottom: 120px; }
+    footer { padding-bottom: 140px; }
+    #topBtn { bottom: calc(110px + env(safe-area-inset-bottom)) !important; }
+
+    /* ---------- DOLNY PASEK LIQUID GLASS ---------- */
+    .mobile-glass-nav {
+        --r: 28px;
+        --pad: 6px;
+
+        position: fixed; z-index: 10000;
+        left: 0; right: 0; margin-inline: auto;
+        bottom: calc(18px + env(safe-area-inset-bottom));
+
+        width: min(calc(100% - 28px), 440px);
+        height: 72px; padding: var(--pad);
+
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+
+        border-radius: var(--r);
+        overflow: hidden;
+        isolation: isolate;
+
+        background:
+            linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.03) 55%, rgba(255,255,255,.06)),
+            rgba(18,18,24,.55);
+
+        -webkit-backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+        backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+
+        box-shadow:
+            0 16px 40px rgba(0,0,0,.5),
+            inset 0 1px 0 rgba(255,255,255,.18),
+            inset 0 -1px 0 rgba(255,255,255,.04);
+
+        user-select: none; -webkit-user-select: none;
+        touch-action: pan-y;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* równa ramka (rim) rysowana maską — zero krzywizn */
+    .mobile-glass-nav::after,
+    .glass-indicator::after {
+        content: ""; position: absolute; inset: 0;
+        border-radius: inherit; padding: 1px; pointer-events: none;
+        background: linear-gradient(160deg,
+            rgba(255,255,255,.55),
+            rgba(255,255,255,.08) 35%,
+            rgba(255,255,255,.04) 65%,
+            rgba(255,255,255,.3));
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+    }
+
+    /* połysk u góry paska */
+    .mobile-glass-nav::before {
+        content: ""; position: absolute; inset: 0; z-index: 4;
+        border-radius: inherit; pointer-events: none;
+        background: radial-gradient(120% 70% at 50% -10%, rgba(255,255,255,.16), transparent 60%);
+    }
+
+    /* płynne szkło / kropla wody */
+    .glass-indicator {
+        position: absolute; z-index: 1;
+        top: var(--pad); left: 0;
+        height: calc(100% - var(--pad) * 2); width: 0;
+        border-radius: calc(var(--r) - var(--pad));
+        transform-origin: 50% 50%;
+        will-change: transform;
+        pointer-events: none;
+
+        background:
+            radial-gradient(90% 60% at 30% 0%, rgba(255,255,255,.38), transparent 60%),
+            radial-gradient(70% 70% at 80% 110%, rgba(214,24,65,.35), transparent 70%),
+            linear-gradient(145deg, rgba(255,255,255,.2), rgba(214,24,65,.16) 55%, rgba(255,255,255,.08));
+
+        box-shadow:
+            0 6px 22px rgba(214,24,65,.22),
+            inset 0 1px 2px rgba(255,255,255,.45),
+            inset 0 -3px 8px rgba(0,0,0,.18),
+            inset 0 0 14px rgba(255,255,255,.06);
+    }
+
+    /* zakładki */
+    .glass-item {
+        position: relative; z-index: 3; min-width: 0;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+        color: rgba(255,255,255,.55);
+        font-family: 'Montserrat', sans-serif;
+        transition: color .3s ease;
+    }
+    .glass-item.active { color: #fff; }
+
+    .glass-icon {
+        width: 22px; height: 22px; display: block;
+        transition: transform .45s cubic-bezier(.22,1.4,.36,1), filter .3s ease;
+    }
+    .glass-icon svg {
+        width: 100%; height: 100%; fill: none; stroke: currentColor;
+        stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .glass-item.active .glass-icon {
+        transform: translateY(-1px) scale(1.12);
+        filter: drop-shadow(0 0 8px rgba(255,255,255,.45));
+    }
+
+    .glass-label { font-size: 9px; font-weight: 700; line-height: 1; white-space: nowrap; letter-spacing: -.1px; }
+
+    /* reset po starych wersjach paska */
+    .mobile-glass-nav { animation: none !important; transform: none !important; }
+    .glass-indicator { filter: none !important; animation: none !important; transition: none !important;
+        -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+    .glass-indicator::before { content: none !important; }
+    .mobile-glass-nav::after, .glass-indicator::after { animation: none !important; }
+    .glass-item.active { transform: none !important; }
+}
+
+@media (max-width: 380px) {
+    .mobile-glass-nav { height: 66px; bottom: calc(12px + env(safe-area-inset-bottom)); }
+    .glass-icon { width: 20px; height: 20px; }
+    .glass-label { font-size: 8px; }
+}
+</style>
     <script src="sklep.js" defer></script>
 </head>
 <body>
 
+<!-- NAVBAR (desktop) -->
 <nav class="navbar">
     <div class="nav-container">
         <a href="../index.html" class="logo">
             <img src="../images/polskiemc.png" alt="POLSKIEMC.PL">
         </a>
-
-        <div class="hamburger" id="hamburger" aria-label="Otwórz menu" role="button" tabindex="0" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </div>
 
         <div class="menu" id="menu">
             <a href="../index">Strona główna</a>
@@ -200,6 +329,40 @@
 
 <button id="topBtn" aria-label="Wróć na górę">↑</button>
 
+
+<!-- DOLNA NAWIGACJA MOBILE — LIQUID GLASS -->
+<nav class="mobile-glass-nav" id="mobileGlassNav" aria-label="Nawigacja mobilna">
+
+    <div class="glass-indicator" id="glassIndicator"></div>
+
+    <a href="https://polskiemc.pl/" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg></span>
+        <span class="glass-label">Główna</span>
+    </a>
+
+    <a href="https://polskiemc.pl/sklep" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.1a2 2 0 0 0 2-1.5L21 7H6"/></svg></span>
+        <span class="glass-label">Sklep</span>
+    </a>
+
+    <a href="https://polskiemc.pl/regulamin" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></span>
+        <span class="glass-label">Regulamin</span>
+    </a>
+
+    <a href="https://polskiemc.pl/rekrutacja" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M19 8v6M16 11h6"/></svg></span>
+        <span class="glass-label">Rekrutacja</span>
+    </a>
+
+    <a href="https://polskiemc.pl/tworca" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg></span>
+        <span class="glass-label">Twórca</span>
+    </a>
+
+</nav>
+
+
 <script>
 const topBtn = document.getElementById('topBtn');
 window.addEventListener('scroll', () => {
@@ -207,5 +370,179 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
+
+<script>
+/* =====================================================
+   LIQUID GLASS NAV — fizyka sprężyny
+===================================================== */
+(() => {
+    const nav = document.getElementById("mobileGlassNav");
+    const ind = document.getElementById("glassIndicator");
+    if (!nav || !ind) return;
+
+    const items = [...nav.querySelectorAll(".glass-item")];
+    if (!items.length) return;
+
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let xs = [], w = 0;
+    let x = 0, v = 0, target = 0;
+    let pressed = 0, dragging = false, moved = false;
+    let startX = 0, pid = null, suppressClick = false;
+    let raf = 0, last = 0, navigating = false;
+
+    /* strona, na której jesteśmy */
+    const clean = p => p.replace(/index\.html$/, "").replace(/\.html$/, "").replace(/\/+$/, "") || "/";
+    const here = clean(location.pathname);
+    let pageIndex = items.findIndex(a => clean(new URL(a.href, location.href).pathname) === here);
+    if (pageIndex < 0) pageIndex = 0;
+    let active = -1;
+
+    function measure() {
+        const nr = nav.getBoundingClientRect();
+        xs = items.map(i => i.getBoundingClientRect().left - nr.left);
+        w = items[0].getBoundingClientRect().width;
+        ind.style.width = w + "px";
+    }
+
+    function setActive(i) {
+        if (i === active) return;
+        active = i;
+        items.forEach((el, n) => {
+            el.classList.toggle("active", n === i);
+            if (n === i) el.setAttribute("aria-current", "page");
+            else el.removeAttribute("aria-current");
+        });
+    }
+
+    function nearest(px) {
+        const rel = px - nav.getBoundingClientRect().left;
+        let best = 0, d = Infinity;
+        items.forEach((_, i) => {
+            const dist = Math.abs(rel - (xs[i] + w / 2));
+            if (dist < d) { d = dist; best = i; }
+        });
+        return best;
+    }
+
+    function render() {
+        const s = Math.min(Math.abs(v) / 1800, 0.4);      /* rozciągnięcie od prędkości */
+        const sx = 1 + s + pressed * 0.07;
+        const sy = 1 - s * 0.4 + pressed * 0.07;
+        ind.style.transform = `translate3d(${x}px,0,0) scale(${sx},${sy})`;
+    }
+
+    function tick(t) {
+        const dt = Math.min((t - last) / 1000 || 0.016, 0.032);
+        last = t;
+
+        const k = dragging ? 520 : 230;                     /* sztywność */
+        const c = dragging ? 40 : 19;                       /* tłumienie — lekki overshoot = woda */
+
+        v += (-k * (x - target) - c * v) * dt;
+        x += v * dt;
+        pressed += ((dragging ? 1 : 0) - pressed) * Math.min(1, dt * 14);
+
+        render();
+
+        const settled = Math.abs(v) < 2 && Math.abs(x - target) < 0.1 && Math.abs(pressed - (dragging ? 1 : 0)) < 0.01;
+        if (settled && !dragging) {
+            x = target; v = 0; pressed = 0; render(); raf = 0;
+            return;
+        }
+        raf = requestAnimationFrame(tick);
+    }
+
+    function run() {
+        if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
+    }
+
+    function snapTo(i, instant) {
+        target = xs[i];
+        if (instant || reduce) { x = target; v = 0; pressed = 0; render(); }
+        else run();
+    }
+
+    function go(i) {
+        setActive(i);
+        snapTo(i);
+        if (i === pageIndex || navigating) return;
+        navigating = true;
+        setTimeout(() => location.assign(items[i].href), reduce ? 0 : 300);
+    }
+
+    /* tap / klawiatura */
+    items.forEach((el, i) => {
+        el.addEventListener("click", e => {
+            e.preventDefault();
+            if (suppressClick) { suppressClick = false; return; }
+            go(i);
+        });
+    });
+
+    /* przeciąganie */
+    nav.addEventListener("pointerdown", e => {
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        pid = e.pointerId;
+        startX = e.clientX;
+        moved = false;
+        dragging = false;
+        pressed = 0.0001;
+        run();
+    });
+
+    nav.addEventListener("pointermove", e => {
+        if (e.pointerId !== pid) return;
+
+        if (!moved && Math.abs(e.clientX - startX) > 6) {
+            moved = true;
+            dragging = true;
+            try { nav.setPointerCapture(pid); } catch (_) {}
+        }
+        if (!moved) return;
+
+        const nr = nav.getBoundingClientRect();
+        target = Math.max(xs[0], Math.min(xs[xs.length - 1], e.clientX - nr.left - w / 2));
+
+        setActive(nearest(e.clientX));
+        run();
+    });
+
+    nav.addEventListener("pointerup", e => {
+        if (e.pointerId !== pid) return;
+        const wasDragged = moved;
+        pid = null; dragging = false; moved = false;
+
+        if (wasDragged) {
+            suppressClick = true;
+            setTimeout(() => { suppressClick = false; }, 50);
+            go(nearest(e.clientX));
+        } else {
+            run();
+        }
+    });
+
+    nav.addEventListener("pointercancel", e => {
+        if (e.pointerId !== pid) return;
+        pid = null; dragging = false; moved = false;
+        setActive(pageIndex);
+        snapTo(pageIndex);
+    });
+
+    /* start i resize */
+    function init() {
+        measure();
+        setActive(pageIndex);
+        snapTo(pageIndex, true);
+    }
+
+    init();
+    window.addEventListener("load", init);
+    window.addEventListener("resize", init);
+    window.addEventListener("pageshow", e => { navigating = false; if (e.persisted) init(); });
+    if ("ResizeObserver" in window) new ResizeObserver(init).observe(nav);
+})();
+</script>
+
 </body>
 </html>
