@@ -1093,3 +1093,19 @@ html {
         bottom: calc(110px + env(safe-area-inset-bottom)) !important;
     }
 }
+
+/* =====================================================
+   LOGO — WYŚRODKOWANIE NA TELEFONACH
+===================================================== */
+@media (max-width: 800px) {
+    .nav-container {
+        position: relative;
+        justify-content: center;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
