@@ -379,10 +379,6 @@
 </footer>
 
 
-<!-- POWRÓT NA GÓRĘ -->
-<button id="topBtn" aria-label="Wróć na górę">↑</button>
-
-
 <!-- DOLNA NAWIGACJA MOBILE — LIQUID GLASS -->
 <nav class="mobile-glass-nav" id="mobileGlassNav" aria-label="Nawigacja mobilna">
 
@@ -428,20 +424,6 @@ document.querySelectorAll(".rule-section").forEach((section, sectionIndex) => {
     list.querySelectorAll(":scope > li").forEach((item, itemIndex) => {
         item.setAttribute("data-rule-number", `${sectionIndex + 1}.${itemIndex + 1}`);
     });
-});
-
-
-// =====================================================
-// POWRÓT NA GÓRĘ
-// =====================================================
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-    topBtn.classList.toggle("show", window.scrollY > 500);
-}, { passive: true });
-
-topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 
