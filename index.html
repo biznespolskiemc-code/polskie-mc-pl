@@ -708,8 +708,9 @@ if ("IntersectionObserver" in window) {
 }
 
 
+
 /* =====================================================
-   LIQUID GLASS — DRAG NAVIGATION
+   LIQUID GLASS — SWIPE NAVIGATION
 ===================================================== */
 
 const glassNav = document.getElementById("mobileGlassNav");
@@ -718,13 +719,15 @@ const glassItems = [...document.querySelectorAll(".glass-item")];
 
 let glassActiveIndex = 0;
 let glassDragging = false;
+let glassStartX = 0;
+let glassStartY = 0;
+let glassMoved = false;
 let glassPointerId = null;
+let glassIgnoreClick = false;
 
 function moveGlassIndicator(index, animate = true) {
 
-    if (!glassNav || !glassIndicator || !glassItems.length) {
-        return;
-    }
+    if (!glassNav || !glassIndicator || !glassItems.length) return;
 
     glassActiveIndex = Math.max(
         0,
@@ -734,26 +737,18 @@ function moveGlassIndicator(index, animate = true) {
     const itemWidth = glassNav.clientWidth / glassItems.length;
 
     glassIndicator.style.transition = animate
-        ? "transform .35s cubic-bezier(.2,.8,.2,1)"
+        ? "transform .42s cubic-bezier(.22,1,.36,1)"
         : "none";
 
     glassIndicator.style.transform =
         `translateX(${glassActiveIndex * itemWidth}px)`;
 
     glassItems.forEach((item, i) => {
-
-        item.classList.toggle(
-            "active",
-            i === glassActiveIndex
-        );
-
+        item.classList.toggle("active", i === glassActiveIndex);
     });
-
 }
 
 function getGlassIndex(clientX) {
-
-    if (!glassNav || !glassItems.length) return 0;
 
     const rect = glassNav.getBoundingClientRect();
     const x = clientX - rect.left;
@@ -766,82 +761,116 @@ function getGlassIndex(clientX) {
             Math.floor(x / itemWidth)
         )
     );
-
 }
 
-
-/* Kliknięcie */
+/* Kliknięcie elementu */
 
 glassItems.forEach((item, index) => {
 
-    item.addEventListener("click", () => {
+    item.addEventListener("click", event => {
+
+        if (glassIgnoreClick) {
+            event.preventDefault();
+            glassIgnoreClick = false;
+            return;
+        }
+
         moveGlassIndicator(index);
     });
 
 });
 
+/* Rozpoczęcie przeciągania */
 
-/* Przeciąganie */
+glassNav.addEventListener("pointerdown", event => {
 
-if (glassNav && glassIndicator && glassItems.length) {
+    if (event.pointerType === "mouse" && event.button !== 0) {
+        return;
+    }
 
-    glassNav.addEventListener("pointerdown", event => {
+    glassDragging = true;
+    glassMoved = false;
+    glassPointerId = event.pointerId;
 
-        if (event.pointerType === "mouse" && event.button !== 0) {
-            return;
-        }
+    glassStartX = event.clientX;
+    glassStartY = event.clientY;
 
-        glassDragging = true;
-        glassPointerId = event.pointerId;
+    glassNav.setPointerCapture(event.pointerId);
 
-        glassNav.setPointerCapture(event.pointerId);
+    moveGlassIndicator(
+        getGlassIndex(event.clientX),
+        false
+    );
+});
 
+/* Ruch palca */
+
+glassNav.addEventListener("pointermove", event => {
+
+    if (!glassDragging || event.pointerId !== glassPointerId) {
+        return;
+    }
+
+    const deltaX = Math.abs(event.clientX - glassStartX);
+    const deltaY = Math.abs(event.clientY - glassStartY);
+
+    if (deltaX > 10) {
+        glassMoved = true;
+    }
+
+    if (glassMoved) {
         moveGlassIndicator(
             getGlassIndex(event.clientX),
             false
         );
+    }
+});
 
-    });
+/* Puszczenie palca */
 
-    glassNav.addEventListener("pointermove", event => {
+glassNav.addEventListener("pointerup", event => {
 
-        if (!glassDragging || event.pointerId !== glassPointerId) {
-            return;
+    if (!glassDragging || event.pointerId !== glassPointerId) {
+        return;
+    }
+
+    const wasDragged = glassMoved;
+    const selectedIndex = getGlassIndex(event.clientX);
+
+    glassDragging = false;
+    glassPointerId = null;
+
+    if (wasDragged) {
+
+        glassIgnoreClick = true;
+
+        moveGlassIndicator(selectedIndex, true);
+
+        const selectedLink = glassItems[selectedIndex];
+
+        if (selectedLink) {
+            window.location.href = selectedLink.href;
         }
 
-        moveGlassIndicator(
-            getGlassIndex(event.clientX),
-            false
-        );
+    } else {
 
-    });
+        moveGlassIndicator(selectedIndex, true);
 
-    glassNav.addEventListener("pointerup", event => {
+    }
+});
 
-        if (!glassDragging || event.pointerId !== glassPointerId) {
-            return;
-        }
+/* Anulowanie gestu */
 
-        glassDragging = false;
-        glassPointerId = null;
+glassNav.addEventListener("pointercancel", () => {
 
-        moveGlassIndicator(glassActiveIndex);
+    glassDragging = false;
+    glassPointerId = null;
+    glassMoved = false;
 
-    });
+    moveGlassIndicator(glassActiveIndex);
+});
 
-    glassNav.addEventListener("pointercancel", () => {
-
-        glassDragging = false;
-        glassPointerId = null;
-
-        moveGlassIndicator(glassActiveIndex);
-
-    });
-
-}
-
-
-/* Początkowe ustawienie */
+/* Dopasowanie po zmianie rozmiaru */
 
 window.addEventListener("load", () => {
     moveGlassIndicator(0, false);
@@ -850,6 +879,7 @@ window.addEventListener("load", () => {
 window.addEventListener("resize", () => {
     moveGlassIndicator(glassActiveIndex, false);
 });
+
 
 </script>
 
