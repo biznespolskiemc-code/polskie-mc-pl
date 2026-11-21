@@ -40,8 +40,6 @@ const elements = {
   serverTitleAccent: document.getElementById('serverTitleAccent'),
   notice: document.getElementById('notice'),
   changeServer: document.getElementById('changeServer'),
-  hamburger: document.getElementById('hamburger'),
-  menu: document.getElementById('menu'),
 
   checkoutModal: document.getElementById('checkoutModal'),
   closeCheckout: document.getElementById('closeCheckout'),
@@ -1127,25 +1125,6 @@ async function loadPaymentStatus(paymentId) {
 ========================================================= */
 
 function setupNavigation() {
-  elements.hamburger.addEventListener('click', () => {
-    const isOpen = elements.menu.classList.toggle('open');
-    elements.hamburger.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  elements.hamburger.addEventListener('keydown', event => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      elements.hamburger.click();
-    }
-  });
-
-  elements.menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      elements.menu.classList.remove('open');
-      elements.hamburger.setAttribute('aria-expanded', 'false');
-    });
-  });
-
   elements.changeServer.addEventListener('click', () => showServerList(true));
 
   window.addEventListener('popstate', () => {
