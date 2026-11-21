@@ -1094,19 +1094,36 @@ html {
     }
 }
 
-@media (max-width: 800px) {
-    .nav-container {
+/* =====================================================
+   POLSKIEMC.PL — CENTROWANIE LOGO NA TELEFONACH
+===================================================== */
+
+@media screen and (max-width: 800px) {
+
+    .navbar {
         position: relative !important;
+    }
+
+    .navbar .nav-container {
+        position: static !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
+        width: 100% !important;
     }
 
-    .nav-container .logo {
-        position: absolute !important;
-        left: 50% !important;
+    .navbar .nav-container > .logo {
+        position: fixed !important;
+        top: 18px !important;
+        left: 50vw !important;
         right: auto !important;
-        transform: translateX(-50%) !important;
         margin: 0 !important;
+        transform: translateX(-50%) !important;
+        z-index: 10001 !important;
+    }
+
+    .navbar .nav-container > .logo img {
+        display: block !important;
+        margin: 0 auto !important;
     }
 }
