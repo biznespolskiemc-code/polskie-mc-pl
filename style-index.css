@@ -3894,3 +3894,274 @@ footer p {
     max-height: 65px !important;
     object-fit: contain !important;
 }
+
+/* =====================================================
+   MOBILE LIQUID GLASS NAVIGATION
+===================================================== */
+
+.mobile-glass-nav {
+    display: none;
+}
+
+@media (max-width: 800px) {
+
+    /* Ukrycie starego hamburgera i menu */
+
+    .hamburger {
+        display: none !important;
+    }
+
+    .menu {
+        display: none !important;
+    }
+
+    /* Dolny pasek */
+
+    .mobile-glass-nav {
+
+        position: fixed;
+
+        left: 50%;
+        bottom: calc(18px + env(safe-area-inset-bottom));
+
+        transform: translateX(-50%);
+
+        width: calc(100% - 28px);
+        max-width: 500px;
+
+        height: 76px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        padding: 6px;
+
+        border-radius: 25px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(255,255,255,0.13),
+                rgba(255,255,255,0.045)
+            );
+
+        border: 1px solid rgba(255,255,255,0.19);
+
+        backdrop-filter:
+            blur(30px)
+            saturate(190%);
+
+        -webkit-backdrop-filter:
+            blur(30px)
+            saturate(190%);
+
+        box-shadow:
+            0 12px 40px rgba(0,0,0,0.55),
+            inset 0 1px 1px rgba(255,255,255,0.12);
+
+        z-index: 10000;
+
+        isolation: isolate;
+
+        touch-action: pan-y;
+
+        overflow: hidden;
+
+    }
+
+    /* Światło na górnej krawędzi */
+
+    .mobile-glass-nav::before {
+
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 12%;
+
+        width: 76%;
+        height: 1px;
+
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.55),
+                transparent
+            );
+
+        pointer-events: none;
+
+    }
+
+    /* Wskaźnik aktywnej zakładki */
+
+    .glass-indicator {
+
+        position: absolute;
+
+        top: 6px;
+        left: 6px;
+
+        width: calc((100% - 12px) / 5);
+        height: 62px;
+
+        border-radius: 19px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(214,24,65,0.28),
+                rgba(214,24,65,0.10)
+            );
+
+        border: 1px solid rgba(214,24,65,0.38);
+
+        box-shadow:
+            0 0 22px rgba(214,24,65,0.13),
+            inset 0 1px 1px rgba(255,255,255,0.12);
+
+        transform: translateX(0);
+
+        transition:
+            transform .35s cubic-bezier(.2,.8,.2,1);
+
+        pointer-events: none;
+
+        z-index: -1;
+
+    }
+
+    /* Elementy nawigacji */
+
+    .glass-item {
+
+        position: relative;
+
+        flex: 1;
+
+        height: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 4px;
+
+        color: rgba(255,255,255,0.58);
+
+        text-decoration: none;
+
+        z-index: 2;
+
+        -webkit-tap-highlight-color: transparent;
+
+        user-select: none;
+
+    }
+
+    .glass-icon {
+
+        font-size: 21px;
+
+        line-height: 1;
+
+        transition:
+            transform .3s ease,
+            color .3s ease;
+
+    }
+
+    .glass-label {
+
+        font-size: 9px;
+
+        font-weight: 700;
+
+        letter-spacing: .1px;
+
+        white-space: nowrap;
+
+        transition: color .3s ease;
+
+    }
+
+    .glass-item.active {
+
+        color: #ffffff;
+
+    }
+
+    .glass-item.active .glass-icon {
+
+        color: #ff5579;
+
+        transform: translateY(-2px);
+
+    }
+
+    .glass-item.active .glass-label {
+
+        color: #ffffff;
+
+    }
+
+    .glass-item:active .glass-icon {
+
+        transform: scale(.85);
+
+    }
+
+    /* Miejsce na dolny pasek */
+
+    body {
+
+        padding-bottom: 115px;
+
+    }
+
+    footer {
+
+        padding-bottom: 140px;
+
+    }
+
+}
+
+/* Bardzo małe telefony */
+
+@media (max-width: 370px) {
+
+    .mobile-glass-nav {
+
+        width: calc(100% - 18px);
+
+        height: 70px;
+
+    }
+
+    .glass-indicator {
+
+        height: 56px;
+
+    }
+
+    .glass-icon {
+
+        font-size: 19px;
+
+    }
+
+    .glass-label {
+
+        font-size: 8px;
+
+    }
+
+}
