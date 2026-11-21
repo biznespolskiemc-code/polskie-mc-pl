@@ -669,10 +669,6 @@ footer p { color: #666; font-size: 13px; }
 </footer>
 
 
-<!-- PRZYCISK GÓRA -->
-<button id="topBtn" aria-label="Wróć na górę">↑</button>
-
-
 <!-- DOLNA NAWIGACJA MOBILE — LIQUID GLASS -->
 <nav class="mobile-glass-nav" id="mobileGlassNav" aria-label="Nawigacja mobilna">
 
@@ -732,20 +728,6 @@ document.querySelectorAll(".menu a").forEach(link => {
         hamburger.classList.remove("active");
         menu.classList.remove("active");
     });
-});
-
-
-/* =====================================================
-   PRZYCISK GÓRA
-===================================================== */
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-    topBtn.classList.toggle("show", window.scrollY > 500);
-});
-
-topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 
