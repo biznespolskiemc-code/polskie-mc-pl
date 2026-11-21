@@ -609,3 +609,63 @@ body {
         transition-duration: .01ms !important;
     }
 }
+
+
+/* =====================================================
+   TELEFONY — FIX DLA RZECZYWISTYCH URZĄDZEŃ MOBILNYCH
+   Obejmuje również przeglądarki/WebView zgłaszające
+   szerszy viewport niż szerokość ekranu telefonu.
+===================================================== */
+@media screen and (max-width: 800px),
+       screen and (max-device-width: 800px),
+       (pointer: coarse) and (hover: none) {
+    .navbar {
+        display: none !important;
+        visibility: hidden !important;
+        position: absolute !important;
+        width: 0 !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: 0 !important;
+    }
+
+    .regulamin-hero {
+        display: flex !important;
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 18px 18px 26px !important;
+        margin-top: 0 !important;
+        align-items: center !important;
+    }
+
+    .regulamin-hero-content {
+        position: relative !important;
+        top: 0 !important;
+        margin: 0 auto !important;
+        transform: none !important;
+    }
+
+    .regulamin-hero h1 {
+        font-size: clamp(34px, 9vw, 43px) !important;
+        margin-top: 0 !important;
+    }
+
+    .regulamin-hero p {
+        margin-top: 14px !important;
+        font-size: 13px !important;
+    }
+
+    .regulamin-section {
+        padding-top: 24px !important;
+    }
+
+    .regulamin-layout {
+        gap: 18px !important;
+    }
+
+    .rules-sidebar {
+        top: 12px !important;
+    }
+}
