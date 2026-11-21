@@ -561,3 +561,17 @@ footer p { color: #666; font-size: 13px; }
         transition-duration: .01ms !important;
     }
 }
+
+@media (max-width: 800px) {
+    .navbar .nav-container .logo img {
+        width: 80px !important;
+        height: 80px !important;
+        max-width: none !important;
+        flex-shrink: 0;
+        object-fit: contain;
+    }
+
+    .navbar .nav-container .logo {
+        gap: 8px;
+    }
+}
