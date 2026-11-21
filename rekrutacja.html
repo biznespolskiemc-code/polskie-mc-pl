@@ -19,6 +19,55 @@
     <!-- Kolejność ma znaczenie: style-index.css (z paskiem liquid glass) ładuje się ostatni -->
     <link rel="stylesheet" href="style-rekrutacja.css">
     <link rel="stylesheet" href="style-index.css">
+    <style id="rekrutacja-mobile-header-fix">
+
+@media screen and (max-width: 800px),
+       screen and (max-device-width: 800px),
+       (pointer: coarse) and (hover: none) {
+
+    /* Ukrycie górnej nawigacji */
+    .navbar {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* HERO — takie samo położenie jak regulamin */
+    .rekrutacja-hero {
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+
+        min-height: 0 !important;
+        height: auto !important;
+
+        margin: 0 !important;
+        padding: 60px 18px 26px !important;
+    }
+
+    .rekrutacja-hero-content {
+        position: relative !important;
+        top: 0 !important;
+        transform: none !important;
+
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .rekrutacja-hero h1 {
+        margin: 0 !important;
+        font-size: clamp(34px, 9vw, 43px) !important;
+    }
+
+    .rekrutacja-hero p {
+        margin: 14px auto 0 !important;
+        font-size: 13px !important;
+    }
+}
+
+</style>
 
 <style id="glass-nav-css">
 /* LIQUID GLASS NAV — style wbudowane (niezależne od cache style-index.css) */
