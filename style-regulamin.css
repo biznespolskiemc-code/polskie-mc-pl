@@ -1,6 +1,7 @@
 /* =====================================================
    POLSKIEMC.PL — REGULAMIN
-   Współpracuje z istniejącym style-index.css.
+   Wymaga wcześniejszego załadowania style-index.css.
+   Navbar desktopowy pozostaje bez zmian.
 ===================================================== */
 
 :root {
@@ -17,26 +18,26 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 105px;
     overflow-y: scroll;
-    overflow-x: clip;
+    overflow-x: clip !important;
 }
 
 body {
-    overflow-x: clip;
+    overflow-x: clip !important;
+    overflow-y: visible !important;
 }
 
 /* =====================================================
    HERO REGULAMINU
 ===================================================== */
-
 .regulamin-hero {
     position: relative;
-    min-height: 45vh;
+    min-height: 55vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 105px 20px 45px;
     text-align: center;
     overflow: hidden;
+    padding: 140px 20px 100px;
     background: #050505;
 }
 
@@ -73,6 +74,21 @@ body {
     margin: 0 auto;
 }
 
+.hero-small-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    padding: 8px 15px;
+    border: 1px solid rgba(239,82,124,.2);
+    border-radius: 30px;
+    background: rgba(239,82,124,.06);
+    color: #ef9ab0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
 .regulamin-hero h1 {
     margin: 0;
     color: #fff;
@@ -90,92 +106,28 @@ body {
     line-height: 1.8;
 }
 
-/* Wspólne style nagłówków podstron */
-.shop-hero,
-.regulamin-hero,
-.rekrutacja-hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.shop-hero-content,
-.regulamin-hero-content,
-.rekrutacja-hero-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-.shop-small-label,
-.regulamin-hero .hero-small-label,
-.rekrutacja-hero .hero-small-label {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-    padding: 8px 15px;
-    border: 1px solid rgba(239,82,124,.2);
-    border-radius: 30px;
-    background: rgba(239,82,124,.06);
-    color: #ef9ab0;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.shop-hero h1,
-.regulamin-hero h1,
-.rekrutacja-hero h1 {
-    color: #fff;
-    font-size: clamp(45px, 6vw, 72px);
-    line-height: 1.05;
-    font-weight: 800;
-    letter-spacing: -2px;
-}
-
-.shop-hero h1 span,
-.regulamin-hero h1 span,
-.rekrutacja-hero h1 span {
-    color: var(--rules-red);
-}
-
-.shop-hero p,
-.regulamin-hero p,
-.rekrutacja-hero p {
-    max-width: 650px;
-    margin: 25px auto 0;
-    color: #929292;
-    font-size: 15px;
-    line-height: 1.8;
-}
-
 /* =====================================================
-   GŁÓWNA SEKCJA I UKŁAD
+   GŁÓWNA SEKCJA REGULAMINU
 ===================================================== */
-
 .regulamin-section {
     position: relative;
     display: block;
     width: 100%;
     padding: 65px 0 110px;
     background: var(--rules-bg);
-    overflow: visible;
+    overflow: visible !important;
 }
 
 .regulamin-section > .container,
 .regulamin-layout,
 .regulamin-content {
-    overflow: visible;
+    overflow: visible !important;
 }
 
 .regulamin-layout {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 255px minmax(0, 1fr);
-    align-items: start;
+    align-items: start !important;
     gap: 35px;
     max-width: 1200px;
     margin: 0 auto;
@@ -184,11 +136,11 @@ body {
 /* =====================================================
    SPIS TREŚCI
 ===================================================== */
-
 .rules-sidebar {
-    position: sticky;
-    top: 105px;
-    align-self: start;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 105px !important;
+    align-self: start !important;
     width: 100%;
     height: fit-content;
     max-height: calc(100vh - 125px);
@@ -256,12 +208,11 @@ body {
 }
 
 /* =====================================================
-   TREŚĆ ROZDZIAŁÓW
+   TREŚĆ I ROZDZIAŁY
 ===================================================== */
-
 .regulamin-content {
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 22px;
     min-width: 0;
 }
@@ -272,7 +223,7 @@ body {
     width: 100%;
     min-width: 0;
     padding: 29px 32px;
-    margin: 0;
+    margin: 0 !important;
     border: 1px solid rgba(255,255,255,.09);
     border-radius: 12px;
     background: linear-gradient(145deg, #151515 0%, #101010 100%);
@@ -291,14 +242,7 @@ body {
     border-radius: 10px;
 }
 
-.rule-section h2 {
-    margin: 0;
-    color: #fff;
-    font-size: 23px;
-    line-height: 1.35;
-    font-weight: 800;
-    letter-spacing: -.5px;
-}
+.rule-section:last-child { margin-bottom: 0 !important; }
 
 .section-number {
     display: inline-flex;
@@ -317,6 +261,15 @@ body {
     letter-spacing: 1px;
 }
 
+.rule-section h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 23px;
+    line-height: 1.35;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
 .section-intro {
     margin: 10px 0 22px;
     color: #858585;
@@ -327,36 +280,37 @@ body {
 .plain-rules {
     display: block;
     width: 100%;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    list-style-type: none !important;
     color: #bcbcbc;
 }
 
 .plain-rules > li {
     position: relative;
-    display: grid;
+    display: grid !important;
     grid-template-columns: 48px minmax(0, 1fr);
     align-items: start;
     gap: 12px;
     width: 100%;
-    padding: 12px 0;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
+    padding: 12px 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
     color: #bcbcbc;
     font-size: 13px;
     font-weight: 500;
     line-height: 1.85;
-    list-style: none;
+    list-style: none !important;
 }
 
-.plain-rules > li::marker { content: ""; }
+.plain-rules > li::marker { content: "" !important; }
 
 .plain-rules > li::before {
-    content: attr(data-rule-number);
+    content: attr(data-rule-number) !important;
     display: block;
     padding-top: 2px;
     color: #e04468;
@@ -377,10 +331,6 @@ body {
 
 .plain-rules a:hover,
 .seller-details a:hover { color: #fff; }
-
-/* =====================================================
-   DANE ADMINISTRATORA SKLEPU
-===================================================== */
 
 .seller-details {
     margin-top: 25px;
@@ -409,7 +359,6 @@ body {
 /* =====================================================
    PRZYCISK POWROTU NA GÓRĘ
 ===================================================== */
-
 #topBtn {
     position: fixed;
     right: 25px;
@@ -421,7 +370,7 @@ body {
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    border: 0;
+    border: none;
     border-radius: 50%;
     background: var(--rules-red-dark);
     color: #fff;
@@ -438,7 +387,6 @@ body {
 /* =====================================================
    TABLETY
 ===================================================== */
-
 @media (max-width: 1000px) {
     .regulamin-layout {
         grid-template-columns: 225px minmax(0, 1fr);
@@ -449,46 +397,44 @@ body {
 }
 
 /* =====================================================
-   TELEFONY — navbar ukryty, zawartość przesunięta wyżej
+   TELEFONY — NAVBAR UKRYTY, HERO PRZESUNIĘTY DO GÓRY
 ===================================================== */
-
 @media (max-width: 800px) {
-    /* Usunięcie całego górnego paska, w tym logo. */
-    .navbar,
-    .navbar .nav-container,
-    .navbar .logo {
+    /* Tak jak na stronie głównej: bez górnego paska i logo. */
+    .navbar {
         display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
     }
-
-    /* Nie zostawiaj miejsca na nieistniejący navbar. */
-    html { scroll-padding-top: 22px; }
 
     .regulamin-hero {
-        min-height: 0;
-        padding: 35px 20px 35px;
+        min-height: auto !important;
+        padding: 35px 20px 35px !important;
     }
 
-    .regulamin-hero h1 {
-        font-size: 43px;
-        letter-spacing: -1px;
+    .regulamin-hero-content {
+        top: 0 !important;
+        margin-top: 0 !important;
     }
 
+    .regulamin-hero h1 { font-size: 43px; }
     .regulamin-hero p { font-size: 14px; }
 
-    .regulamin-section { padding: 25px 0 80px; }
+    .regulamin-section { padding: 35px 0 80px; }
 
     .regulamin-layout {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         align-items: stretch;
-        gap: 18px;
+        gap: 22px;
     }
 
-    /* Spis przykleja się blisko górnej krawędzi ekranu. */
     .rules-sidebar {
-        position: sticky;
-        top: 12px;
-        align-self: stretch;
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 18px !important;
+        align-self: stretch !important;
         width: 100%;
         max-height: min(38vh, 280px);
         overflow-x: hidden;
@@ -501,32 +447,18 @@ body {
         backdrop-filter: blur(12px);
     }
 
-    .sidebar-title {
-        padding-bottom: 11px;
-        margin-bottom: 7px;
-    }
-
-    .section-link {
-        padding: 10px;
-        margin: 2px 0;
-        font-size: 11px;
-    }
-
+    .sidebar-title { padding-bottom: 11px; margin-bottom: 7px; }
+    .section-link { padding: 10px; margin: 2px 0; font-size: 11px; }
     .sidebar-note { display: none; }
     .regulamin-content { gap: 18px; }
-
-    .rule-section {
-        padding: 22px 19px;
-        scroll-margin-top: 20px;
-    }
-
+    .rule-section { padding: 22px 19px; scroll-margin-top: 20px; }
     .rule-section h2 { font-size: 21px; }
     .section-intro { margin-bottom: 18px; font-size: 12px; }
 
     .plain-rules > li {
         grid-template-columns: 42px minmax(0, 1fr);
         gap: 9px;
-        padding: 11px 0;
+        padding: 11px 0 !important;
         font-size: 12.5px;
         line-height: 1.8;
     }
@@ -538,19 +470,15 @@ body {
         width: 45px;
         height: 45px;
         right: 18px;
-        bottom: calc(110px + env(safe-area-inset-bottom));
+        bottom: calc(110px + env(safe-area-inset-bottom)) !important;
     }
 }
 
-/* Małe telefony — jeszcze ciaśniej u góry, jak na stronie głównej. */
 @media (max-width: 550px) {
-    .regulamin-hero { padding-top: 25px; padding-bottom: 30px; }
+    /* Jeszcze bliżej górnej krawędzi — jak na index.html. */
+    .regulamin-hero { padding-top: 25px !important; }
     .regulamin-hero h1 { font-size: 36px; }
-
-    .regulamin-hero p {
-        margin-top: 16px;
-        font-size: 13px;
-    }
+    .regulamin-hero p { font-size: 13px; }
 
     .rule-section { padding: 20px 16px; }
     .rule-section h2 { font-size: 19px; }
@@ -562,27 +490,72 @@ body {
     }
 }
 
-@media (max-width: 400px) {
-    .regulamin-hero h1 { font-size: 34px; }
-
-    .regulamin-hero .hero-small-label {
-        font-size: 9px;
-        letter-spacing: 1.3px;
-    }
+/* =====================================================
+   WSPÓLNY WYGLĄD NAGŁÓWKÓW SKLEP / REGULAMIN / REKRUTACJA
+===================================================== */
+.shop-hero,
+.regulamin-hero,
+.rekrutacja-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-/* Nie wyłączamy animacji Liquid Glass ze style-index.css. */
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-
-    *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-    }
+.shop-hero-content,
+.regulamin-hero-content,
+.rekrutacja-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
 }
 
-/* Zachowanie pełnej szerokości treści w wariancie sklepowym, jeżeli jest używany. */
+.shop-small-label,
+.regulamin-hero .hero-small-label,
+.rekrutacja-hero .hero-small-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    padding: 8px 15px;
+    border: 1px solid rgba(239,82,124,.2);
+    border-radius: 30px;
+    background: rgba(239,82,124,.06);
+    color: #ef9ab0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.shop-hero h1,
+.regulamin-hero h1,
+.rekrutacja-hero h1 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(45px, 6vw, 72px);
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.shop-hero h1 span,
+.regulamin-hero h1 span,
+.rekrutacja-hero h1 span { color: #d61841; }
+
+.shop-hero p,
+.regulamin-hero p,
+.rekrutacja-hero p {
+    max-width: 650px;
+    margin: 25px auto 0;
+    color: #929292;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+/* Wygląd dodatkowego kontenera regulaminu sklepu, jeśli jest używany. */
 .sklep-regulamin .container {
     width: 100%;
     max-width: 1400px;
@@ -593,4 +566,46 @@ body {
     width: 100%;
     max-width: none;
     flex: 1 1 100%;
+}
+
+/* =====================================================
+   REGULAMIN — WYŁĄCZENIE ANIMACJI WEJŚCIA
+   Nie wyłącza animacji dolnej nawigacji Liquid Glass.
+===================================================== */
+.regulamin-hero,
+.regulamin-hero *,
+.regulamin-section,
+.regulamin-section *,
+.rules-sidebar,
+.rule-section,
+.rule-section * {
+    animation: none !important;
+    animation-delay: 0s !important;
+}
+
+.regulamin-hero .scroll-animation,
+.regulamin-section .scroll-animation,
+.regulamin-hero .scroll-animation.visible,
+.regulamin-section .scroll-animation.visible {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+.regulamin-hero,
+.regulamin-section,
+.rules-sidebar,
+.regulamin-content,
+.rule-section {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
 }

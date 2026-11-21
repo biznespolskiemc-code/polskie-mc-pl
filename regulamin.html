@@ -13,17 +13,141 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Wspólne style strony, w tym dolna nawigacja Liquid Glass. -->
+    <!-- Wspólne style strony i dolnej nawigacji. -->
     <link rel="stylesheet" href="style-index.css">
-
-    <!-- Style przeznaczone dla regulaminu. -->
+    <!-- Style regulaminu — pełny plik znajduje się w style-regulamin.css. -->
     <link rel="stylesheet" href="style-regulamin.css">
+
+    <!-- Liquid Glass: style wbudowany, aby nie zależał od cache style-index.css. -->
+    <style id="glass-nav-css">
+        .mobile-glass-nav { display: none; }
+
+        @media (max-width: 800px) {
+            .hamburger, .menu { display: none !important; }
+            body { padding-bottom: 120px; }
+            footer { padding-bottom: 140px; }
+
+            .mobile-glass-nav {
+                --r: 28px;
+                --pad: 6px;
+                position: fixed;
+                z-index: 10000;
+                left: 0;
+                right: 0;
+                margin-inline: auto;
+                bottom: calc(18px + env(safe-area-inset-bottom));
+                width: min(calc(100% - 28px), 440px);
+                height: 72px;
+                padding: var(--pad);
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                border-radius: var(--r);
+                overflow: hidden;
+                isolation: isolate;
+                background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.03) 55%, rgba(255,255,255,.06)), rgba(18,18,24,.55);
+                -webkit-backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+                backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+                box-shadow: 0 16px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.18), inset 0 -1px 0 rgba(255,255,255,.04);
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: pan-y;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .mobile-glass-nav::after,
+            .glass-indicator::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                padding: 1px;
+                pointer-events: none;
+                background: linear-gradient(160deg, rgba(255,255,255,.55), rgba(255,255,255,.08) 35%, rgba(255,255,255,.04) 65%, rgba(255,255,255,.3));
+                -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                -webkit-mask-composite: xor;
+                mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+                mask-composite: exclude;
+            }
+
+            .mobile-glass-nav::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: 4;
+                border-radius: inherit;
+                pointer-events: none;
+                background: radial-gradient(120% 70% at 50% -10%, rgba(255,255,255,.16), transparent 60%);
+            }
+
+            .glass-indicator {
+                position: absolute;
+                z-index: 1;
+                top: var(--pad);
+                left: 0;
+                height: calc(100% - var(--pad) * 2);
+                width: 0;
+                border-radius: calc(var(--r) - var(--pad));
+                transform-origin: 50% 50%;
+                will-change: transform;
+                pointer-events: none;
+                background: radial-gradient(90% 60% at 30% 0%, rgba(255,255,255,.38), transparent 60%), radial-gradient(70% 70% at 80% 110%, rgba(214,24,65,.35), transparent 70%), linear-gradient(145deg, rgba(255,255,255,.2), rgba(214,24,65,.16) 55%, rgba(255,255,255,.08));
+                box-shadow: 0 6px 22px rgba(214,24,65,.22), inset 0 1px 2px rgba(255,255,255,.45), inset 0 -3px 8px rgba(0,0,0,.18), inset 0 0 14px rgba(255,255,255,.06);
+            }
+
+            .glass-item {
+                position: relative;
+                z-index: 3;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                color: rgba(255,255,255,.55);
+                font-family: 'Montserrat', sans-serif;
+                transition: color .3s ease;
+            }
+            .glass-item.active { color: #fff; }
+            .glass-icon {
+                width: 22px;
+                height: 22px;
+                display: block;
+                transition: transform .45s cubic-bezier(.22,1.4,.36,1), filter .3s ease;
+            }
+            .glass-icon svg {
+                width: 100%;
+                height: 100%;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+            .glass-item.active .glass-icon {
+                transform: translateY(-1px) scale(1.12);
+                filter: drop-shadow(0 0 8px rgba(255,255,255,.45));
+            }
+            .glass-label {
+                font-size: 9px;
+                font-weight: 700;
+                line-height: 1;
+                white-space: nowrap;
+                letter-spacing: -.1px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .mobile-glass-nav { height: 66px; bottom: calc(12px + env(safe-area-inset-bottom)); }
+            .glass-icon { width: 20px; height: 20px; }
+            .glass-label { font-size: 8px; }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- GÓRNY NAVBAR — widoczny na komputerach, ukryty na telefonach przez CSS. -->
-<nav class="navbar" aria-label="Nawigacja główna">
+<!-- NAVBAR DESKTOP — automatycznie ukrywa się na telefonach przez CSS. -->
+<nav class="navbar">
     <div class="nav-container">
         <a href="index.html" class="logo">
             <img src="images/polskiemc.png" alt="POLSKIEMC.PL">
@@ -57,13 +181,11 @@
         <!-- SPIS TREŚCI -->
         <aside class="rules-sidebar" aria-label="Nawigacja po regulaminie">
             <div class="sidebar-title">SPIS TREŚCI</div>
-
             <a href="#ogolne" class="section-link active">01. Postanowienia ogólne</a>
             <a href="#discord" class="section-link">02. Serwer Discord</a>
             <a href="#minecraft" class="section-link">03. Serwer Minecraft</a>
             <a href="#trapy" class="section-link">04. Trapy Earth SMP</a>
             <a href="#sklep" class="section-link">05. Regulamin płatności</a>
-
             <div class="sidebar-note">
                 Korzystanie z serwera i sklepu oznacza akceptację właściwych zasad.
             </div>
@@ -75,9 +197,7 @@
             <section class="rule-section" id="ogolne">
                 <div class="section-number">01</div>
                 <h2>Postanowienia ogólne</h2>
-                <p class="section-intro">
-                    Podstawowe zasady obowiązujące wszystkich użytkowników POLSKIEMC.PL.
-                </p>
+                <p class="section-intro">Podstawowe zasady obowiązujące wszystkich użytkowników POLSKIEMC.PL.</p>
                 <ol class="plain-rules">
                     <li>Nigdy nie kupuj niczego od graczy, administracji ani współwłaścicieli. Zakupów dokonuj wyłącznie przez stronę internetową, na której znajduje się pełny regulamin.</li>
                     <li>Surowo zabroniona jest sprzedaż przedmiotów za realną walutę.</li>
@@ -90,9 +210,7 @@
             <section class="rule-section" id="discord">
                 <div class="section-number">02</div>
                 <h2>Regulamin serwera Discord</h2>
-                <p class="section-intro">
-                    Zasady komunikacji i zachowania na oficjalnym serwerze społeczności.
-                </p>
+                <p class="section-intro">Zasady komunikacji i zachowania na oficjalnym serwerze społeczności.</p>
                 <ol class="plain-rules">
                     <li>Zakaz spamu/floodu.</li>
                     <li>Zakaz obrażania, przemocy oraz przeklinania.</li>
@@ -110,9 +228,7 @@
             <section class="rule-section" id="minecraft">
                 <div class="section-number">03</div>
                 <h2>Regulamin serwera Minecraft</h2>
-                <p class="section-intro">
-                    Zasady rozgrywki obowiązujące na trybach serwera.
-                </p>
+                <p class="section-intro">Zasady rozgrywki obowiązujące na trybach serwera.</p>
                 <ol class="plain-rules">
                     <li>Zakaz spamu/floodu.</li>
                     <li>Zakaz obrażania, przemocy oraz przeklinania.</li>
@@ -138,9 +254,7 @@
             <section class="rule-section" id="trapy">
                 <div class="section-number">04</div>
                 <h2>Regulamin trapów na Earth SMP</h2>
-                <p class="section-intro">
-                    Ograniczenia dotyczące konstrukcji trapów i zasad przyznawania backupów.
-                </p>
+                <p class="section-intro">Ograniczenia dotyczące konstrukcji trapów i zasad przyznawania backupów.</p>
                 <ol class="plain-rules">
                     <li>Maksymalnie 3 wagony.</li>
                     <li>Maksymalnie 10 obrazów/itemframe.</li>
@@ -158,9 +272,7 @@
             <section class="rule-section" id="sklep">
                 <div class="section-number">05</div>
                 <h2>Regulamin płatności</h2>
-                <p class="section-intro">
-                    Warunki składania zamówień, realizacji usług oraz zgłaszania reklamacji w sklepie POLSKIEMC.PL.
-                </p>
+                <p class="section-intro">Warunki składania zamówień, realizacji usług oraz zgłaszania reklamacji w sklepie POLSKIEMC.PL.</p>
                 <ol class="plain-rules">
                     <li>Usługa jest automatycznie nadawana po opłaceniu usługi.</li>
                     <li>Przeglądanie produktów Sklepu nie wymaga rejestracji, a samodzielne składanie zamówień przez Klienta na produkty znajdujące się w Sklepie również nie wymaga rejestracji.</li>
@@ -191,7 +303,7 @@
     </div>
 </main>
 
-<!-- STOPKA -->
+<!-- FOOTER -->
 <footer>
     <div class="container footer-container">
         <div class="footer-buttons footer-left">
@@ -230,22 +342,18 @@
         <span class="glass-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg></span>
         <span class="glass-label">Główna</span>
     </a>
-
     <a href="https://polskiemc.pl/sklep/sklep" class="glass-item">
         <span class="glass-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.1a2 2 0 0 0 2-1.5L21 7H6"/></svg></span>
         <span class="glass-label">Sklep</span>
     </a>
-
     <a href="https://polskiemc.pl/regulamin" class="glass-item">
         <span class="glass-icon"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></span>
         <span class="glass-label">Regulamin</span>
     </a>
-
     <a href="https://polskiemc.pl/rekrutacja" class="glass-item">
         <span class="glass-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M19 8v6M16 11h6"/></svg></span>
         <span class="glass-label">Rekrutacja</span>
     </a>
-
     <a href="https://polskiemc.pl/tworca" class="glass-item">
         <span class="glass-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg></span>
         <span class="glass-label">Twórca</span>
@@ -253,7 +361,7 @@
 </nav>
 
 <script>
-// Numeracja punktów: 1.1, 1.2, 2.1 itd.
+// NUMERACJA PUNKTÓW: 1.1, 1.2, 2.1 itd.
 document.querySelectorAll(".rule-section").forEach((section, sectionIndex) => {
     const list = section.querySelector(".plain-rules");
     if (!list) return;
@@ -263,7 +371,7 @@ document.querySelectorAll(".rule-section").forEach((section, sectionIndex) => {
     });
 });
 
-// Podświetlanie aktualnego rozdziału w spisie treści.
+// AKTYWNY ROZDZIAŁ W SPISIE TREŚCI
 const sections = document.querySelectorAll(".rule-section");
 const sectionLinks = document.querySelectorAll(".section-link");
 
@@ -271,12 +379,8 @@ if ("IntersectionObserver" in window) {
     const sectionObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-
             sectionLinks.forEach(link => {
-                link.classList.toggle(
-                    "active",
-                    link.getAttribute("href") === `#${entry.target.id}`
-                );
+                link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
             });
         });
     }, { rootMargin: "-22% 0px -62% 0px", threshold: 0 });
@@ -284,54 +388,38 @@ if ("IntersectionObserver" in window) {
     sections.forEach(section => sectionObserver.observe(section));
 }
 
-// Liquid Glass — sprężysty wskaźnik dolnej nawigacji.
+// LIQUID GLASS NAV — sprężysty wskaźnik.
 (() => {
     const nav = document.getElementById("mobileGlassNav");
-    const indicator = document.getElementById("glassIndicator");
-    if (!nav || !indicator) return;
+    const ind = document.getElementById("glassIndicator");
+    if (!nav || !ind) return;
 
     const items = [...nav.querySelectorAll(".glass-item")];
     if (!items.length) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let xs = [], w = 0;
+    let x = 0, v = 0, target = 0;
+    let pressed = 0, dragging = false, moved = false;
+    let startX = 0, pid = null, suppressClick = false;
+    let raf = 0, last = 0, navigating = false;
 
-    let positions = [];
-    let itemWidth = 0;
-    let x = 0;
-    let velocity = 0;
-    let target = 0;
-    let pressed = 0;
-    let dragging = false;
-    let moved = false;
-    let startX = 0;
-    let pointerId = null;
-    let suppressClick = false;
-    let animationFrame = 0;
-    let lastFrame = 0;
-    let navigating = false;
-
-    const cleanPath = path =>
-        path.replace(/index\.html$/, "").replace(/\.html$/, "").replace(/\/+$/, "") || "/";
-
-    const currentPath = cleanPath(location.pathname);
-    let pageIndex = items.findIndex(item =>
-        cleanPath(new URL(item.href, location.href).pathname) === currentPath
-    );
+    const clean = path => path.replace(/index\.html$/, "").replace(/\.html$/, "").replace(/\/+$/, "") || "/";
+    const here = clean(location.pathname);
+    let pageIndex = items.findIndex(a => clean(new URL(a.href, location.href).pathname) === here);
     if (pageIndex < 0) pageIndex = 0;
-
-    let activeIndex = -1;
+    let active = -1;
 
     function measure() {
         const navRect = nav.getBoundingClientRect();
-        positions = items.map(item => item.getBoundingClientRect().left - navRect.left);
-        itemWidth = items[0].getBoundingClientRect().width;
-        indicator.style.width = `${itemWidth}px`;
+        xs = items.map(item => item.getBoundingClientRect().left - navRect.left);
+        w = items[0].getBoundingClientRect().width;
+        ind.style.width = `${w}px`;
     }
 
     function setActive(index) {
-        if (index === activeIndex) return;
-        activeIndex = index;
-
+        if (index === active) return;
+        active = index;
         items.forEach((item, itemIndex) => {
             item.classList.toggle("active", itemIndex === index);
             if (itemIndex === index) item.setAttribute("aria-current", "page");
@@ -339,87 +427,75 @@ if ("IntersectionObserver" in window) {
         });
     }
 
-    function nearestIndex(clientX) {
-        const relativeX = clientX - nav.getBoundingClientRect().left;
-        let bestIndex = 0;
-        let bestDistance = Infinity;
-
+    function nearest(pointerX) {
+        const relativeX = pointerX - nav.getBoundingClientRect().left;
+        let best = 0;
+        let distance = Infinity;
         items.forEach((_, index) => {
-            const distance = Math.abs(relativeX - (positions[index] + itemWidth / 2));
-            if (distance < bestDistance) {
-                bestDistance = distance;
-                bestIndex = index;
+            const currentDistance = Math.abs(relativeX - (xs[index] + w / 2));
+            if (currentDistance < distance) {
+                distance = currentDistance;
+                best = index;
             }
         });
-
-        return bestIndex;
+        return best;
     }
 
     function render() {
-        const stretch = Math.min(Math.abs(velocity) / 1800, 0.4);
-        const scaleX = 1 + stretch + pressed * 0.07;
-        const scaleY = 1 - stretch * 0.4 + pressed * 0.07;
-        indicator.style.transform = `translate3d(${x}px,0,0) scale(${scaleX},${scaleY})`;
+        const stretch = Math.min(Math.abs(v) / 1800, .4);
+        const scaleX = 1 + stretch + pressed * .07;
+        const scaleY = 1 - stretch * .4 + pressed * .07;
+        ind.style.transform = `translate3d(${x}px,0,0) scale(${scaleX},${scaleY})`;
     }
 
     function tick(time) {
-        const delta = Math.min((time - lastFrame) / 1000 || 0.016, 0.032);
-        lastFrame = time;
-
+        const dt = Math.min((time - last) / 1000 || .016, .032);
+        last = time;
         const stiffness = dragging ? 520 : 230;
         const damping = dragging ? 40 : 19;
 
-        velocity += (-stiffness * (x - target) - damping * velocity) * delta;
-        x += velocity * delta;
-        pressed += ((dragging ? 1 : 0) - pressed) * Math.min(1, delta * 14);
-
+        v += (-stiffness * (x - target) - damping * v) * dt;
+        x += v * dt;
+        pressed += ((dragging ? 1 : 0) - pressed) * Math.min(1, dt * 14);
         render();
 
-        const settled =
-            Math.abs(velocity) < 2 &&
-            Math.abs(x - target) < 0.1 &&
-            Math.abs(pressed - (dragging ? 1 : 0)) < 0.01;
-
+        const settled = Math.abs(v) < 2 && Math.abs(x - target) < .1 && Math.abs(pressed - (dragging ? 1 : 0)) < .01;
         if (settled && !dragging) {
             x = target;
-            velocity = 0;
+            v = 0;
             pressed = 0;
             render();
-            animationFrame = 0;
+            raf = 0;
             return;
         }
-
-        animationFrame = requestAnimationFrame(tick);
+        raf = requestAnimationFrame(tick);
     }
 
-    function runAnimation() {
-        if (!animationFrame) {
-            lastFrame = performance.now();
-            animationFrame = requestAnimationFrame(tick);
+    function run() {
+        if (!raf) {
+            last = performance.now();
+            raf = requestAnimationFrame(tick);
         }
     }
 
     function snapTo(index, instant = false) {
-        target = positions[index] || 0;
-        if (instant || reduceMotion) {
+        target = xs[index];
+        if (instant || reduce) {
             x = target;
-            velocity = 0;
+            v = 0;
             pressed = 0;
             render();
         } else {
-            runAnimation();
+            run();
         }
     }
 
-    function navigateTo(index) {
+    function go(index) {
         setActive(index);
         snapTo(index);
-
         if (index === pageIndex || navigating) return;
         navigating = true;
-        window.setTimeout(() => {
-            location.assign(items[index].href);
-        }, reduceMotion ? 0 : 300);
+        window.setTimeout(() => location.assign(items[index].href), reduce ? 0 : 300);
     }
 
     items.forEach((item, index) => {
@@ -429,84 +505,74 @@ if ("IntersectionObserver" in window) {
                 suppressClick = false;
                 return;
             }
-            navigateTo(index);
+            go(index);
         });
     });
 
     nav.addEventListener("pointerdown", event => {
         if (event.pointerType === "mouse" && event.button !== 0) return;
-        pointerId = event.pointerId;
+        pid = event.pointerId;
         startX = event.clientX;
         moved = false;
         dragging = false;
-        pressed = 0.0001;
-        runAnimation();
+        pressed = .0001;
+        run();
     });
 
     nav.addEventListener("pointermove", event => {
-        if (event.pointerId !== pointerId) return;
-
+        if (event.pointerId !== pid) return;
         if (!moved && Math.abs(event.clientX - startX) > 6) {
             moved = true;
             dragging = true;
-            try { nav.setPointerCapture(pointerId); } catch (_) {}
+            try { nav.setPointerCapture(pid); } catch (_) {}
         }
-
         if (!moved) return;
 
         const navRect = nav.getBoundingClientRect();
-        target = Math.max(
-            positions[0],
-            Math.min(positions[positions.length - 1], event.clientX - navRect.left - itemWidth / 2)
-        );
-
-        setActive(nearestIndex(event.clientX));
-        runAnimation();
+        target = Math.max(xs[0], Math.min(xs[xs.length - 1], event.clientX - navRect.left - w / 2));
+        setActive(nearest(event.clientX));
+        run();
     });
 
     nav.addEventListener("pointerup", event => {
-        if (event.pointerId !== pointerId) return;
-
+        if (event.pointerId !== pid) return;
         const wasDragged = moved;
-        pointerId = null;
+        pid = null;
         dragging = false;
         moved = false;
 
         if (wasDragged) {
             suppressClick = true;
             window.setTimeout(() => { suppressClick = false; }, 50);
-            navigateTo(nearestIndex(event.clientX));
+            go(nearest(event.clientX));
         } else {
-            runAnimation();
+            run();
         }
     });
 
     nav.addEventListener("pointercancel", event => {
-        if (event.pointerId !== pointerId) return;
-        pointerId = null;
+        if (event.pointerId !== pid) return;
+        pid = null;
         dragging = false;
         moved = false;
         setActive(pageIndex);
         snapTo(pageIndex);
     });
 
-    function initNavigation() {
+    function init() {
         measure();
         setActive(pageIndex);
         snapTo(pageIndex, true);
     }
 
-    initNavigation();
-    window.addEventListener("load", initNavigation);
-    window.addEventListener("resize", initNavigation);
+    init();
+    window.addEventListener("load", init);
+    window.addEventListener("resize", init);
     window.addEventListener("pageshow", event => {
         navigating = false;
-        if (event.persisted) initNavigation();
+        if (event.persisted) init();
     });
-
-    if ("ResizeObserver" in window) {
-        new ResizeObserver(initNavigation).observe(nav);
-    }
+    if ("ResizeObserver" in window) new ResizeObserver(init).observe(nav);
 })();
 </script>
 
