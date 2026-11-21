@@ -453,11 +453,11 @@ footer p { color: #666; font-size: 13px; }
         align-items: flex-start;
     }
 
-    .hero-container {
-        padding-top: 95px;
-        padding-bottom: 50px;
-        text-align: center;
-    }
+.hero-container {
+    padding-top: 25px;
+    padding-bottom: 40px;
+    text-align: center;
+}
 
     .hero h1 {
         font-size: 39px;
