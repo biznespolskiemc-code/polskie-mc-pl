@@ -181,11 +181,6 @@
 
     <div class="tier-hero-content">
 
-        <div class="tier-hero-label">
-            <span class="tier-hero-dot"></span>
-            POLSKIEMC.PL × RANKING PvP
-        </div>
-
         <h1><span>TIER</span>LISTA</h1>
 
         <p>
@@ -205,14 +200,8 @@
 
         <div class="tier-panel-header">
             <div>
-                <span class="section-eyebrow">RANKING GRACZY</span>
                 <h2 id="rankingTitle">GŁÓWNE</h2>
                 <p id="rankingDescription">Łączna liczba punktów ze wszystkich trybów.</p>
-            </div>
-
-            <div class="ranking-count">
-                <span id="totalPlayers">0</span>
-                <small>GRACZY</small>
             </div>
         </div>
 
@@ -250,14 +239,13 @@
             </div>
 
             <div class="sort-box">
-                <label for="sortPlayers">Sortowanie:</label>
-                <select id="sortPlayers">
-                    <option value="desc">Najwięcej punktów</option>
-                    <option value="asc">Najmniej punktów</option>
-                    <option value="name">Nazwa gracza</option>
-                </select>
+                <span class="sort-label">Sortuj:</span>
+                <div class="sort-segment" role="group" aria-label="Sortowanie">
+                    <button type="button" class="sort-option active" data-sort="desc">Punkty ↓</button>
+                    <button type="button" class="sort-option" data-sort="asc">Punkty ↑</button>
+                    <button type="button" class="sort-option" data-sort="name">A–Z</button>
+                </div>
             </div>
-
         </div>
 
         <!-- TABELA -->
@@ -340,9 +328,6 @@
 </footer>
 
 
-<button id="topBtn" aria-label="Wróć na górę">↑</button>
-
-
 <!-- DOLNA NAWIGACJA MOBILE — LIQUID GLASS -->
 <nav class="mobile-glass-nav" id="mobileGlassNav" aria-label="Nawigacja mobilna">
 
@@ -418,8 +403,15 @@ let currentPage = 1;
 
 const rankingBody = document.getElementById("rankingBody");
 const playerSearch = document.getElementById("playerSearch");
-const sortPlayers = document.getElementById("sortPlayers");
-const totalPlayers = document.getElementById("totalPlayers");
+const sortButtons = [...document.querySelectorAll(".sort-option")];
+let sortType = "desc";
+
+function setSort(value) {
+    sortType = value;
+    sortButtons.forEach(button => {
+        button.classList.toggle("active", button.dataset.sort === value);
+    });
+}
 const rankingTitle = document.getElementById("rankingTitle");
 const rankingDescription = document.getElementById("rankingDescription");
 const tierColumnHeading = document.getElementById("tierColumnHeading");
@@ -511,7 +503,7 @@ function selectCategory(categoryId) {
     currentPage = 1;
 
     playerSearch.value = "";
-    sortPlayers.value = "desc";
+    setSort("desc");
 
     document.querySelectorAll(".category-btn").forEach(button => {
         button.classList.toggle("active", button.dataset.category === categoryId);
@@ -549,8 +541,6 @@ function getVisiblePlayers() {
 
         return matchesSearch && Boolean(getTierData(player.categories[selectedCategory]));
     });
-
-    const sortType = sortPlayers.value;
 
     result.sort((a, b) => {
         if (sortType === "name") return a.name.localeCompare(b.name);
@@ -669,8 +659,6 @@ function renderRanking() {
     const start = (currentPage - 1) * playersPerPage;
     const pagePlayers = visiblePlayers.slice(start, start + playersPerPage);
 
-    totalPlayers.textContent = visiblePlayers.length;
-
     rankingBody.innerHTML = pagePlayers
         .map((player, index) => createPlayerRow(player, start + index + 1))
         .join("");
@@ -688,23 +676,12 @@ playerSearch.addEventListener("input", () => {
     renderRanking();
 });
 
-sortPlayers.addEventListener("change", () => {
-    currentPage = 1;
-    renderRanking();
-});
-
-/* =====================================================
-   PRZYCISK GÓRA
-===================================================== */
-
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-    topBtn.classList.toggle("show", window.scrollY > 500);
-}, { passive: true });
-
-topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+sortButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        setSort(button.dataset.sort);
+        currentPage = 1;
+        renderRanking();
+    });
 });
 
 /* =====================================================
