@@ -14,7 +14,61 @@
 
     <link rel="stylesheet" href="../style-index.css">
     <link rel="stylesheet" href="style.css">
+    <style id="shop-mobile-header-fix">
+
+@media screen and (max-width: 800px),
+       screen and (max-device-width: 800px),
+       (pointer: coarse) and (hover: none) {
+
+    /* UKRYCIE NAVBARU */
+    .navbar {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    /* HERO SKLEPU */
+    .shop-hero {
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+
+        min-height: 0 !important;
+        height: auto !important;
+
+        margin: 0 !important;
+        padding: 60px 18px 26px !important;
+    }
+
+    .shop-hero-content {
+        position: relative !important;
+        top: 0 !important;
+        transform: none !important;
+
+        width: 100% !important;
+        max-width: 850px !important;
+
+        margin: 0 auto !important;
+    }
+
+    .shop-hero h1 {
+        margin: 0 !important;
+        font-size: clamp(34px, 9vw, 43px) !important;
+    }
+
+    .shop-hero p {
+        margin: 14px auto 0 !important;
+        font-size: 13px !important;
+    }
+}
+
+</style>
     <style id="glass-nav-css">
+        
 /* LIQUID GLASS NAV — style wbudowane (niezależne od cache style-index.css) */
 .mobile-glass-nav { display: none; }
 
