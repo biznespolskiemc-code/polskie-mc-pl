@@ -324,8 +324,6 @@
     </section>
 </div>
 
-<button id="topBtn" aria-label="Wróć na górę">↑</button>
-
 
 <!-- DOLNA NAWIGACJA MOBILE — LIQUID GLASS -->
 <nav class="mobile-glass-nav" id="mobileGlassNav" aria-label="Nawigacja mobilna">
@@ -358,15 +356,6 @@
     </a>
 
 </nav>
-
-
-<script>
-const topBtn = document.getElementById('topBtn');
-window.addEventListener('scroll', () => {
-    topBtn.classList.toggle('show', window.scrollY > 500);
-}, { passive: true });
-topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-</script>
 
 <script>
 /* =====================================================
