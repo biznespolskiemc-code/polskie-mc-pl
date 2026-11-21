@@ -1,716 +1,919 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>POLSKIEMC.PL | Tierlista</title>
 
-    <meta
-        name="description"
-        content="Tierlista POLSKIEMC.PL — sprawdź rankingi graczy Minecraft w różnych trybach PvP."
-    >
+    <meta name="description" content="Tierlista POLSKIEMC.PL — sprawdź rankingi graczy Minecraft w różnych trybach PvP.">
+    <meta name="theme-color" content="#090909">
+
+    <link rel="icon" type="image/png" href="../images/polskiemc.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../style-index.css">
     <link rel="stylesheet" href="style-tierlista.css">
+    <style id="glass-nav-css">
+/* LIQUID GLASS NAV — style wbudowane (niezależne od cache style-index.css) */
+.mobile-glass-nav { display: none; }
+
+@media (max-width: 800px) {
+
+    .hamburger, .menu { display: none !important; }
+    body { padding-bottom: 120px; }
+    footer { padding-bottom: 140px; }
+    #topBtn { bottom: calc(110px + env(safe-area-inset-bottom)) !important; }
+
+    /* ---------- DOLNY PASEK LIQUID GLASS ---------- */
+    .mobile-glass-nav {
+        --r: 28px;
+        --pad: 6px;
+
+        position: fixed; z-index: 10000;
+        left: 0; right: 0; margin-inline: auto;
+        bottom: calc(18px + env(safe-area-inset-bottom));
+
+        width: min(calc(100% - 28px), 440px);
+        height: 72px; padding: var(--pad);
+
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+
+        border-radius: var(--r);
+        overflow: hidden;
+        isolation: isolate;
+
+        background:
+            linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.03) 55%, rgba(255,255,255,.06)),
+            rgba(18,18,24,.55);
+
+        -webkit-backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+        backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+
+        box-shadow:
+            0 16px 40px rgba(0,0,0,.5),
+            inset 0 1px 0 rgba(255,255,255,.18),
+            inset 0 -1px 0 rgba(255,255,255,.04);
+
+        user-select: none; -webkit-user-select: none;
+        touch-action: pan-y;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* równa ramka (rim) rysowana maską — zero krzywizn */
+    .mobile-glass-nav::after,
+    .glass-indicator::after {
+        content: ""; position: absolute; inset: 0;
+        border-radius: inherit; padding: 1px; pointer-events: none;
+        background: linear-gradient(160deg,
+            rgba(255,255,255,.55),
+            rgba(255,255,255,.08) 35%,
+            rgba(255,255,255,.04) 65%,
+            rgba(255,255,255,.3));
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+    }
+
+    /* połysk u góry paska */
+    .mobile-glass-nav::before {
+        content: ""; position: absolute; inset: 0; z-index: 4;
+        border-radius: inherit; pointer-events: none;
+        background: radial-gradient(120% 70% at 50% -10%, rgba(255,255,255,.16), transparent 60%);
+    }
+
+    /* płynne szkło / kropla wody */
+    .glass-indicator {
+        position: absolute; z-index: 1;
+        top: var(--pad); left: 0;
+        height: calc(100% - var(--pad) * 2); width: 0;
+        border-radius: calc(var(--r) - var(--pad));
+        transform-origin: 50% 50%;
+        will-change: transform;
+        pointer-events: none;
+
+        background:
+            radial-gradient(90% 60% at 30% 0%, rgba(255,255,255,.38), transparent 60%),
+            radial-gradient(70% 70% at 80% 110%, rgba(214,24,65,.35), transparent 70%),
+            linear-gradient(145deg, rgba(255,255,255,.2), rgba(214,24,65,.16) 55%, rgba(255,255,255,.08));
+
+        box-shadow:
+            0 6px 22px rgba(214,24,65,.22),
+            inset 0 1px 2px rgba(255,255,255,.45),
+            inset 0 -3px 8px rgba(0,0,0,.18),
+            inset 0 0 14px rgba(255,255,255,.06);
+    }
+
+    /* zakładki */
+    .glass-item {
+        position: relative; z-index: 3; min-width: 0;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+        color: rgba(255,255,255,.55);
+        font-family: 'Montserrat', sans-serif;
+        transition: color .3s ease;
+    }
+    .glass-item.active { color: #fff; }
+
+    .glass-icon {
+        width: 22px; height: 22px; display: block;
+        transition: transform .45s cubic-bezier(.22,1.4,.36,1), filter .3s ease;
+    }
+    .glass-icon svg {
+        width: 100%; height: 100%; fill: none; stroke: currentColor;
+        stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .glass-item.active .glass-icon {
+        transform: translateY(-1px) scale(1.12);
+        filter: drop-shadow(0 0 8px rgba(255,255,255,.45));
+    }
+
+    .glass-label { font-size: 9px; font-weight: 700; line-height: 1; white-space: nowrap; letter-spacing: -.1px; }
+
+    /* reset po starych wersjach paska */
+    .mobile-glass-nav { animation: none !important; transform: none !important; }
+    .glass-indicator { filter: none !important; animation: none !important; transition: none !important;
+        -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+    .glass-indicator::before { content: none !important; }
+    .mobile-glass-nav::after, .glass-indicator::after { animation: none !important; }
+    .glass-item.active { transform: none !important; }
+}
+
+@media (max-width: 380px) {
+    .mobile-glass-nav { height: 66px; bottom: calc(12px + env(safe-area-inset-bottom)); }
+    .glass-icon { width: 20px; height: 20px; }
+    .glass-label { font-size: 8px; }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAWIGACJA -->
-    <nav class="navbar">
-        <div class="nav-container">
+<!-- NAWIGACJA GÓRNA (desktop) -->
+<nav class="navbar">
+    <div class="nav-container">
 
-            <a href="../index.html" class="logo">
-                POLSKIE<span>MC</span>.PL
+        <a href="../index.html" class="logo">
+            <img src="../images/polskiemc.png" alt="POLSKIEMC.PL">
+        </a>
+
+        <div class="menu" id="menu">
+            <a href="https://polskiemc.pl/">Strona główna</a>
+            <a href="https://polskiemc.pl/sklep/sklep">Sklep</a>
+            <a href="https://polskiemc.pl/regulamin">Regulamin</a>
+            <a href="https://polskiemc.pl/rekrutacja">Rekrutacja</a>
+            <a href="https://polskiemc.pl/tworca">Zostań twórcą</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- HERO -->
+<header class="tier-hero">
+
+    <div class="tier-hero-glow"></div>
+
+    <div class="tier-hero-content">
+
+        <div class="tier-hero-label">
+            <span class="tier-hero-dot"></span>
+            POLSKIEMC.PL × RANKING PvP
+        </div>
+
+        <h1><span>TIER</span>LISTA</h1>
+
+        <p>
+            Sprawdź najlepszych graczy i ich poziom umiejętności
+            w poszczególnych trybach PvP.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- RANKING -->
+<main class="tier-section">
+
+    <div class="tier-panel scroll-animation">
+
+        <div class="tier-panel-header">
+            <div>
+                <span class="section-eyebrow">RANKING GRACZY</span>
+                <h2 id="rankingTitle">GŁÓWNE</h2>
+                <p id="rankingDescription">Łączna liczba punktów ze wszystkich trybów.</p>
+            </div>
+
+            <div class="ranking-count">
+                <span id="totalPlayers">0</span>
+                <small>GRACZY</small>
+            </div>
+        </div>
+
+        <!-- KATEGORIE -->
+        <div class="category-wrapper">
+
+            <div class="category-heading">
+                <span>KATEGORIE</span>
+                <span>WYBIERZ TRYB</span>
+            </div>
+
+            <div class="category-buttons" id="categoryButtons">
+                <button class="category-btn active" data-category="main"><span class="category-icon">★</span>GŁÓWNE</button>
+                <button class="category-btn" data-category="mace">Mace</button>
+                <button class="category-btn" data-category="breach-swap">Breach Swap</button>
+                <button class="category-btn" data-category="rocket-mace">Rocket Mace</button>
+                <button class="category-btn" data-category="spear-mace">Spear Mace</button>
+                <button class="category-btn" data-category="sword">Sword</button>
+                <button class="category-btn" data-category="axe">Axe</button>
+                <button class="category-btn" data-category="uhc">UHC</button>
+                <button class="category-btn" data-category="pot">Pot</button>
+                <button class="category-btn" data-category="crystal">Crystal</button>
+                <button class="category-btn" data-category="minecart">Minecart</button>
+                <button class="category-btn" data-category="diamond-smp">Diamond SMP</button>
+            </div>
+
+        </div>
+
+        <!-- WYSZUKIWANIE I SORTOWANIE -->
+        <div class="tier-toolbar">
+
+            <div class="search-box">
+                <span class="search-icon">⌕</span>
+                <input type="text" id="playerSearch" placeholder="Wyszukaj gracza..." autocomplete="off">
+            </div>
+
+            <div class="sort-box">
+                <label for="sortPlayers">Sortowanie:</label>
+                <select id="sortPlayers">
+                    <option value="desc">Najwięcej punktów</option>
+                    <option value="asc">Najmniej punktów</option>
+                    <option value="name">Nazwa gracza</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- TABELA -->
+        <div class="tier-table-wrapper">
+
+            <table class="tier-table">
+                <thead>
+                    <tr>
+                        <th class="position-column">MIEJSCE</th>
+                        <th>GRACZ</th>
+                        <th>PUNKTY</th>
+                        <th id="tierColumnHeading">AKTYWNE TRYBY</th>
+                    </tr>
+                </thead>
+                <tbody id="rankingBody"></tbody>
+            </table>
+
+            <div class="no-players" id="noPlayers" hidden>
+                <span>⌕</span>
+                <h3>Nie znaleziono graczy</h3>
+                <p>Spróbuj zmienić wyszukiwaną frazę.</p>
+            </div>
+
+        </div>
+
+        <!-- PAGINACJA -->
+        <div class="tier-pagination" id="pagination">
+            <button id="previousPage" class="page-arrow" aria-label="Poprzednia strona">‹</button>
+            <div class="page-numbers" id="pageNumbers"></div>
+            <button id="nextPage" class="page-arrow" aria-label="Następna strona">›</button>
+            <span class="page-info" id="pageInfo">Strona 1 z 1</span>
+        </div>
+
+        <!-- INFORMACJE -->
+        <div class="tier-disclaimer">
+            <span class="disclaimer-icon">ⓘ</span>
+            <p>
+                Punkty przyznawane są na podstawie osiągniętego tieru.
+                Ranking GŁÓWNY sumuje punkty ze wszystkich kategorii.
+            </p>
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+    <div class="container footer-container">
+
+        <div class="footer-buttons footer-left">
+            <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer" class="footer-button youtube-button">
+                <span>▶</span> YOUTUBE
             </a>
-
-            <button class="menu-toggle" id="menuToggle" aria-label="Otwórz menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <div class="nav-links" id="navLinks">
-                <a href="../index.html">Strona główna</a>
-                <a href="../regulamin/regulamin.html">Regulamin</a>
-                <a href="tierlista.html" class="active">Tierlista</a>
-                <a href="https://mapa.polskiemc.pl" target="_blank" rel="noopener">Mapa</a>
-                <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener">Discord</a>
-                <a href="../sklep/sklep.html" class="nav-shop">Sklep</a>
-            </div>
-
-        </div>
-    </nav>
-
-    <main>
-
-        <!-- NAGŁÓWEK -->
-        <section class="tier-hero">
-
-            <div class="tier-hero-content">
-                <span class="tier-label">POLSKIEMC.PL</span>
-
-                <h1>TIERLISTA</h1>
-
-                <p>
-                    Sprawdź najlepszych graczy i ich poziom umiejętności
-                    w poszczególnych trybach PvP.
-                </p>
-
-                <div class="tier-hero-line"></div>
-            </div>
-
-        </section>
-
-        <!-- RANKING -->
-        <section class="tier-section">
-
-            <div class="tier-panel tier-ranking-panel">
-
-                <div class="tier-panel-header">
-                    <div>
-                        <span class="section-eyebrow">RANKING GRACZY</span>
-                        <h2 id="rankingTitle">GŁÓWNE</h2>
-                        <p id="rankingDescription">
-                            Łączna liczba punktów ze wszystkich trybów.
-                        </p>
-                    </div>
-
-                    <div class="ranking-count">
-                        <span id="totalPlayers">0</span>
-                        <small>GRACZY</small>
-                    </div>
-                </div>
-
-                <!-- KATEGORIE -->
-                <div class="category-wrapper">
-
-                    <div class="category-heading">
-                        <span>KATEGORIE</span>
-                        <span>WYBIERZ TRYB</span>
-                    </div>
-
-                    <div class="category-buttons" id="categoryButtons">
-
-                        <button class="category-btn active" data-category="main">
-                            <span class="category-icon">★</span>
-                            GŁÓWNE
-                        </button>
-
-                        <button class="category-btn" data-category="mace">Mace</button>
-                        <button class="category-btn" data-category="breach-swap">Breach Swap</button>
-                        <button class="category-btn" data-category="rocket-mace">Rocket Mace</button>
-                        <button class="category-btn" data-category="spear-mace">Spear Mace</button>
-                        <button class="category-btn" data-category="sword">Sword</button>
-                        <button class="category-btn" data-category="axe">Axe</button>
-                        <button class="category-btn" data-category="uhc">UHC</button>
-                        <button class="category-btn" data-category="pot">Pot</button>
-                        <button class="category-btn" data-category="crystal">Crystal</button>
-                        <button class="category-btn" data-category="minecart">Minecart</button>
-                        <button class="category-btn" data-category="diamond-smp">Diamond SMP</button>
-
-                    </div>
-
-                </div>
-
-                <!-- WYSZUKIWANIE I SORTOWANIE -->
-                <div class="tier-toolbar">
-
-                    <div class="search-box">
-                        <span class="search-icon">⌕</span>
-
-                        <input
-                            type="text"
-                            id="playerSearch"
-                            placeholder="Wyszukaj gracza..."
-                            autocomplete="off"
-                        >
-                    </div>
-
-                    <div class="sort-box">
-                        <label for="sortPlayers">Sortowanie:</label>
-
-                        <select id="sortPlayers">
-                            <option value="desc">Najwięcej punktów</option>
-                            <option value="asc">Najmniej punktów</option>
-                            <option value="name">Nazwa gracza</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <!-- TABELA -->
-                <div class="tier-table-wrapper">
-
-                    <table class="tier-table">
-
-                        <thead>
-                            <tr>
-                                <th class="position-column">MIEJSCE</th>
-                                <th>GRACZ</th>
-                                <th>PUNKTY</th>
-                                <th id="tierColumnHeading">AKTYWNE TRYBY</th>
-                            </tr>
-                        </thead>
-
-                        <tbody id="rankingBody"></tbody>
-
-                    </table>
-
-                    <div class="no-players" id="noPlayers" hidden>
-                        <span>⌕</span>
-                        <h3>Nie znaleziono graczy</h3>
-                        <p>Spróbuj zmienić wyszukiwaną frazę.</p>
-                    </div>
-
-                </div>
-
-                <!-- PAGINACJA -->
-                <div class="tier-pagination" id="pagination">
-
-                    <button id="previousPage" class="page-arrow" aria-label="Poprzednia strona">
-                        ‹
-                    </button>
-
-                    <div class="page-numbers" id="pageNumbers"></div>
-
-                    <button id="nextPage" class="page-arrow" aria-label="Następna strona">
-                        ›
-                    </button>
-
-                    <span class="page-info" id="pageInfo">Strona 1 z 1</span>
-
-                </div>
-
-                <!-- INFORMACJE -->
-                <div class="tier-disclaimer">
-                    <span class="disclaimer-icon">ⓘ</span>
-
-                    <p>
-                        Punkty przyznawane są na podstawie osiągniętego tieru.
-                        Ranking GŁÓWNY sumuje punkty ze wszystkich kategorii.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- STOPKA -->
-    <footer class="footer">
-        <div class="footer-content">
-
-            <div class="footer-brand">
-                <a href="../index.html" class="logo">
-                    POLSKIE<span>MC</span>.PL
-                </a>
-
-                <p>Profesjonalność to nasza podstawa!</p>
-            </div>
-
-            <div class="footer-links">
-                <a href="../index.html">Strona główna</a>
-                <a href="../regulamin/regulamin.html">Regulamin</a>
-                <a href="tierlista.html">Tierlista</a>
-                <a href="../sklep/sklep.html">Sklep</a>
-                <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener">Discord</a>
-            </div>
-
+            <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener noreferrer" class="footer-button discord-footer-button">
+                <span>◉</span> DISCORD
+            </a>
         </div>
 
-        <div class="footer-bottom">
-            <p>© 2026 POLSKIEMC.PL. Wszelkie prawa zastrzeżone.</p>
+        <div class="footer-center">
+            <div class="footer-logo"><span>POLSKIE</span>MC.PL</div>
+            <p>© 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</p>
+            <div class="footer-note">
+                Serwer POLSKIEMC.PL nie jest w żaden sposób
+                powiązany z firmą Mojang Studios oraz Microsoft Studios.
+            </div>
         </div>
-    </footer>
 
-    <button id="topBtn" class="top-btn" aria-label="Wróć na górę">
-        ↑
-    </button>
+        <div class="footer-buttons footer-right">
+            <a href="https://www.tiktok.com/@p0lak_yt" target="_blank" rel="noopener noreferrer" class="footer-button tiktok-button">
+                <span>♪</span> TIKTOK
+            </a>
+            <a href="https://mapa.polskiemc.pl" target="_blank" rel="noopener noreferrer" class="footer-button map-footer-button">
+                <span>🌍</span> MAPA EARTH
+            </a>
+        </div>
 
-    <script>
-        /* =====================================================
-           POLSKIEMC.PL — TIERLISTA
-        ===================================================== */
+    </div>
+</footer>
 
-        const categories = [
-            { id: "mace", name: "Mace" },
-            { id: "breach-swap", name: "Breach Swap" },
-            { id: "rocket-mace", name: "Rocket Mace" },
-            { id: "spear-mace", name: "Spear Mace" },
-            { id: "sword", name: "Sword" },
-            { id: "axe", name: "Axe" },
-            { id: "uhc", name: "UHC" },
-            { id: "pot", name: "Pot" },
-            { id: "crystal", name: "Crystal" },
-            { id: "minecart", name: "Minecart" },
-            { id: "diamond-smp", name: "Diamond SMP" }
-        ];
 
-        const tiers = [
-            { name: "LT6", points: 1 },
-            { name: "HT6", points: 2 },
-            { name: "LT5", points: 3 },
-            { name: "HT5", points: 4 },
-            { name: "LT4", points: 5 },
-            { name: "HT4", points: 6 },
-            { name: "LT3", points: 7 },
-            { name: "HT3", points: 8 },
-            { name: "LT2", points: 9 },
-            { name: "HT2", points: 10 },
-            { name: "LT1", points: 11 },
-            { name: "HT1", points: 12 }
-        ];
+<button id="topBtn" aria-label="Wróć na górę">↑</button>
 
-        const playersPerPage = 20;
 
-        let selectedCategory = "main";
-        let currentPage = 1;
+<!-- DOLNA NAWIGACJA MOBILE — LIQUID GLASS -->
+<nav class="mobile-glass-nav" id="mobileGlassNav" aria-label="Nawigacja mobilna">
 
-        const rankingBody = document.getElementById("rankingBody");
-        const playerSearch = document.getElementById("playerSearch");
-        const sortPlayers = document.getElementById("sortPlayers");
+    <div class="glass-indicator" id="glassIndicator"></div>
 
-        const totalPlayers = document.getElementById("totalPlayers");
-        const rankingTitle = document.getElementById("rankingTitle");
-        const rankingDescription = document.getElementById("rankingDescription");
-        const tierColumnHeading = document.getElementById("tierColumnHeading");
+    <a href="https://polskiemc.pl/" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg></span>
+        <span class="glass-label">Główna</span>
+    </a>
 
-        const noPlayers = document.getElementById("noPlayers");
-        const previousPage = document.getElementById("previousPage");
-        const nextPage = document.getElementById("nextPage");
-        const pageNumbers = document.getElementById("pageNumbers");
-        const pageInfo = document.getElementById("pageInfo");
+    <a href="https://polskiemc.pl/sklep/sklep" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.1a2 2 0 0 0 2-1.5L21 7H6"/></svg></span>
+        <span class="glass-label">Sklep</span>
+    </a>
 
-        /* =====================================================
-           PRZYKŁADOWE DANE
+    <a href="https://polskiemc.pl/regulamin" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></span>
+        <span class="glass-label">Regulamin</span>
+    </a>
 
-           W tym miejscu możesz później podmienić dane na
-           prawdziwe dane pobierane z API lub bazy danych.
-        ===================================================== */
+    <a href="https://polskiemc.pl/rekrutacja" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M19 8v6M16 11h6"/></svg></span>
+        <span class="glass-label">Rekrutacja</span>
+    </a>
 
-        const exampleNames = [
-            "P0lak", "Notch", "Dream", "Technoblade", "Fruitberries",
-            "Sapnap", "ClownPierce", "Purpled", "Astel", "Rekrap2",
-            "Krytyczny", "EnderMan", "PvP_Master", "xNinja", "Koxu",
-            "Steve", "Alex", "Herobrine", "Shadow", "Blaze",
-            "Dragon", "Frost", "Legend", "Warrior", "Hunter",
-            "PolskiGracz", "MistrzPvP", "Netherite", "CrystalKing",
-            "MaceGod", "SwordMain", "AxePlayer", "Void", "Storm",
-            "Darkness", "Lightning", "Phantom", "Gladiator",
-            "Destroyer", "Champion", "Titan", "Reaper", "Vortex",
-            "Inferno", "Sniper", "Ravager", "Warden", "Wither",
-            "EnderKing", "PvPPro"
-        ];
+    <a href="https://polskiemc.pl/tworca" class="glass-item">
+        <span class="glass-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg></span>
+        <span class="glass-label">Twórca</span>
+    </a>
 
-        function randomTier() {
-            // Część graczy nie ma przypisanego tieru.
-            if (Math.random() < 0.28) {
-                return null;
-            }
+</nav>
 
-            return tiers[Math.floor(Math.random() * tiers.length)].name;
-        }
 
-        function createExamplePlayers() {
-            const players = [];
+<script>
 
-            for (let i = 0; i < 100; i++) {
-                const categoriesData = {};
+/* =====================================================
+   POLSKIEMC.PL — TIERLISTA
+===================================================== */
 
-                categories.forEach(category => {
-                    categoriesData[category.id] = randomTier();
-                });
+const categories = [
+    { id: "mace", name: "Mace" },
+    { id: "breach-swap", name: "Breach Swap" },
+    { id: "rocket-mace", name: "Rocket Mace" },
+    { id: "spear-mace", name: "Spear Mace" },
+    { id: "sword", name: "Sword" },
+    { id: "axe", name: "Axe" },
+    { id: "uhc", name: "UHC" },
+    { id: "pot", name: "Pot" },
+    { id: "crystal", name: "Crystal" },
+    { id: "minecart", name: "Minecart" },
+    { id: "diamond-smp", name: "Diamond SMP" }
+];
 
-                players.push({
-                    name: exampleNames[i % exampleNames.length] + (i >= exampleNames.length ? i : ""),
-                    categories: categoriesData
-                });
-            }
+const tiers = [
+    { name: "LT6", points: 1 },
+    { name: "HT6", points: 2 },
+    { name: "LT5", points: 3 },
+    { name: "HT5", points: 4 },
+    { name: "LT4", points: 5 },
+    { name: "HT4", points: 6 },
+    { name: "LT3", points: 7 },
+    { name: "HT3", points: 8 },
+    { name: "LT2", points: 9 },
+    { name: "HT2", points: 10 },
+    { name: "LT1", points: 11 },
+    { name: "HT1", points: 12 }
+];
 
-            return players;
-        }
+const playersPerPage = 20;
 
-        const players = createExamplePlayers();
+let selectedCategory = "main";
+let currentPage = 1;
 
-        /* =====================================================
-           SYSTEM PUNKTÓW
-        ===================================================== */
+const rankingBody = document.getElementById("rankingBody");
+const playerSearch = document.getElementById("playerSearch");
+const sortPlayers = document.getElementById("sortPlayers");
+const totalPlayers = document.getElementById("totalPlayers");
+const rankingTitle = document.getElementById("rankingTitle");
+const rankingDescription = document.getElementById("rankingDescription");
+const tierColumnHeading = document.getElementById("tierColumnHeading");
+const noPlayers = document.getElementById("noPlayers");
+const previousPage = document.getElementById("previousPage");
+const nextPage = document.getElementById("nextPage");
+const pageNumbers = document.getElementById("pageNumbers");
+const pageInfo = document.getElementById("pageInfo");
 
-        function getTierData(tierName) {
-            if (!tierName) {
-                return null;
-            }
+/* =====================================================
+   PRZYKŁADOWE DANE
+   Podmień później na prawdziwe dane z API / bazy.
+===================================================== */
 
-            return tiers.find(tier => tier.name === tierName) || null;
-        }
+const exampleNames = [
+    "P0lak", "Notch", "Dream", "Technoblade", "Fruitberries",
+    "Sapnap", "ClownPierce", "Purpled", "Astel", "Rekrap2",
+    "Krytyczny", "EnderMan", "PvP_Master", "xNinja", "Koxu",
+    "Steve", "Alex", "Herobrine", "Shadow", "Blaze",
+    "Dragon", "Frost", "Legend", "Warrior", "Hunter",
+    "PolskiGracz", "MistrzPvP", "Netherite", "CrystalKing",
+    "MaceGod", "SwordMain", "AxePlayer", "Void", "Storm",
+    "Darkness", "Lightning", "Phantom", "Gladiator",
+    "Destroyer", "Champion", "Titan", "Reaper", "Vortex",
+    "Inferno", "Sniper", "Ravager", "Warden", "Wither",
+    "EnderKing", "PvPPro"
+];
 
-        function getPlayerPoints(player) {
-            return categories.reduce((total, category) => {
-                const tier = getTierData(player.categories[category.id]);
+function randomTier() {
+    if (Math.random() < 0.28) return null;
+    return tiers[Math.floor(Math.random() * tiers.length)].name;
+}
 
-                return total + (tier ? tier.points : 0);
-            }, 0);
-        }
+function createExamplePlayers() {
+    const list = [];
 
-        function getActiveCategories(player) {
-            return categories.filter(category => {
-                return Boolean(getTierData(player.categories[category.id]));
-            }).length;
-        }
-
-        function getCategoryPoints(player, categoryId) {
-            const tier = getTierData(player.categories[categoryId]);
-
-            return tier ? tier.points : 0;
-        }
-
-        function getTierClass(tierName) {
-            return tierName ? "tier-" + tierName.toLowerCase() : "";
-        }
-
-        /* =====================================================
-           WYBÓR KATEGORII
-        ===================================================== */
-
-        function selectCategory(categoryId) {
-            selectedCategory = categoryId;
-            currentPage = 1;
-
-            playerSearch.value = "";
-            sortPlayers.value = "desc";
-
-            document.querySelectorAll(".category-btn").forEach(button => {
-                button.classList.toggle(
-                    "active",
-                    button.dataset.category === categoryId
-                );
-            });
-
-            if (categoryId === "main") {
-                rankingTitle.textContent = "GŁÓWNE";
-                rankingDescription.textContent =
-                    "Łączna liczba punktów ze wszystkich trybów.";
-                tierColumnHeading.textContent = "AKTYWNE TRYBY";
-            } else {
-                const category = categories.find(item => item.id === categoryId);
-
-                rankingTitle.textContent = category.name;
-                rankingDescription.textContent =
-                    "Ranking graczy w kategorii " + category.name + ".";
-                tierColumnHeading.textContent = "TIER";
-            }
-
-            renderRanking();
-        }
-
-        document.querySelectorAll(".category-btn").forEach(button => {
-            button.addEventListener("click", () => {
-                selectCategory(button.dataset.category);
-            });
+    for (let i = 0; i < 100; i++) {
+        const categoriesData = {};
+        categories.forEach(category => {
+            categoriesData[category.id] = randomTier();
         });
 
-        /* =====================================================
-           FILTROWANIE I SORTOWANIE
-        ===================================================== */
-
-        function getVisiblePlayers() {
-            const search = playerSearch.value.trim().toLowerCase();
-
-            let result = players.filter(player => {
-                const matchesSearch = player.name.toLowerCase().includes(search);
-
-                if (selectedCategory === "main") {
-                    return matchesSearch;
-                }
-
-                return matchesSearch &&
-                    Boolean(getTierData(player.categories[selectedCategory]));
-            });
-
-            const sortType = sortPlayers.value;
-
-            result.sort((a, b) => {
-                if (sortType === "name") {
-                    return a.name.localeCompare(b.name);
-                }
-
-                const pointsA = selectedCategory === "main"
-                    ? getPlayerPoints(a)
-                    : getCategoryPoints(a, selectedCategory);
-
-                const pointsB = selectedCategory === "main"
-                    ? getPlayerPoints(b)
-                    : getCategoryPoints(b, selectedCategory);
-
-                if (pointsA !== pointsB) {
-                    return sortType === "asc"
-                        ? pointsA - pointsB
-                        : pointsB - pointsA;
-                }
-
-                return a.name.localeCompare(b.name);
-            });
-
-            return result;
-        }
-
-        /* =====================================================
-           WYŚWIETLANIE TABELI
-        ===================================================== */
-
-        function createTierBadge(tierName) {
-            if (!tierName) {
-                return '<span class="no-tier">BRAK</span>';
-            }
-
-            return `
-                <span class="tier-badge ${getTierClass(tierName)}">
-                    ${tierName}
-                </span>
-            `;
-        }
-
-        function createPlayerRow(player, position) {
-            const points = selectedCategory === "main"
-                ? getPlayerPoints(player)
-                : getCategoryPoints(player, selectedCategory);
-
-            let lastColumn;
-
-            if (selectedCategory === "main") {
-                lastColumn = `
-                    <span class="active-categories">
-                        ${getActiveCategories(player)}
-                        <span>/ ${categories.length}</span>
-                    </span>
-                `;
-            } else {
-                lastColumn = createTierBadge(player.categories[selectedCategory]);
-            }
-
-            let positionClass = "";
-
-            if (position === 1) positionClass = "rank-first";
-            if (position === 2) positionClass = "rank-second";
-            if (position === 3) positionClass = "rank-third";
-
-            const avatarUrl =
-                "https://mc-heads.net/avatar/" +
-                encodeURIComponent(player.name) +
-                "/48";
-
-            return `
-                <tr>
-                    <td class="position-cell">
-                        <span class="rank-number ${positionClass}">
-                            ${position}
-                        </span>
-                    </td>
-
-                    <td>
-                        <div class="player-cell">
-                            <img
-                                src="${avatarUrl}"
-                                alt=""
-                                class="player-avatar"
-                                loading="lazy"
-                                onerror="this.style.visibility='hidden'"
-                            >
-
-                            <span class="player-name">
-                                ${escapeHTML(player.name)}
-                            </span>
-                        </div>
-                    </td>
-
-                    <td>
-                        <span class="player-points">
-                            ${points}
-                            <small>PKT</small>
-                        </span>
-                    </td>
-
-                    <td>
-                        ${lastColumn}
-                    </td>
-                </tr>
-            `;
-        }
-
-        function escapeHTML(value) {
-            return String(value).replace(/[&<>"']/g, character => {
-                const entities = {
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#039;"
-                };
-
-                return entities[character];
-            });
-        }
-
-        /* =====================================================
-           PAGINACJA
-        ===================================================== */
-
-        function renderPagination(totalPages) {
-            pageNumbers.innerHTML = "";
-
-            previousPage.disabled = currentPage <= 1;
-            nextPage.disabled = currentPage >= totalPages;
-
-            for (let page = 1; page <= totalPages; page++) {
-                const button = document.createElement("button");
-
-                button.className = "page-number";
-                button.textContent = page;
-
-                if (page === currentPage) {
-                    button.classList.add("active");
-                }
-
-                button.addEventListener("click", () => {
-                    currentPage = page;
-                    renderRanking();
-                });
-
-                pageNumbers.appendChild(button);
-            }
-
-            pageInfo.textContent = `Strona ${currentPage} z ${totalPages}`;
-        }
-
-        previousPage.addEventListener("click", () => {
-            if (currentPage > 1) {
-                currentPage--;
-                renderRanking();
-            }
+        list.push({
+            name: exampleNames[i % exampleNames.length] + (i >= exampleNames.length ? i : ""),
+            categories: categoriesData
         });
+    }
 
-        nextPage.addEventListener("click", () => {
-            const totalPages = Math.max(
-                1,
-                Math.ceil(getVisiblePlayers().length / playersPerPage)
-            );
+    return list;
+}
 
-            if (currentPage < totalPages) {
-                currentPage++;
-                renderRanking();
-            }
-        });
+const players = createExamplePlayers();
 
-        /* =====================================================
-           GŁÓWNE RENDEROWANIE
-        ===================================================== */
+/* =====================================================
+   SYSTEM PUNKTÓW
+===================================================== */
 
-        function renderRanking() {
-            const visiblePlayers = getVisiblePlayers();
+function getTierData(tierName) {
+    if (!tierName) return null;
+    return tiers.find(tier => tier.name === tierName) || null;
+}
 
-            const totalPages = Math.max(
-                1,
-                Math.ceil(visiblePlayers.length / playersPerPage)
-            );
+function getPlayerPoints(player) {
+    return categories.reduce((total, category) => {
+        const tier = getTierData(player.categories[category.id]);
+        return total + (tier ? tier.points : 0);
+    }, 0);
+}
 
-            if (currentPage > totalPages) {
-                currentPage = totalPages;
-            }
+function getActiveCategories(player) {
+    return categories.filter(category => Boolean(getTierData(player.categories[category.id]))).length;
+}
 
-            const start = (currentPage - 1) * playersPerPage;
-            const pagePlayers = visiblePlayers.slice(
-                start,
-                start + playersPerPage
-            );
+function getCategoryPoints(player, categoryId) {
+    const tier = getTierData(player.categories[categoryId]);
+    return tier ? tier.points : 0;
+}
 
-            totalPlayers.textContent = visiblePlayers.length;
+function getTierClass(tierName) {
+    return tierName ? "tier-" + tierName.toLowerCase() : "";
+}
 
-            rankingBody.innerHTML = pagePlayers
-                .map((player, index) => {
-                    return createPlayerRow(player, start + index + 1);
-                })
-                .join("");
+/* =====================================================
+   WYBÓR KATEGORII
+===================================================== */
 
-            noPlayers.hidden = visiblePlayers.length !== 0;
+function selectCategory(categoryId) {
+    selectedCategory = categoryId;
+    currentPage = 1;
 
-            document.querySelector(".tier-table").style.display =
-                visiblePlayers.length === 0 ? "none" : "table";
+    playerSearch.value = "";
+    sortPlayers.value = "desc";
 
-            document.getElementById("pagination").style.display =
-                visiblePlayers.length === 0 ? "none" : "flex";
+    document.querySelectorAll(".category-btn").forEach(button => {
+        button.classList.toggle("active", button.dataset.category === categoryId);
+    });
 
-            renderPagination(totalPages);
+    if (categoryId === "main") {
+        rankingTitle.textContent = "GŁÓWNE";
+        rankingDescription.textContent = "Łączna liczba punktów ze wszystkich trybów.";
+        tierColumnHeading.textContent = "AKTYWNE TRYBY";
+    } else {
+        const category = categories.find(item => item.id === categoryId);
+        rankingTitle.textContent = category.name;
+        rankingDescription.textContent = "Ranking graczy w kategorii " + category.name + ".";
+        tierColumnHeading.textContent = "TIER";
+    }
+
+    renderRanking();
+}
+
+document.querySelectorAll(".category-btn").forEach(button => {
+    button.addEventListener("click", () => selectCategory(button.dataset.category));
+});
+
+/* =====================================================
+   FILTROWANIE I SORTOWANIE
+===================================================== */
+
+function getVisiblePlayers() {
+    const search = playerSearch.value.trim().toLowerCase();
+
+    const result = players.filter(player => {
+        const matchesSearch = player.name.toLowerCase().includes(search);
+
+        if (selectedCategory === "main") return matchesSearch;
+
+        return matchesSearch && Boolean(getTierData(player.categories[selectedCategory]));
+    });
+
+    const sortType = sortPlayers.value;
+
+    result.sort((a, b) => {
+        if (sortType === "name") return a.name.localeCompare(b.name);
+
+        const pointsA = selectedCategory === "main" ? getPlayerPoints(a) : getCategoryPoints(a, selectedCategory);
+        const pointsB = selectedCategory === "main" ? getPlayerPoints(b) : getCategoryPoints(b, selectedCategory);
+
+        if (pointsA !== pointsB) {
+            return sortType === "asc" ? pointsA - pointsB : pointsB - pointsA;
         }
 
-        playerSearch.addEventListener("input", () => {
-            currentPage = 1;
+        return a.name.localeCompare(b.name);
+    });
+
+    return result;
+}
+
+/* =====================================================
+   WYŚWIETLANIE TABELI
+===================================================== */
+
+function escapeHTML(value) {
+    const entities = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" };
+    return String(value).replace(/[&<>"']/g, character => entities[character]);
+}
+
+function createTierBadge(tierName) {
+    if (!tierName) return '<span class="no-tier">BRAK</span>';
+    return `<span class="tier-badge ${getTierClass(tierName)}">${tierName}</span>`;
+}
+
+function createPlayerRow(player, position) {
+    const points = selectedCategory === "main"
+        ? getPlayerPoints(player)
+        : getCategoryPoints(player, selectedCategory);
+
+    const lastColumn = selectedCategory === "main"
+        ? `<span class="active-categories">${getActiveCategories(player)}<span>/ ${categories.length}</span></span>`
+        : createTierBadge(player.categories[selectedCategory]);
+
+    let positionClass = "";
+    if (position === 1) positionClass = "rank-first";
+    if (position === 2) positionClass = "rank-second";
+    if (position === 3) positionClass = "rank-third";
+
+    const avatarUrl = "https://mc-heads.net/avatar/" + encodeURIComponent(player.name) + "/48";
+
+    return `
+        <tr>
+            <td class="position-cell"><span class="rank-number ${positionClass}">${position}</span></td>
+            <td>
+                <div class="player-cell">
+                    <img src="${avatarUrl}" alt="" class="player-avatar" loading="lazy" onerror="this.style.visibility='hidden'">
+                    <span class="player-name">${escapeHTML(player.name)}</span>
+                </div>
+            </td>
+            <td><span class="player-points">${points}<small>PKT</small></span></td>
+            <td>${lastColumn}</td>
+        </tr>
+    `;
+}
+
+/* =====================================================
+   PAGINACJA
+===================================================== */
+
+function renderPagination(totalPages) {
+    pageNumbers.innerHTML = "";
+
+    previousPage.disabled = currentPage <= 1;
+    nextPage.disabled = currentPage >= totalPages;
+
+    for (let page = 1; page <= totalPages; page++) {
+        const button = document.createElement("button");
+        button.className = "page-number";
+        button.textContent = page;
+        if (page === currentPage) button.classList.add("active");
+
+        button.addEventListener("click", () => {
+            currentPage = page;
             renderRanking();
         });
 
-        sortPlayers.addEventListener("change", () => {
-            currentPage = 1;
-            renderRanking();
-        });
+        pageNumbers.appendChild(button);
+    }
 
-        /* =====================================================
-           MENU MOBILNE
-        ===================================================== */
+    pageInfo.textContent = `Strona ${currentPage} z ${totalPages}`;
+}
 
-        const menuToggle = document.getElementById("menuToggle");
-        const navLinks = document.getElementById("navLinks");
-
-        if (menuToggle && navLinks) {
-            menuToggle.addEventListener("click", () => {
-                navLinks.classList.toggle("active");
-                menuToggle.classList.toggle("active");
-            });
-
-            navLinks.querySelectorAll("a").forEach(link => {
-                link.addEventListener("click", () => {
-                    navLinks.classList.remove("active");
-                    menuToggle.classList.remove("active");
-                });
-            });
-        }
-
-        /* =====================================================
-           PRZYCISK POWROTU NA GÓRĘ
-        ===================================================== */
-
-        const topBtn = document.getElementById("topBtn");
-
-        window.addEventListener("scroll", () => {
-            if (topBtn) {
-                topBtn.classList.toggle("visible", window.scrollY > 400);
-            }
-        });
-
-        if (topBtn) {
-            topBtn.addEventListener("click", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            });
-        }
-
-        /* START */
+previousPage.addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
         renderRanking();
+    }
+});
 
-    </script>
+nextPage.addEventListener("click", () => {
+    const totalPages = Math.max(1, Math.ceil(getVisiblePlayers().length / playersPerPage));
+
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderRanking();
+    }
+});
+
+/* =====================================================
+   GŁÓWNE RENDEROWANIE
+===================================================== */
+
+function renderRanking() {
+    const visiblePlayers = getVisiblePlayers();
+    const totalPages = Math.max(1, Math.ceil(visiblePlayers.length / playersPerPage));
+
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * playersPerPage;
+    const pagePlayers = visiblePlayers.slice(start, start + playersPerPage);
+
+    totalPlayers.textContent = visiblePlayers.length;
+
+    rankingBody.innerHTML = pagePlayers
+        .map((player, index) => createPlayerRow(player, start + index + 1))
+        .join("");
+
+    noPlayers.hidden = visiblePlayers.length !== 0;
+
+    document.querySelector(".tier-table").style.display = visiblePlayers.length === 0 ? "none" : "table";
+    document.getElementById("pagination").style.display = visiblePlayers.length === 0 ? "none" : "flex";
+
+    renderPagination(totalPages);
+}
+
+playerSearch.addEventListener("input", () => {
+    currentPage = 1;
+    renderRanking();
+});
+
+sortPlayers.addEventListener("change", () => {
+    currentPage = 1;
+    renderRanking();
+});
+
+/* =====================================================
+   PRZYCISK GÓRA
+===================================================== */
+
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+    topBtn.classList.toggle("show", window.scrollY > 500);
+}, { passive: true });
+
+topBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+/* =====================================================
+   ANIMACJA POJAWIANIA PANELU
+===================================================== */
+
+const animatedElements = document.querySelectorAll(".scroll-animation");
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.05 });
+
+    animatedElements.forEach(el => observer.observe(el));
+} else {
+    animatedElements.forEach(el => el.classList.add("visible"));
+}
+
+/* START */
+renderRanking();
+
+</script>
+
+<script>
+/* =====================================================
+   LIQUID GLASS NAV — fizyka sprężyny
+   (Tierlista nie ma własnej zakładki — pasek startuje bez zaznaczenia.)
+===================================================== */
+(() => {
+    const nav = document.getElementById("mobileGlassNav");
+    const ind = document.getElementById("glassIndicator");
+    if (!nav || !ind) return;
+
+    const items = [...nav.querySelectorAll(".glass-item")];
+    if (!items.length) return;
+
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let xs = [], w = 0;
+    let x = 0, v = 0, target = 0;
+    let pressed = 0, dragging = false, moved = false;
+    let startX = 0, pid = null, suppressClick = false;
+    let raf = 0, last = 0, navigating = false;
+
+    /* strona, na której jesteśmy */
+    const clean = p => p.replace(/index\.html$/, "").replace(/\.html$/, "").replace(/\/+$/, "") || "/";
+    const here = clean(location.pathname);
+    let pageIndex = items.findIndex(a => clean(new URL(a.href, location.href).pathname) === here);
+    let active = -1;
+
+    function measure() {
+        const nr = nav.getBoundingClientRect();
+        xs = items.map(i => i.getBoundingClientRect().left - nr.left);
+        w = items[0].getBoundingClientRect().width;
+        ind.style.width = w + "px";
+    }
+
+    function setActive(i) {
+        if (i === active) return;
+        active = i;
+        items.forEach((el, n) => {
+            el.classList.toggle("active", n === i);
+            if (n === i) el.setAttribute("aria-current", "page");
+            else el.removeAttribute("aria-current");
+        });
+    }
+
+    function nearest(px) {
+        const rel = px - nav.getBoundingClientRect().left;
+        let best = 0, d = Infinity;
+        items.forEach((_, i) => {
+            const dist = Math.abs(rel - (xs[i] + w / 2));
+            if (dist < d) { d = dist; best = i; }
+        });
+        return best;
+    }
+
+    function render() {
+        const s = Math.min(Math.abs(v) / 1800, 0.4);      /* rozciągnięcie od prędkości */
+        const sx = 1 + s + pressed * 0.07;
+        const sy = 1 - s * 0.4 + pressed * 0.07;
+        ind.style.transform = `translate3d(${x}px,0,0) scale(${sx},${sy})`;
+    }
+
+    function tick(t) {
+        const dt = Math.min((t - last) / 1000 || 0.016, 0.032);
+        last = t;
+
+        const k = dragging ? 520 : 230;                     /* sztywność */
+        const c = dragging ? 40 : 19;                       /* tłumienie — lekki overshoot = woda */
+
+        v += (-k * (x - target) - c * v) * dt;
+        x += v * dt;
+        pressed += ((dragging ? 1 : 0) - pressed) * Math.min(1, dt * 14);
+
+        render();
+
+        const settled = Math.abs(v) < 2 && Math.abs(x - target) < 0.1 && Math.abs(pressed - (dragging ? 1 : 0)) < 0.01;
+        if (settled && !dragging) {
+            x = target; v = 0; pressed = 0; render(); raf = 0;
+            return;
+        }
+        raf = requestAnimationFrame(tick);
+    }
+
+    function run() {
+        if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
+    }
+
+    function snapTo(i, instant) {
+        target = xs[i];
+        if (instant || reduce) { x = target; v = 0; pressed = 0; render(); }
+        else run();
+    }
+
+    function go(i) {
+        ind.style.opacity = "1";
+        setActive(i);
+        snapTo(i);
+        if (i === pageIndex || navigating) return;
+        navigating = true;
+        setTimeout(() => location.assign(items[i].href), reduce ? 0 : 300);
+    }
+
+    /* tap / klawiatura */
+    items.forEach((el, i) => {
+        el.addEventListener("click", e => {
+            e.preventDefault();
+            if (suppressClick) { suppressClick = false; return; }
+            go(i);
+        });
+    });
+
+    /* przeciąganie */
+    nav.addEventListener("pointerdown", e => {
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        ind.style.opacity = "1";
+        pid = e.pointerId;
+        startX = e.clientX;
+        moved = false;
+        dragging = false;
+        pressed = 0.0001;
+        run();
+    });
+
+    nav.addEventListener("pointermove", e => {
+        if (e.pointerId !== pid) return;
+
+        if (!moved && Math.abs(e.clientX - startX) > 6) {
+            moved = true;
+            dragging = true;
+            try { nav.setPointerCapture(pid); } catch (_) {}
+        }
+        if (!moved) return;
+
+        const nr = nav.getBoundingClientRect();
+        target = Math.max(xs[0], Math.min(xs[xs.length - 1], e.clientX - nr.left - w / 2));
+
+        setActive(nearest(e.clientX));
+        run();
+    });
+
+    nav.addEventListener("pointerup", e => {
+        if (e.pointerId !== pid) return;
+        const wasDragged = moved;
+        pid = null; dragging = false; moved = false;
+
+        if (wasDragged) {
+            suppressClick = true;
+            setTimeout(() => { suppressClick = false; }, 50);
+            go(nearest(e.clientX));
+        } else {
+            run();
+        }
+    });
+
+    nav.addEventListener("pointercancel", e => {
+        if (e.pointerId !== pid) return;
+        pid = null; dragging = false; moved = false;
+        setActive(pageIndex);
+        if (pageIndex < 0) ind.style.opacity = "0";
+        else snapTo(pageIndex);
+    });
+
+    /* start i resize */
+    function init() {
+        measure();
+        setActive(pageIndex);
+        if (pageIndex < 0) {
+            ind.style.opacity = "0";
+            snapTo(0, true);
+        } else {
+            ind.style.opacity = "1";
+            snapTo(pageIndex, true);
+        }
+    }
+
+    init();
+    window.addEventListener("load", init);
+    window.addEventListener("resize", init);
+    window.addEventListener("pageshow", e => { navigating = false; if (e.persisted) init(); });
+    if ("ResizeObserver" in window) new ResizeObserver(init).observe(nav);
+})();
+</script>
 
 </body>
 </html>
