@@ -169,6 +169,48 @@
 
 <body>
 
+<!-- LIQUID GLASS FILTER -->
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="0"
+    height="0"
+    style="position:absolute"
+    aria-hidden="true"
+>
+    <filter id="waterGlass" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.018 0.035"
+            numOctaves="2"
+            seed="8"
+            result="noise"
+        >
+            <animate
+                attributeName="baseFrequency"
+                values="0.018 0.035;0.025 0.045;0.018 0.035"
+                dur="5s"
+                repeatCount="indefinite"
+            />
+        </feTurbulence>
+
+        <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="9"
+            xChannelSelector="R"
+            yChannelSelector="G"
+        >
+            <animate
+                attributeName="scale"
+                values="7;13;7"
+                dur="3s"
+                repeatCount="indefinite"
+            />
+        </feDisplacementMap>
+    </filter>
+</svg>
+
+
 <!-- =====================================================
      NAWIGACJA GÓRNA
 ===================================================== -->
