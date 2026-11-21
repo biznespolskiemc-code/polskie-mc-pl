@@ -1,12 +1,6 @@
-
 /* =====================================================
    POLSKIEMC.PL — REGULAMIN
-   Nie nadpisuje stylów menu ani stopki.
-===================================================== */
-
-
-/* =====================================================
-   ZMIENNE I PODSTAWY
+   Współpracuje z istniejącym style-index.css.
 ===================================================== */
 
 :root {
@@ -23,20 +17,12 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 105px;
     overflow-y: scroll;
-    overflow-x: clip !important;
+    overflow-x: clip;
 }
-
-/*
-   Ważne dla sticky:
-   hidden na osi X może powodować utworzenie
-   dodatkowego scroll-containera.
-*/
 
 body {
-    overflow-x: clip !important;
-    overflow-y: visible !important;
+    overflow-x: clip;
 }
-
 
 /* =====================================================
    HERO REGULAMINU
@@ -44,938 +30,75 @@ body {
 
 .regulamin-hero {
     position: relative;
-    min-height: 55vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-    overflow: hidden;
-
-    padding: 140px 20px 100px;
-
-    background: #050505;
-}
-
-.regulamin-hero::before {
-    content: "";
-
-    position: absolute;
-
-    width: 500px;
-    height: 500px;
-
-    left: 50%;
-    top: 45%;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background: rgba(185, 23, 58, 0.06);
-
-    filter: blur(90px);
-
-    pointer-events: none;
-}
-
-.regulamin-hero::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    height: 1px;
-
-    background: rgba(255,255,255,.06);
-
-    pointer-events: none;
-}
-
-.regulamin-hero-content {
-    position: relative;
-    z-index: 2;
-
-    width: 100%;
-    max-width: 850px;
-
-    margin: 0 auto;
-}
-
-.hero-small-label {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 22px;
-    padding: 8px 15px;
-
-    border: 1px solid rgba(239,82,124,.2);
-    border-radius: 30px;
-
-    background: rgba(239,82,124,.06);
-
-    color: #ef9ab0;
-
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.regulamin-hero h1 {
-    margin: 0;
-
-    color: #ffffff;
-
-    font-size: clamp(45px, 6vw, 72px);
-    line-height: 1.05;
-
-    font-weight: 800;
-    letter-spacing: -2px;
-}
-
-.regulamin-hero p {
-    max-width: 650px;
-
-    margin: 25px auto 0;
-
-    color: #929292;
-
-    font-size: 15px;
-    line-height: 1.8;
-}
-
-
-/* =====================================================
-   GŁÓWNA SEKCJA
-===================================================== */
-
-.regulamin-section {
-    position: relative;
-
-    display: block;
-
-    width: 100%;
-
-    padding: 65px 0 110px;
-
-    background: var(--rules-bg);
-
-    overflow: visible !important;
-}
-
-/*
-   Sticky musi mieć możliwość przesuwania się
-   w obrębie całego dokumentu.
-*/
-
-.regulamin-section > .container,
-.regulamin-layout,
-.regulamin-content {
-    overflow: visible !important;
-}
-
-.regulamin-layout {
-    display: grid !important;
-
-    grid-template-columns: 255px minmax(0, 1fr);
-
-    align-items: start !important;
-
-    gap: 35px;
-
-    max-width: 1200px;
-
-    margin: 0 auto;
-}
-
-
-/* =====================================================
-   SPIS TREŚCI
-===================================================== */
-
-.rules-sidebar {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-
-    top: 105px !important;
-
-    align-self: start !important;
-
-    width: 100%;
-
-    height: fit-content;
-
-    max-height: calc(100vh - 125px);
-
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    z-index: 100;
-
-    padding: 20px 16px;
-
-    background: linear-gradient(
-        160deg,
-        #151515,
-        #0e0e0e
-    );
-
-    border: 1px solid rgba(255,255,255,.09);
-
-    border-radius: 10px;
-
-    box-shadow: 0 12px 35px rgba(0,0,0,.2);
-
-    scrollbar-width: thin;
-
-    scrollbar-color: rgba(214,24,65,.5) transparent;
-}
-
-.rules-sidebar::-webkit-scrollbar {
-    width: 4px;
-}
-
-.rules-sidebar::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.rules-sidebar::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: rgba(214,24,65,.5);
-}
-
-
-/* TYTUŁ SPISU */
-
-.sidebar-title {
-    margin-bottom: 13px;
-
-    padding: 0 10px 13px;
-
-    border-bottom: 1px solid rgba(255,255,255,.07);
-
-    color: #aaa;
-
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1.7px;
-}
-
-
-/* LINKI SPISU */
-
-.section-link {
-    display: block;
-
-    padding: 12px 11px;
-
-    margin: 5px 0;
-
-    border: 1px solid transparent;
-    border-left: 2px solid transparent;
-
-    border-radius: 6px;
-
-    background: transparent;
-
-    color: #929292;
-
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.5;
-
-    text-decoration: none;
-
-    transition:
-        color .2s ease,
-        background .2s ease,
-        border-color .2s ease;
-}
-
-.section-link:hover {
-    color: #ffffff;
-}
-
-.section-link.active {
-    border-color: rgba(214,24,65,.16);
-    border-left-color: var(--rules-red-light);
-
-    background: rgba(214,24,65,.10);
-
-    color: #ffffff;
-}
-
-
-/* INFORMACJA POD SPISEM */
-
-.sidebar-note {
-    margin: 15px 7px 0;
-
-    padding: 14px 0 0;
-
-    border-top: 1px solid rgba(255,255,255,.07);
-
-    color: #777777;
-
-    font-size: 11px;
-    line-height: 1.8;
-}
-
-
-/* =====================================================
-   TREŚĆ REGULAMINU
-===================================================== */
-
-.regulamin-content {
-    display: flex !important;
-
-    flex-direction: column !important;
-
-    gap: 22px;
-
-    min-width: 0;
-}
-
-
-/* =====================================================
-   JEDNA RAMKA NA CAŁY ROZDZIAŁ
-===================================================== */
-
-.rule-section {
-    position: relative;
-
-    display: block;
-
-    width: 100%;
-    min-width: 0;
-
-    padding: 29px 32px;
-
-    margin: 0 !important;
-
-    border: 1px solid rgba(255,255,255,.09);
-
-    border-radius: 12px;
-
-    background: linear-gradient(
-        145deg,
-        #151515 0%,
-        #101010 100%
-    );
-
-    box-shadow: 0 12px 32px rgba(0,0,0,.16);
-
-    scroll-margin-top: 110px;
-}
-
-/* Czerwona linia dekoracyjna */
-
-.rule-section::before {
-    content: "";
-
-    position: absolute;
-
-    top: -1px;
-    left: 24px;
-
-    width: 65px;
-    height: 2px;
-
-    background: var(--rules-red);
-
-    border-radius: 10px;
-}
-
-/* Nie dodawaj osobnej ramki na ostatnim rozdziale */
-
-.rule-section:last-child {
-    margin-bottom: 0 !important;
-}
-
-
-/* =====================================================
-   NUMER ROZDZIAŁU
-===================================================== */
-
-.section-number {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-width: 37px;
-    height: 25px;
-
-    padding: 0 8px;
-
-    margin-bottom: 12px;
-
-    border: 1px solid rgba(214,24,65,.25);
-
-    border-radius: 5px;
-
-    background: rgba(214,24,65,.09);
-
-    color: var(--rules-red-light);
-
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-
-
-/* =====================================================
-   TYTUŁ ROZDZIAŁU
-===================================================== */
-
-.rule-section h2 {
-    margin: 0;
-
-    color: #ffffff;
-
-    font-size: 23px;
-    line-height: 1.35;
-
-    font-weight: 800;
-    letter-spacing: -.5px;
-}
-
-.section-intro {
-    margin: 10px 0 22px;
-
-    color: #858585;
-
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-
-/* =====================================================
-   PUNKTY REGULAMINU
-   Bez osobnych ramek i kart.
-===================================================== */
-
-.plain-rules {
-    display: block;
-
-    width: 100%;
-
-    padding: 0 !important;
-    margin: 0 !important;
-
-    list-style: none !important;
-    list-style-type: none !important;
-
-    color: #bcbcbc;
-}
-
-/* Pojedynczy punkt */
-
-.plain-rules > li {
-    position: relative;
-
-    display: grid !important;
-
-    grid-template-columns: 48px minmax(0, 1fr);
-
-    align-items: start;
-
-    gap: 12px;
-
-    width: 100%;
-
-    padding: 12px 0 !important;
-    margin: 0 !important;
-
-    border: 0 !important;
-    border-radius: 0 !important;
-
-    background: transparent !important;
-
-    box-shadow: none !important;
-
-    color: #bcbcbc;
-
-    font-size: 13px;
-    font-weight: 500;
-
-    line-height: 1.85;
-
-    list-style: none !important;
-}
-
-/* Wyłączenie domyślnego numerowania HTML */
-
-.plain-rules > li::marker {
-    content: "" !important;
-}
-
-/* Numer generowany w JavaScript */
-
-.plain-rules > li::before {
-    content: attr(data-rule-number) !important;
-
-    display: block;
-
-    padding-top: 2px;
-
-    color: #e04468;
-
-    font-size: 12px;
-    font-weight: 800;
-
-    letter-spacing: .3px;
-
-    line-height: 1.7;
-}
-
-
-/* =====================================================
-   LINKI
-===================================================== */
-
-.plain-rules a,
-.seller-details a {
-    color: #ef7894;
-
-    text-decoration: underline;
-
-    text-decoration-color: rgba(239,120,148,.35);
-
-    text-underline-offset: 3px;
-
-    transition: color .2s ease;
-}
-
-.plain-rules a:hover,
-.seller-details a:hover {
-    color: #ffffff;
-}
-
-
-/* =====================================================
-   DANE ADMINISTRATORA SKLEPU
-   Pozostają wewnątrz karty sklepu.
-===================================================== */
-
-.seller-details {
-    margin-top: 25px;
-
-    padding: 20px 0 0;
-
-    border: 0;
-
-    border-top: 1px solid rgba(255,255,255,.08);
-
-    background: transparent;
-}
-
-.seller-details h3 {
-    margin-bottom: 12px;
-
-    color: #ffffff;
-
-    font-size: 14px;
-    font-weight: 800;
-}
-
-.seller-details p {
-    margin: 5px 0;
-
-    color: #999999;
-
-    font-size: 12px;
-    line-height: 1.8;
-}
-
-.seller-details strong {
-    color: #dddddd;
-}
-
-
-/* =====================================================
-   PRZYCISK POWROTU NA GÓRĘ
-===================================================== */
-
-#topBtn {
-    position: fixed;
-
-    right: 25px;
-    bottom: 25px;
-
-    width: 50px;
-    height: 50px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-    visibility: hidden;
-
-    border: none;
-    border-radius: 50%;
-
-    background: var(--rules-red-dark);
-
-    color: #ffffff;
-
-    font-size: 20px;
-
-    cursor: pointer;
-
-    z-index: 5000;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,.4);
-
-    transition:
-        opacity .3s ease,
-        visibility .3s ease,
-        transform .3s ease,
-        background .3s ease;
-}
-
-#topBtn.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-#topBtn:hover {
-    background: var(--rules-red);
-
-    transform: scale(1.1);
-}
-
-
-/* =====================================================
-   TABLETY
-===================================================== */
-
-@media (max-width: 1000px) {
-
-    .regulamin-layout {
-        grid-template-columns: 225px minmax(0, 1fr);
-
-        gap: 24px;
-    }
-
-    .rule-section {
-        padding: 25px 23px;
-    }
-
-}
-
-
-/* =====================================================
-   TELEFONY
-===================================================== */
-
-@media (max-width: 800px) {
-
-    .regulamin-hero {
-        min-height: 50vh;
-
-        padding: 125px 20px 80px;
-    }
-
-    .regulamin-hero h1 {
-        font-size: 43px;
-    }
-
-    .regulamin-hero p {
-        font-size: 14px;
-    }
-
-    .regulamin-section {
-        padding: 35px 0 80px;
-    }
-
-    .regulamin-layout {
-        display: flex !important;
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 22px;
-    }
-
-    /*
-       Spis treści pozostaje przyklejony
-       również podczas przewijania telefonu.
-    */
-
-    .rules-sidebar {
-        position: -webkit-sticky !important;
-        position: sticky !important;
-
-        top: 88px !important;
-
-        align-self: stretch !important;
-
-        width: 100%;
-
-        max-height: min(38vh, 280px);
-
-        overflow-x: hidden;
-        overflow-y: auto;
-
-        padding: 14px;
-
-        background: rgba(17,17,17,.97);
-
-        border: 1px solid rgba(255,255,255,.09);
-
-        border-radius: 10px;
-
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
-    }
-
-    .sidebar-title {
-        padding-bottom: 11px;
-
-        margin-bottom: 7px;
-    }
-
-    .section-link {
-        padding: 10px;
-
-        margin: 2px 0;
-
-        font-size: 11px;
-    }
-
-    .sidebar-note {
-        display: none;
-    }
-
-    .regulamin-content {
-        gap: 18px;
-    }
-
-    .rule-section {
-        padding: 22px 19px;
-
-        scroll-margin-top: 105px;
-    }
-
-    .rule-section h2 {
-        font-size: 21px;
-    }
-
-    .section-intro {
-        margin-bottom: 18px;
-
-        font-size: 12px;
-    }
-
-    .plain-rules > li {
-        grid-template-columns: 42px minmax(0, 1fr);
-
-        gap: 9px;
-
-        padding: 11px 0 !important;
-
-        font-size: 12.5px;
-
-        line-height: 1.8;
-    }
-
-    .plain-rules > li::before {
-        font-size: 11px;
-    }
-
-    .seller-details {
-        padding-top: 17px;
-    }
-
-    #topBtn {
-        width: 45px;
-        height: 45px;
-
-        right: 18px;
-        bottom: 18px;
-    }
-
-}
-
-
-/* =====================================================
-   MAŁE TELEFONY
-===================================================== */
-
-@media (max-width: 400px) {
-
-    .regulamin-hero h1 {
-        font-size: 36px;
-    }
-
-    .regulamin-hero .hero-small-label {
-        font-size: 9px;
-
-        letter-spacing: 1.3px;
-    }
-
-    .rule-section {
-        padding: 20px 16px;
-    }
-
-    .rule-section h2 {
-        font-size: 19px;
-    }
-
-    .plain-rules > li {
-        grid-template-columns: 39px minmax(0, 1fr);
-
-        gap: 8px;
-
-        font-size: 12px;
-    }
-
-}
-
-
-/* =====================================================
-   MNIEJ ANIMACJI
-===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        transition-duration: .01ms !important;
-    }
-
-}
-
-.sklep-regulamin .container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.sklep-regulamin .regulamin-content {
-    width: 100%;
-    max-width: none;
-    flex: 1 1 100%;
-}
-
-/* =====================================================
-   WYŁĄCZENIE ANIMACJI WCHODZENIA
-===================================================== */
-
-.regulamin-hero,
-.regulamin-hero *,
-.regulamin-section,
-.regulamin-section *,
-.rules-sidebar,
-.rule-section,
-.rule-section * {
-    animation: none !important;
-    animation-delay: 0s !important;
-    transition: none !important;
-    transform: none;
-}
-
-/* Wyłączenie animacji pojawiania się z JS/CSS */
-
-.regulamin-hero,
-.regulamin-section,
-.rules-sidebar,
-.regulamin-content,
-.rule-section {
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Zachowanie efektu przewijania do sekcji */
-
-html {
-    scroll-behavior: smooth;
-}
-
-/* =====================================================
-   REGULAMIN — CAŁKOWITE WYŁĄCZENIE ANIMACJI WEJŚCIA
-   Zmiany dotyczą wyłącznie strony regulaminu.
-===================================================== */
-
-/* Wyłączenie animacji i przejść */
-.regulamin-hero,
-.regulamin-hero *,
-.regulamin-section,
-.regulamin-section *,
-.rules-sidebar,
-.rules-sidebar *,
-.rule-section,
-.rule-section * {
-    animation: none !important;
-    animation-delay: 0s !important;
-    transition: none !important;
-}
-
-/* Elementy nie mogą pozostać ukryte przez scroll-animation */
-.regulamin-hero .scroll-animation,
-.regulamin-hero .scroll-animation *,
-.regulamin-section .scroll-animation,
-.regulamin-section .scroll-animation *,
-.regulamin-hero .scroll-animation.visible,
-.regulamin-section .scroll-animation.visible {
-    opacity: 1 !important;
-    transform: none !important;
-    visibility: visible !important;
-}
-
-/* Wszystkie główne sekcje regulaminu są widoczne */
-.regulamin-hero,
-.regulamin-section,
-.rules-sidebar,
-.regulamin-content,
-.rule-section {
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Zachowanie płynnego przewijania do rozdziałów */
-html {
-    scroll-behavior: smooth;
-}
-
-/* =====================================================
-   POLSKIEMC.PL — WSPÓLNY WYGLĄD GÓRNEGO NAGŁÓWKA
-   SKLEP / REGULAMIN / REKRUTACJA
-===================================================== */
-
-/* Wysokość i położenie nagłówka */
-
-.shop-hero,
-.regulamin-hero,
-.rekrutacja-hero {
     min-height: 45vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 105px 20px 45px;
     text-align: center;
+    overflow: hidden;
+    background: #050505;
 }
 
-/* Zawartość */
+.regulamin-hero::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(185, 23, 58, .06);
+    filter: blur(90px);
+    pointer-events: none;
+}
+
+.regulamin-hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,.06);
+    pointer-events: none;
+}
+
+.regulamin-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.regulamin-hero h1 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(45px, 6vw, 72px);
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.regulamin-hero p {
+    max-width: 650px;
+    margin: 25px auto 0;
+    color: #929292;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* Wspólne style nagłówków podstron */
+.shop-hero,
+.regulamin-hero,
+.rekrutacja-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
 .shop-hero-content,
 .regulamin-hero-content,
@@ -986,8 +109,6 @@ html {
     max-width: 850px;
     margin: 0 auto;
 }
-
-/* Mała etykieta nad tytułem */
 
 .shop-small-label,
 .regulamin-hero .hero-small-label,
@@ -1006,28 +127,21 @@ html {
     letter-spacing: 2px;
 }
 
-/* Główny tytuł */
-
 .shop-hero h1,
 .regulamin-hero h1,
 .rekrutacja-hero h1 {
-    margin: 0;
     color: #fff;
-    font-size: clamp(45px,6vw,72px);
+    font-size: clamp(45px, 6vw, 72px);
     line-height: 1.05;
     font-weight: 800;
     letter-spacing: -2px;
 }
 
-/* Czerwony akcent */
-
 .shop-hero h1 span,
 .regulamin-hero h1 span,
 .rekrutacja-hero h1 span {
-    color: #d61841;
+    color: var(--rules-red);
 }
-
-/* Opis pod tytułem */
 
 .shop-hero p,
 .regulamin-hero p,
@@ -1036,97 +150,447 @@ html {
     margin: 25px auto 0;
     color: #929292;
     font-size: 15px;
-    font-weight: 400;
     line-height: 1.8;
 }
 
-/* TELEFONY */
+/* =====================================================
+   GŁÓWNA SEKCJA I UKŁAD
+===================================================== */
 
-@media (max-width: 800px) {
-    .shop-hero,
-    .regulamin-hero,
-    .rekrutacja-hero {
-        min-height: 40vh;
-        padding: 100px 20px 35px;
+.regulamin-section {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 65px 0 110px;
+    background: var(--rules-bg);
+    overflow: visible;
+}
+
+.regulamin-section > .container,
+.regulamin-layout,
+.regulamin-content {
+    overflow: visible;
+}
+
+.regulamin-layout {
+    display: grid;
+    grid-template-columns: 255px minmax(0, 1fr);
+    align-items: start;
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =====================================================
+   SPIS TREŚCI
+===================================================== */
+
+.rules-sidebar {
+    position: sticky;
+    top: 105px;
+    align-self: start;
+    width: 100%;
+    height: fit-content;
+    max-height: calc(100vh - 125px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 20px 16px;
+    background: linear-gradient(160deg, #151515, #0e0e0e);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 10px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.2);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(214,24,65,.5) transparent;
+}
+
+.rules-sidebar::-webkit-scrollbar { width: 4px; }
+.rules-sidebar::-webkit-scrollbar-track { background: transparent; }
+.rules-sidebar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(214,24,65,.5);
+}
+
+.sidebar-title {
+    margin-bottom: 13px;
+    padding: 0 10px 13px;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    color: #aaa;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.section-link {
+    display: block;
+    padding: 12px 11px;
+    margin: 5px 0;
+    border: 1px solid transparent;
+    border-left: 2px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    color: #929292;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.section-link:hover { color: #fff; }
+
+.section-link.active {
+    border-color: rgba(214,24,65,.16);
+    border-left-color: var(--rules-red-light);
+    background: rgba(214,24,65,.10);
+    color: #fff;
+}
+
+.sidebar-note {
+    margin: 15px 7px 0;
+    padding: 14px 0 0;
+    border-top: 1px solid rgba(255,255,255,.07);
+    color: #777;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* =====================================================
+   TREŚĆ ROZDZIAŁÓW
+===================================================== */
+
+.regulamin-content {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-width: 0;
+}
+
+.rule-section {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 29px 32px;
+    margin: 0;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 12px;
+    background: linear-gradient(145deg, #151515 0%, #101010 100%);
+    box-shadow: 0 12px 32px rgba(0,0,0,.16);
+    scroll-margin-top: 110px;
+}
+
+.rule-section::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 24px;
+    width: 65px;
+    height: 2px;
+    background: var(--rules-red);
+    border-radius: 10px;
+}
+
+.rule-section h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 23px;
+    line-height: 1.35;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 37px;
+    height: 25px;
+    padding: 0 8px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(214,24,65,.25);
+    border-radius: 5px;
+    background: rgba(214,24,65,.09);
+    color: var(--rules-red-light);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.section-intro {
+    margin: 10px 0 22px;
+    color: #858585;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.plain-rules {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    color: #bcbcbc;
+}
+
+.plain-rules > li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #bcbcbc;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.85;
+    list-style: none;
+}
+
+.plain-rules > li::marker { content: ""; }
+
+.plain-rules > li::before {
+    content: attr(data-rule-number);
+    display: block;
+    padding-top: 2px;
+    color: #e04468;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    line-height: 1.7;
+}
+
+.plain-rules a,
+.seller-details a {
+    color: #ef7894;
+    text-decoration: underline;
+    text-decoration-color: rgba(239,120,148,.35);
+    text-underline-offset: 3px;
+    transition: color .2s ease;
+}
+
+.plain-rules a:hover,
+.seller-details a:hover { color: #fff; }
+
+/* =====================================================
+   DANE ADMINISTRATORA SKLEPU
+===================================================== */
+
+.seller-details {
+    margin-top: 25px;
+    padding: 20px 0 0;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    background: transparent;
+}
+
+.seller-details h3 {
+    margin-bottom: 12px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.seller-details p {
+    margin: 5px 0;
+    color: #999;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.seller-details strong { color: #ddd; }
+
+/* =====================================================
+   PRZYCISK POWROTU NA GÓRĘ
+===================================================== */
+
+#topBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    border: 0;
+    border-radius: 50%;
+    background: var(--rules-red-dark);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 5000;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    transition: opacity .3s ease, visibility .3s ease, transform .3s ease, background .3s ease;
+}
+
+#topBtn.show { opacity: 1; visibility: visible; }
+#topBtn:hover { background: var(--rules-red); transform: scale(1.1); }
+
+/* =====================================================
+   TABLETY
+===================================================== */
+
+@media (max-width: 1000px) {
+    .regulamin-layout {
+        grid-template-columns: 225px minmax(0, 1fr);
+        gap: 24px;
     }
 
-    .shop-hero h1,
-    .regulamin-hero h1,
-    .rekrutacja-hero h1 {
+    .rule-section { padding: 25px 23px; }
+}
+
+/* =====================================================
+   TELEFONY — navbar ukryty, zawartość przesunięta wyżej
+===================================================== */
+
+@media (max-width: 800px) {
+    /* Usunięcie całego górnego paska, w tym logo. */
+    .navbar,
+    .navbar .nav-container,
+    .navbar .logo {
+        display: none !important;
+    }
+
+    /* Nie zostawiaj miejsca na nieistniejący navbar. */
+    html { scroll-padding-top: 22px; }
+
+    .regulamin-hero {
+        min-height: 0;
+        padding: 35px 20px 35px;
+    }
+
+    .regulamin-hero h1 {
         font-size: 43px;
         letter-spacing: -1px;
     }
 
-    .shop-hero p,
-    .regulamin-hero p,
-    .rekrutacja-hero p {
-        font-size: 14px;
+    .regulamin-hero p { font-size: 14px; }
+
+    .regulamin-section { padding: 25px 0 80px; }
+
+    .regulamin-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    /* Spis przykleja się blisko górnej krawędzi ekranu. */
+    .rules-sidebar {
+        position: sticky;
+        top: 12px;
+        align-self: stretch;
+        width: 100%;
+        max-height: min(38vh, 280px);
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 14px;
+        background: rgba(17,17,17,.97);
+        border: 1px solid rgba(255,255,255,.09);
+        border-radius: 10px;
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+    }
+
+    .sidebar-title {
+        padding-bottom: 11px;
+        margin-bottom: 7px;
+    }
+
+    .section-link {
+        padding: 10px;
+        margin: 2px 0;
+        font-size: 11px;
+    }
+
+    .sidebar-note { display: none; }
+    .regulamin-content { gap: 18px; }
+
+    .rule-section {
+        padding: 22px 19px;
+        scroll-margin-top: 20px;
+    }
+
+    .rule-section h2 { font-size: 21px; }
+    .section-intro { margin-bottom: 18px; font-size: 12px; }
+
+    .plain-rules > li {
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 9px;
+        padding: 11px 0;
+        font-size: 12.5px;
+        line-height: 1.8;
+    }
+
+    .plain-rules > li::before { font-size: 11px; }
+    .seller-details { padding-top: 17px; }
+
+    #topBtn {
+        width: 45px;
+        height: 45px;
+        right: 18px;
+        bottom: calc(110px + env(safe-area-inset-bottom));
     }
 }
 
-/* MAŁE TELEFONY */
+/* Małe telefony — jeszcze ciaśniej u góry, jak na stronie głównej. */
+@media (max-width: 550px) {
+    .regulamin-hero { padding-top: 25px; padding-bottom: 30px; }
+    .regulamin-hero h1 { font-size: 36px; }
 
-@media (max-width: 600px) {
-    .shop-hero h1,
-    .regulamin-hero h1,
-    .rekrutacja-hero h1 {
-        font-size: 36px;
+    .regulamin-hero p {
+        margin-top: 16px;
+        font-size: 13px;
     }
 
-    .shop-small-label,
-    .regulamin-hero .hero-small-label,
-    .rekrutacja-hero .hero-small-label {
+    .rule-section { padding: 20px 16px; }
+    .rule-section h2 { font-size: 19px; }
+
+    .plain-rules > li {
+        grid-template-columns: 39px minmax(0, 1fr);
+        gap: 8px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .regulamin-hero h1 { font-size: 34px; }
+
+    .regulamin-hero .hero-small-label {
         font-size: 9px;
         letter-spacing: 1.3px;
     }
+}
 
-    .shop-hero p,
-    .regulamin-hero p,
-    .rekrutacja-hero p {
-        font-size: 13px;
+/* Nie wyłączamy animacji Liquid Glass ze style-index.css. */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
     }
 }
 
-/* Przycisk "↑" nad dolnym paskiem liquid glass */
-@media (max-width: 800px) {
-    #topBtn {
-        bottom: calc(110px + env(safe-area-inset-bottom)) !important;
-    }
+/* Zachowanie pełnej szerokości treści w wariancie sklepowym, jeżeli jest używany. */
+.sklep-regulamin .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* =====================================================
-   POLSKIEMC.PL — CENTROWANIE LOGO NA TELEFONACH
-===================================================== */
-
-@media screen and (max-width: 800px) {
-
-    .navbar {
-        position: relative !important;
-    }
-
-    .navbar .nav-container {
-        position: static !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-
-    .navbar .nav-container > .logo {
-        position: fixed !important;
-        top: 18px !important;
-        left: 50vw !important;
-        right: auto !important;
-        margin: 0 !important;
-        transform: translateX(-50%) !important;
-        z-index: 10001 !important;
-    }
-
-    .navbar .nav-container > .logo img {
-        display: block !important;
-        margin: 0 auto !important;
-    }
-   .navbar {
-    display: none !important;
-}
+.sklep-regulamin .regulamin-content {
+    width: 100%;
+    max-width: none;
+    flex: 1 1 100%;
 }
