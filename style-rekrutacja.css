@@ -1301,17 +1301,35 @@ a {
 }
 
 /* =====================================================
-   LOGO — WYŚRODKOWANIE NA TELEFONACH
+   POLSKIEMC.PL — CENTROWANIE LOGO NA TELEFONACH
 ===================================================== */
-@media (max-width: 800px) {
-    .nav-container {
-        position: relative;
-        justify-content: center;
+
+@media screen and (max-width: 800px) {
+
+    .navbar {
+        position: relative !important;
     }
 
-    .logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+    .navbar .nav-container {
+        position: static !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .navbar .nav-container > .logo {
+        position: fixed !important;
+        top: 18px !important;
+        left: 50vw !important;
+        right: auto !important;
+        margin: 0 !important;
+        transform: translateX(-50%) !important;
+        z-index: 10001 !important;
+    }
+
+    .navbar .nav-container > .logo img {
+        display: block !important;
+        margin: 0 auto !important;
     }
 }
