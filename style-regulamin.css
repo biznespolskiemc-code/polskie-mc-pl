@@ -1126,4 +1126,7 @@ html {
         display: block !important;
         margin: 0 auto !important;
     }
+   .navbar {
+    display: none !important;
+}
 }
