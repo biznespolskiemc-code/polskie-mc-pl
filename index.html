@@ -746,6 +746,137 @@ animatedElements.forEach(
     }
 );
 
+/* =====================================================
+   LIQUID GLASS — DRAG NAVIGATION
+===================================================== */
+
+const glassNav = document.getElementById("mobileGlassNav");
+const glassIndicator = document.getElementById("glassIndicator");
+
+const glassItems = [...document.querySelectorAll(".glass-item")];
+
+let glassActiveIndex = 0;
+let glassDragging = false;
+
+function moveGlassIndicator(index, animate = true) {
+
+    glassActiveIndex = Math.max(
+        0,
+        Math.min(index, glassItems.length - 1)
+    );
+
+    const itemWidth = glassNav.clientWidth / glassItems.length;
+
+    glassIndicator.style.transition = animate
+        ? "transform .35s cubic-bezier(.2,.8,.2,1)"
+        : "none";
+
+    glassIndicator.style.transform =
+        `translateX(${glassActiveIndex * itemWidth}px)`;
+
+    glassItems.forEach((item, i) => {
+
+        item.classList.toggle(
+            "active",
+            i === glassActiveIndex
+        );
+
+    });
+
+}
+
+function getGlassIndex(clientX) {
+
+    const rect = glassNav.getBoundingClientRect();
+
+    const x = clientX - rect.left;
+
+    const itemWidth = rect.width / glassItems.length;
+
+    return Math.max(
+        0,
+        Math.min(
+            glassItems.length - 1,
+            Math.floor(x / itemWidth)
+        )
+    );
+
+}
+
+/* Kliknięcie */
+
+glassItems.forEach((item, index) => {
+
+    item.addEventListener("click", () => {
+
+        moveGlassIndicator(index);
+
+    });
+
+});
+
+/* Przeciąganie */
+
+glassNav.addEventListener("pointerdown", event => {
+
+    if (event.pointerType === "mouse" && event.button !== 0) {
+        return;
+    }
+
+    glassDragging = true;
+
+    glassNav.setPointerCapture(event.pointerId);
+
+    moveGlassIndicator(
+        getGlassIndex(event.clientX),
+        false
+    );
+
+});
+
+glassNav.addEventListener("pointermove", event => {
+
+    if (!glassDragging) return;
+
+    moveGlassIndicator(
+        getGlassIndex(event.clientX),
+        false
+    );
+
+});
+
+glassNav.addEventListener("pointerup", () => {
+
+    if (!glassDragging) return;
+
+    glassDragging = false;
+
+    moveGlassIndicator(glassActiveIndex);
+
+});
+
+glassNav.addEventListener("pointercancel", () => {
+
+    glassDragging = false;
+
+    moveGlassIndicator(glassActiveIndex);
+
+});
+
+/* Początkowe ustawienie */
+
+window.addEventListener("load", () => {
+
+    moveGlassIndicator(0, false);
+
+});
+
+window.addEventListener("resize", () => {
+
+    moveGlassIndicator(glassActiveIndex, false);
+
+});
+
 </script>
 
 
