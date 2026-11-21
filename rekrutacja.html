@@ -504,10 +504,6 @@
 </footer>
 
 
-<!-- TOP BUTTON -->
-<button id="topBtn" aria-label="Wróć na górę">↑</button>
-
-
 <!-- DOLNA NAWIGACJA MOBILE — LIQUID GLASS -->
 <nav class="mobile-glass-nav" id="mobileGlassNav" aria-label="Nawigacja mobilna">
 
@@ -554,20 +550,6 @@ const EMAILJS_SERVICE_ID = "service_5dshk1l";
 const EMAILJS_TEMPLATE_ID = "template_wrdlyjj";
 
 emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-
-
-/* =====================================================
-   TOP BUTTON
-===================================================== */
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-    topBtn.classList.toggle("show", window.scrollY > 500);
-}, { passive: true });
-
-topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
 
 
 /* =====================================================
