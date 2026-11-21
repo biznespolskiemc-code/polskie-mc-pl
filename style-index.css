@@ -580,22 +580,28 @@ footer p { color: #666; font-size: 13px; }
     }
 }
 
+/* =====================================================
+   MOBILE — PRZESUNIĘCIE HERO W GÓRĘ
+===================================================== */
 @media (max-width: 800px) {
     .hero {
-        min-height: auto !important;
+        display: block !important;
+        min-height: 100svh !important;
         height: auto !important;
         padding-top: 0 !important;
-        margin-top: 0 !important;
     }
 
     .hero-container {
-        padding-top: 20px !important;
+        position: relative !important;
+        top: -65px !important;
+        padding-top: 0 !important;
+        padding-bottom: 40px !important;
         margin-top: 0 !important;
     }
 }
 
 @media (max-width: 550px) {
     .hero-container {
-        padding-top: 15px !important;
+        top: -75px !important;
     }
 }
