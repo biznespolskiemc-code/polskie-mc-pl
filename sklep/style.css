@@ -2063,3 +2063,19 @@ body {
     content: none !important;
     display: none !important;
 }
+
+/* =====================================================
+   LOGO — WYŚRODKOWANIE NA TELEFONACH
+===================================================== */
+@media (max-width: 800px) {
+    .nav-container {
+        position: relative;
+        justify-content: center;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
