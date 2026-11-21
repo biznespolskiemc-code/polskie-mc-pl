@@ -1050,54 +1050,41 @@ body {
 }
 
 /* =====================================================
-   POLSKIEMC.PL — MOBILE HERO
-   Ukrycie navbaru + 60px odstępu od góry
+   TWÓRCA — POPRAWIONE POŁOŻENIE MOBILE HERO
 ===================================================== */
 
 @media (max-width: 800px), (hover: none) and (pointer: coarse) {
 
-    /* Całkowite ukrycie górnej nawigacji wraz z logo */
     .navbar {
         display: none !important;
-        visibility: hidden !important;
     }
 
-    /* HERO */
     .creator-hero {
         display: flex !important;
         align-items: flex-start !important;
-
         min-height: 100svh !important;
         height: auto !important;
-
         padding-top: 0 !important;
     }
 
-    /* Zawartość HERO — dokładnie 60px od góry */
     .creator-hero .hero-container {
         position: relative !important;
-
         top: 0 !important;
-
         width: 92% !important;
-
         margin: 0 auto !important;
-
-        padding: 60px 0 40px !important;
-
+        padding: 130px 0 40px !important;
         text-align: center !important;
     }
 
     .creator-hero .hero-text {
-        width: 100%;
         max-width: 760px;
+        width: 100%;
         margin: 0 auto !important;
     }
 
-    .creator-hero .hero-label,
-    .creator-hero .creator-hero-label {
-        margin-left: auto;
-        margin-right: auto;
+    .creator-hero-label {
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     .creator-hero .hero-description {
@@ -1110,10 +1097,8 @@ body {
     }
 }
 
-/* Dostosowanie małych telefonów */
 @media (max-width: 550px) {
     .creator-hero .hero-container {
-        padding-top: 60px !important;
-        padding-bottom: 40px !important;
+        padding-top: 130px !important;
     }
 }
