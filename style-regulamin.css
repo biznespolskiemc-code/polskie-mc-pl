@@ -1086,3 +1086,10 @@ html {
         font-size: 13px;
     }
 }
+
+/* Przycisk "↑" nad dolnym paskiem liquid glass */
+@media (max-width: 800px) {
+    #topBtn {
+        bottom: calc(110px + env(safe-area-inset-bottom)) !important;
+    }
+}
