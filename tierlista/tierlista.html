@@ -1,19 +1,25 @@
 
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#090909">
 
     <title>POLSKIEMC.PL | Tierlista</title>
-    <meta name="description" content="Sprawdź ranking TOP 100 graczy POLSKIEMC.PL. Zobacz najlepszych graczy naszej sieci!">
 
-    <link rel="icon" type="image/png" href="../images/polskiemc.png">
+    <meta
+        name="description"
+        content="Tierlista POLSKIEMC.PL — sprawdź rankingi graczy Minecraft w różnych trybach PvP."
+    >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="../style-index.css">
     <link rel="stylesheet" href="style-tierlista.css">
@@ -21,511 +27,690 @@
 
 <body>
 
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="../index.html" class="logo">
-            <img src="../images/polskiemc.png" alt="POLSKIEMC.PL">
-        </a>
+    <!-- NAWIGACJA -->
+    <nav class="navbar">
+        <div class="nav-container">
 
-        <div class="hamburger" id="hamburger" aria-label="Otwórz menu" role="button" tabindex="0" aria-expanded="false">
-            <span></span><span></span><span></span>
+            <a href="../index.html" class="logo">
+                POLSKIE<span>MC</span>.PL
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Otwórz menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../index.html">Strona główna</a>
+                <a href="../regulamin/regulamin.html">Regulamin</a>
+                <a href="tierlista.html" class="active">Tierlista</a>
+                <a href="https://mapa.polskiemc.pl" target="_blank" rel="noopener">Mapa</a>
+                <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener">Discord</a>
+                <a href="../sklep/sklep.html" class="nav-shop">Sklep</a>
+            </div>
+
         </div>
+    </nav>
 
-        <div class="menu" id="menu">
-            <a href="../index">Strona główna</a>
-            <a href="../sklep/sklep">Sklep</a>
-            <a href="../regulamin">Regulamin</a>
-            <a href="../rekrutacja">Rekrutacja</a>
-            <a href="../tworca">Zostań twórcą</a>
-            <a href="tierlista" class="active">Tierlista</a>
-        </div>
-    </div>
-</nav>
+    <main>
 
-<header class="tier-hero">
-    <div class="tier-hero-content">
+        <!-- NAGŁÓWEK -->
+        <section class="tier-hero">
 
-        <h1>TIERLISTA</h1>
+            <div class="tier-hero-content">
+                <span class="tier-label">POLSKIEMC.PL</span>
 
-        <p>
-            Lista najlepszych graczy serwera, którzy
-            się zrekrutowali do listy!
-        </p>
-    </div>
-</header>
+                <h1>TIERLISTA</h1>
 
-<main class="tier-section" id="ranking">
-    <div class="tier-container">
+                <p>
+                    Sprawdź najlepszych graczy i ich poziom umiejętności
+                    w poszczególnych trybach PvP.
+                </p>
 
-        <!-- RANKING -->
-
-        <section class="tier-panel tier-ranking-panel">
-
-            <div class="tier-section-heading">
-                <div>
-                    <h2>TIERLISTA</h2>
-                </div>
-            </div>
-
-            <!-- WYSZUKIWARKA -->
-
-            <div class="tier-toolbar">
-                <div class="tier-search">
-                    <span class="tier-search-icon">⌕</span>
-                    <input
-                        type="search"
-                        id="playerSearch"
-                        placeholder="Wyszukaj nick gracza..."
-                        autocomplete="off"
-                        aria-label="Wyszukaj gracza"
-                    >
-                </div>
-
-                <div class="tier-sort">
-                    <label for="sortPlayers">SORTUJ:</label>
-                    <select id="sortPlayers">
-                        <option value="desc">Najwięcej punktów</option>
-                        <option value="asc">Najmniej punktów</option>
-                        <option value="name">Alfabetycznie</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- TABELA -->
-
-            <div class="tier-table-wrap">
-                <table class="tier-table">
-                    <thead>
-                        <tr>
-                            <th class="tier-position-column">MIEJSCE</th>
-                            <th>GRACZ</th>
-                            <th class="tier-points-column">PUNKTY</th>
-                            <th class="tier-level-column">POZIOM</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="rankingBody">
-                        <tr>
-                            <td colspan="4" class="tier-loading">
-                                Ładowanie rankingu...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- BRAK WYNIKÓW -->
-
-            <div id="noPlayers" class="tier-empty" hidden>
-                <span>⌕</span>
-                <strong>Nie znaleziono gracza</strong>
-                <p>Spróbuj wyszukać inny nick.</p>
-            </div>
-
-            <!-- PAGINACJA -->
-
-            <div class="tier-pagination">
-                <button id="previousPage" class="tier-page-button" type="button">
-                    ← POPRZEDNIA
-                </button>
-
-                <div id="pageNumbers" class="tier-page-numbers"></div>
-
-                <button id="nextPage" class="tier-page-button" type="button">
-                    NASTĘPNA →
-                </button>
-            </div>
-
-            <div class="tier-page-info" id="pageInfo">
-                Wyświetlanie graczy 1–20 z 100
+                <div class="tier-hero-line"></div>
             </div>
 
         </section>
 
-        <!-- INFORMACJA -->
+        <!-- RANKING -->
+        <section class="tier-section">
 
-        <div class="tier-disclaimer">
-            <span>ⓘ</span>
-            Ranking zawiera obecnie przykładowe, losowo wygenerowane dane.
-            Statystyki zostaną podłączone do serwera w przyszłości.
-        </div>
+            <div class="tier-panel tier-ranking-panel">
 
-    </div>
-</main>
+                <div class="tier-panel-header">
+                    <div>
+                        <span class="section-eyebrow">RANKING GRACZY</span>
+                        <h2 id="rankingTitle">GŁÓWNE</h2>
+                        <p id="rankingDescription">
+                            Łączna liczba punktów ze wszystkich trybów.
+                        </p>
+                    </div>
 
-<footer>
-    <div class="container footer-container">
-
-        <div class="footer-buttons footer-left">
-            <a href="https://www.youtube.com/@p0lak-official1" target="_blank" rel="noopener noreferrer" class="footer-button youtube-button">
-                <span>▶</span> YOUTUBE
-            </a>
-
-            <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener noreferrer" class="footer-button discord-footer-button">
-                <span>◉</span> DISCORD
-            </a>
-        </div>
-
-        <div class="footer-center">
-            <div class="footer-logo"><span>POLSKIE</span>MC.PL</div>
-            <p>© 2026 POLSKIEMC.PL — Wszelkie prawa zastrzeżone</p>
-            <div class="footer-note">
-                Serwer POLSKIEMC.PL nie jest w żaden sposób powiązany
-                z firmą Mojang Studios oraz Microsoft Studios.
-            </div>
-        </div>
-
-        <div class="footer-buttons footer-right">
-            <a href="https://www.tiktok.com/@p0lak_yt" target="_blank" rel="noopener noreferrer" class="footer-button tiktok-button">
-                <span>♪</span> TIKTOK
-            </a>
-
-            <a href="https://mapa.polskiemc.pl" target="_blank" rel="noopener noreferrer" class="footer-button map-footer-button">
-                <span>🌍</span> MAPA EARTH
-            </a>
-        </div>
-
-    </div>
-</footer>
-
-<button id="topBtn" aria-label="Wróć na górę">↑</button>
-
-<script>
-/* =====================================================
-   TOP 100 — DANE DEMONSTRACYJNE
-===================================================== */
-
-const prefixes = [
-    "Dark", "Pro", "Xx", "Mega", "Super", "Real", "Mr",
-    "Its", "The", "Pol", "Crazy", "Ultra", "Epic",
-    "Shadow", "King", "Lord", "Best", "Fast", "Fire",
-    "Ice", "Lucky", "Golden", "Silent", "Toxic"
-];
-
-const suffixes = [
-    "Player", "Craft", "Gamer", "Miner", "Warrior",
-    "PvP", "Dragon", "Wolf", "Tiger", "Master",
-    "Legend", "Hunter", "Steve", "Knight", "Pixel",
-    "Block", "Ender", "Mace", "Pro", "Polak"
-];
-
-const players = [];
-const usedNames = new Set();
-
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-while (players.length < 100) {
-    const prefix = prefixes[randomNumber(0, prefixes.length - 1)];
-    const suffix = suffixes[randomNumber(0, suffixes.length - 1)];
-    const nick = prefix + suffix + randomNumber(1, 999);
-
-    if (usedNames.has(nick)) continue;
-
-    usedNames.add(nick);
-
-    players.push({
-        name: nick,
-        points: randomNumber(100, 50000)
-    });
-}
-
-/* Najwięcej punktów = pierwsze miejsce */
-
-players.sort((a, b) => b.points - a.points);
-
-/* =====================================================
-   ELEMENTY HTML
-===================================================== */
-
-const rankingBody = document.getElementById("rankingBody");
-const podium = document.getElementById("podium");
-const playerSearch = document.getElementById("playerSearch");
-const sortPlayers = document.getElementById("sortPlayers");
-const pageNumbers = document.getElementById("pageNumbers");
-const previousPage = document.getElementById("previousPage");
-const nextPage = document.getElementById("nextPage");
-const noPlayers = document.getElementById("noPlayers");
-
-const playersPerPage = 20;
-
-let currentPage = 1;
-let filteredPlayers = [...players];
-
-/* =====================================================
-   FORMATOWANIE
-===================================================== */
-
-function formatPoints(points) {
-    return points.toLocaleString("pl-PL");
-}
-
-function getLevel(points) {
-    if (points >= 40000) return "LEGEND";
-    if (points >= 30000) return "MASTER";
-    if (points >= 20000) return "DIAMOND";
-    if (points >= 10000) return "GOLD";
-    if (points >= 5000) return "SILVER";
-    return "BRONZE";
-}
-
-function getAvatar(name) {
-    return `
-        <div class="tier-avatar">
-            <img
-                src="https://mc-heads.net/avatar/${encodeURIComponent(name)}/64"
-                alt="Skin gracza ${name}"
-                loading="lazy"
-                onerror="this.style.display='none'; this.parentElement.classList.add('tier-avatar-fallback')"
-            >
-        </div>
-    `;
-}
-
-/* =====================================================
-   STATYSTYKI
-===================================================== */
-
-document.getElementById("totalPlayers").textContent = players.length;
-document.getElementById("leaderName").textContent = players[0].name;
-document.getElementById("leaderPoints").textContent =
-    formatPoints(players[0].points);
-
-/* =====================================================
-   PODIUM
-===================================================== */
-
-function renderPodium() {
-    const top3 = players.slice(0, 3);
-
-    const podiumOrder = [
-        { player: top3[1], position: 2 },
-        { player: top3[0], position: 1 },
-        { player: top3[2], position: 3 }
-    ];
-
-    podium.innerHTML = podiumOrder.map(item => {
-        const player = item.player;
-        const position = item.position;
-
-        return `
-            <div class="tier-podium-card tier-podium-${position}">
-                <div class="tier-podium-place">
-                    ${position === 1 ? "♛" : position === 2 ? "Ⅱ" : "Ⅲ"}
+                    <div class="ranking-count">
+                        <span id="totalPlayers">0</span>
+                        <small>GRACZY</small>
+                    </div>
                 </div>
 
-                ${getAvatar(player.name)}
+                <!-- KATEGORIE -->
+                <div class="category-wrapper">
 
-                <span class="tier-podium-position">
-                    ${position === 1 ? "PIERWSZE MIEJSCE" :
-                      position === 2 ? "DRUGIE MIEJSCE" :
-                      "TRZECIE MIEJSCE"}
-                </span>
+                    <div class="category-heading">
+                        <span>KATEGORIE</span>
+                        <span>WYBIERZ TRYB</span>
+                    </div>
 
-                <strong class="tier-podium-name">${player.name}</strong>
+                    <div class="category-buttons" id="categoryButtons">
 
-                <span class="tier-podium-points">
-                    ${formatPoints(player.points)} <small>PKT</small>
-                </span>
+                        <button class="category-btn active" data-category="main">
+                            <span class="category-icon">★</span>
+                            GŁÓWNE
+                        </button>
+
+                        <button class="category-btn" data-category="mace">Mace</button>
+                        <button class="category-btn" data-category="breach-swap">Breach Swap</button>
+                        <button class="category-btn" data-category="rocket-mace">Rocket Mace</button>
+                        <button class="category-btn" data-category="spear-mace">Spear Mace</button>
+                        <button class="category-btn" data-category="sword">Sword</button>
+                        <button class="category-btn" data-category="axe">Axe</button>
+                        <button class="category-btn" data-category="uhc">UHC</button>
+                        <button class="category-btn" data-category="pot">Pot</button>
+                        <button class="category-btn" data-category="crystal">Crystal</button>
+                        <button class="category-btn" data-category="minecart">Minecart</button>
+                        <button class="category-btn" data-category="diamond-smp">Diamond SMP</button>
+
+                    </div>
+
+                </div>
+
+                <!-- WYSZUKIWANIE I SORTOWANIE -->
+                <div class="tier-toolbar">
+
+                    <div class="search-box">
+                        <span class="search-icon">⌕</span>
+
+                        <input
+                            type="text"
+                            id="playerSearch"
+                            placeholder="Wyszukaj gracza..."
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <div class="sort-box">
+                        <label for="sortPlayers">Sortowanie:</label>
+
+                        <select id="sortPlayers">
+                            <option value="desc">Najwięcej punktów</option>
+                            <option value="asc">Najmniej punktów</option>
+                            <option value="name">Nazwa gracza</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- TABELA -->
+                <div class="tier-table-wrapper">
+
+                    <table class="tier-table">
+
+                        <thead>
+                            <tr>
+                                <th class="position-column">MIEJSCE</th>
+                                <th>GRACZ</th>
+                                <th>PUNKTY</th>
+                                <th id="tierColumnHeading">AKTYWNE TRYBY</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="rankingBody"></tbody>
+
+                    </table>
+
+                    <div class="no-players" id="noPlayers" hidden>
+                        <span>⌕</span>
+                        <h3>Nie znaleziono graczy</h3>
+                        <p>Spróbuj zmienić wyszukiwaną frazę.</p>
+                    </div>
+
+                </div>
+
+                <!-- PAGINACJA -->
+                <div class="tier-pagination" id="pagination">
+
+                    <button id="previousPage" class="page-arrow" aria-label="Poprzednia strona">
+                        ‹
+                    </button>
+
+                    <div class="page-numbers" id="pageNumbers"></div>
+
+                    <button id="nextPage" class="page-arrow" aria-label="Następna strona">
+                        ›
+                    </button>
+
+                    <span class="page-info" id="pageInfo">Strona 1 z 1</span>
+
+                </div>
+
+                <!-- INFORMACJE -->
+                <div class="tier-disclaimer">
+                    <span class="disclaimer-icon">ⓘ</span>
+
+                    <p>
+                        Punkty przyznawane są na podstawie osiągniętego tieru.
+                        Ranking GŁÓWNY sumuje punkty ze wszystkich kategorii.
+                    </p>
+                </div>
+
             </div>
-        `;
-    }).join("");
-}
 
-/* =====================================================
-   FILTROWANIE I SORTOWANIE
-===================================================== */
+        </section>
 
-function updatePlayers() {
-    const search = playerSearch.value.trim().toLowerCase();
+    </main>
 
-    filteredPlayers = players.filter(player =>
-        player.name.toLowerCase().includes(search)
-    );
+    <!-- STOPKA -->
+    <footer class="footer">
+        <div class="footer-content">
 
-    const sort = sortPlayers.value;
+            <div class="footer-brand">
+                <a href="../index.html" class="logo">
+                    POLSKIE<span>MC</span>.PL
+                </a>
 
-    if (sort === "desc") {
-        filteredPlayers.sort((a, b) => b.points - a.points);
-    } else if (sort === "asc") {
-        filteredPlayers.sort((a, b) => a.points - b.points);
-    } else if (sort === "name") {
-        filteredPlayers.sort((a, b) =>
-            a.name.localeCompare(b.name)
-        );
-    }
+                <p>Profesjonalność to nasza podstawa!</p>
+            </div>
 
-    currentPage = 1;
-    renderRanking();
-}
+            <div class="footer-links">
+                <a href="../index.html">Strona główna</a>
+                <a href="../regulamin/regulamin.html">Regulamin</a>
+                <a href="tierlista.html">Tierlista</a>
+                <a href="../sklep/sklep.html">Sklep</a>
+                <a href="https://dc.gg/polskiemc" target="_blank" rel="noopener">Discord</a>
+            </div>
 
-/* =====================================================
-   RENDEROWANIE RANKINGU
-===================================================== */
+        </div>
 
-function renderRanking() {
-    const totalPages = Math.ceil(filteredPlayers.length / playersPerPage);
-    const start = (currentPage - 1) * playersPerPage;
-    const visiblePlayers = filteredPlayers.slice(start, start + playersPerPage);
+        <div class="footer-bottom">
+            <p>© 2026 POLSKIEMC.PL. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
 
-    rankingBody.innerHTML = "";
+    <button id="topBtn" class="top-btn" aria-label="Wróć na górę">
+        ↑
+    </button>
 
-    noPlayers.hidden = filteredPlayers.length !== 0;
+    <script>
+        /* =====================================================
+           POLSKIEMC.PL — TIERLISTA
+        ===================================================== */
 
-    if (visiblePlayers.length === 0) {
-        rankingBody.innerHTML = "";
-    } else {
-        rankingBody.innerHTML = visiblePlayers.map((player, index) => {
-            const globalPosition = start + index + 1;
+        const categories = [
+            { id: "mace", name: "Mace" },
+            { id: "breach-swap", name: "Breach Swap" },
+            { id: "rocket-mace", name: "Rocket Mace" },
+            { id: "spear-mace", name: "Spear Mace" },
+            { id: "sword", name: "Sword" },
+            { id: "axe", name: "Axe" },
+            { id: "uhc", name: "UHC" },
+            { id: "pot", name: "Pot" },
+            { id: "crystal", name: "Crystal" },
+            { id: "minecart", name: "Minecart" },
+            { id: "diamond-smp", name: "Diamond SMP" }
+        ];
 
-            let positionClass = "";
-            let positionContent = globalPosition;
+        const tiers = [
+            { name: "LT6", points: 1 },
+            { name: "HT6", points: 2 },
+            { name: "LT5", points: 3 },
+            { name: "HT5", points: 4 },
+            { name: "LT4", points: 5 },
+            { name: "HT4", points: 6 },
+            { name: "LT3", points: 7 },
+            { name: "HT3", points: 8 },
+            { name: "LT2", points: 9 },
+            { name: "HT2", points: 10 },
+            { name: "LT1", points: 11 },
+            { name: "HT1", points: 12 }
+        ];
 
-            if (sortPlayers.value === "desc" && !playerSearch.value.trim()) {
-                if (globalPosition === 1) {
-                    positionClass = "tier-position-gold";
-                    positionContent = "♛ 1";
-                } else if (globalPosition === 2) {
-                    positionClass = "tier-position-silver";
-                    positionContent = "Ⅱ 2";
-                } else if (globalPosition === 3) {
-                    positionClass = "tier-position-bronze";
-                    positionContent = "Ⅲ 3";
+        const playersPerPage = 20;
+
+        let selectedCategory = "main";
+        let currentPage = 1;
+
+        const rankingBody = document.getElementById("rankingBody");
+        const playerSearch = document.getElementById("playerSearch");
+        const sortPlayers = document.getElementById("sortPlayers");
+
+        const totalPlayers = document.getElementById("totalPlayers");
+        const rankingTitle = document.getElementById("rankingTitle");
+        const rankingDescription = document.getElementById("rankingDescription");
+        const tierColumnHeading = document.getElementById("tierColumnHeading");
+
+        const noPlayers = document.getElementById("noPlayers");
+        const previousPage = document.getElementById("previousPage");
+        const nextPage = document.getElementById("nextPage");
+        const pageNumbers = document.getElementById("pageNumbers");
+        const pageInfo = document.getElementById("pageInfo");
+
+        /* =====================================================
+           PRZYKŁADOWE DANE
+
+           W tym miejscu możesz później podmienić dane na
+           prawdziwe dane pobierane z API lub bazy danych.
+        ===================================================== */
+
+        const exampleNames = [
+            "P0lak", "Notch", "Dream", "Technoblade", "Fruitberries",
+            "Sapnap", "ClownPierce", "Purpled", "Astel", "Rekrap2",
+            "Krytyczny", "EnderMan", "PvP_Master", "xNinja", "Koxu",
+            "Steve", "Alex", "Herobrine", "Shadow", "Blaze",
+            "Dragon", "Frost", "Legend", "Warrior", "Hunter",
+            "PolskiGracz", "MistrzPvP", "Netherite", "CrystalKing",
+            "MaceGod", "SwordMain", "AxePlayer", "Void", "Storm",
+            "Darkness", "Lightning", "Phantom", "Gladiator",
+            "Destroyer", "Champion", "Titan", "Reaper", "Vortex",
+            "Inferno", "Sniper", "Ravager", "Warden", "Wither",
+            "EnderKing", "PvPPro"
+        ];
+
+        function randomTier() {
+            // Część graczy nie ma przypisanego tieru.
+            if (Math.random() < 0.28) {
+                return null;
+            }
+
+            return tiers[Math.floor(Math.random() * tiers.length)].name;
+        }
+
+        function createExamplePlayers() {
+            const players = [];
+
+            for (let i = 0; i < 100; i++) {
+                const categoriesData = {};
+
+                categories.forEach(category => {
+                    categoriesData[category.id] = randomTier();
+                });
+
+                players.push({
+                    name: exampleNames[i % exampleNames.length] + (i >= exampleNames.length ? i : ""),
+                    categories: categoriesData
+                });
+            }
+
+            return players;
+        }
+
+        const players = createExamplePlayers();
+
+        /* =====================================================
+           SYSTEM PUNKTÓW
+        ===================================================== */
+
+        function getTierData(tierName) {
+            if (!tierName) {
+                return null;
+            }
+
+            return tiers.find(tier => tier.name === tierName) || null;
+        }
+
+        function getPlayerPoints(player) {
+            return categories.reduce((total, category) => {
+                const tier = getTierData(player.categories[category.id]);
+
+                return total + (tier ? tier.points : 0);
+            }, 0);
+        }
+
+        function getActiveCategories(player) {
+            return categories.filter(category => {
+                return Boolean(getTierData(player.categories[category.id]));
+            }).length;
+        }
+
+        function getCategoryPoints(player, categoryId) {
+            const tier = getTierData(player.categories[categoryId]);
+
+            return tier ? tier.points : 0;
+        }
+
+        function getTierClass(tierName) {
+            return tierName ? "tier-" + tierName.toLowerCase() : "";
+        }
+
+        /* =====================================================
+           WYBÓR KATEGORII
+        ===================================================== */
+
+        function selectCategory(categoryId) {
+            selectedCategory = categoryId;
+            currentPage = 1;
+
+            playerSearch.value = "";
+            sortPlayers.value = "desc";
+
+            document.querySelectorAll(".category-btn").forEach(button => {
+                button.classList.toggle(
+                    "active",
+                    button.dataset.category === categoryId
+                );
+            });
+
+            if (categoryId === "main") {
+                rankingTitle.textContent = "GŁÓWNE";
+                rankingDescription.textContent =
+                    "Łączna liczba punktów ze wszystkich trybów.";
+                tierColumnHeading.textContent = "AKTYWNE TRYBY";
+            } else {
+                const category = categories.find(item => item.id === categoryId);
+
+                rankingTitle.textContent = category.name;
+                rankingDescription.textContent =
+                    "Ranking graczy w kategorii " + category.name + ".";
+                tierColumnHeading.textContent = "TIER";
+            }
+
+            renderRanking();
+        }
+
+        document.querySelectorAll(".category-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                selectCategory(button.dataset.category);
+            });
+        });
+
+        /* =====================================================
+           FILTROWANIE I SORTOWANIE
+        ===================================================== */
+
+        function getVisiblePlayers() {
+            const search = playerSearch.value.trim().toLowerCase();
+
+            let result = players.filter(player => {
+                const matchesSearch = player.name.toLowerCase().includes(search);
+
+                if (selectedCategory === "main") {
+                    return matchesSearch;
                 }
+
+                return matchesSearch &&
+                    Boolean(getTierData(player.categories[selectedCategory]));
+            });
+
+            const sortType = sortPlayers.value;
+
+            result.sort((a, b) => {
+                if (sortType === "name") {
+                    return a.name.localeCompare(b.name);
+                }
+
+                const pointsA = selectedCategory === "main"
+                    ? getPlayerPoints(a)
+                    : getCategoryPoints(a, selectedCategory);
+
+                const pointsB = selectedCategory === "main"
+                    ? getPlayerPoints(b)
+                    : getCategoryPoints(b, selectedCategory);
+
+                if (pointsA !== pointsB) {
+                    return sortType === "asc"
+                        ? pointsA - pointsB
+                        : pointsB - pointsA;
+                }
+
+                return a.name.localeCompare(b.name);
+            });
+
+            return result;
+        }
+
+        /* =====================================================
+           WYŚWIETLANIE TABELI
+        ===================================================== */
+
+        function createTierBadge(tierName) {
+            if (!tierName) {
+                return '<span class="no-tier">BRAK</span>';
             }
 
             return `
-                <tr class="${globalPosition <= 3 && sortPlayers.value === "desc" && !playerSearch.value.trim() ? "tier-top-row" : ""}">
-                    <td class="tier-position-column">
-                        <span class="tier-position ${positionClass}">
-                            ${positionContent}
+                <span class="tier-badge ${getTierClass(tierName)}">
+                    ${tierName}
+                </span>
+            `;
+        }
+
+        function createPlayerRow(player, position) {
+            const points = selectedCategory === "main"
+                ? getPlayerPoints(player)
+                : getCategoryPoints(player, selectedCategory);
+
+            let lastColumn;
+
+            if (selectedCategory === "main") {
+                lastColumn = `
+                    <span class="active-categories">
+                        ${getActiveCategories(player)}
+                        <span>/ ${categories.length}</span>
+                    </span>
+                `;
+            } else {
+                lastColumn = createTierBadge(player.categories[selectedCategory]);
+            }
+
+            let positionClass = "";
+
+            if (position === 1) positionClass = "rank-first";
+            if (position === 2) positionClass = "rank-second";
+            if (position === 3) positionClass = "rank-third";
+
+            const avatarUrl =
+                "https://mc-heads.net/avatar/" +
+                encodeURIComponent(player.name) +
+                "/48";
+
+            return `
+                <tr>
+                    <td class="position-cell">
+                        <span class="rank-number ${positionClass}">
+                            ${position}
                         </span>
                     </td>
 
                     <td>
-                        <div class="tier-player">
-                            ${getAvatar(player.name)}
-                            <strong>${player.name}</strong>
+                        <div class="player-cell">
+                            <img
+                                src="${avatarUrl}"
+                                alt=""
+                                class="player-avatar"
+                                loading="lazy"
+                                onerror="this.style.visibility='hidden'"
+                            >
+
+                            <span class="player-name">
+                                ${escapeHTML(player.name)}
+                            </span>
                         </div>
                     </td>
 
-                    <td class="tier-points-column">
-                        <strong class="tier-player-points">
-                            ${formatPoints(player.points)}
-                        </strong>
+                    <td>
+                        <span class="player-points">
+                            ${points}
+                            <small>PKT</small>
+                        </span>
                     </td>
 
-                    <td class="tier-level-column">
-                        <span class="tier-level tier-level-${getLevel(player.points).toLowerCase()}">
-                            ${getLevel(player.points)}
-                        </span>
+                    <td>
+                        ${lastColumn}
                     </td>
                 </tr>
             `;
-        }).join("");
-    }
+        }
 
-    renderPagination(totalPages);
+        function escapeHTML(value) {
+            return String(value).replace(/[&<>"']/g, character => {
+                const entities = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+                };
 
-    const from = filteredPlayers.length === 0 ? 0 : start + 1;
-    const to = Math.min(start + playersPerPage, filteredPlayers.length);
+                return entities[character];
+            });
+        }
 
-    document.getElementById("pageInfo").textContent =
-        `Wyświetlanie graczy ${from}–${to} z ${filteredPlayers.length}`;
+        /* =====================================================
+           PAGINACJA
+        ===================================================== */
 
-    previousPage.disabled = currentPage <= 1;
-    nextPage.disabled = currentPage >= totalPages || totalPages === 0;
-}
+        function renderPagination(totalPages) {
+            pageNumbers.innerHTML = "";
 
-/* =====================================================
-   PAGINACJA
-===================================================== */
+            previousPage.disabled = currentPage <= 1;
+            nextPage.disabled = currentPage >= totalPages;
 
-function renderPagination(totalPages) {
-    pageNumbers.innerHTML = "";
+            for (let page = 1; page <= totalPages; page++) {
+                const button = document.createElement("button");
 
-    for (let page = 1; page <= totalPages; page++) {
-        const button = document.createElement("button");
+                button.className = "page-number";
+                button.textContent = page;
 
-        button.type = "button";
-        button.className =
-            "tier-page-number" + (page === currentPage ? " active" : "");
+                if (page === currentPage) {
+                    button.classList.add("active");
+                }
 
-        button.textContent = page;
-        button.setAttribute("aria-label", `Strona ${page}`);
+                button.addEventListener("click", () => {
+                    currentPage = page;
+                    renderRanking();
+                });
 
-        button.addEventListener("click", () => {
-            currentPage = page;
+                pageNumbers.appendChild(button);
+            }
+
+            pageInfo.textContent = `Strona ${currentPage} z ${totalPages}`;
+        }
+
+        previousPage.addEventListener("click", () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderRanking();
+            }
+        });
+
+        nextPage.addEventListener("click", () => {
+            const totalPages = Math.max(
+                1,
+                Math.ceil(getVisiblePlayers().length / playersPerPage)
+            );
+
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderRanking();
+            }
+        });
+
+        /* =====================================================
+           GŁÓWNE RENDEROWANIE
+        ===================================================== */
+
+        function renderRanking() {
+            const visiblePlayers = getVisiblePlayers();
+
+            const totalPages = Math.max(
+                1,
+                Math.ceil(visiblePlayers.length / playersPerPage)
+            );
+
+            if (currentPage > totalPages) {
+                currentPage = totalPages;
+            }
+
+            const start = (currentPage - 1) * playersPerPage;
+            const pagePlayers = visiblePlayers.slice(
+                start,
+                start + playersPerPage
+            );
+
+            totalPlayers.textContent = visiblePlayers.length;
+
+            rankingBody.innerHTML = pagePlayers
+                .map((player, index) => {
+                    return createPlayerRow(player, start + index + 1);
+                })
+                .join("");
+
+            noPlayers.hidden = visiblePlayers.length !== 0;
+
+            document.querySelector(".tier-table").style.display =
+                visiblePlayers.length === 0 ? "none" : "table";
+
+            document.getElementById("pagination").style.display =
+                visiblePlayers.length === 0 ? "none" : "flex";
+
+            renderPagination(totalPages);
+        }
+
+        playerSearch.addEventListener("input", () => {
+            currentPage = 1;
             renderRanking();
         });
 
-        pageNumbers.appendChild(button);
-    }
-}
+        sortPlayers.addEventListener("change", () => {
+            currentPage = 1;
+            renderRanking();
+        });
 
-previousPage.addEventListener("click", () => {
-    if (currentPage > 1) {
-        currentPage--;
+        /* =====================================================
+           MENU MOBILNE
+        ===================================================== */
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+                menuToggle.classList.toggle("active");
+            });
+
+            navLinks.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("active");
+                    menuToggle.classList.remove("active");
+                });
+            });
+        }
+
+        /* =====================================================
+           PRZYCISK POWROTU NA GÓRĘ
+        ===================================================== */
+
+        const topBtn = document.getElementById("topBtn");
+
+        window.addEventListener("scroll", () => {
+            if (topBtn) {
+                topBtn.classList.toggle("visible", window.scrollY > 400);
+            }
+        });
+
+        if (topBtn) {
+            topBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        }
+
+        /* START */
         renderRanking();
-    }
-});
 
-nextPage.addEventListener("click", () => {
-    const totalPages = Math.ceil(filteredPlayers.length / playersPerPage);
-
-    if (currentPage < totalPages) {
-        currentPage++;
-        renderRanking();
-    }
-});
-
-playerSearch.addEventListener("input", updatePlayers);
-sortPlayers.addEventListener("change", updatePlayers);
-
-/* =====================================================
-   MENU MOBILNE
-===================================================== */
-
-const hamburger = document.getElementById("hamburger");
-const menu = document.getElementById("menu");
-
-function toggleMenu() {
-    const isOpen = menu.classList.toggle("active");
-    hamburger.classList.toggle("active", isOpen);
-    hamburger.setAttribute("aria-expanded", String(isOpen));
-}
-
-hamburger.addEventListener("click", toggleMenu);
-
-hamburger.addEventListener("keydown", event => {
-    if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        toggleMenu();
-    }
-});
-
-/* =====================================================
-   POWRÓT NA GÓRĘ
-===================================================== */
-
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-    topBtn.classList.toggle("show", window.scrollY > 500);
-}, { passive: true });
-
-topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-/* =====================================================
-   START
-===================================================== */
-
-renderPodium();
-renderRanking();
-</script>
+    </script>
 
 </body>
 </html>
